@@ -1,15 +1,18 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+// import { Geist, Geist_Mono } from "next/font/google";
+import "@/assets/styles/global.scss";
+import AuthProvider from "@/components/AuthProvider.jsx";
+import { ToastContainer } from "react-toastify";
+import { GlobalProvider } from "@/context/GlobalContext.js";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 export const metadata = {
   title: "Create Next App",
@@ -18,10 +21,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
-    </html>
+    <GlobalProvider>
+      <AuthProvider>
+        <html lang="en">
+          {/* <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body> */}
+          <body>
+            <main>{children}</main>
+          </body>
+        </html>
+      </AuthProvider>
+    </GlobalProvider>
   );
 }
