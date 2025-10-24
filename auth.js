@@ -3,8 +3,9 @@ import clientPromise from "@/config/mongodb";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import NextAuth from "next-auth";
 
-export const authOptions = {
+export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GoogleProvider({
@@ -64,4 +65,4 @@ export const authOptions = {
   pages: {
     signIn: "/login", // Custom login page
   },
-};
+});

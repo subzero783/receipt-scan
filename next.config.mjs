@@ -14,6 +14,12 @@ const nextConfig = {
       },
     ],
   },
+  logging: {
+    fetches: {
+      fullUrl: true, // Log full URLs for fetch requests
+    },
+    hmrRefreshes: true, // Log HMR refreshes
+  },
 };
 
 export default nextConfig;

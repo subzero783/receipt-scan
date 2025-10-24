@@ -1,10 +1,12 @@
-"use client";
+import { auth } from "@/auth";
 import Link from "next/link";
 import ClientSignOut from "@/components/ClientSignOut";
-import { useSession } from "next-auth/react";
 
-export default function Home() {
-  const { data: session } = useSession();
+console.log(auth);
+
+export default async function Home() {
+  const session = await auth();
+
   return (
     <main style={{ padding: "2rem" }}>
       <h1>Next-Auth v5 + MongoDB (JavaScript)</h1>

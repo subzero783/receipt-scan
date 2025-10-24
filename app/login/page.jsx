@@ -20,6 +20,8 @@ const Login = () => {
       password,
     });
 
+    console.log("Login Result:", result);
+
     if (result?.error) {
       setError("Invalid email or password");
     } else if (result?.ok) {
