@@ -27,6 +27,7 @@ export default function RootLayout({ children }) {
           {/* <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body> */}
           <body>
             <main>{children}</main>
+            <ToastContainer />
           </body>
         </html>
       </AuthProvider>

@@ -20,6 +20,9 @@ const UserSchema = new Schema(
         ref: "Property",
       },
     ],
+    password: {
+      type: String,
+    },
   },
   {
     timestamps: true,
