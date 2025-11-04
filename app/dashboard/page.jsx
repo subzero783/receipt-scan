@@ -1,13 +1,8 @@
-// app/dashboard/page.jsx
-
-import { auth } from "@/auth"; // Adjust path to your auth.js file
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import ClientSignOut from "@/components/ClientSignOut"; // We'll create this next
 
 export default async function Dashboard() {
-  const session = await auth(); // Get session on the server
-
-  console.log("Dashboard Log session", session);
+  const session = await getServerSession();
 
   if (!session?.user) {
     redirect("/login"); // Protect the route
