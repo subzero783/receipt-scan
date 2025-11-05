@@ -2,6 +2,7 @@ import User from "@/models/User";
 import connectDB from "@/config/database";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
+// /api/signup/ route created
 
 export const POST = async (request) => {
   const { username, email, password } = await request.json();
