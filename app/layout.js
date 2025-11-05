@@ -1,8 +1,9 @@
 // import { Geist, Geist_Mono } from "next/font/google";
-import "@/assets/styles/global.scss";
+import "@/assets/styles/global.css";
 import AuthProvider from "@/components/AuthProvider.jsx";
 import { ToastContainer } from "react-toastify";
 import { GlobalProvider } from "@/context/GlobalContext.js";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
           <body>
             <main>{children}</main>
             <ToastContainer />
+            <SpeedInsights />
           </body>
         </html>
       </AuthProvider>
