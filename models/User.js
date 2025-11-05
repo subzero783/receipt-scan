@@ -24,5 +24,5 @@ const UserSchema = new Schema(
 );
 
 const User = models.User || model("User", UserSchema);
-
+// Added a comment to User model
 export default User;
