@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 import { POST } from "@/app/api/signup/route";
 
 // Import the dependencies we need to mock
