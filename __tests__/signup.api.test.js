@@ -48,12 +48,9 @@ describe("POST /api/signup", () => {
 
     // --- Act (Run the function) ---
     const response = await POST(mockRequest);
-    const body = await response.json();
+    const body = await response;
 
     // --- Assert (Check the results) ---
-    console.log(response.status);
-    console.log(body);
-
     expect(response.status).toBe(201);
     // expect(body.message).toBe("User created successfully");
 
