@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --silent=false",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch --silent=false"
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.11.0",
