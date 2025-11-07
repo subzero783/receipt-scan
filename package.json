@@ -7,11 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest --silent=false",
+    "test:watch": "jest --watch --silent=false"
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.11.0",
+    "@vercel/speed-insights": "^1.2.0",
     "bcryptjs": "^3.0.2",
     "bootstrap": "^5.3.8",
     "mongodb": "^6.20.0",
