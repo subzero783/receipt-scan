@@ -48,20 +48,94 @@ describe("POST /api/signup", () => {
 
     // --- Act (Run the function) ---
     const response = await POST(mockRequest);
-    const body = await response;
+    const body = await response.json();
 
     // --- Assert (Check the results) ---
     expect(response.status).toBe(201);
-    // expect(body.message).toBe("User created successfully");
+    expect(body).toEqual({ message: "User created successfully" });
 
     // // Check that our mocks were called correctly
-    // expect(connectDB).toHaveBeenCalledTimes(1);
-    // expect(User.findOne).toHaveBeenCalledWith({ email: "test@example.com" });
-    // expect(bcrypt.hash).toHaveBeenCalledWith("password123", 5);
-    // expect(User.create).toHaveBeenCalledWith({
-    //   username: "testuser",
-    //   email: "test@example.com",
-    //   password: "hashedpassword123",
-    // });
+    expect(connectDB).toHaveBeenCalledTimes(1);
+    expect(User.findOne).toHaveBeenCalledWith({ email: "test@example.com" });
+    expect(bcrypt.hash).toHaveBeenCalledWith("password123", 5);
+    expect(User.create).toHaveBeenCalledWith({
+      username: "testuser",
+      email: "test@example.com",
+      password: "hashedpassword123",
+    });
+  });
+
+  // Test 2: The "Sad Path" - the user already exists
+  it("should return 400 if user already exists", async () => {
+    // --- Arrange ---
+    connectDB.mockResolvedValue(true);
+    User.findOne.mockResolvedValue({
+      _id: "67890",
+      email: "existing@example.com",
+    }); // Simulate "user does exist"
+
+    const mockSave = jest.fn();
+    User.create.mockResolvedValue({ save: mockSave });
+
+    const mockRequest = {
+      json: jest.fn().mockResolvedValue({
+        username: "existinguser",
+        email: "existing@example.com",
+        password: "password123",
+      }),
+    };
+
+    // --- Act ---
+    const response = await POST(mockRequest);
+    // --- THIS IS THE FIX ---
+    const body = await response.json();
+    // --- END FIX ---
+
+    // --- Assert ---
+    expect(response.status).toBe(400);
+    // Assert against the object property
+    expect(body).toEqual({ message: "User already exists" });
+
+    expect(User.findOne).toHaveBeenCalledWith({ email: "existing@example.com" });
+    expect(bcrypt.hash).not.toHaveBeenCalled();
+    expect(User.create).not.toHaveBeenCalled();
+    expect(mockSave).not.toHaveBeenCalled();
+  });
+
+  // Test 3: The "Error Path" - the database fails to save
+  it("should return 500 if database save fails", async () => {
+    // --- Arrange ---
+    connectDB.mockResolvedValue(true);
+    User.findOne.mockResolvedValue(null);
+    bcrypt.hash.mockResolvedValue("hashedpassword123");
+
+    const dbError = new Error("Database save error");
+    const mockSave = jest.fn().mockRejectedValue(dbError);
+    User.create.mockResolvedValue({
+      save: mockSave,
+    });
+
+    const mockRequest = {
+      json: jest.fn().mockResolvedValue({
+        username: "testuser",
+        email: "test@example.com",
+        password: "password123",
+      }),
+    };
+
+    // --- Act ---
+    const response = await POST(mockRequest);
+    // --- THIS REMAINS .text() ---
+    // Because your catch block returns a plain string
+    const body = await response.json();
+    // --- END FIX ---
+
+    // --- Assert ---
+    expect(response.status).toBe(500);
+    // expect(body).toBe("Database save error"); // This is correct
+    expect(body).toEqual({ error: "Database save error" });
+
+    expect(User.create).toHaveBeenCalledTimes(1);
+    expect(mockSave).toHaveBeenCalledTimes(1);
   });
 });

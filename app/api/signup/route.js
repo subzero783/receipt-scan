@@ -26,6 +26,6 @@ export const POST = async (request) => {
     return new Response(JSON.stringify({ message: "User created successfully" }), { status: 201 });
   } catch (error) {
     console.log(error);
-    return new Response({ error: error.message }, { status: 500 });
+    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
   }
 };
