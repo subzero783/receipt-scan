@@ -5,7 +5,7 @@ import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import { Container, Row, Col } from "react-bootstrap";
-// finished login page structure
+
 const LoginPage = () => {
   const router = useRouter();
   const [error, setError] = useState("");
