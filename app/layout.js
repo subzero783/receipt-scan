@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import { GlobalProvider } from "@/context/GlobalContext.js";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
