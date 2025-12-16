@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import profileDefault from "@/assets/images/profile.png";
-import { Container, Row, Col } from "react-bootstrap";
 import logo from "@/assets/images/company-logo.png";
 
 const Navbar = () => {
@@ -19,10 +18,10 @@ const Navbar = () => {
 
   return (
     <nav className="top-navigation">
-      <Container>
-        <Row>
+      <div className="container">
+        <div className="row">
           {/* start:Mobile Menu button column */}
-          <Col className="mobile-menu-column">
+          <div className="mobile-menu-column col">
             <button
               type="button"
               id="mobile-dropdown-button"
@@ -46,20 +45,20 @@ const Navbar = () => {
                 />
               </svg>
             </button>
-          </Col>
+          </div>
           {/* end:Mobile Menu button column */}
           {/* start:Logo column */}
-          <Col className="logo-column">
+          <div className="logo-column col">
             <Link href="/">
               <Image
                 src={logo}
                 alt=""
               />
             </Link>
-          </Col>
+          </div>
           {/* end:Logo column */}
           {/* start:Top Menu column */}
-          <Col className="top-menu-column">
+          <div className="top-menu-column col">
             <Link
               href="/"
               className={`${pathName === "/" ? "active" : ""}`}
@@ -90,8 +89,8 @@ const Navbar = () => {
             >
               Pricing
             </Link>
-          </Col>
-          <Col className="top-buttons">
+          </div>
+          <div className="top-buttons col">
             <Link
               href="/login"
               className={`${pathName === "/login" ? "active" : ""} btn btn-primary`}
@@ -104,13 +103,13 @@ const Navbar = () => {
             >
               Sign up
             </Link>
-          </Col>
+          </div>
           {/* end:Top Menu column */}
           {/* start:Right Side Menu column */}
           {session && (
-            <Col className="right-side-menu-col">
+            <div className="right-side-menu-col col">
               {/* Profile Image */}
-              <div className="profile-image-container">
+              <div className="profile-image-div container">
                 <button
                   type="button"
                   id="user-menu-button"
@@ -129,12 +128,12 @@ const Navbar = () => {
                 </button>
               </div>
               {/* Profile Dropdown Menu */}
-              <div className="profile-dropdown-menu-container"></div>
-            </Col>
+              <div className="profile-dropdown-menu-div container"></div>
+            </div>
           )}
           {/* end:Right Side Menu column */}
-        </Row>
-      </Container>
+        </div>
+      </div>
     </nav>
   );
 };
