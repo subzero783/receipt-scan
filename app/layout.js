@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
           {/* <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body> */}
           <body>
             <NavBar />
-            <main>{children}</main>
+            <main id="main-children-container">{children}</main>
             <Footer />
             <ToastContainer />
             <SpeedInsights />

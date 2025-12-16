@@ -21,8 +21,8 @@ const Navbar = () => {
     <nav className="top-navigation">
       <Container>
         <Row>
-          <Col>
-            {/* Mobile Menu Button */}
+          {/* start:Mobile Menu button column */}
+          <Col className="mobile-menu-column">
             <button
               type="button"
               id="mobile-dropdown-button"
@@ -47,6 +47,8 @@ const Navbar = () => {
               </svg>
             </button>
           </Col>
+          {/* end:Mobile Menu button column */}
+          {/* start:Logo column */}
           <Col className="logo-column">
             <Link href="/">
               <Image
@@ -55,7 +57,9 @@ const Navbar = () => {
               />
             </Link>
           </Col>
-          <Col>
+          {/* end:Logo column */}
+          {/* start:Top Menu column */}
+          <Col className="top-menu-column">
             <Link
               href="/"
               className={`${pathName === "/" ? "active" : ""}`}
@@ -87,7 +91,22 @@ const Navbar = () => {
               Pricing
             </Link>
           </Col>
-          {/* Right Side Menu */}
+          <Col className="top-buttons">
+            <Link
+              href="/login"
+              className={`${pathName === "/login" ? "active" : ""} btn btn-primary`}
+            >
+              Sign in
+            </Link>
+            <Link
+              href="/signup"
+              className={`${pathName === "/signup" ? "active" : ""} btn btn-primary`}
+            >
+              Sign up
+            </Link>
+          </Col>
+          {/* end:Top Menu column */}
+          {/* start:Right Side Menu column */}
           {session && (
             <Col className="right-side-menu-col">
               {/* Profile Image */}
@@ -113,6 +132,7 @@ const Navbar = () => {
               <div className="profile-dropdown-menu-container"></div>
             </Col>
           )}
+          {/* end:Right Side Menu column */}
         </Row>
       </Container>
     </nav>
