@@ -1,12 +1,14 @@
 @import "osmo-scaling-system.css";
+@import "hero-section.css";
 
 /* Buttons */
 
 /* Top Navigation */
 .top-navigation {
-  padding-top: 1.18em;
   width: 100%;
   position: fixed;
+  z-index: 1000;
+  padding-top: 1.18em;
   > .container {
     > .row {
       display: flex;
@@ -26,6 +28,10 @@
     display: flex;
     flex-flow: row nowrap;
     gap: 32px;
+    > a {
+      padding: 5px;
+      color: var(--color-white);
+    }
   }
 
   .top-buttons {

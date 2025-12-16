@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
-import { Container, Row, Col } from "react-bootstrap";
 import { FaGoogle } from "react-icons/fa";
 
 const SignupPage = () => {
@@ -67,9 +66,9 @@ const SignupPage = () => {
   return (
     sessionStatus !== "authenticated" && (
       <section className="signup-section">
-        <Container>
-          <Row>
-            <Col>
+        <div className="container">
+          <div className="row">
+            <div className="col">
               <h1>Signup</h1>
               <form onSubmit={handleSubmit}>
                 <input
@@ -85,18 +84,18 @@ const SignupPage = () => {
                 <button type="submit">Register with Email</button>
                 <p>{error && error}</p>
               </form>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
               <p className="or-text">- OR -</p>
               <button onClick={() => signIn("google")}>
                 <FaGoogle />
                 <span>Register with Google</span>
               </button>
-            </Col>
-          </Row>
-        </Container>
+            </div>
+          </div>
+        </div>
       </section>
     )
   );

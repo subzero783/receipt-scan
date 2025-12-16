@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
-import { Container, Row, Col } from "react-bootstrap";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -58,9 +57,9 @@ const LoginPage = () => {
   return (
     sessionStatus !== "authenticated" && (
       <section className="login-section">
-        <Container>
-          <Row>
-            <Col>
+        <div className="container">
+          <div className="row">
+            <div className="col">
               <h1>Login</h1>
               <form onSubmit={handleSubmit}>
                 <input
@@ -86,9 +85,9 @@ const LoginPage = () => {
               </button>
               <div>- OR -</div>
               <Link href="/register">Register Here</Link>
-            </Col>
-          </Row>
-        </Container>
+            </div>
+          </div>
+        </div>
       </section>
     )
   );
