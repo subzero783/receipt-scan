@@ -207,6 +207,11 @@ p {
 a {
   color: inherit;
   text-decoration: unset;
+  &:hover, 
+  &:active, 
+  &:focus {
+    text-decoration: underline;
+  }
 }
 
 strong {

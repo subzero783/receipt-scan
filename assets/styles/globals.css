@@ -1,43 +1,5 @@
 @import "osmo-scaling-system.css";
+@import "top-navbar.css";
 @import "hero-section.css";
 @import "footer-section.css";
 
-/* Buttons */
-
-/* Top Navigation */
-.top-navigation {
-  width: 100%;
-  position: fixed;
-  z-index: 1000;
-  padding-top: 1.18em;
-  > .container {
-    > .row {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-      align-items: center;
-    }
-  }
-  .mobile-menu-column {
-    display: block;
-    @media screen and (min-width: 767px) {
-      display: none;
-    }
-  }
-
-  .top-menu-column {
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 32px;
-    > a {
-      padding: 5px;
-      color: var(--color-white);
-    }
-  }
-
-  .top-buttons {
-    > a:first-of-type {
-      margin-right: 10px;
-    }
-  }
-}
