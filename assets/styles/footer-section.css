@@ -17,17 +17,31 @@
       }
     }
     &.bottom-container {
-      border-top: 1px solid var(--color-neutral-400);
-      padding-top: 32px;
+      padding-top: 80px;
       padding-bottom: 0;
+      > .row {
+        align-items: center;
+        border-top: 1px solid var(--color-neutral-400);
+        padding-top: 32px;
+      }
       p {
         font-size: 14px;
         color: var(--color-white);
       }
       .copyright-column {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        p, a {
+          margin-right: 24px;
+        }
         a {
           text-decoration: underline;
           color: var(--color-white);
+          padding: 5px;
+          &:last-of-type {
+            margin-right: 0;
+          }
         }
       }
       .social-media-column {

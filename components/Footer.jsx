@@ -50,7 +50,7 @@ const Footer = () => {
       </div>
       <div className="container bottom-container">
         <div className="row">
-          <div clssName="col copyright-column">
+          <div className="col copyright-column">
             <p>&#169; 2024 Receipt AI Manager. All rights reserved</p>
             <Link href="/privacy">Privacy Policy</Link>
             <Link href="/terms">Terms of Service</Link>
