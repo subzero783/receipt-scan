@@ -5,24 +5,35 @@
     > .row {
       display: flex;
       flex-flow: row nowrap;
-      justify-content: space-evenly;
-      h3 {
-        font-size: 1.2em;
-        color: var(--color-white);
-        padding-bottom: 1em;
-        font-weight: 500;
-      }
-      .links-container {
-        display: flex;
-        flex-flow: column nowrap;
-        > a {
-          font-size: 1em;
-          margin-bottom: 1em;
-          margin-left: -5px;
-          padding: 5px;
-          color: var(--color-white);
+      > .col {
+        &:first-of-type {
+          margin-right: 9.8em;
         }
       }
+    }
+  }
+  .links-columns {
+    display: flex;
+    flex-flow: row nowrap;
+    > .col {
+      margin-right: 10em;
+    }
+  }
+  h3 {
+    font-size: 1.2em;
+    color: var(--color-white);
+    padding-bottom: 1em;
+    font-weight: 500;
+  }
+  .links-container {
+    display: flex;
+    flex-flow: column nowrap;
+    > a {
+      font-size: 1em;
+      margin-bottom: 1em;
+      margin-left: -5px;
+      padding: 5px;
+      color: var(--color-white);
     }
   }
 }
