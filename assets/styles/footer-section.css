@@ -16,7 +16,8 @@
     display: flex;
     flex-flow: row nowrap;
     > .col {
-      margin-right: 10em;
+      margin-right: 6.5%;
+      min-width: 158px;
     }
   }
   h3 {
