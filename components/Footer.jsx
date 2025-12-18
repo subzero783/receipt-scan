@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import SocialMedia from '@/components/SocialMedia';
 import logo from "@/assets/images/company-logo.png";
 
 const Footer = () => {
@@ -40,9 +41,23 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="col">
+          <div className="col subscribe-column">
             <h3>Subscribe</h3>
+            <p>Stay updated with our latest features and product improvements</p>
             {/* Email subscription signup Goes Here */}
+          </div>
+        </div>
+      </div>
+      <div className="container bottom-container">
+        <div className="row">
+          <div clssName="col copyright-column">
+            <p>&#169; 2024 Receipt AI Manager. All rights reserved</p>
+            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/terms">Terms of Service</Link>
+            <Link href="/cookies">Cookies</Link>
+          </div>
+          <div className="col social-media-column">
+            <SocialMedia/>
           </div>
         </div>
       </div>
