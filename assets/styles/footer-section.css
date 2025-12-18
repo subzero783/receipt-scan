@@ -1,14 +1,37 @@
 .footer {
   background-color: var(--color-fifth);
-  padding: 6em 0;
+  padding: 80px 0;
   > .container {
     > .row {
       display: flex;
       flex-flow: row nowrap;
+      justify-content: flex-start;
       > .col {
         &:first-of-type {
-          margin-right: 9.8em;
+          margin-right: 10%;
+          width: 58%;
         }
+        &:last-of-type {
+          width: 31%;
+        }
+      }
+    }
+    &.bottom-container {
+      border-top: 1px solid var(--color-neutral-400);
+      padding-top: 32px;
+      padding-bottom: 0;
+      p {
+        font-size: 14px;
+        color: var(--color-white);
+      }
+      .copyright-column {
+        a {
+          text-decoration: underline;
+          color: var(--color-white);
+        }
+      }
+      .social-media-column {
+
       }
     }
   }
@@ -16,24 +39,35 @@
     display: flex;
     flex-flow: row nowrap;
     > .col {
-      margin-right: 6.5%;
-      min-width: 158px;
+      margin-right: 6%;
+      width: 25%;
+      &:last-of-type {
+        margin-right: 0;
+      }
     }
   }
   h3 {
-    font-size: 1.2em;
+    font-size: 16px;
     color: var(--color-white);
-    padding-bottom: 1em;
+    padding-bottom: 16px;
     font-weight: 500;
   }
   .links-container {
     display: flex;
     flex-flow: column nowrap;
     > a {
-      font-size: 1em;
-      margin-bottom: 1em;
+      font-size: 14px;
+      margin-bottom: 8px;
       margin-left: -5px;
       padding: 5px;
+      color: var(--color-white);
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .subscribe-column {
+    p {
       color: var(--color-white);
     }
   }
