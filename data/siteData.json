@@ -22,5 +22,47 @@
         "link": "/"
       }
     ]
+  },
+  {
+    "how_it_works": {
+      "small_title": "Simple",
+      "title": "How it works",
+      "subtitle": "Manage expenses with just three easy steps",
+      "boxes": [
+        {
+          "id": "1",
+          "small_title": "Snap",
+          "title": "Capture receipts",
+          "text": "Quickly photograph or upload your business receipts",
+          "image": "/how-it-works/capture-receipts.png",
+          "link": {
+            "link": "/",
+            "text": "Learn"
+          }
+        },
+        {
+          "id": "2",
+          "small_title": "AI tag",
+          "title": "Smart categorization",
+          "text": "Our AI instantly extracts and categorizes expense details",
+          "image": "/how-it-works/capture-receipts.png",
+          "link": {
+            "link": "/",
+            "text": "Explore"
+          }
+        },
+        {
+          "id": "3",
+          "small_title": "Export",
+          "title": "Seamless tax preparation",
+          "text": "Generate CSV or Excel files with a single click",
+          "image": "/how-it-works/capture-receipts.png",
+          "link": {
+            "link": "/",
+            "text": "Get started"
+          }
+        }
+      ]
+    }
   }
 ]

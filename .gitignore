@@ -42,6 +42,7 @@ yarn-error.log*
 next-env.d.ts
 
 *.jpg
+*.jpeg
 *.png
 *.svg
 !/assets/images/*.png
