@@ -45,6 +45,8 @@
                 }
                 &:last-of-type {
                     width: 50%;
+                    display: flex;
+                    flex-flow: row nowrap;
                     .box-image {
 
                     }
