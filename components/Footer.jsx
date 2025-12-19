@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import SocialMedia from '@/components/SocialMedia';
+import SocialMedia from "@/components/SocialMedia";
 import logo from "@/assets/images/company-logo.png";
 
 const Footer = () => {
   return (
     <section className="footer">
-      <div className="container">
+      <div className="container top-footer">
         <div className="row">
           <div className="col links-columns">
             <div className="col">
@@ -57,8 +57,28 @@ const Footer = () => {
             <Link href="/cookies">Cookies</Link>
           </div>
           <div className="col social-media-column">
-            <SocialMedia/>
+            <SocialMedia />
           </div>
+          <div className="col">
+            <h3>Product</h3>
+          </div>
+          <div className="col">
+            <h3>Company</h3>
+          </div>
+          <div className="col">
+            <h3>Legal</h3>
+          </div>
+          <div className="col">
+            <h3>Subscribe</h3>
+            <p className="subtitle"></p>
+            {/* Email Sign Up Goes Here */}
+          </div>
+        </div>
+      </div>
+      <div className="container bottom-footer">
+        <div className="row">
+          <div className="privacy-policy-col col"></div>
+          <div className="social-media-col col"></div>
         </div>
       </div>
     </section>
