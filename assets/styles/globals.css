@@ -3,3 +3,24 @@
 @import "hero-section.css";
 @import "footer-section.css";
 
+/* Links Underline Animation */
+.line-transform {
+  position: relative;
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    margin: auto;
+    height: 1px;
+    width: 0;
+    right: auto;
+    left: 0;
+    background: transparent;
+    transition: all 0.5s ease, background-color 0.5s ease;
+  }
+  &:hover,
+  &:active,
+  &:focus {
+    width: 100%;
+  }
+}
