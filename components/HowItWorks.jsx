@@ -20,6 +20,12 @@ const HowItWorks = () => {
                     width={100}
                     height={100}
                   />
+                  <div className="text-container">
+                    <p className="small-title">{item.small_title}</p>
+                    <p className="title">{item.title}</p>
+                    <p className="text">{item.text}</p>
+                  </div>
+                  <Link href={item.link.url}>{item.link.text}</Link>
                 </div>
               ))}
             </div>
