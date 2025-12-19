@@ -3,7 +3,19 @@
   width: 100%;
   position: fixed;
   z-index: 1000;
-  padding-top: 1.18em;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  transition: all 0.3s ease-in-out; /* Smooth transition for the shadow */
+  background-color: transparent;
+  &.scrolled {
+    background-color: var(--color-white);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* The desired shadow style */
+    .top-menu-column {
+      > a {
+        color: var(--color-black);
+      }
+    }
+  }
   > .container {
     > .row {
       display: flex;

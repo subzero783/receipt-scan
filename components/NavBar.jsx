@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,11 +14,31 @@ const Navbar = () => {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const pathName = usePathname();
 
+  const handleScroll = () => {
+    // Check if the vertical scroll position (pageYOffset/scrollY) is greater than 0
+    if (window.scrollY > 0) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    // Add the scroll event listener when the component mounts
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Empty dependency array means this runs once on mount
+
   return (
-    <nav className="top-navigation">
+    <nav className={`top-navigation ${isScrolled ? "scrolled" : ""}`}>
       <div className="container">
         <div className="row">
           {/* start:Mobile Menu button column */}
