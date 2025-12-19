@@ -6,6 +6,7 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import profileDefault from "@/assets/images/profile.png";
 import logo from "@/assets/images/company-logo.png";
+import MainMenu from "./MainMenu";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -59,36 +60,7 @@ const Navbar = () => {
           {/* end:Logo column */}
           {/* start:Top Menu column */}
           <div className="top-menu-column col">
-            <Link
-              href="/"
-              className={`${pathName === "/" ? "active" : ""}`}
-            >
-              Home
-            </Link>
-            <Link
-              href="/blog"
-              className={`${pathName === "/blog" ? "active" : ""}`}
-            >
-              Blog
-            </Link>
-            <Link
-              href="/about"
-              className={`${pathName === "/about" ? "active" : ""}`}
-            >
-              About
-            </Link>
-            <Link
-              href="/features"
-              className={`${pathName === "/features" ? "active" : ""}`}
-            >
-              Features
-            </Link>
-            <Link
-              href="/pricing"
-              className={`${pathName === "/pricing" ? "active" : ""}`}
-            >
-              Pricing
-            </Link>
+            <MainMenu />
           </div>
           <div className="top-buttons col">
             <Link
