@@ -1,6 +1,16 @@
 .how-it-works {
+    padding: 80px 0;
+    background-color: var(--color-third);
     .row {
         display: flex;
         flex-flow: row nowrap;
+
+    }
+    .col {
+        .boxes {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: flex-start;
+        }
     }
 }
