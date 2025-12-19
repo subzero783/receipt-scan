@@ -7,10 +7,24 @@
 
     }
     .col {
+        width: 100%;
+        .top-text {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            color: var(--color-dark-1);
+            .small-title {
+                font-size: 16px;
+                font-weight: 600;
+                margin-bottom: 16px;
+            }
+
+        }
         .boxes {
             display: flex;
             flex-flow: row nowrap;
             align-items: flex-start;
+            background-color: var(--color-fourth);
         }
     }
 }
