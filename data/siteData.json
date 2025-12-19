@@ -36,7 +36,7 @@
           "text": "Quickly photograph or upload your business receipts",
           "image": "/how-it-works/capture-receipts.png",
           "link": {
-            "link": "/",
+            "url": "/",
             "text": "Learn"
           }
         },
@@ -45,9 +45,9 @@
           "small_title": "AI tag",
           "title": "Smart categorization",
           "text": "Our AI instantly extracts and categorizes expense details",
-          "image": "/how-it-works/capture-receipts.png",
+          "image": "/how-it-works/smart-categorization.png",
           "link": {
-            "link": "/",
+            "url": "/",
             "text": "Explore"
           }
         },
@@ -56,9 +56,9 @@
           "small_title": "Export",
           "title": "Seamless tax preparation",
           "text": "Generate CSV or Excel files with a single click",
-          "image": "/how-it-works/capture-receipts.png",
+          "image": "/how-it-works/seamless-tax-preparation.png",
           "link": {
-            "link": "/",
+            "url": "/",
             "text": "Get started"
           }
         }
