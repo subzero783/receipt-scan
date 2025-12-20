@@ -2,7 +2,22 @@
 @import "top-navbar.css";
 @import "hero-section.css";
 @import "footer-section.css";
-@import "how-it-works.css";
+@import "how-it-works.css"; 
+@import "features.css";
+
+/* Text */
+.small-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+.title {
+  font-size: 52px;
+  font-weight: 500;
+}
+.subtitle {
+  font-size: 18px;
+  font-weight: 500;
+}
 
 /* Links Underline Animation */
 .line-transform {
