@@ -37,6 +37,7 @@
                 overflow: hidden;
                 border-radius: 16px;
                 background-color: var(--color-fourth);
+                box-shadow: 0px 1px 6px -1px var(--color-neutral-400);
                 &:first-of-type,
                 &:nth-of-type(2){
                     width: 25%;
@@ -59,11 +60,30 @@
                     }
                 }
                 .text-container {
-                    box-shadow: 1px 1px 1px 1px var(--color-neutral-400);
                     padding: 24px;
+                    .small-title {
+                        font-weight: 600;
+                        font-size: 16px;
+                    }
+                    .title {
+                        font-size: 28px;
+                        font-weight: 600;
+                        margin: 8px 0;
+                    }
+                    .text {
+                        font-size: 16px;
+                    }
                     a {
                         margin-top: 24px;
+                        font-size: 14px;
+                        font-weight: 600;
                         display: inline-block;
+                        > svg {
+                            font-weight: 600;
+                            font-size: 18px;
+                            position: relative;
+                            top: -1px;
+                        }
                     }
                 }
                 .box-image {
