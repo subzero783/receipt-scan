@@ -14,17 +14,12 @@
             align-items: center;
             color: var(--color-dark-1);
             .small-title {
-                font-size: 16px;
-                font-weight: 600;
                 margin-bottom: 16px;
             }
             .title {
-                font-size: 52px;
                 margin-bottom: 24px;
-                font-weight: 500;
             }
             .subtitle {
-                font-size: 18px;
                 margin-bottom: 80px;
             }
 
