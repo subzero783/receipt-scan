@@ -33,7 +33,6 @@
             display: flex;
             align-items: stretch;
             flex-flow: row nowrap;
-            align-items: flex-start;
             .box {
                 overflow: hidden;
                 border-radius: 16px;
@@ -48,7 +47,10 @@
                     display: flex;
                     flex-flow: row nowrap;
                     .box-image {
-
+                        width: 50%;
+                        border-top-left-radius: unset;
+                        border-top-right-radius: unset;
+                        background-position: center bottom;
                     }
                 }
                 .text-container {
