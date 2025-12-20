@@ -63,6 +63,7 @@
                     padding: 24px;
                     a {
                         margin-top: 24px;
+                        display: inline-block;
                     }
                 }
                 .box-image {
