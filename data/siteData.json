@@ -64,5 +64,54 @@
         }
       ]
     }
+  }, 
+  {
+    "features": {
+      "small_title": "Features",
+      "title": "Powerful expense tracking",
+      "subtitle": "Designed to simplify financial management for freelancers",
+      "boxes": [
+        {
+          "id": "1",
+          "title": "Mobile receipt capture",
+          "text": "Snap photos of receipts anytime, anywhere",
+          "image": "/how-it-works/capture-receipts.png",
+          "link": {
+            "url": "/",
+            "text": "Learn More"
+          }
+        },
+        {
+          "id": "2",
+          "title": "AI categorization",
+          "text": "Intelligent expense classification and tagging",
+          "image": "/how-it-works/smart-categorization.png",
+          "link": {
+            "url": "/",
+            "text": "Learn More"
+          }
+        },
+        {
+          "id": "3",
+          "title": "CSV/Excel export",
+          "text": "Instant tax-ready financial reports",
+          "image": "/how-it-works/seamless-tax-preparation.png",
+          "link": {
+            "url": "/",
+            "text": "Learn More"
+          }
+        },
+        {
+          "id": "4",
+          "title": "Email receipt import",
+          "text": "Forward receipts directly to your account",
+          "image": "/how-it-works/seamless-tax-preparation.png",
+          "link": {
+            "url": "/",
+            "text": "Learn More"
+          }
+        }
+      ]
+    }
   }
 ]
