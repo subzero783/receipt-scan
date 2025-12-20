@@ -52,6 +52,11 @@
                         border-top-right-radius: unset;
                         background-position: center bottom;
                     }
+                    .text-container {
+                        display: flex;
+                        flex-flow: column nowrap;
+                        justify-content: center;
+                    }
                 }
                 .text-container {
                     box-shadow: 1px 1px 1px 1px var(--color-neutral-400);
