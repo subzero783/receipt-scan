@@ -25,13 +25,28 @@
             &:last-of-type {
                 margin-right: 0;
             }
+            .stars {
+                svg {
+                    font-size: 20px;
+                }
+            }
+            .text {
+                margin-top: 24px;
+                font-size: 16px;
+            }
             .image-and-author-name {
                 display: flex;
                 flex-flow: row nowrap;
                 align-items: center;
+                margin-top: 24px;
+                font-size: 14px;
                 img {
                     max-width: 48px;
+                    max-height: 48px;
                     margin-right: 16px;
+                }
+                .author {
+                    font-weight: 600;
                 }
             }
         }

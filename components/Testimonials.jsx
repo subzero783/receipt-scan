@@ -34,7 +34,7 @@ const Testimonials = () => {
                                 <div className="image-and-author-name">
                                     <Image className="author-image" src={`/images${item.image}`} alt={item.author} width={100} height={100}/>
                                     <div className="name-and-occupation">
-                                        <p className="name">{item.author}</p>
+                                        <p className="author">{item.author}</p>
                                         <p className="occupation">{item.occupation}</p>
                                     </div>
                                 </div>
