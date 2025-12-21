@@ -10,12 +10,12 @@ const Features = () => {
         <div className="row">
           <div className="col">
             <div className="top-text">
-              <p className="small-title">{siteData[2].features.small_title}</p>
-              <h2 className="title">{siteData[2].features.title}</h2>
-              <p className="subtitle">{siteData[2].features.subtitle}</p>
+              <p className="small-title">{siteData[1].home_page.features.small_title}</p>
+              <h2 className="title">{siteData[1].home_page.features.title}</h2>
+              <p className="subtitle">{siteData[1].home_page.features.subtitle}</p>
             </div>
             <div className="boxes">
-              {siteData[2].features.boxes.map((item, index) => (
+              {siteData[1].home_page.features.boxes.map((item, index) => (
                 <div
                   className="box"
                   key={index}
