@@ -12,8 +12,28 @@
         color: var(--color-white);
     }
     .boxes {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
         .box {
-            
+            border-radius: 16px;
+            background-color: var(--color-sixth);
+            color: var(--color-white);
+            width: 33.33%;
+            margin-right: 32px;
+            padding: 32px;
+            &:last-of-type {
+                margin-right: 0;
+            }
+            .image-and-author-name {
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                img {
+                    max-width: 48px;
+                    margin-right: 16px;
+                }
+            }
         }
     }
 }

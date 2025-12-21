@@ -5,9 +5,11 @@ import siteData from "@/data/siteData.json";
 const Testimonials = () => {
 
     const getFiveStars = () => {
-        for (let i = 0; i < 4; i++) {
-            return <LiaStarSolid/>
+        const stars = [];
+        for (let i = 0; i <= 4; i++) {
+            stars.push(<LiaStarSolid/>);
         } 
+        return stars;
     }
 
     return(
