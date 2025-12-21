@@ -11,4 +11,9 @@
     .top-text {
         color: var(--color-white);
     }
+    .boxes {
+        .box {
+            
+        }
+    }
 }

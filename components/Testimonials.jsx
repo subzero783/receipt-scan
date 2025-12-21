@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { LiaStarSolid } from "react-icons/lia";
 import siteData from "@/data/siteData.json";
 
 const Testimonials = () => {
@@ -16,7 +17,17 @@ const Testimonials = () => {
                 <div className="boxes">
                     {
                         siteData[1].home_page.testimonials.boxes.map((item, index)=>(
-                            <div className="box" key={index}></div>
+                            <div className="box" key={index}>
+                                
+                                <p className="text">{item.text}</p>
+                                <div className="image-and-author-name">
+                                    <Image className="author-image" src={`/images${item.image}`} alt={item.author} width={100} height={100}/>
+                                    <div className="name-and-occupation">
+                                        <p className="name">{item.author}</p>
+                                        <p className="occupation">{item.occupation}</p>
+                                    </div>
+                                </div>
+                            </div>
                         ))
                     }
                 </div>
