@@ -20,7 +20,7 @@ const HowItWorks = () => {
                   key={index}
                 >
                   <div className="box-image" style={{backgroundImage: `url(/images${item.image})`}}></div>
-                  <div className="text-container">
+                  <div className="box-text-container">
                     <p className="small-title">{item.small_title}</p>
                     <p className="title">{item.title}</p>
                     <p className="text">{item.text}</p>
