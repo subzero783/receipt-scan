@@ -3,6 +3,13 @@ import { LiaStarSolid } from "react-icons/lia";
 import siteData from "@/data/siteData.json";
 
 const Testimonials = () => {
+
+    const getFiveStars = () => {
+        for (let i = 0; i < 4; i++) {
+            return <LiaStarSolid/>
+        } 
+    }
+
     return(
         <section className="testimonials">
             <div className="container">
@@ -18,7 +25,9 @@ const Testimonials = () => {
                     {
                         siteData[1].home_page.testimonials.boxes.map((item, index)=>(
                             <div className="box" key={index}>
-                                
+                                <div className="stars">
+                                    {getFiveStars()}
+                                </div>
                                 <p className="text">{item.text}</p>
                                 <div className="image-and-author-name">
                                     <Image className="author-image" src={`/images${item.image}`} alt={item.author} width={100} height={100}/>
