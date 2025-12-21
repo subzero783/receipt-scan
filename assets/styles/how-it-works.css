@@ -31,10 +31,11 @@
                         border-top-right-radius: unset;
                         background-position: center bottom;
                     }
-                    .text-container {
+                    .box-text-container {
                         display: flex;
                         flex-flow: column nowrap;
                         justify-content: center;
+                        width: 50%;
                     }
                 }
                 .box-image {
