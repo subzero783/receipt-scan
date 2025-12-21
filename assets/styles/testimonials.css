@@ -1,0 +1,14 @@
+.testimonials {
+    padding: 80px 0;
+    background-color: var(--color-fifth);
+    .row {
+        display: flex;
+        flex-flow: row nowrap;
+        .col {
+            width: 100%;
+        }
+    }
+    .top-text {
+        color: var(--color-white);
+    }
+}
