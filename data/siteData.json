@@ -2,22 +2,18 @@
   {
     "social_media": [
       {
-        "id": 1,
         "name": "facebook",
         "link": "/"
       },
       {
-        "id": 2,
         "name": "instagram",
         "link": "/"
       },
       {
-        "id": 3,
         "name": "linkedin",
         "link": "/"
       },
       {
-        "id": 4,
         "name": "tiktok",
         "link": "/"
       }
@@ -148,12 +144,12 @@
         "link": "/"
       },
       {
-        "name": "Blog",
-        "link": "/blog"
-      },
-      {
         "name": "About",
         "link": "/about"
+      },
+      {
+        "name": "Blog",
+        "link": "/blog"
       },
       {
         "name": "Features",
@@ -171,16 +167,16 @@
         "menu_name": "Product",
         "menu_items": [
           {
+            "name": "Blog",
+            "link": "/blog"
+          },
+          {
             "name": "Features",
             "link": "/features"
           },
           {
             "name": "Pricing",
             "link": "/pricing"
-          },
-          {
-            "name": "Blog",
-            "link": "/blog"
           }
         ]
       },
@@ -201,16 +197,16 @@
         "menu_name": "Legal",
         "menu_items": [
           {
-            "name": "Terms of Service",
-            "link": "/terms"
+            "name": "Cookies",
+            "link": "/cookies"
           },
           {
             "name": "Privacy Policy",
             "link": "/privacy"
           },
           {
-            "name": "Cookies",
-            "link": "/cookies"
+            "name": "Terms of Service",
+            "link": "/terms"
           }
         ]
       }

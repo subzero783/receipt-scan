@@ -42,9 +42,9 @@ const Footer = () => {
         <div className="row">
           <div className="col copyright-column">
             <p>&#169; 2024 Receipt AI Manager. All rights reserved</p>
-            {Object.entries(siteData[3].footer_menu)
-              .filter(([key, value]) => value.type === "Legal")
-              .map((item, index) => (
+            {siteData[3].footer_menu
+              .find((menu) => menu.menu_name === "Legal")
+              ?.menu_items.map((item, index) => (
                 <Link
                   href={item.link}
                   key={index}
