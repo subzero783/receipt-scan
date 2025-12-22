@@ -29,6 +29,28 @@
           font-weight: 600;
         }
       }
+      @media screen and (max-width: 768px) {
+        flex-flow: row wrap;
+        .mobile-menu-column {
+          width: 25%;
+        }
+        .logo-column {
+          width: 75%;
+          > a {
+            > img {
+              margin-left: 25%;
+            }
+          }
+        }
+        .top-menu-column {
+          width: 100%;
+          flex-flow: column nowrap;
+        }
+        .top-buttons {
+          width: 100%;
+          flex-flow: column nowrap;
+        }
+      }
     }
   }
   .mobile-menu-column {
@@ -46,6 +68,9 @@
       font-size: 14px;
       padding: 5px;
       color: var(--color-white);
+      &.active {
+        text-decoration: underline;
+      }
     }
   }
 
