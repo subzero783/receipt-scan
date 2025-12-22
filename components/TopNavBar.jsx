@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import profileDefault from "@/assets/images/profile.png";
-import logo from "@/assets/images/company-logo.png";
 import MainMenu from "./MainMenu";
+import LogoLinkImage from "./LogoLinkImage";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -70,12 +70,7 @@ const Navbar = () => {
           {/* end:Mobile Menu button column */}
           {/* start:Logo column */}
           <div className="logo-column col">
-            <Link href="/">
-              <Image
-                src={logo}
-                alt=""
-              />
-            </Link>
+            <LogoLinkImage />
           </div>
           {/* end:Logo column */}
           {/* start:Top Menu column */}
