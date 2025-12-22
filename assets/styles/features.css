@@ -21,6 +21,7 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        min-height: 320px;
         .box-text-container {
           color: var(--color-white);
           position: relative;
