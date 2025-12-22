@@ -84,7 +84,7 @@
             "id": "2",
             "title": "AI categorization",
             "text": "Intelligent expense classification and tagging",
-            "image": "/how-it-works/smart-categorization.png",
+            "image": "/how-it-works/capture-receipts.png",
             "link": {
               "url": "/",
               "text": "Learn More"
@@ -94,7 +94,7 @@
             "id": "3",
             "title": "CSV/Excel export",
             "text": "Instant tax-ready financial reports",
-            "image": "/how-it-works/seamless-tax-preparation.png",
+            "image": "/how-it-works/capture-receipts.png",
             "link": {
               "url": "/",
               "text": "Learn More"
@@ -104,7 +104,7 @@
             "id": "4",
             "title": "Email receipt import",
             "text": "Forward receipts directly to your account",
-            "image": "/how-it-works/seamless-tax-preparation.png",
+            "image": "/how-it-works/capture-receipts.png",
             "link": {
               "url": "/",
               "text": "Learn More"
@@ -118,22 +118,22 @@
         "boxes": [
           {
             "star_rating": 5,
-            "text": "This app has saved me hours of tedious receipt management. Totally game-changing!", 
-            "author": "Sarah Martinez", 
+            "text": "This app has saved me hours of tedious receipt management. Totally game-changing!",
+            "author": "Sarah Martinez",
             "occupation": "Freelance Graphic Designer",
             "image": "/testimonials_users/sarah-martinez.png"
           },
           {
             "star_rating": 5,
-            "text": "I can't believe how easy it is to track my business expenses now. Highly recommended!", 
-            "author": "Michael Chen", 
+            "text": "I can't believe how easy it is to track my business expenses now. Highly recommended!",
+            "author": "Michael Chen",
             "occupation": "Independent consultant",
             "image": "/testimonials_users/michael-chen.png"
           },
           {
             "star_rating": 5,
-            "text": "Finally, a tool that understands the chaos of freelance financial tracking.", 
-            "author": "Emma Rodriguez", 
+            "text": "Finally, a tool that understands the chaos of freelance financial tracking.",
+            "author": "Emma Rodriguez",
             "occupation": "Web developer",
             "image": "/testimonials_users/emma-rodriguez.png"
           }
