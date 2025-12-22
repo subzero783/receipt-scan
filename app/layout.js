@@ -4,7 +4,7 @@ import AuthProvider from "@/components/AuthProvider.jsx";
 import { ToastContainer } from "react-toastify";
 import { GlobalProvider } from "@/context/GlobalContext.js";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import NavBar from "@/components/NavBar";
+import TopNavBar from "@/components/TopNavBar";
 import Footer from "@/components/Footer";
 
 // const geistSans = Geist({
@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
         <html lang="en">
           {/* <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body> */}
           <body>
-            <NavBar />
+            <TopNavBar />
             <main id="main-children-container">{children}</main>
             <Footer />
             <ToastContainer />

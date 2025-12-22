@@ -20,7 +20,7 @@ const Navbar = () => {
 
   const handleScroll = () => {
     // Check if the vertical scroll position (pageYOffset/scrollY) is greater than 0
-    if (window.scrollY > 0) {
+    if (window.scrollY > 90) {
       setIsScrolled(true);
     } else {
       setIsScrolled(false);
