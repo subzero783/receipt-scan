@@ -19,12 +19,17 @@ const HowItWorks = () => {
                   className="box"
                   key={index}
                 >
-                  <div className="box-image" style={{backgroundImage: `url(/images${item.image})`}}></div>
+                  <div
+                    className="box-image"
+                    style={{ backgroundImage: `url(/images${item.image})` }}
+                  ></div>
                   <div className="text-container">
                     <p className="small-title">{item.small_title}</p>
                     <p className="title">{item.title}</p>
                     <p className="text">{item.text}</p>
-                    <Link href={item.link.url}>{item.link.text} <MdKeyboardArrowRight/></Link>
+                    <Link href={item.link.url}>
+                      {item.link.text} <MdKeyboardArrowRight />
+                    </Link>
                   </div>
                 </div>
               ))}
