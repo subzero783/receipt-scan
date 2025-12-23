@@ -64,27 +64,6 @@
   }
 }
 
-/* Mobile Menu */
-.-inset-0\.5 {
-  inset: calc(var(--spacing) * -0.5);
-}
-
-.absolute,
-.sr-only {
-  position: absolute;
-}
-
-.sr-only {
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-}
-
 /* Links Underline Animation */
 .line-transform {
   position: relative;
