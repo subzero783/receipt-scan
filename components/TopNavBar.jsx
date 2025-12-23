@@ -6,6 +6,7 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import profileDefault from "@/assets/images/profile.png";
 import MainMenu from "./MainMenu";
+import { IoIosMenu } from "react-icons/io";
 import LogoLinkImage from "./LogoLinkImage";
 
 const Navbar = () => {
@@ -18,27 +19,23 @@ const Navbar = () => {
 
   const pathName = usePathname();
 
-  const handleScroll = () => {
-    // Check if the vertical scroll position (pageYOffset/scrollY) is greater than 0
-    if (window.scrollY > 90) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
-  };
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsMobileMenuOpen(false);
+    setIsProfileMenuOpen(false);
+  }, [pathName]);
 
   useEffect(() => {
-    // Add the scroll event listener when the component mounts
-    window.addEventListener("scroll", handleScroll);
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 90);
     };
-  }, []); // Empty dependency array means this runs once on mount
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className={`top-navigation ${isScrolled ? "scrolled" : ""}`}>
+    <nav className={`top-navigation ${isScrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "menu-open" : ""}`}>
       <div className="container">
         <div className="row">
           {/* start:Mobile Menu button column */}
@@ -50,21 +47,7 @@ const Navbar = () => {
               aria-expanded={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
             >
-              <span></span>
-              <span className="sr-only">Open main menu</span>
-              <svg
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
+              <IoIosMenu />
             </button>
           </div>
           {/* end:Mobile Menu button column */}
