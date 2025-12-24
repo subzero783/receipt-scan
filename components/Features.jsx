@@ -4,7 +4,7 @@ import { FaCube } from "react-icons/fa6";
 import siteData from "@/data/siteData.json";
 
 const Features = () => {
-    return(
+  return(
     <section className="features">
       <div className="container">
         <div className="row">
@@ -34,7 +34,7 @@ const Features = () => {
         </div>
       </div>
     </section>
-    )
+  )
 }
 
 export default Features;
