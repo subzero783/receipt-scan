@@ -36,12 +36,16 @@
     flex-flow: row nowrap;
     gap: 32px;
     > a {
+      font-size: 14px;
       padding: 5px;
       color: var(--color-white);
     }
   }
 
   .top-buttons {
+    > a {
+      font-size: 14px;
+    }
     > a:first-of-type {
       margin-right: 10px;
     }
