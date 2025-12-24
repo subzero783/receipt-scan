@@ -2,22 +2,18 @@
   {
     "social_media": [
       {
-        "id": 1,
         "name": "facebook",
         "link": "/"
       },
       {
-        "id": 2,
         "name": "instagram",
         "link": "/"
       },
       {
-        "id": 3,
         "name": "linkedin",
         "link": "/"
       },
       {
-        "id": 4,
         "name": "tiktok",
         "link": "/"
       }
@@ -140,5 +136,80 @@
         ]
       }
     }
+  },
+  {
+    "top_menu": [
+      {
+        "name": "Home",
+        "link": "/"
+      },
+      {
+        "name": "About",
+        "link": "/about"
+      },
+      {
+        "name": "Blog",
+        "link": "/blog"
+      },
+      {
+        "name": "Features",
+        "link": "/features"
+      },
+      {
+        "name": "Pricing",
+        "link": "/pricing"
+      }
+    ]
+  },
+  {
+    "footer_menu": [
+      {
+        "menu_name": "Product",
+        "menu_items": [
+          {
+            "name": "Blog",
+            "link": "/blog"
+          },
+          {
+            "name": "Features",
+            "link": "/features"
+          },
+          {
+            "name": "Pricing",
+            "link": "/pricing"
+          }
+        ]
+      },
+      {
+        "menu_name": "Company",
+        "menu_items": [
+          {
+            "name": "About Us",
+            "link": "/about"
+          },
+          {
+            "name": "Contact",
+            "link": "/contact"
+          }
+        ]
+      },
+      {
+        "menu_name": "Legal",
+        "menu_items": [
+          {
+            "name": "Cookies",
+            "link": "/cookies"
+          },
+          {
+            "name": "Privacy Policy",
+            "link": "/privacy"
+          },
+          {
+            "name": "Terms of Service",
+            "link": "/terms"
+          }
+        ]
+      }
+    ]
   }
 ]
