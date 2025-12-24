@@ -1,6 +1,9 @@
 .footer {
   background-color: var(--color-fifth);
   padding: 80px 0;
+  @media screen and (max-width: 576px) {
+    padding: 48px 0;
+  }
   > .container {
     > .row {
       display: flex;
@@ -8,17 +11,37 @@
       align-items: center;
       justify-content: space-between;
     }
-    &:first-of-type {
+    &.top-footer {
       > .row {
         align-items: flex-start;
         justify-content: flex-start;
-        > .col {
-          &:first-of-type {
-            margin-right: 10%;
-            width: 58%;
+        > .links-columns {
+          margin-right: 10%;
+          width: 58%;
+        }
+        > .subscribe-column {
+          width: 31%;
+        }
+        @media screen and (max-width: 991px) {
+          flex-flow: column nowrap;
+          > .links-columns {
+            width: 100%;
+            margin-bottom: 40px;
           }
-          &:last-of-type {
-            width: 31%;
+          > .subscribe-column {
+            width: 100%;
+          }
+        }
+        @media screen and (max-width: 576px) {
+          > .links-columns {
+            flex-flow: column nowrap;
+            > .col {
+              width: 100%;
+              margin-bottom: 40px;
+              &:last-of-type {
+                margin-bottom: 0;
+              }
+            }
           }
         }
       }
@@ -79,6 +102,37 @@
           }
         }
       }
+      @media screen and (max-width: 870px) {
+        > .row {
+          flex-flow: column-reverse nowrap;
+          > .copyright-column {
+            width: 100%;
+          }
+          > .social-media-column {
+            width: 100%;
+            margin-bottom: 32px;
+          }
+        }
+      }
+      @media screen and (max-width: 670px) {
+        > .row {
+          flex-flow: column-reverse nowrap;
+          > .copyright-column {
+            width: 100%;
+            flex-flow: column-reverse nowrap;
+            align-items: flex-start;
+            > a {
+              margin-bottom: 16px;
+              &:first-of-type {
+                margin-bottom: 0;
+              }
+            }
+            > p {
+              margin-top: 32px;
+            }
+          }
+        }
+      }
     }
   }
   .links-columns {
@@ -114,6 +168,7 @@
   }
   .subscribe-column {
     p {
+      font-size: 16px;
       color: var(--color-white);
     }
   }
