@@ -27,12 +27,22 @@
   color: var(--color-dark-1);
   .small-title {
     margin-bottom: 16px;
+    @media screen and (max-width: 768px){
+      margin-bottom: 12px;
+    }
   }
   .title {
     margin-bottom: 24px;
+    @media screen and (max-width: 768px){
+      margin-bottom: 20px;
+    }
   }
   .subtitle {
     margin-bottom: 80px;
+    @media screen and (max-width: 768px){
+      margin-bottom: 48px;
+      font-size: 16px;
+    }
   }
 }
 
