@@ -228,6 +228,33 @@
             "link": "/"
           }
         ]
+      },
+      "pricing_plans": {
+        "small_title": "Plans",
+        "title": "Pricing plans",
+        "subtitle": "Choose the perfect plan for your business expense tracking",
+        "plans": [
+          {
+            "small_title": "Free plan",
+            "monthly_price": "19",
+            "discount_text": "Forever free",
+            "includes": ["Unlimited receipt photo uploads", "Basic AI expense categorization", "Monthly expense summary"],
+            "button": {
+              "text": "Start Free",
+              "link": "/"
+            }
+          },
+          {
+            "small_title": "Pro plan",
+            "monthly_price": "29",
+            "discount_text": "or $199 yearly",
+            "includes": ["All free plan features", "Advanced AI categorization", "Unlimited CSV exports", "Tax report generation", "Priority customer support"],
+            "button": {
+              "text": "Get Started",
+              "link": "/"
+            }
+          }
+        ]
       }
     }
   }
