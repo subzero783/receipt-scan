@@ -1,54 +1,68 @@
 .testimonials {
-    padding: 80px 0;
-    background-color: var(--color-fifth);
-    .row {
+  padding: 80px 0;
+  background-color: var(--color-fifth);
+  @media screen and (max-width: 768px) {
+    padding: 48px 0;
+  }
+  .row {
+    display: flex;
+    flex-flow: row nowrap;
+    .col {
+      width: 100%;
+    }
+  }
+  .top-text {
+    color: var(--color-white);
+  }
+  .boxes {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    .box {
+      border-radius: 16px;
+      background-color: var(--color-sixth);
+      color: var(--color-white);
+      width: 33.33%;
+      margin-right: 32px;
+      padding: 32px;
+      &:last-of-type {
+        margin-right: 0;
+      }
+      .stars {
+        svg {
+          font-size: 20px;
+        }
+      }
+      .text {
+        margin-top: 24px;
+        font-size: 16px;
+      }
+      .image-and-author-name {
         display: flex;
         flex-flow: row nowrap;
-        .col {
-            width: 100%;
+        align-items: center;
+        margin-top: 24px;
+        font-size: 14px;
+        img {
+          max-width: 48px;
+          max-height: 48px;
+          margin-right: 16px;
         }
-    }
-    .top-text {
-        color: var(--color-white);
-    }
-    .boxes {
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: flex-start;
-        .box {
-            border-radius: 16px;
-            background-color: var(--color-sixth);
-            color: var(--color-white);
-            width: 33.33%;
-            margin-right: 32px;
-            padding: 32px;
-            &:last-of-type {
-                margin-right: 0;
-            }
-            .stars {
-                svg {
-                    font-size: 20px;
-                }
-            }
-            .text {
-                margin-top: 24px;
-                font-size: 16px;
-            }
-            .image-and-author-name {
-                display: flex;
-                flex-flow: row nowrap;
-                align-items: center;
-                margin-top: 24px;
-                font-size: 14px;
-                img {
-                    max-width: 48px;
-                    max-height: 48px;
-                    margin-right: 16px;
-                }
-                .author {
-                    font-weight: 600;
-                }
-            }
+        .author {
+          font-weight: 600;
         }
+      }
     }
+    @media screen and (max-width: 768px) {
+      flex-flow: column nowrap;
+      .box {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 32px;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
 }
