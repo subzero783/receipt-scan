@@ -144,8 +144,8 @@
         "link": "/"
       },
       {
-        "name": "About",
-        "link": "/about"
+        "name": "Expenses",
+        "link": "/expenses"
       },
       {
         "name": "Blog",
@@ -211,5 +211,24 @@
         ]
       }
     ]
+  },
+  {
+    "pricing_page": {
+      "hero_section": {
+        "small_title": "Simple",
+        "title": "Pricing that works for you",
+        "subtitle": "Transparent pricing designed for freelancers to manage expenses effortlessly",
+        "buttons": [
+          {
+            "text": "Start Free",
+            "link": "/"
+          },
+          {
+            "text": "Compare Plans",
+            "link": "/"
+          }
+        ]
+      }
+    }
   }
 ]
