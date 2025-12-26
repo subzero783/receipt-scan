@@ -2,7 +2,10 @@ import Image from "next/image";
 import { LiaStarSolid } from "react-icons/lia";
 import siteData from "@/data/siteData.json";
 
-const Testimonials = () => {
+const Testimonials = ({data}) => {
+
+  const {title, subtitle, boxes} = data;
+
   const getFiveStars = () => {
     const stars = [];
     for (let i = 0; i <= 4; i++) {
@@ -17,13 +20,13 @@ const Testimonials = () => {
         <div className="row">
           <div className="col">
             <div className="top-text">
-              <h2 className="title">{siteData[1].home_page.testimonials.title}</h2>
-              <p className="subtitle">{siteData[1].home_page.testimonials.subtitle}</p>
+              <h2 className="title">{title}</h2>
+              <p className="subtitle">{subtitle}</p>
             </div>
           </div>
         </div>
         <div className="boxes">
-          {siteData[1].home_page.testimonials.boxes.map((item, index) => (
+          {boxes.map((item, index) => (
             <div
               className="box"
               key={index}

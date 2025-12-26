@@ -3,19 +3,21 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaCube } from "react-icons/fa6";
 import siteData from "@/data/siteData.json";
 
-const Features = () => {
+const Features = ({data}) => {
+  const {small_title, title, subtitle, boxes} = data;
+
   return(
     <section className="features">
       <div className="container">
         <div className="row">
           <div className="col">
             <div className="top-text">
-              <p className="small-title">{siteData[1].home_page.features.small_title}</p>
-              <h2 className="title">{siteData[1].home_page.features.title}</h2>
-              <p className="subtitle">{siteData[1].home_page.features.subtitle}</p>
+              <p className="small-title">{small_title}</p>
+              <h2 className="title">{title}</h2>
+              <p className="subtitle">{subtitle}</p>
             </div>
             <div className="boxes">
-              {siteData[1].home_page.features.boxes.map((item, index) => (
+              {boxes.map((item, index) => (
                 <div
                   className="box"
                   key={index}
