@@ -4,7 +4,7 @@ import siteData from "@/data/siteData.json";
 
 const HowItWorks = ({data}) => {
 
-  const {small_title, title, subtitle, box} = data;
+  const {small_title, title, subtitle, boxes} = data;
 
   return (
     <section className="how-it-works">
@@ -12,12 +12,12 @@ const HowItWorks = ({data}) => {
         <div className="row">
           <div className="col">
             <div className="top-text">
-              <p className="small-title">{siteData[1].home_page.how_it_works.small_title}</p>
-              <h2 className="title">{siteData[1].home_page.how_it_works.title}</h2>
-              <p className="subtitle">{siteData[1].home_page.how_it_works.subtitle}</p>
+              <p className="small-title">{small_title}</p>
+              <h2 className="title">{title}</h2>
+              <p className="subtitle">{subtitle}</p>
             </div>
             <div className="boxes">
-              {siteData[1].home_page.how_it_works.boxes.map((item, index) => (
+              {boxes.map((item, index) => (
                 <div
                   className="box"
                   key={index}
