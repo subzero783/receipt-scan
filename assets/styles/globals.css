@@ -5,6 +5,7 @@
 @import "how-it-works.css";
 @import "features.css";
 @import "testimonials.css";
+@import "hero-section-two.css";
 
 /* Text */
 .small-title {
@@ -27,19 +28,19 @@
   color: var(--color-dark-1);
   .small-title {
     margin-bottom: 16px;
-    @media screen and (max-width: 768px){
+    @media screen and (max-width: 768px) {
       margin-bottom: 12px;
     }
   }
   .title {
     margin-bottom: 24px;
-    @media screen and (max-width: 768px){
+    @media screen and (max-width: 768px) {
       margin-bottom: 20px;
     }
   }
   .subtitle {
     margin-bottom: 80px;
-    @media screen and (max-width: 768px){
+    @media screen and (max-width: 768px) {
       margin-bottom: 48px;
       font-size: 16px;
     }
