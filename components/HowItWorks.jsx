@@ -2,7 +2,10 @@ import Link from "next/link";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import siteData from "@/data/siteData.json";
 
-const HowItWorks = () => {
+const HowItWorks = ({data}) => {
+
+  const {small_title, title, subtitle, box} = data;
+
   return (
     <section className="how-it-works">
       <div className="container">
