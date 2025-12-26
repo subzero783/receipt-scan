@@ -9,21 +9,20 @@ const HeroSection = ({data}) => {
       <div className="container">
         <div className="row">
           <div className="col">
-            <h1>Say goodbye to your messy receipt shoebox</h1>
-            <p className="subtitle">Automatically capture and categorize business expenses with AI-powered technology. Transform receipt management from a headache to a one-click solution.</p>
+            <h1>{title}</h1>
+            <p className="subtitle">{subtitle}</p>
             <div className="buttons">
-              <Link
-                href="/signup"
-                className="btn btn-third"
-              >
-                Start Free
-              </Link>
-              <Link
-                href="/about"
-                className="btn btn-third"
-              >
-                Learn More
-              </Link>
+              {
+                buttons.map((item, index)=>(
+                <Link
+                  href={item.link}
+                  className="btn btn-third"
+                  key={index}
+                >
+                  {item.text}
+                </Link>
+                ))
+              }
             </div>
           </div>
         </div>
