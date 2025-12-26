@@ -4,9 +4,13 @@ import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
 
 export default async function Home() {
+
+  const hero_section = siteData[1].home_page.hero_section;
+  
+
   return (
     <div className="home-page">
-      <HeroSection />
+      <HeroSection data={hero_section} />
       <HowItWorks />
       <Features />  
       <Testimonials />

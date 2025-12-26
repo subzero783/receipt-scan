@@ -1,6 +1,9 @@
 import Link from "next/link";
 
-function HeroSection() {
+const HeroSection = ({data}) => {
+
+  const {title, subtitle, buttons} = data;
+
   return (
     <section className="hero-section">
       <div className="container">
