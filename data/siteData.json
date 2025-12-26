@@ -21,6 +21,19 @@
   },
   {
     "home_page": {
+      "hero_section": {
+        "title": "Say goodbye to your messy receipt shoebox",
+        "subtitle": "Automatically capture and categorize business expenses with AI-powered technology. Transform receipt management from a headache to a one-click solution.",
+        "buttons": [
+          {
+            "text": "Start Free",
+            "link": "/signup"
+          },{
+            "text": "Learn More",
+            "link": "/about"
+          }
+        ]
+      },
       "how_it_works": {
         "small_title": "Simple",
         "title": "How it works",
