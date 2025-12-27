@@ -17,7 +17,7 @@ const HeroSectionTwo = ({ data }) => {
                   <Link
                     key={index}
                     href={item.link}
-                    className="btn btn-third"
+                    className="btn btn-primary"
                   >
                     {item.text}
                   </Link>
