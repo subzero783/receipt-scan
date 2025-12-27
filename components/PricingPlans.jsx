@@ -3,7 +3,7 @@ import { FaCube } from "react-icons/fa6";
 import { IoMdCheckmark } from "react-icons/io";
 
 const PricingPlans = ({ data }) => {
-  const { small_title, title, subtitle, plans, button } = data;
+  const { small_title, title, subtitle, plans } = data;
 
   return (
     <section className="pricing-plans">

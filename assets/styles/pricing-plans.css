@@ -1,0 +1,19 @@
+.pricing-plans {
+    padding: 112px 0;
+    background-color: var(--color-third);
+    > .container {
+        > .row {
+            > .top-text {
+                .small-title{
+
+                }
+                .title {
+
+                }
+                .subtitle {
+
+                }
+            }
+        }
+    }
+}
