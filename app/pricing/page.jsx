@@ -5,10 +5,11 @@ import FAQs from "@/components/FAQs";
 import CallToAction from "@/components/CallToAction";
 
 const PricingPage = () => {
-  const hero_section = siteData[4].pricing_page.hero_section;
-  const pricing_plans = siteData[4].pricing_page.pricing_plans;
-  const faqs = siteData[4].pricing_page.faqs;
-  const cta = siteData[4].pricing_page.cta;
+  const pricing_page = siteData[4].pricing_page;
+  const hero_section = pricing_page.hero_section;
+  const pricing_plans = pricing_page.pricing_plans;
+  const faqs = pricing_page.faqs;
+  const cta = pricing_page.cta;
 
   return (
     <div className="pricing-page">
