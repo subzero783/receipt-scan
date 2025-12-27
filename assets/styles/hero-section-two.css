@@ -4,7 +4,7 @@
     padding: 184px 0 112px;
     .top-text {
       color: var(--color-white);
-      max-width: 555px;
+      max-width: 500px;
       margin: 0 auto;
       display: flex;
       flex-flow: column nowrap;
