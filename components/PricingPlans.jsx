@@ -27,13 +27,13 @@ const PricingPlans = ({ data }) => {
                   </div>
                   <div className="price-and-discount-text">
                     <p className="monthly-price">
-                      {item.monthly_price}
+                      ${item.monthly_price}
                       <span>/mo</span>
                     </p>
                     <p className="discount-text">{item.discount_text}</p>
                   </div>
                   <div className="includes-list">
-                    <p>Includes</p>
+                    <p>Includes:</p>
                     <ul>
                       {item.includes.map((item, index) => (
                         <li key={index}>
