@@ -1,19 +1,96 @@
 .pricing-plans {
-    padding: 112px 0;
-    background-color: var(--color-third);
-    > .container {
-        > .row {
-            > .top-text {
-                .small-title{
-
-                }
-                .title {
-
-                }
-                .subtitle {
-
-                }
-            }
+  padding: 112px 0;
+  background-color: var(--color-third);
+  .plans {
+    display: flex;
+    max-width: 1024px;
+    align-items: stretch;
+    flex-flow: row nowrap;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    > .plan {
+      width: 50%;
+      padding: 32px;
+      margin-right: 32px;
+      border-radius: 16px;
+      background-color: var(--color-fourth);
+      border-color: 2px solid var(--color-secondary);
+      display: flex;
+      flex-flow: column nowrap;
+      &:last-of-type {
+        margin-right: 0;
+      }
+      > .small-title-and-icon {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        > .small-title {
+          font-size: 22px;
         }
+        > svg {
+          font-size: 36px;
+        }
+      }
+      > .price-and-discount-text {
+        margin-bottom: 32px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--color-neutral-400);
+        > .monthly-price {
+          font-size: 50px;
+          font-weight: 700;
+          > span {
+            font-size: 24px;
+            font-weight: 700;
+          }
+        }
+        > .discount-text {
+          font-size: 16px;
+        }
+      }
+      > .includes-list {
+        > p {
+          font-size: 16px;
+          margin-bottom: 16px;
+        }
+        > ul {
+          list-style: none;
+          padding: 0;
+          > li {
+            font-size: 16px;
+            line-height: 20px;
+            padding-bottom: 16px;
+            > svg {
+              margin-right: 16px;
+            }
+          }
+        }
+      }
+
+      > .button {
+        display: block;
+        margin-top: auto;
+        > a {
+          width: 100%;
+          font-size: 14px;
+          text-align: center;
+          display: inline-block;
+        }
+      }
     }
+  }
+  @media screen and (max-width: 576px) {
+    padding: 64px 0;
+    .plans {
+      flex-flow: column nowrap;
+      > .plan {
+        margin: 0;
+        width: 100%;
+        &:first-of-type {
+          margin-bottom: 32px;
+        }
+      }
+    }
+  }
 }
