@@ -16,11 +16,11 @@ const FAQs = ({ data }) => {
             <div className="questions">
               {questions.map((item, index) => (
                 <div
-                  className="box"
+                  className="question"
                   key={index}
                 >
                   <div className="question-and-icon">
-                    <p className="question">{item.question}</p>
+                    <p className="question-text">{item.question}</p>
                     <MdKeyboardArrowDown />
                     <IoIosClose />
                   </div>
