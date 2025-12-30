@@ -1,7 +1,7 @@
 .hero-section {
   z-index: 1;
   background-color: var(--color-secondary);
-  padding: 152px 0 80px;
+  padding: 152px var(--container-padding) 80px;
   > .container {
     > .row {
       border-radius: 16px;

@@ -1,7 +1,7 @@
 .hero-section-two {
   background-color: var(--color-secondary);
   > .container {
-    padding: 184px 0 112px;
+    padding: 184px var(--container-padding) 112px;
     .top-text {
       color: var(--color-white);
       max-width: 500px;
@@ -15,7 +15,7 @@
         font-size: 4.7em;
         line-height: 1.2em;
         font-weight: 600;
-      } 
+      }
       .subtitle {
         font-size: 16px;
         margin-bottom: 32px;
