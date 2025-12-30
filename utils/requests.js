@@ -1,7 +1,7 @@
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
 
 // Fetch all properties
-async function fetchProperties({ showFeatured = false } = {}) {
+async function fetchBlogPosts({ showFeatured = false } = {}) {
   try {
     // Handle the case where the domain is not available yet
     if (!apiDomain) {
@@ -9,7 +9,7 @@ async function fetchProperties({ showFeatured = false } = {}) {
     }
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_DOMAIN}/properties${showFeatured ? "/featured" : ""}`,
+      `${process.env.NEXT_PUBLIC_API_DOMAIN}/posts${showFeatured ? "/featured" : ""}`,
       { cache: "force-cache" },
       {
         method: "GET",
@@ -31,14 +31,14 @@ async function fetchProperties({ showFeatured = false } = {}) {
 }
 
 // Fetch Single Property
-async function fetchProperty(id) {
+async function fetchBlogPost(id) {
   try {
     if (!apiDomain) {
       return null;
     }
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_DOMAIN}/properties/${id}`,
+      `${process.env.NEXT_PUBLIC_API_DOMAIN}/posts/${id}`,
       { cache: "no-store" },
       {
         method: "GET",
@@ -59,4 +59,4 @@ async function fetchProperty(id) {
   }
 }
 
-export { fetchProperties, fetchProperty };
+export { fetchBlogPosts, fetchBlogPost };
