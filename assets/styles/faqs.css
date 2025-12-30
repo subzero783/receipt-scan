@@ -20,18 +20,52 @@
             padding: 24px;
             margin-bottom: 16px;
             border-radius: 16px;
+            background-color: var(--color-seven);
             &:last-of-type {
               margin-bottom: 0;
             }
-            background-color: var(--color-seven);
+            .answer {
+              max-height: 0;
+              font-size: 16px;
+              overflow: hidden;
+              transition: max-height 0.5s ease;
+            }
             > .question-and-icon {
               display: flex;
-              margin-bottom: 16px;
               flex-flow: row nowrap;
               align-items: flex-start;
               justify-content: space-between;
               > .question-text {
                 font-weight: 600;
+                font-size: 16px;
+              }
+              > svg {
+                font-size: 30px;
+              }
+            }
+            .arrow-down,
+            .close-icon {
+              cursor: pointer;
+            }
+            .arrow-down {
+              top: -5px;
+              position: relative;
+              display: block;
+            }
+            .close-icon {
+              top: -5px;
+              position: relative;
+              display: none;
+            }
+            &.question-open {
+              .arrow-down {
+                display: none;
+              }
+              .close-icon {
+                display: block;
+              }
+              .answer {
+                max-height: 300px;
               }
             }
           }
