@@ -1,6 +1,6 @@
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
 
-// Fetch all properties
+// Fetch all blog posts
 async function fetchBlogPosts({ showFeatured = false } = {}) {
   try {
     // Handle the case where the domain is not available yet
@@ -30,7 +30,7 @@ async function fetchBlogPosts({ showFeatured = false } = {}) {
   }
 }
 
-// Fetch Single Property
+// Fetch Single Blog Post
 async function fetchBlogPost(id) {
   try {
     if (!apiDomain) {
