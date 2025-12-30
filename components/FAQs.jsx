@@ -40,20 +40,15 @@ const FAQs = ({ data }) => {
                     className={`question ${isOpen ? "question-open" : ""}`}
                     key={index}
                   >
-                    <div className="question-and-icon">
+                    <div
+                      className="question-and-icon"
+                      onClick={() => {
+                        toggleQuestion(index);
+                      }}
+                    >
                       <p className="question-text">{item.question}</p>
-                      <MdKeyboardArrowDown
-                        className="arrow-down"
-                        onClick={() => {
-                          toggleQuestion(index);
-                        }}
-                      />
-                      <IoIosClose
-                        className="close-icon"
-                        onClick={() => {
-                          toggleQuestion(index);
-                        }}
-                      />
+                      <MdKeyboardArrowDown className="arrow-down" />
+                      <IoIosClose className="close-icon" />
                     </div>
                     <div className="answer-container">
                       <p className="answer">{item.answer}</p>
