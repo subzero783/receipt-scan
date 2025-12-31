@@ -1,6 +1,6 @@
 import connectDB from "@/config/database";
 import BlogPost from "@/models/BlogPost";
-import { getSessionUser } from "@/utils/getSessionUser";
+// import { getSessionUser } from "@/utils/getSessionUser";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +19,7 @@ export const GET = async (request) => {
 
     const result = {
       total,
-      properties,
+      posts,
     };
 
     return new Response(JSON.stringify(result), {
