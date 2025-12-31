@@ -1,4 +1,8 @@
 .blog-index {
   > .posts-container {
+    background-color: var(--color-secondary);
+    > .pagination {
+      padding-top: 80px;
+    }
   }
 }

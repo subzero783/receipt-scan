@@ -15,13 +15,14 @@ const BlogIndexPage = () => {
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        const res = await fetch(`/api/blogposts?page=${page}&pageSize=${pageSize}`);
+        const res = await fetch(`/api/posts?page=${page}&pageSize=${pageSize}`);
+
         if (!res.ok) {
           throw new Error("Failed to fetch data");
         }
 
         const data = await res.json();
-        setBlogPosts(data.blogPosts);
+        setBlogPosts(data.posts);
         setTotalItems(data.total);
       } catch (error) {
         console.log(error);
@@ -58,7 +59,7 @@ const BlogIndexPage = () => {
                 {blogPosts.map((blogPost) => (
                   <BlogPostCard
                     key={blogPost._id}
-                    blogPost={blogPost}
+                    post={blogPost}
                   />
                 ))}
               </div>
