@@ -1,6 +1,18 @@
 .blog-index {
   > .posts-container {
     background-color: var(--color-secondary);
+    > .row {
+      display: flex;
+      flex-flow: row nowrap;
+      > .col {
+        width: 50%;
+        margin-right: 4.8%;
+        margin-bottom: 48px;
+        &:nth-of-type(2n) {
+          margin-right: 0;
+        }
+      }
+    }
     > .pagination {
       padding-top: 80px;
     }
