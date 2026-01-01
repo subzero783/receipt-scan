@@ -48,3 +48,4 @@ next-env.d.ts
 !/assets/images/*.png
 !/assets/images/*.jpg
 !/assets/images/*.svg
+.env*.local
