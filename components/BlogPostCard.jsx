@@ -4,6 +4,8 @@ import Link from "next/link";
 const BlogPostCard = ({ post }) => {
   console.log(post);
   const { _id, title, status, owner, is_featured, featured_image, excerpt, content, categories, author } = post;
+  const excerpt_length = 64;
+  const read_more_text = excerpt.substring(0, 65) + "...";
 
   return (
     <div className="blog-post-card">
@@ -11,12 +13,12 @@ const BlogPostCard = ({ post }) => {
         className="image-link"
         href={`/blog/${_id}`}
       >
-        <Image
-          src="/images/post-featured-image-placeholder.png"
+        <div
+          className="post-image"
+          // style={{ backgroundImage: `url(/images${featured_image})` }}
+          style={{ backgroundImage: `url(/images/post-featured-image-placeholder.png)` }}
           alt="Placeholder image"
-          width={0}
-          height={0}
-        />
+        ></div>
       </Link>
       <div className="text-container">
         <div className="categories-and-time">
@@ -24,7 +26,7 @@ const BlogPostCard = ({ post }) => {
           <div className="time"></div>
         </div>
         <h2 className="title">{title}</h2>
-        <p className="excerpt">{excerpt}</p>
+        <p className="excerpt">{read_more_text}</p>
         <Link href={`/blog/${_id}`}>Read more</Link>
       </div>
     </div>

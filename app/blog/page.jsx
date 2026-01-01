@@ -10,7 +10,7 @@ const BlogIndexPage = () => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(4);
-  const [totalItems, setTotalItems] = useState(0);
+  const [totalPosts, setTotalPosts] = useState(0);
 
   useEffect(() => {
     const fetchBlogPosts = async () => {
@@ -23,7 +23,7 @@ const BlogIndexPage = () => {
 
         const data = await res.json();
         setBlogPosts(data.posts);
-        setTotalItems(data.total);
+        setTotalPosts(data.total);
       } catch (error) {
         console.log(error);
       } finally {
@@ -38,6 +38,13 @@ const BlogIndexPage = () => {
     setPage(newPage);
   };
 
+  // Helper function to split the array into chunks of 2
+  const chunkPosts = (arr, size) => {
+    return Array.from({ length: Math.ceil(arr.length / size) }, (v, i) => arr.slice(i * size, i * size + size));
+  };
+
+  const blogPostRows = chunkPosts(blogPosts, 2);
+
   return loading ? (
     <Spinner />
   ) : (
@@ -48,28 +55,30 @@ const BlogIndexPage = () => {
         subtitle="Explore the latest trends in expense management."
       />
       <div className="container posts-container">
-        <div className="row">
-          <div className="col">
-            {blogPosts === undefined ? (
-              <p>No posts found</p>
-            ) : blogPosts.length === 0 ? (
-              <p>No posts found</p>
-            ) : (
-              <div>
-                {blogPosts.map((blogPost) => (
-                  <BlogPostCard
-                    key={blogPost._id}
-                    post={blogPost}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
+        {blogPosts.length === 0 ? (
+          <p>No posts found</p>
+        ) : (
+          // Map through each "row" chunk
+          blogPostRows.map((row, index) => (
+            <div
+              className="row"
+              key={`row-${index}`}
+            >
+              {row.map((blogPost) => (
+                <div
+                  className="col"
+                  key={blogPost._id}
+                >
+                  <BlogPostCard post={blogPost} />
+                </div>
+              ))}
+            </div>
+          ))
+        )}
         <Pagination
           page={page}
           pageSize={pageSize}
-          totalItems={totalItems}
+          totalItems={totalPosts}
           onPageChange={handlePageChange}
         />
       </div>
