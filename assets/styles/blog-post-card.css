@@ -2,14 +2,14 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-
   > .image-link {
-    width: 50%;
+    min-width: 288px;
     > .post-image {
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       min-height: 288px;
+      max-width: 288px;
       width: 100%;
       border-radius: 16px;
     }
@@ -30,6 +30,25 @@
     }
     > a {
       font-size: 16px;
+      > svg {
+        color: var(--color-white);
+        font-size: 24px;
+        position: relative;
+        top: -2px;
+      }
+    }
+  }
+  @media screen and (max-width: 576px) {
+    flex-flow: column nowrap;
+    > .image-link {
+      width: 100%;
+      > .post-image {
+        max-width: unset;
+      }
+    }
+    > .text-container {
+      width: 100%;
+      padding-left: 0;
     }
   }
 }

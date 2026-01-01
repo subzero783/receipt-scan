@@ -1,15 +1,34 @@
 .blog-index {
   > .posts-container {
     background-color: var(--color-secondary);
+    padding-bottom: 112px;
     > .row {
       display: flex;
       flex-flow: row nowrap;
+      margin-bottom: 48px;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
       > .col {
         width: 50%;
         margin-right: 4.8%;
-        margin-bottom: 48px;
         &:nth-of-type(2n) {
           margin-right: 0;
+        }
+        &:only-child {
+          width: 100%;
+          margin-right: 0;
+        }
+      }
+      @media screen and (max-width: 1110px) {
+        flex-flow: column nowrap;
+        > .col {
+          width: 100%;
+          margin-right: 0;
+          margin-bottom: 48px;
+          &:last-of-type {
+            margin-bottom: 0;
+          }
         }
       }
     }

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 const BlogPostCard = ({ post }) => {
   console.log(post);
@@ -27,7 +28,9 @@ const BlogPostCard = ({ post }) => {
         </div>
         <h2 className="title">{title}</h2>
         <p className="excerpt">{read_more_text}</p>
-        <Link href={`/blog/${_id}`}>Read more</Link>
+        <Link href={`/blog/${_id}`}>
+          Read more <MdKeyboardArrowRight />
+        </Link>
       </div>
     </div>
   );
