@@ -72,8 +72,7 @@ const SingleBlogPage = async ({ params }) => {
       {/* Content Section */}
       <section className="content-section">
         <div className="container content-container">
-          <h2 className="introduction-header">Introduction</h2>
-
+          {/* <h2 className="introduction-header">Introduction</h2> */}
           <div
             className="post-content"
             dangerouslySetInnerHTML={{ __html: post.content }}
@@ -81,15 +80,14 @@ const SingleBlogPage = async ({ params }) => {
 
           <div className="post-footer">
             {/* Conclusion Header if not in content */}
-            <h2 className="introduction-header">Conclusion</h2>
-            <p className="post-content">
+            {/* <h2 className="introduction-header">Conclusion</h2> */}
+            {/* <p className="post-content">
               We hope this article has provided valuable insights into efficient expense tracking.
               Proper management of your finances is key to freelance success.
-            </p>
+            </p> */}
 
             <div className="bottom-share-container">
               <div className="share-wrapper">
-                <h3>Share this post</h3>
                 <ShareButtons title={post.title} url={`${process.env.NEXTAUTH_URL || ''}/blog/${post._id}`} />
               </div>
 

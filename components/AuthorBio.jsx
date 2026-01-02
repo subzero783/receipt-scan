@@ -1,6 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
-
 const AuthorBio = ({ author }) => {
     if (!author) return null;
 
