@@ -1,0 +1,314 @@
+/* Blog Post Page Styles */
+
+.blog-post-page {
+
+    /* Hero Section */
+    .hero-section {
+        background-color: var(--color-secondary);
+        /* Assuming blue is primary or I can hardcode #3b82f6 for now */
+        background-color: #61b1ff;
+        /* Using a nice blue based on the image provided in prompt which looks like the brand color */
+        color: var(--color-white);
+        padding: 80px 0;
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-white);
+            font-weight: 500;
+            margin-bottom: 32px;
+            opacity: 0.9;
+
+            &:hover {
+                opacity: 1;
+                text-decoration: underline;
+            }
+        }
+
+        .post-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .categories {
+            display: flex;
+            gap: 12px;
+            justify-content: left;
+            margin-bottom: 24px;
+
+            .category-tag {
+                background: rgba(255, 255, 255, 0.2);
+                padding: 6px 16px;
+                border-radius: 20px;
+                font-size: 14px;
+                font-weight: 500;
+                backdrop-filter: blur(4px);
+            }
+        }
+
+        h1.title {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 32px;
+            font-weight: 700;
+
+            @media (max-width: 768px) {
+                font-size: 36px;
+            }
+        }
+
+        .featured-image-container {
+            margin-top: 48px;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            width: 100%;
+            height: 400px;
+            background-color: #f0f0f0;
+
+            img {
+                object-fit: cover;
+            }
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 24px;
+
+            .author-date {
+                text-align: left;
+
+                p {
+                    margin-bottom: 4px;
+                    font-weight: 600;
+                    font-size: 16px;
+                }
+
+                span {
+                    opacity: 0.8;
+                    font-size: 16px;
+                }
+            }
+        }
+
+        /* Share buttons in hero specific styling if needed */
+        .share-buttons {
+            color: var(--color-white);
+
+            >span {
+                font-size: 16px;
+            }
+
+            .icons a,
+            .icons button {
+                color: var(--color-white);
+                background: rgba(255, 255, 255, 0.2);
+
+                &:hover {
+                    background-color: var(--color-white);
+                    color: var(--color-primary, #5BC0F8);
+                }
+            }
+        }
+    }
+
+    /* Content Section */
+    .content-section {
+        background-color: white;
+        padding: 80px 0;
+        color: var(--color-dark-1, #333);
+
+        .content-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .introduction-header {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .post-content {
+            font-size: 18px;
+            line-height: 1.8;
+
+            p {
+                margin-bottom: 24px;
+            }
+
+            h2 {
+                font-size: 28px;
+                font-weight: 600;
+                margin-top: 48px;
+                margin-bottom: 24px;
+            }
+
+            h3 {
+                font-size: 24px;
+                font-weight: 600;
+                margin-top: 36px;
+                margin-bottom: 16px;
+            }
+
+            ul,
+            ol {
+                margin-bottom: 24px;
+                padding-left: 24px;
+
+                li {
+                    margin-bottom: 12px;
+                }
+            }
+
+            blockquote {
+                border-left: 4px solid #5BC0F8;
+                padding-left: 24px;
+                margin: 32px 0;
+                font-style: italic;
+                color: #555;
+            }
+
+            img {
+                border-radius: 8px;
+                margin: 32px 0;
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+        .post-footer {
+            margin-top: 64px;
+            padding-top: 48px;
+            border-top: 1px solid #eee;
+
+            .bottom-share-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                margin-bottom: 48px;
+                gap: 24px;
+
+                .share-wrapper {
+                    h3 {
+                        font-size: 18px;
+                        margin-bottom: 16px;
+                        margin-top: 0;
+                    }
+
+                    .share-buttons {
+                        color: #333;
+
+                        .icons a,
+                        .icons button {
+                            background: #f0f0f0;
+                            color: #333;
+
+                            &:hover {
+                                background: #5BC0F8;
+                                color: white;
+                            }
+                        }
+                    }
+                }
+
+                .bottom-tags {
+                    display: flex;
+                    gap: 12px;
+
+                    .tag-pill {
+                        background: #f0f0f0;
+                        padding: 8px 16px;
+                        border-radius: 4px;
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: #555;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Share Buttons Component Styles */
+.share-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    span {
+        font-weight: 600;
+    }
+
+    .icons {
+        display: flex;
+        gap: 12px;
+
+        .share-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+    }
+}
+
+/* Author Bio Component Styles */
+.author-bio-container {
+    display: flex;
+    gap: 24px;
+    background: #f9f9f9;
+    padding: 32px;
+    border-radius: 12px;
+    align-items: start;
+
+    .author-avatar {
+        flex-shrink: 0;
+
+        .placeholder-avatar {
+            width: 64px;
+            height: 64px;
+            background: #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #666;
+        }
+    }
+
+    .author-info {
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .author-role {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .author-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #444;
+        }
+    }
+}
