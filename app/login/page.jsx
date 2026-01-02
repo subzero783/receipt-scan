@@ -57,34 +57,43 @@ const LoginPage = () => {
   return (
     sessionStatus !== "authenticated" && (
       <section className="login-section">
-        <div className="container">
-          <div className="row">
-            <div className="col">
-              <h1>Login</h1>
-              <form onSubmit={handleSubmit}>
+        <div className="login-hero">
+          <div className="login-container">
+            <h1>Sign in to your account</h1>
+            <p>Access your expense tracking and manage your business finances with ease</p>
+            <form onSubmit={handleSubmit} className="login-form">
+              <div className="input-group">
                 <input
                   type="text"
-                  placeholder="Email"
+                  placeholder="Email address"
+                  className="login-input"
                   required
                 />
+              </div>
+              <div className="input-group">
                 <input
                   type="password"
                   placeholder="Password"
+                  className="login-input"
                   required
                 />
-                <button type="submit"> Sign In</button>
-                <p>{error && error}</p>
-              </form>
-              <button
-                onClick={() => {
-                  signIn("google");
-                }}
-              >
-                <FaGoogle />
-                <span>Sign In with Google</span>
-              </button>
-              <div>- OR -</div>
-              <Link href="/register">Register Here</Link>
+              </div>
+              <button type="submit" className="login-submit-btn">Sign in</button>
+              {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
+            </form>
+            <div className="legal-text">
+              By signing in, you agree to our terms of service and privacy policy
+            </div>
+          </div>
+        </div>
+
+        <div className="new-platform-section">
+          <div className="new-platform-card">
+            <h2>New to our platform?</h2>
+            <p>Create an account to start tracking your business expenses effortlessly</p>
+            <div className="action-buttons">
+              <Link href="/register" className="btn-primary-blue">Sign up</Link>
+              <Link href="/about" className="btn-secondary-light">Learn more</Link>
             </div>
           </div>
         </div>

@@ -1,0 +1,187 @@
+.login-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Hero / Login Form Section */
+.login-hero {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 8em 0;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-hero h1 {
+    font-size: 3.5em;
+    /* Adjusted from 7.5em for login context */
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+.login-hero p {
+    font-size: 1.125em;
+    margin-bottom: 3em;
+    opacity: 0.9;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form {
+    display: flex;
+    width: 100%;
+    gap: 1em;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    /* Subtle background for form area if needed, or transparent as per design */
+    background: transparent;
+    justify-content: center;
+}
+
+/* Custom Input Styles to match design (underline with label placeholder look) */
+.input-group {
+    position: relative;
+    flex: 1;
+}
+
+.login-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 0;
+    color: var(--color-white);
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.login-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.login-input:focus {
+    border-bottom-color: var(--color-white);
+}
+
+.login-submit-btn {
+    background: transparent;
+    color: var(--color-white);
+    border: none;
+    font-weight: 500;
+    font-size: 1em;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.login-submit-btn:hover {
+    text-decoration: underline;
+}
+
+.legal-text {
+    margin-top: 1.5em;
+    font-size: 0.75em;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Google Sign In Button - styled to fit loosely or below */
+.google-signin-btn {
+    margin-top: 2em;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: none;
+    padding: 0.75em 1.5em;
+    border-radius: 2em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.google-signin-btn:hover {
+    transform: scale(1.05);
+}
+
+
+/* New to our platform Section */
+.new-platform-section {
+    background-color: var(--color-third);
+    /* Light blue */
+    padding: 6em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-platform-card {
+    text-align: center;
+    max-width: 600px;
+}
+
+.new-platform-card h2 {
+    font-size: 3em;
+    color: var(--color-dark);
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+.new-platform-card p {
+    color: var(--color-neutral-600);
+    margin-bottom: 2em;
+    font-size: 1.1em;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.btn-primary-blue {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 0.75em 1.5em;
+    border-radius: 0.5em;
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-secondary-light {
+    background-color: transparent;
+    color: var(--color-dark);
+    padding: 0.75em 1.5em;
+    border-radius: 0.5em;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .login-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .login-hero h1 {
+        font-size: 2.5em;
+    }
+
+    .new-platform-card h2 {
+        font-size: 2em;
+    }
+}
