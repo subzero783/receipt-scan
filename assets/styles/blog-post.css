@@ -16,9 +16,10 @@
             align-items: center;
             gap: 8px;
             color: var(--color-white);
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 32px;
             opacity: 0.9;
+            font-size: 16px;
 
             &:hover {
                 opacity: 1;
@@ -76,7 +77,7 @@
         .meta-info {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: flex-start;
             margin-top: 32px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             padding-top: 24px;
@@ -133,6 +134,10 @@
         background-color: var(--color-third);
         padding: 80px 0;
         color: var(--color-dark-1, #333);
+
+        @media screen and (max-width: 650px) {
+            padding: 40px 0;
+        }
 
         .content-container {
             max-width: 800px;
@@ -204,6 +209,11 @@
                 flex-wrap: wrap;
                 margin-bottom: 48px;
                 gap: 24px;
+
+                @media screen and (max-width: 650px) {
+                    flex-flow: column-reverse;
+                    align-items: flex-start;
+                }
 
                 .share-wrapper {
 

@@ -2,9 +2,11 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  > .image-link {
+
+  >.image-link {
     min-width: 288px;
-    > .post-image {
+
+    >.post-image {
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -14,39 +16,52 @@
       border-radius: 16px;
     }
   }
-  > .text-container {
+
+  >.text-container {
     width: 50%;
     padding: 18.5px 0 18.5px 32px;
-    > .title {
+
+    >.title {
       font-size: 28px;
       font-weight: 600;
       color: var(--color-white);
       margin-bottom: 8px;
     }
-    > .excerpt {
+
+    >.excerpt {
       color: var(--color-white);
       margin-bottom: 24px;
       font-size: 16px;
     }
-    > a {
+
+    >a {
       font-size: 16px;
-      > svg {
+
+      >svg {
         color: var(--color-white);
         font-size: 24px;
         position: relative;
         top: -2px;
       }
     }
+
+    @media screen and (max-width: 576px) {
+      padding-bottom: 0;
+    }
   }
+
   @media screen and (max-width: 576px) {
     flex-flow: column nowrap;
-    > .image-link {
+
+    >.image-link {
       width: 100%;
-      > .post-image {
+
+      >.post-image {
         max-width: unset;
       }
     }
-    > .text-container {
+
+    >.text-container {
       width: 100%;
       padding-left: 0;
     }
