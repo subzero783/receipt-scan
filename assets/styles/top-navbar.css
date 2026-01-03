@@ -128,7 +128,7 @@
       font-size: 14px;
       padding: 5px;
       color: var(--color-white);
-      font-weight: 500;
+      font-weight: 500 !important;
       &.active {
         text-decoration: underline;
       }
@@ -138,6 +138,7 @@
   .top-buttons {
     > a {
       font-size: 14px;
+      font-weight: 500 !important;
     }
     > a:first-of-type {
       margin-right: 10px;

@@ -13,15 +13,18 @@
     .col {
       display: flex;
       margin: 0 auto;
-      padding: 118px 0;
+      padding: 118px 15px;
       text-align: center;
       align-items: center;
       flex-flow: column nowrap;
       color: var(--color-white);
       max-width: 768px;
       h1 {
-        font-size: 4.7em;
+        font-size: 52px;
         font-weight: 600;
+        @media screen and (max-width: 768px){
+          font-size: 36px;
+        }
       }
       p {
         font-size: 16px;
