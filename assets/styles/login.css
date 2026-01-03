@@ -130,26 +130,30 @@
 
 .new-platform-card {
     text-align: center;
-    max-width: 600px;
+    background-color: var(--color-fourth);
+    padding: 85px 0;
+    width: 100%;
+    max-width: 91%;
+    border-radius: 16px;
 }
 
 .new-platform-card h2 {
-    font-size: 3em;
+    font-size: 52px;
     color: var(--color-dark);
-    margin-bottom: 0.5em;
+    margin-bottom: 24px;
     font-weight: 600;
 }
 
 .new-platform-card p {
     color: var(--color-neutral-600);
-    margin-bottom: 2em;
-    font-size: 1.1em;
+    margin-bottom: 32px;
+    font-size: 18px;
 }
 
 .action-buttons {
     display: flex;
     justify-content: center;
-    gap: 1em;
+    gap: 16px;
 }
 
 .btn-primary-blue {
