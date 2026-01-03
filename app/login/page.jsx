@@ -84,6 +84,15 @@ const LoginPage = () => {
                   <button type="submit" className="login-submit-btn">Sign in</button>
                   {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
                 </form>
+                <button 
+                  className="sign-in-with-google"
+                  onClick={() => {
+                    signIn("google");
+                  }}
+                >
+                  <FaGoogle />
+                  <span>Sign In with Google</span>
+                </button>
                 <div className="legal-text">
                   By signing in, you agree to our terms of service and privacy policy
                 </div>
