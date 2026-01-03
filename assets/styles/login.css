@@ -6,7 +6,7 @@
 
 /* Hero / Login Form Section */
 .login-hero {
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary);
     color: var(--color-white);
     padding: 8em 0;
     text-align: center;
@@ -31,10 +31,10 @@
 
 .login-container {
     width: 100%;
-    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--color-primary);
 }
 
 .login-form {

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
+import Spinner from "@/components/Spinner";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -51,38 +52,42 @@ const LoginPage = () => {
   };
 
   if (sessionStatus === "loading") {
-    return <h1>Loading...</h1>;
+    return <Spinner/>;
   }
 
   return (
     sessionStatus !== "authenticated" && (
       <section className="login-section">
         <div className="login-hero">
-          <div className="login-container">
-            <h1>Sign in to your account</h1>
-            <p>Access your expense tracking and manage your business finances with ease</p>
-            <form onSubmit={handleSubmit} className="login-form">
-              <div className="input-group">
-                <input
-                  type="text"
-                  placeholder="Email address"
-                  className="login-input"
-                  required
-                />
+          <div className="login-container container">
+            <div className="row">
+              <div className="col">
+                <h1>Sign in to your account</h1>
+                <p>Access your expense tracking and manage your business finances with ease</p>
+                <form onSubmit={handleSubmit} className="login-form">
+                  <div className="input-group">
+                    <input
+                      type="text"
+                      placeholder="Email address"
+                      className="login-input"
+                      required
+                    />
+                  </div>
+                  <div className="input-group">
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      className="login-input"
+                      required
+                    />
+                  </div>
+                  <button type="submit" className="login-submit-btn">Sign in</button>
+                  {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
+                </form>
+                <div className="legal-text">
+                  By signing in, you agree to our terms of service and privacy policy
+                </div>
               </div>
-              <div className="input-group">
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className="login-input"
-                  required
-                />
-              </div>
-              <button type="submit" className="login-submit-btn">Sign in</button>
-              {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
-            </form>
-            <div className="legal-text">
-              By signing in, you agree to our terms of service and privacy policy
             </div>
           </div>
         </div>
