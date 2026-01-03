@@ -84,7 +84,7 @@
     background: transparent;
     color: var(--color-white);
     border: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 14px;
     cursor: pointer;
     padding: 10px 20px;
@@ -108,6 +108,18 @@
     border: unset;
     border-radius: 16px;
     padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-black);
+    background-color: var(--color-neutral-200);
+    > svg {
+        margin-right: 10px;
+    }
+    &:focus,
+    &:active,
+    &:hover {
+        background-color: var(--color-neutral-100);
+    }
 }
 
 .legal-text {
