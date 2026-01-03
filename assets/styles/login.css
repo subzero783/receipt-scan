@@ -30,11 +30,14 @@
 }
 
 .login-container {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: var(--color-primary);
+    padding: 84px 0;
+    width: 100%;
+    max-width: 91%;
+    border-radius: 16px;
 }
 
 .login-form {
