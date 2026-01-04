@@ -304,5 +304,37 @@
         }
       }
     }
+  },
+  {
+    "signin_page": {
+      "hero_section": {
+        "title": "Signup",
+        
+      }
+    }
+  },
+  {
+    "signup_page": {
+      "hero_section": {
+        "small_title": "Simplify",
+        "title": "Ditch the receipt chaos",
+        "subtitle": "Automatically track and categorize your business expenses with our intelligent AI-powered receipt management tool",
+        "buttons": [
+          {
+            "text": "Start",
+            "link": "/"
+          },
+          {
+            "text": "Learn More",
+            "link": "/"
+          }
+        ]
+      }, 
+      "registration": {
+        "title": "Create your free account", 
+        "subtitle": "Get started in minutes and transform how you manage business expenses", 
+        "legal_disclaimer": "By clicking Sign Up you're confirming that you agree with our Terms and Conditions."
+      }
+    }
   }
 ]

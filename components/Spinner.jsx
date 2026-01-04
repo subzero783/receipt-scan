@@ -13,6 +13,7 @@ const Spinner = () => {
       cssOverride={override}
       size={150}
       aria-label="Loading Spinner"
+      className="spinner"
     />
   );
 };
