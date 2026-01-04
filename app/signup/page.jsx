@@ -111,8 +111,8 @@ const SignupPage = () => {
               </div>
             </div>
           </div>
-          <FAQs data={faqs} />
         </section>
+        <FAQs data={faqs} />
       </>
     )
   );
