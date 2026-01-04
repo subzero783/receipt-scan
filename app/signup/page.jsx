@@ -84,26 +84,32 @@ const SignupPage = () => {
                 <div className="col">
                   <h2 className="title">{registration_section.title}</h2>
                   <p className="subtitle">{registration_section.subtitle}</p>
-                  <form onSubmit={handleSubmit}>
-                    <input
-                      type="text"
-                      placeholder="Email"
-                      required
-                    />
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      required
-                    />
-                    <button type="submit">Register with Email</button>
-                    <p>{error && error}</p>
+                  <form onSubmit={handleSubmit} className="signup-form">
+                    <div className="input-group">
+                      <input
+                        type="text"
+                        placeholder="Email"
+                        className="signup-input"
+                        required
+                      />
+                    </div>
+                    <div className="input-group">
+                      <input
+                        type="password"
+                        placeholder="Password"
+                        className="signup-input"
+                        required
+                      />
+                    </div>
+                      <button type="submit" className="signup-submit-btn">Register with Email</button>
+                      <p>{error && error}</p>
                   </form>
                 </div>
               </div>
               <div className="row">
                 <div className="col">
                   <p className="or-text">- OR -</p>
-                  <button onClick={() => signIn("google")}>
+                  <button onClick={() => signIn("google")} className="signup-with-google">
                     <FaGoogle />
                     <span>Register with Google</span>
                   </button>
