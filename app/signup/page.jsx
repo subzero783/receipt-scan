@@ -101,7 +101,7 @@ const SignupPage = () => {
                         required
                       />
                     </div>
-                      <button type="submit" className="signup-submit-btn">Register with Email</button>
+                      <button type="submit" className="signup-submit-btn">Sign Up with Email</button>
                       <p>{error && error}</p>
                   </form>
                 </div>
@@ -111,7 +111,7 @@ const SignupPage = () => {
                   <p className="or-text">- OR -</p>
                   <button onClick={() => signIn("google")} className="signup-with-google">
                     <FaGoogle />
-                    <span>Register with Google</span>
+                    <span>Sign Up with Google</span>
                   </button>
                 </div>
               </div>

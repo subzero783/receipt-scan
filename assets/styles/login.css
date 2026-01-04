@@ -50,6 +50,12 @@
     /* Subtle background for form area if needed, or transparent as per design */
     background: transparent;
     justify-content: center;
+    @media screen and (max-width: 768px){
+        flex-flow: column nowrap;
+        > .input-group {
+            width: 100%;
+        }
+    }
 }
 
 /* Custom Input Styles to match design (underline with label placeholder look) */

@@ -5,6 +5,9 @@
     justify-content: center;
     align-items: center;
     > .register-form-section {
+        display: flex;
+        align-items: center;
+        flex-flow: column nowrap;
         text-align: center;
         background-color: var(--color-fourth);
         width: 100%;
@@ -12,13 +15,16 @@
         padding: 85px 15px;
         max-width: 91%;
         > .container {
-            max-width: unset;
             .title {
                 margin-bottom: 24px;
                 font-weight: 600;
             }
             .subtitle {
                 margin-bottom: 32px;
+            }
+            > .row {
+                max-width: 530px;
+                margin: 0 auto;
             }
         }
     }
@@ -40,6 +46,12 @@
     /* Subtle background for form area if needed, or transparent as per design */
     background: transparent;
     justify-content: center;
+    @media screen and (max-width: 768px){
+        flex-flow: column nowrap;
+        > .input-group {
+            width: 100%;
+        }
+    }
 }
 
 /* Custom Input Styles to match design (underline with label placeholder look) */
@@ -109,4 +121,9 @@
     &:hover {
         background-color: var(--color-neutral-100);
     }
+}
+
+.or-text {
+    margin: 20px 0;
+    font-size: 14px;
 }
