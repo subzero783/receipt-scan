@@ -3,7 +3,7 @@
 
   >.container {
     padding: 184px var(--container-padding) 112px;
-
+    
     .top-text {
       color: var(--color-white);
       max-width: 500px;
@@ -31,6 +31,9 @@
           margin-right: 18px;
         }
       }
+    }
+    @media screen and (max-width: 576px){
+      padding: 112px var(--container-padding) 64px;
     }
   }
 }

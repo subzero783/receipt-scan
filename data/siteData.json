@@ -269,32 +269,6 @@
           }
         ]
       },
-      "faqs": {
-        "title": "FAQs",
-        "subtitle": "Common questions about our pricing and features",
-        "questions": [
-          {
-            "question": "Is there a free option?",
-            "answer": "Yes, we offer a completely free plan with basic receipt tracking and AI categorization. It's perfect for freelancers just getting started."
-          },
-          {
-            "question": "Can I change plans?",
-            "answer": "Absolutely. You can upgrade or downgrade your plan at any time with no additional fees or complicated processes."
-          },
-          {
-            "question": "Are there any contracts?",
-            "answer": "No long-term contracts. Our monthly and yearly plans are flexible, allowing you to cancel anytime without penalties."
-          },
-          {
-            "question": "How secure is my data?",
-            "answer": "We use bank-level encryption and secure cloud storage to protect your financial information. Your data privacy is our top priority."
-          },
-          {
-            "question": "Do you offer refunds?",
-            "answer": "We provide a 30-day money-back guarantee on our pro plan. If you're not satisfied, we'll refund your first month's payment."
-          }
-        ]
-      },
       "cta": {
         "title": "Need more information?",
         "subtitle": "Our support team is ready to help you choose the right plan",
@@ -309,7 +283,22 @@
     "signin_page": {
       "hero_section": {
         "title": "Signup",
-        
+        "subtitle": "Access your expense tracking and manage your business finances with ease", 
+        "legal_disclaimer": "By signing in, you agree to our terms of service and privacy policy"
+      }, 
+      "cta": {
+        "title": "New to our platform?",
+        "subtitle": "Create an account to start tracking your business expenses effortlessly",
+        "buttons": [
+          {
+            "text": "Sign Up", 
+            "link": "/signup"
+          },
+          {
+            "text": "Learn more",
+            "link": "/about"
+          }
+        ]
       }
     }
   },
@@ -336,5 +325,34 @@
         "legal_disclaimer": "By clicking Sign Up you're confirming that you agree with our Terms and Conditions."
       }
     }
+  },
+  {
+    "faqs": {
+      "title": "FAQs",
+      "subtitle": "Common questions about our pricing and features",
+      "questions": [
+        {
+          "question": "Is there a free option?",
+          "answer": "Yes, we offer a completely free plan with basic receipt tracking and AI categorization. It's perfect for freelancers just getting started."
+        },
+        {
+          "question": "Can I change plans?",
+          "answer": "Absolutely. You can upgrade or downgrade your plan at any time with no additional fees or complicated processes."
+        },
+        {
+          "question": "Are there any contracts?",
+          "answer": "No long-term contracts. Our monthly and yearly plans are flexible, allowing you to cancel anytime without penalties."
+        },
+        {
+          "question": "How secure is my data?",
+          "answer": "We use bank-level encryption and secure cloud storage to protect your financial information. Your data privacy is our top priority."
+        },
+        {
+          "question": "Do you offer refunds?",
+          "answer": "We provide a 30-day money-back guarantee on our pro plan. If you're not satisfied, we'll refund your first month's payment."
+        }
+      ]
+    }
   }
+
 ]

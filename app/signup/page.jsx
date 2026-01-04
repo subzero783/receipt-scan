@@ -79,7 +79,8 @@ const SignupPage = () => {
           <div className="container">
             <div className="row">
               <div className="col">
-                <h2></h2>
+                <h2 className="title">{registration_section.title}</h2>
+                <p className="subtitle">{registration_section.subtitle}</p>
                 <form onSubmit={handleSubmit}>
                   <input
                     type="text"

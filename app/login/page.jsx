@@ -5,11 +5,16 @@ import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import Spinner from "@/components/Spinner";
+import siteData from '@/data/siteData.json';
 
 const LoginPage = () => {
   const router = useRouter();
   const [error, setError] = useState("");
   const { data: session, status: sessionStatus } = useSession();
+
+  const signin_data = siteData[5].signin_page;
+  const hero_section = signin_data.hero_section;
+  const cta = signin_data.cta;
 
   useEffect(() => {
     if (sessionStatus === "authenticated") {
@@ -62,8 +67,8 @@ const LoginPage = () => {
           <div className="login-container container">
             <div className="row">
               <div className="col">
-                <h1>Sign in to your account</h1>
-                <p>Access your expense tracking and manage your business finances with ease</p>
+                <h1 className="title">{hero_section.title}</h1>
+                <p className="subtitle">{hero_section.subtitle}</p>
                 <form onSubmit={handleSubmit} className="login-form">
                   <div className="input-group">
                     <input
@@ -94,7 +99,7 @@ const LoginPage = () => {
                   <span>Sign In with Google</span>
                 </button>
                 <div className="legal-text">
-                  By signing in, you agree to our terms of service and privacy policy
+                  {hero_section.legal_disclaimer}
                 </div>
               </div>
             </div>
@@ -103,11 +108,12 @@ const LoginPage = () => {
 
         <div className="new-platform-section">
           <div className="new-platform-card">
-            <h2>New to our platform?</h2>
-            <p>Create an account to start tracking your business expenses effortlessly</p>
+            <h2>{cta.title}</h2>
+            <p>{cta.subtitle}</p>
             <div className="action-buttons">
-              <Link href="/signup" className="btn btn-primary">Sign up</Link>
-              <Link href="/about" className="btn btn-primary">Learn more</Link>
+              {cta.buttons.map((button, index)=>(
+                <Link key={index} href={button.link} className="btn btn-primary">{button.text}</Link>
+              ))}              
             </div>
           </div>
         </div>

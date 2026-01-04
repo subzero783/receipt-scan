@@ -8,7 +8,7 @@ const PricingPage = () => {
   const pricing_page = siteData[4].pricing_page;
   const hero_section = pricing_page.hero_section;
   const pricing_plans = pricing_page.pricing_plans;
-  const faqs = pricing_page.faqs;
+  const faqs = siteData[7].faqs;
   const cta = pricing_page.cta;
 
   return (

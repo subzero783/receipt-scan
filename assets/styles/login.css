@@ -17,14 +17,12 @@
 }
 
 .login-hero h1 {
-    font-size: 52px;
     /* Adjusted from 7.5em for login context */
     margin-bottom: 0.5em;
     font-weight: 600;
 }
 
 .login-hero p {
-    font-size: 16px;
     margin-bottom: 3em;
     opacity: 0.9;
 }
