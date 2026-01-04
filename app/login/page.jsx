@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import Spinner from "@/components/Spinner";
 import siteData from '@/data/siteData.json';
+import CallToActionTwo from "@/components/CallToActionTwo";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -106,17 +107,7 @@ const LoginPage = () => {
           </div>
         </div>
 
-        <div className="new-platform-section">
-          <div className="new-platform-card">
-            <h2>{cta.title}</h2>
-            <p>{cta.subtitle}</p>
-            <div className="action-buttons">
-              {cta.buttons.map((button, index)=>(
-                <Link key={index} href={button.link} className="btn btn-primary">{button.text}</Link>
-              ))}              
-            </div>
-          </div>
-        </div>
+        <CallToActionTwo data={cta} />
       </section>
     )
   );

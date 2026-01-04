@@ -6,6 +6,7 @@ import { FaGoogle } from "react-icons/fa";
 import siteData from '@/data/siteData.json';
 import HeroSectionTwo from "@/components/HeroSectionTwo";
 import Spinner from "@/components/Spinner";
+import FAQs from "@/components/FAQs";
 
 const SignupPage = () => {
 
@@ -16,6 +17,7 @@ const SignupPage = () => {
   const signup_data = siteData[6].signup_page;
   const hero_section = signup_data.hero_section;
   const registration_section = signup_data.registration;
+  const faqs = siteData[7].faqs;
 
   useEffect(() => {
     if (sessionStatus === "authenticated") {
@@ -73,42 +75,45 @@ const SignupPage = () => {
 
   return (
     sessionStatus !== "authenticated" && (
-      <section className="signup-section">
+      <>
         <HeroSectionTwo data={hero_section}/>
-        <div className="register-form-section">
-          <div className="container">
-            <div className="row">
-              <div className="col">
-                <h2 className="title">{registration_section.title}</h2>
-                <p className="subtitle">{registration_section.subtitle}</p>
-                <form onSubmit={handleSubmit}>
-                  <input
-                    type="text"
-                    placeholder="Email"
-                    required
-                  />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    required
-                  />
-                  <button type="submit">Register with Email</button>
-                  <p>{error && error}</p>
-                </form>
+        <section className="signup-section">
+          <div className="register-form-section">
+            <div className="container">
+              <div className="row">
+                <div className="col">
+                  <h2 className="title">{registration_section.title}</h2>
+                  <p className="subtitle">{registration_section.subtitle}</p>
+                  <form onSubmit={handleSubmit}>
+                    <input
+                      type="text"
+                      placeholder="Email"
+                      required
+                    />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      required
+                    />
+                    <button type="submit">Register with Email</button>
+                    <p>{error && error}</p>
+                  </form>
+                </div>
               </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <p className="or-text">- OR -</p>
-                <button onClick={() => signIn("google")}>
-                  <FaGoogle />
-                  <span>Register with Google</span>
-                </button>
+              <div className="row">
+                <div className="col">
+                  <p className="or-text">- OR -</p>
+                  <button onClick={() => signIn("google")}>
+                    <FaGoogle />
+                    <span>Register with Google</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+          <FAQs data={faqs} />
+        </section>
+      </>
     )
   );
 };

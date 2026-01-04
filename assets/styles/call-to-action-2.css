@@ -1,0 +1,53 @@
+.cta-2-section {
+    background-color: var(--color-third);
+    /* Light blue */
+    padding: 6em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cta-2-card {
+    text-align: center;
+    background-color: var(--color-fourth);
+    padding: 85px 0;
+    width: 100%;
+    max-width: 91%;
+    border-radius: 16px;
+}
+
+.cta-2-card h2 {
+    font-size: 52px;
+    color: var(--color-dark);
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+.cta-2-card p {
+    color: var(--color-neutral-600);
+    margin-bottom: 32px;
+    font-size: 16px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    > .btn {
+        border: 1px solid var(--color-primary);
+        font-size: 14px;
+        &:hover,
+        &:active,
+        &:focus {
+            border-color: var(--color-neutral-600);
+            background-color: transparent;
+            color: var(--color-neutral-600);
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cta-2-card h2 {
+        font-size: 36px;
+    }
+}
