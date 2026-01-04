@@ -1,18 +1,26 @@
 .hero-section-three {
   background-color: var(--color-secondary);
-  > .container {
+
+  >.container {
     padding: 184px var(--container-padding) 80px;
+
     .top-text {
       display: flex;
       align-items: flex-start;
       flex-flow: column nowrap;
       color: var(--color-white);
+
       h1 {
         font-size: 52px;
         font-weight: 600;
         line-height: 1.2em;
         margin-bottom: 24px;
+
+        @media screen and (max-width: 768px) {
+          font-size: 36px;
+        }
       }
+
       .subtitle {
         font-size: 16px;
         margin-bottom: 0;
