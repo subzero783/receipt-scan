@@ -106,7 +106,7 @@ const LoginPage = () => {
             <h2>New to our platform?</h2>
             <p>Create an account to start tracking your business expenses effortlessly</p>
             <div className="action-buttons">
-              <Link href="/register" className="btn btn-primary">Sign up</Link>
+              <Link href="/signup" className="btn btn-primary">Sign up</Link>
               <Link href="/about" className="btn btn-primary">Learn more</Link>
             </div>
           </div>
