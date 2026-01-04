@@ -10,7 +10,7 @@ const HeroSectionTwo = ({ data }) => {
           <div className="col">
             <div className="top-text">
               <p className="small-title">{small_title}</p>
-              <h1>{title}</h1>
+              <h1 className="title">{title}</h1>
               <p className="subtitle">{subtitle}</p>
               <div className="buttons">
                 {buttons.map((item, index) => (

@@ -1,7 +1,9 @@
 .hero-section-two {
   background-color: var(--color-secondary);
-  > .container {
+
+  >.container {
     padding: 184px var(--container-padding) 112px;
+
     .top-text {
       color: var(--color-white);
       max-width: 500px;
@@ -10,19 +12,22 @@
       flex-flow: column nowrap;
       align-items: center;
       text-align: center;
-      h1 {
+
+      .title {
         margin-bottom: 24px;
-        font-size: 4.7em;
-        line-height: 1.2em;
         font-weight: 600;
+        max-width: 450px;
       }
+
       .subtitle {
         font-size: 16px;
         margin-bottom: 32px;
       }
+
       .buttons {
         font-size: 14px;
-        > a:first-of-type {
+
+        >a:first-of-type {
           margin-right: 18px;
         }
       }

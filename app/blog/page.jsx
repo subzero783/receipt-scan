@@ -9,7 +9,7 @@ const BlogIndexPage = () => {
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(6);
+  const [pageSize, setPageSize] = useState(4);
   const [totalPosts, setTotalPosts] = useState(0);
 
   useEffect(() => {

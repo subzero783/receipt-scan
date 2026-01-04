@@ -33,12 +33,14 @@
   --header-height: calc(1.5em + (var(--gap) * 2));
   --footer-height: calc(2.785em + (var(--gap) * 2));
 }
+
 /* Tablet */
 @media screen and (max-width: 991px) {
   :root {
     --container-padding: 1.5em;
   }
 }
+
 /* Mobile Landscape */
 @media screen and (max-width: 767px) {
   :root {
@@ -46,41 +48,50 @@
     --section-padding: calc(var(--gap) * 2);
   }
 }
+
 /* Mobile Portrait */
 @media screen and (max-width: 479px) {
-  :root {
-  }
+  :root {}
 }
+
 /* ------------------------- Scaling System by Osmo [https://osmo.supply/] -------------------------  */
 /* Desktop */
 :root {
-  --size-unit: 15; /* body font-size in design - no px */
-  --size-container-ideal: 1440; /* screen-size in design - no px */
+  --size-unit: 15;
+  /* body font-size in design - no px */
+  --size-container-ideal: 1440;
+  /* screen-size in design - no px */
   --size-container-min: 992px;
   --size-container-max: 1920px;
   --size-container: clamp(var(--size-container-min), 100vw, var(--size-container-max));
   --size-font: calc(var(--size-container) / (var(--size-container-ideal) / var(--size-unit)));
 }
+
 /* Tablet */
 @media screen and (max-width: 991px) {
   :root {
-    --size-container-ideal: 834; /* screen-size in design - no px */
+    --size-container-ideal: 834;
+    /* screen-size in design - no px */
     --size-container-min: 768px;
     --size-container-max: 991px;
   }
 }
+
 /* Mobile Landscape */
 @media screen and (max-width: 767px) {
   :root {
-    --size-container-ideal: 834; /* screen-size in design - no px */
+    --size-container-ideal: 834;
+    /* screen-size in design - no px */
     --size-container-min: 480px;
     --size-container-max: 767px;
   }
 }
+
 /* Mobile Portrait */
 @media screen and (max-width: 479px) {
   :root {
-    --size-container-ideal: 834; /* screen-size in design - no px */
+    --size-container-ideal: 834;
+    /* screen-size in design - no px */
     --size-container-min: 0px;
     --size-container-max: 479px;
   }
@@ -91,13 +102,19 @@
 body ::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none;
-} /* Chrome, Safari, Opera */
+}
+
+/* Chrome, Safari, Opera */
 body {
   -ms-overflow-style: none;
-} /* IE & Edge */
+}
+
+/* IE & Edge */
 html {
   scrollbar-width: none;
-} /* Firefox */
+}
+
+/* Firefox */
 
 /* ------------------------- Reset -------------------------------------------------- */
 *,
@@ -208,6 +225,7 @@ p {
 a {
   color: inherit;
   text-decoration: unset;
+
   &:hover,
   &:active,
   &:focus {
@@ -491,7 +509,7 @@ strong {
   grid-auto-columns: 1fr;
   padding: 0.75em 1.5em;
   line-height: 1;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
   display: inline-block;
 }
@@ -499,6 +517,7 @@ strong {
 .btn-primary {
   background-color: var(--color-primary);
   color: var(--color-white);
+
   &:hover,
   &:focus,
   &:active {
@@ -510,6 +529,7 @@ strong {
 .btn-secondary {
   color: var(--color-white);
   border: 1px solid var(--color-white);
+
   &:hover,
   &:focus,
   &:active {
@@ -522,6 +542,7 @@ strong {
   color: var(--color-black);
   background-color: var(--color-white);
   border: 1px solid var(--color-white);
+
   &:hover,
   &:focus,
   &:active {
@@ -568,6 +589,7 @@ strong {
 }
 
 @media screen and (max-width: 991px) {
+
   .container.is--medium,
   .container.is--small {
     max-width: calc(var(--size-container) * 1);
@@ -647,6 +669,7 @@ strong {
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "PP Neue Montreal";
   src: url("https://cdn.prod.website-files.com/6756bf75aa4ecba10df0a4e9/6756bf75aa4ecba10df0a543_PPNeueMontreal-SemiBold.woff2") format("woff2");
