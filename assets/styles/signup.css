@@ -22,4 +22,10 @@
             }
         }
     }
+    @media screen and (max-width: 576px){
+        padding: 64px 0;
+        > .register-form-section {
+            padding: 32px 15px;
+        }
+    }
 }

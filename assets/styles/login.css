@@ -125,23 +125,3 @@
     font-size: 14px;
     color: rgba(255, 255, 255, 0.6);
 }
-
-/* Google Sign In Button - styled to fit loosely or below */
-.google-signin-btn {
-    margin-top: 2em;
-    background-color: var(--color-white);
-    color: var(--color-primary);
-    border: none;
-    padding: 0.75em 1.5em;
-    border-radius: 2em;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.google-signin-btn:hover {
-    transform: scale(1.05);
-}
