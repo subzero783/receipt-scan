@@ -38,7 +38,6 @@ const Navbar = () => {
     <nav className={`top-navigation ${isScrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "menu-open" : ""} ${session ? "session" : "no-session"}`}>
       <div className="container">
         <div className="row">
-          {/* start:Mobile Menu button column */}
           <div className="mobile-menu-column col">
             <button
               type="button"
@@ -50,13 +49,9 @@ const Navbar = () => {
               <IoIosMenu />
             </button>
           </div>
-          {/* end:Mobile Menu button column */}
-          {/* start:Logo column */}
           <div className="logo-column col">
             <LogoLinkImage />
           </div>
-          {/* end:Logo column */}
-          {/* start:Top Menu column */}
           <div className="top-menu-column col">
             <MainMenu />
           </div>
@@ -74,11 +69,8 @@ const Navbar = () => {
               Sign up
             </Link>
           </div>)}
-          {/* end:Top Menu column */}
-          {/* start:Right Side Menu column */}
           {session && (
             <div className="right-side-menu-col col">
-              {/* Profile Image */}
               <div className="profile-image-div">
                 <button
                   type="button"
@@ -95,7 +87,6 @@ const Navbar = () => {
                   />
                 </button>
               </div>
-              {/* Profile Dropdown Menu */}
               <div className="profile-dropdown-menu">
                 {
                   isProfileMenuOpen && (
@@ -133,7 +124,6 @@ const Navbar = () => {
               </div>
             </div>
           )}
-          {/* end:Right Side Menu column */}
           <div className="mobile-top-menu-column col">
             <MainMenu />
           </div>
