@@ -58,7 +58,7 @@ const LoginPage = () => {
   };
 
   if (sessionStatus === "loading") {
-    return <Spinner/>;
+    return <Spinner />;
   }
 
   return (
@@ -88,9 +88,10 @@ const LoginPage = () => {
                     />
                   </div>
                   <button type="submit" className="login-submit-btn">Sign in</button>
-                  {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
+
                 </form>
-                <button 
+                {error && <p style={{ color: 'red', marginTop: '10px', fontWeight: '600', fontSize: '14px' }}>{error}</p>}
+                <button
                   className="sign-in-with-google"
                   onClick={() => {
                     signIn("google");

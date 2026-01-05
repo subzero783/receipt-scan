@@ -60,7 +60,7 @@ const Navbar = () => {
           <div className="top-menu-column col">
             <MainMenu />
           </div>
-          <div className="top-buttons col">
+          {!session && (<div className="top-buttons col">
             <Link
               href="/login"
               className={`${pathName === "/login" ? "active" : ""} btn btn-primary`}
@@ -73,13 +73,13 @@ const Navbar = () => {
             >
               Sign up
             </Link>
-          </div>
+          </div>)}
           {/* end:Top Menu column */}
           {/* start:Right Side Menu column */}
           {session && (
             <div className="right-side-menu-col col">
               {/* Profile Image */}
-              <div className="profile-image-div container">
+              <div className="profile-image-div">
                 <button
                   type="button"
                   id="user-menu-button"
@@ -87,8 +87,6 @@ const Navbar = () => {
                   aria-haspopup="true"
                   onClick={() => setIsProfileMenuOpen((prev) => !prev)}
                 >
-                  <span></span>
-                  <span className="sr-only">Open user menu</span>
                   <Image
                     src={profileImage || profileDefault}
                     alt=""
@@ -98,10 +96,47 @@ const Navbar = () => {
                 </button>
               </div>
               {/* Profile Dropdown Menu */}
-              <div className="profile-dropdown-menu-div container"></div>
+              <div className="profile-dropdown-menu">
+                {
+                  isProfileMenuOpen && (
+                    <div className="profile-dropdown-menu-content">
+                      <div className="profile-dropdown-menu-item">
+                        <Link
+                          href="/profile"
+                          onClick={() => setIsProfileMenuOpen(false)}
+                        >
+                          Profile
+                        </Link>
+                      </div>
+                      <div className="profile-dropdown-menu-item">
+                        <Link
+                          href="/settings"
+                          onClick={() => setIsProfileMenuOpen(false)}
+                        >
+                          Settings
+                        </Link>
+                      </div>
+                      <div className="profile-dropdown-menu-item">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setIsProfileMenuOpen(false);
+                            signOut({ callbackUrl: "/login" });
+                          }}
+                        >
+                          Sign out
+                        </button>
+                      </div>
+                    </div>
+                  )
+                }
+              </div>
             </div>
           )}
           {/* end:Right Side Menu column */}
+          <div className="mobile-top-menu-column col">
+            <MainMenu />
+          </div>
         </div>
       </div>
     </nav>
