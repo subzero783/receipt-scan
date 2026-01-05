@@ -35,11 +35,26 @@
             display: flex;
           }
 
-          .top-buttons {
+          .mobile-top-buttons {
             display: flex;
           }
         }
       }
+    }
+
+    &.no-session {
+      >.container {
+        >.row {
+          .logo-column {
+            >a {
+              img {
+                margin: 0 0 0 auto;
+              }
+            }
+          }
+        }
+      }
+
     }
   }
 
@@ -56,6 +71,10 @@
           font-size: 14px;
           font-weight: 600;
         }
+      }
+
+      .mobile-top-buttons {
+        display: none;
       }
 
       @media screen and (max-width: 768px) {
@@ -105,10 +124,18 @@
         }
 
         .top-buttons {
+          display: none;
+        }
+
+        .mobile-top-buttons {
           width: 100%;
           flex-flow: column nowrap;
           display: none;
           margin-top: 10px;
+
+          >a {
+            font-size: 14px;
+          }
 
           >.btn {
             width: 100%;
@@ -176,11 +203,6 @@
   }
 
   .top-buttons {
-    >a {
-      font-size: 14px;
-      font-weight: 500 !important;
-    }
-
     >a:first-of-type {
       margin-right: 10px;
     }

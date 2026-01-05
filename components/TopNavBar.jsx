@@ -35,7 +35,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`top-navigation ${isScrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "menu-open" : ""}`}>
+    <nav className={`top-navigation ${isScrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "menu-open" : ""} ${session ? "session" : "no-session"}`}>
       <div className="container">
         <div className="row">
           {/* start:Mobile Menu button column */}
@@ -137,6 +137,20 @@ const Navbar = () => {
           <div className="mobile-top-menu-column col">
             <MainMenu />
           </div>
+          {!session && (<div className="mobile-top-buttons col">
+            <Link
+              href="/login"
+              className={`${pathName === "/login" ? "active" : ""} btn btn-primary`}
+            >
+              Sign in
+            </Link>
+            <Link
+              href="/signup"
+              className={`${pathName === "/signup" ? "active" : ""} btn btn-primary`}
+            >
+              Sign up
+            </Link>
+          </div>)}
         </div>
       </div>
     </nav>
