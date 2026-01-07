@@ -353,6 +353,25 @@
         }
       ]
     }
+  },
+  {
+    "upload_page": {
+      "hero_section": {
+        "small_title": "Snap",
+        "title": "Upload receipt",
+        "subtitle": "Quickly capture and process your business expenses with our AI-powered receipt management tool",
+        "buttons": [
+          {
+            "text": "Upload",
+            "link": "#upload"
+          }, 
+          {
+            "text": "Cancel", 
+            "link": "/"
+          }
+        ]
+      }
+    }
   }
 
 ]

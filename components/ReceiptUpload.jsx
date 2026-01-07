@@ -46,7 +46,7 @@ const ReceiptUpload = () => {
   };
 
   return (
-    <div className="upload-container">
+    <div className="upload-container" id="upload">
       {/* --- Drag & Drop Area --- */}
       <div
         {...getRootProps()}
