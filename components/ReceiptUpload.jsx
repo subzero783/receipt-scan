@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FaCloudUploadAlt, FaFileInvoiceDollar, FaTimes } from 'react-icons/fa';
 
-const ReceiptUpload = () => {
+const ReceiptUpload = ({top_text}) => {
   const [files, setFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
 
@@ -47,6 +47,18 @@ const ReceiptUpload = () => {
 
   return (
     <div className="upload-container" id="upload">
+      {/* Text Above Drag & Drop Area */}
+      <div className="text-container container">
+        <div className="row">
+          <div className="col">
+            <div className="top-text">
+              <p className="small-title">{top_text.small_title}</p>
+              <h2 className="title">{top_text.title}</h2>
+              <p className="subtitle">{top_text.subtitle}</p>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* --- Drag & Drop Area --- */}
       <div
         {...getRootProps()}

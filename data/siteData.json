@@ -370,6 +370,13 @@
             "link": "/"
           }
         ]
+      }, 
+      "drag_and_drop_area": {
+        "top_text": {
+          "small_title": "Easy",
+          "title": "Drag and drop your receipt", 
+          "subtitle": "Simplify your expense tracking with our intuitive upload interface"
+        }
       }
     }
   }
