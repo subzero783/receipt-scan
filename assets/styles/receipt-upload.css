@@ -1,3 +1,12 @@
+
+.receipt-upload {
+  background-color: var(--color-third);
+  padding: 112px 15px;
+  @media screen and (max-width: 576px){
+    padding: 64px 15px;
+  }
+}
+
 /* Container */
 .upload-container {
   max-width: 600px;

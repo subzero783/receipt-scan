@@ -46,8 +46,7 @@ const ReceiptUpload = ({top_text}) => {
   };
 
   return (
-    <div className="upload-container" id="upload">
-      {/* Text Above Drag & Drop Area */}
+    <div className="receipt-upload" id="upload">
       <div className="text-container container">
         <div className="row">
           <div className="col">
@@ -59,58 +58,60 @@ const ReceiptUpload = ({top_text}) => {
           </div>
         </div>
       </div>
-      {/* --- Drag & Drop Area --- */}
-      <div
-        {...getRootProps()}
-        className={`dropzone ${isDragActive ? 'active' : ''}`}
-      >
-        <input {...getInputProps()} />
-        <div className="icon-wrapper">
-          <FaCloudUploadAlt size={50} color="#4F46E5" />
+      <div className="upload-container">
+        {/* --- Drag & Drop Area --- */}
+        <div
+          {...getRootProps()}
+          className={`dropzone ${isDragActive ? 'active' : ''}`}
+        >
+          <input {...getInputProps()} />
+          <div className="icon-wrapper">
+            <FaCloudUploadAlt size={50} color="#4F46E5" />
+          </div>
+          {isDragActive ? (
+            <p>Drop the receipts here ...</p>
+          ) : (
+            <p>
+              Drag & drop receipts here, or <span className="browse-btn">browse</span>
+            </p>
+          )}
+          <span className="file-types">Supports JPG, PNG, PDF (Max 5MB)</span>
         </div>
-        {isDragActive ? (
-          <p>Drop the receipts here ...</p>
-        ) : (
-          <p>
-            Drag & drop receipts here, or <span className="browse-btn">browse</span>
-          </p>
+
+        {/* --- Preview Section --- */}
+        {files.length > 0 && (
+          <div className="preview-section">
+            <h3>Ready to Upload ({files.length})</h3>
+            <ul className="file-list">
+              {files.map((file) => (
+                <li key={file.name} className="file-item">
+                  <div className="file-info">
+                    <FaFileInvoiceDollar className="file-icon" />
+                    <span className="file-name">{file.name}</span>
+                    <span className="file-size">
+                      {(file.size / 1024).toFixed(0)} KB
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => removeFile(file.name)}
+                    className="remove-btn"
+                  >
+                    <FaTimes />
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            <button
+              onClick={handleUpload}
+              disabled={isUploading}
+              className="upload-btn"
+            >
+              {isUploading ? 'Scanning...' : 'Process Receipts'}
+            </button>
+          </div>
         )}
-        <span className="file-types">Supports JPG, PNG, PDF (Max 5MB)</span>
       </div>
-
-      {/* --- Preview Section --- */}
-      {files.length > 0 && (
-        <div className="preview-section">
-          <h3>Ready to Upload ({files.length})</h3>
-          <ul className="file-list">
-            {files.map((file) => (
-              <li key={file.name} className="file-item">
-                <div className="file-info">
-                  <FaFileInvoiceDollar className="file-icon" />
-                  <span className="file-name">{file.name}</span>
-                  <span className="file-size">
-                    {(file.size / 1024).toFixed(0)} KB
-                  </span>
-                </div>
-                <button
-                  onClick={() => removeFile(file.name)}
-                  className="remove-btn"
-                >
-                  <FaTimes />
-                </button>
-              </li>
-            ))}
-          </ul>
-
-          <button
-            onClick={handleUpload}
-            disabled={isUploading}
-            className="upload-btn"
-          >
-            {isUploading ? 'Scanning...' : 'Process Receipts'}
-          </button>
-        </div>
-      )}
     </div>
   );
 };
