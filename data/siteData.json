@@ -157,8 +157,8 @@
         "link": "/"
       },
       {
-        "name": "Expenses",
-        "link": "/expenses"
+        "name": "Upload",
+        "link": "/upload"
       },
       {
         "name": "Blog",
