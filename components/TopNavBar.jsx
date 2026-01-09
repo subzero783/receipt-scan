@@ -63,7 +63,7 @@ const Navbar = () => {
             <LogoLinkImage />
           </div>
           <div className="top-menu-column col">
-            <MainMenu />
+            <MainMenu session={session} />
           </div>
           {!session && (<div className="top-buttons col">
             <Link
@@ -135,7 +135,7 @@ const Navbar = () => {
             </div>
           )}
           <div className="mobile-top-menu-column col">
-            <MainMenu />
+            <MainMenu session={session} />
           </div>
           {!session && (<div className="mobile-top-buttons col">
             <Link

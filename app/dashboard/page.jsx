@@ -13,7 +13,6 @@ export default async function Dashboard() {
       <h1>Dashboard (Protected)</h1>
       <p>Welcome, {session.user.name}!</p>
       <p>Your email is: {session.user.email}</p>
-      <ClientSignOut />
     </div>
   );
 }

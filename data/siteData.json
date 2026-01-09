@@ -158,19 +158,27 @@
       },
       {
         "name": "Upload",
-        "link": "/upload"
+        "link": "/upload", 
+        "auth_required": true
+      },
+      {
+        "name": "Dashboard",
+        "link": "/dashboard",
+        "auth_required": true
       },
       {
         "name": "Blog",
         "link": "/blog"
       },
-      {
+{
         "name": "Features",
-        "link": "/features"
+        "link": "/features",
+        "guest_only": true
       },
       {
         "name": "Pricing",
-        "link": "/pricing"
+        "link": "/pricing",
+        "guest_only": true
       }
     ]
   },
@@ -185,11 +193,23 @@
           },
           {
             "name": "Features",
-            "link": "/features"
+            "link": "/features",
+            "guest_only": true
           },
           {
             "name": "Pricing",
-            "link": "/pricing"
+            "link": "/pricing", 
+            "guest_only": true
+          }, 
+          {
+            "name": "Upload", 
+            "link": "/upload", 
+            "auth_required": true
+          },
+          {
+            "name": "Dashboard", 
+            "link": "/dashboard", 
+            "auth_required": true
           }
         ]
       },
