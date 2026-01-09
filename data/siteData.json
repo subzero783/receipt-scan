@@ -377,6 +377,31 @@
           "title": "Drag and drop your receipt", 
           "subtitle": "Simplify your expense tracking with our intuitive upload interface"
         }
+      },
+      "how_it_works": {
+        "small_title": "Workflow", 
+        "title": "How Receipt AI Works", 
+        "subtitle": "Turn physical receipts into digital data in three simple steps.",
+        "steps": [
+          {
+            "id": "1",
+            "icon": "cloud-upload",
+            "title": "Upload & Digitize",
+            "text": "Securely drag and drop your receipt images or PDFs. We support bulk uploads and all standard formats."
+          },
+          {
+            "id": "2",
+            "icon": "robot",
+            "title": "Smart Extraction",
+            "text": "Our AI engine instantly extracts key data—including Merchant, Date, and Totals—eliminating manual data entry."
+          },
+          {
+            "id": "3",
+            "icon": "check-circle",
+            "title": "Auto-Categorize & Store",
+            "text": "Data is automatically tagged with expense categories and securely archived, ready for search or one-click export."
+          }
+        ]
       }
     }
   }
