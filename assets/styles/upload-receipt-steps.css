@@ -1,7 +1,33 @@
 .upload-receipt-steps {
-    background-color: var(--color-fifth);
     padding: 112px 15px;
+    color: var(--color-white);
+    background-color: var(--color-fifth);
     @media screen and (max-width: 576px){
         padding: 64px 15px;
+    }
+    .top-text {
+        color: var(--color-white);
+    }
+    .steps {
+        gap: 32px;
+        display: flex;
+        flex-flow: row nowrap;
+        .step {
+            padding: 24px;
+            border-radius: 16px;
+            background-color: var(--color-sixth);
+            .step-title {
+                padding: 16px 0;
+                font-size: 28px;
+                font-weight: 600;
+            }
+            .step-text {
+                font-size: 16px;
+            }
+        }
+        @media screen and (max-width: 768px){
+            flex-flow: column nowrap;
+            gap: 24px;
+        }
     }
 }

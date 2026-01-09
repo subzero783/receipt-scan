@@ -1,9 +1,9 @@
 import { FaCloudUploadAlt, FaRobot, FaCheckCircle } from 'react-icons/fa';
 
 const iconMap = {
-  "cloud-upload": <FaCloudUploadAlt size={32} color="#4F46E5" />,
-  "robot": <FaRobot size={32} color="#EC4899" />,
-  "check-circle": <FaCheckCircle size={32} color="#10B981" />
+  "cloud-upload": <FaCloudUploadAlt size={32} color={`var(--color-white)`} />,
+  "robot": <FaRobot size={32} color={`var(--color-white)`} />,
+  "check-circle": <FaCheckCircle size={32} color={`var(--color-white)`} />
 };
 
 const UploadReceiptSteps = ({data}) => {
@@ -25,7 +25,7 @@ const UploadReceiptSteps = ({data}) => {
                     <div className="col">
                         <div className="steps">
                             {steps.map((step) => (
-                                <div key={step.id}>
+                                <div className="step" key={step.id}>
                                     <div className="icon-container">
                                         {iconMap[step.icon]}
                                     </div>
