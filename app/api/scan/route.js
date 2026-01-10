@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { v2 as cloudinary } from 'cloudinary';
 import OpenAI from 'openai';
+// Needs updates so each Receipt information with the User information is updated in the MongoDB database. 
 
 // 1. Config Cloudinary
 cloudinary.config({
