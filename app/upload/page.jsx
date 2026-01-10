@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 
 const UploadPage = async () => {
     const session = await getServerSession();
-    if (!session?.user) {
+    if (!session) {
         redirect("/login");
     }
 

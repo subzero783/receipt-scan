@@ -36,7 +36,7 @@ const ReceiptUpload = ({top_text}) => {
     setFiles((files) => files.filter((file) => file.name !== name));
   };
 
-  // Mock Upload Function
+  // Upload Function
   const handleUpload = async () => {
 
     // Test OpenAI and Cloudinary connection
@@ -81,6 +81,9 @@ const ReceiptUpload = ({top_text}) => {
           const lastItem = newScannedResults[newScannedResults.length - 1];
           alert(`Scan Complete! Found ${newScannedResults.length} items.\nLast Item: ${lastItem.merchant_name} - $${lastItem.total_amount}`);
       }
+
+      console.log("lastItem", lastItem);
+      console.log("newScannedResults", newScannedResults);
 
       setFiles([]); // Clear queue after processing
 
