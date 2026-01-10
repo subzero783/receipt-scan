@@ -2,11 +2,12 @@
 
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { FaCloudUploadAlt, FaFileInvoiceDollar, FaTimes } from 'react-icons/fa';
+import { FaCloudUploadAlt, FaFileInvoiceDollar, FaTimes, FaSpinner } from 'react-icons/fa';
 
 const ReceiptUpload = ({top_text}) => {
   const [files, setFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
+  const [scannedData, setScannedData] = useState([]); // Store AI results here
 
   // Handle file drop
   const onDrop = useCallback((acceptedFiles) => {
@@ -42,6 +43,7 @@ const ReceiptUpload = ({top_text}) => {
     if (files.length === 0) return;
     
     setIsUploading(true);
+    const newScannedResults = [];
 
     try {
       // Loop through files and upload one by one (or use Promise.all for parallel)
@@ -54,23 +56,33 @@ const ReceiptUpload = ({top_text}) => {
           body: formData,
         });
 
-        if (!response.ok) throw new Error('Upload failed');
+        if (!response.ok) {
+          console.error(`Failed to upload ${file.name}`);
+          continue;
+        }
         
-        const data = await response.json();
-        console.log('Uploaded:', data.url);
+        const result = await response.json();
+        console.log("AI Data:", result.data);
+        
+        // Add successful scan to results
+        if (result.data) {
+            newScannedResults.push({
+                fileName: file.name,
+                ...result.data
+            });
+        }
       }
+
+      // Update state with new results
+      setScannedData((prev) => [...prev, ...newScannedResults]);
       
-      alert('All receipts uploaded successfully!');
-      setFiles([]); // Clear list
+      // Optional: Alert summary
+      if (newScannedResults.length > 0) {
+          const lastItem = newScannedResults[newScannedResults.length - 1];
+          alert(`Scan Complete! Found ${newScannedResults.length} items.\nLast Item: ${lastItem.merchant_name} - $${lastItem.total_amount}`);
+      }
 
-      //
-      const result = await response.json();
-
-      console.log("AI Data:", result.data);
-
-      // You can now set this to a new state variable to display it
-      // e.g., setScannedData(result.data);
-      alert(`Scanned!\nMerchant: ${result.data.merchant_name}\nTotal: $${result.data.total_amount}`);
+      setFiles([]); // Clear queue after processing
 
     } catch (error) {
       console.error(error);
@@ -78,14 +90,6 @@ const ReceiptUpload = ({top_text}) => {
     } finally {
       setIsUploading(false);
     }
-
-
-    // setIsUploading(true);
-    // Simulate API delay
-    // await new Promise((resolve) => setTimeout(resolve, 2000));
-    // alert(`${files.length} receipts uploaded! (Connect API here)`);
-    // setFiles([]);
-    // setIsUploading(false);
   };
 
   return (
@@ -150,8 +154,37 @@ const ReceiptUpload = ({top_text}) => {
               disabled={isUploading}
               className="upload-btn"
             >
-              {isUploading ? 'Scanning...' : 'Process Receipts'}
+              {isUploading ? (
+                <>
+                  <FaSpinner className="fa-spin" style={{marginRight: '8px'}}/> Scanning...
+                </>
+              ) : (
+                'Process Receipts'
+              )}
             </button>
+          </div>
+        )}
+
+        {/* --- Results Section (New) --- */}
+        {scannedData.length > 0 && (
+          <div className="results-section" style={{ marginTop: '30px' }}>
+              <h3>Recent Scans</h3>
+              <div className="scanned-list" style={{ display: 'grid', gap: '15px' }}>
+                  {scannedData.map((data, idx) => (
+                      <div key={idx} style={{ padding: '15px', border: '1px solid #e2e8f0', borderRadius: '8px', background: '#f8fafc' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
+                              <strong style={{ color: '#1e293b' }}>{data.merchant_name || 'Unknown Merchant'}</strong>
+                              <strong style={{ color: '#10b981' }}>
+                                  {data.total_amount ? `$${data.total_amount.toFixed(2)}` : 'N/A'}
+                              </strong>
+                          </div>
+                          <div style={{ fontSize: '0.85rem', color: '#64748b', display: 'flex', gap: '15px' }}>
+                              <span>📅 {data.date || 'No Date'}</span>
+                              <span>🏷️ {data.category || 'Uncategorized'}</span>
+                          </div>
+                      </div>
+                  ))}
+              </div>
           </div>
         )}
       </div>
