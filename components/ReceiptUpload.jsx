@@ -82,7 +82,6 @@ const ReceiptUpload = ({top_text}) => {
           alert(`Scan Complete! Found ${newScannedResults.length} items.\nLast Item: ${lastItem.merchant_name} - $${lastItem.total_amount}`);
       }
 
-      console.log("lastItem", lastItem);
       console.log("newScannedResults", newScannedResults);
 
       setFiles([]); // Clear queue after processing
