@@ -37,12 +37,45 @@ const ReceiptUpload = ({top_text}) => {
 
   // Mock Upload Function
   const handleUpload = async () => {
+
+    // Test OpenAI and Cloudinary connection
+    if (files.length === 0) return;
+    
     setIsUploading(true);
+
+    try {
+      // Loop through files and upload one by one (or use Promise.all for parallel)
+      for (const file of files) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await fetch('/api/scan', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (!response.ok) throw new Error('Upload failed');
+        
+        const data = await response.json();
+        console.log('Uploaded:', data.url);
+      }
+      
+      alert('All receipts uploaded successfully!');
+      setFiles([]); // Clear list
+    } catch (error) {
+      console.error(error);
+      alert('Something went wrong uploading.');
+    } finally {
+      setIsUploading(false);
+    }
+
+
+    // setIsUploading(true);
     // Simulate API delay
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    alert(`${files.length} receipts uploaded! (Connect API here)`);
-    setFiles([]);
-    setIsUploading(false);
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
+    // alert(`${files.length} receipts uploaded! (Connect API here)`);
+    // setFiles([]);
+    // setIsUploading(false);
   };
 
   return (
