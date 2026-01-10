@@ -11,7 +11,7 @@ cloudinary.config({
 
 // 2. Config OpenAI
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: process.env.NEXT_OPENAI_API_KEY,
 });
 
 export const POST = async (request) => {

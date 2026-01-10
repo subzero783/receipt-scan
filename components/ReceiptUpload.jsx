@@ -62,6 +62,16 @@ const ReceiptUpload = ({top_text}) => {
       
       alert('All receipts uploaded successfully!');
       setFiles([]); // Clear list
+
+      //
+      const result = await response.json();
+
+      console.log("AI Data:", result.data);
+
+      // You can now set this to a new state variable to display it
+      // e.g., setScannedData(result.data);
+      alert(`Scanned!\nMerchant: ${result.data.merchant_name}\nTotal: $${result.data.total_amount}`);
+
     } catch (error) {
       console.error(error);
       alert('Something went wrong uploading.');
