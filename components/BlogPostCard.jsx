@@ -3,7 +3,6 @@ import Link from "next/link";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 const BlogPostCard = ({ post }) => {
-  console.log(post);
   const { _id, title, status, owner, is_featured, featured_image, excerpt, content, categories, author } = post;
   const excerpt_length = 64;
   const read_more_text = excerpt.substring(0, 65) + "...";

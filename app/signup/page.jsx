@@ -84,25 +84,42 @@ const SignupPage = () => {
                 <div className="col">
                   <h2 className="title">{registration_section.title}</h2>
                   <p className="subtitle">{registration_section.subtitle}</p>
-                  <form onSubmit={handleSubmit} className="signup-form">
-                    <div className="input-group">
-                      <input
-                        type="text"
-                        placeholder="Email"
-                        className="signup-input"
-                        required
-                      />
+                  <form onSubmit={handleSubmit} className="signup-form" autoComplete="on">
+                    <div className="name-container">
+                      <div className="input-group">
+                        <input
+                          name="username"
+                          type="text"
+                          placeholder="Username"
+                          className="signup-input"
+                          required
+                        />
+                      </div>
                     </div>
-                    <div className="input-group">
-                      <input
-                        type="password"
-                        placeholder="Password"
-                        className="signup-input"
-                        required
-                      />
-                    </div>
+                    <div className="email-password-button-container">
+                      <div className="input-group">
+                        <input
+                          name="email"
+                          type="email"
+                          placeholder="Email"
+                          className="signup-input"
+                          required
+                        />
+                      </div>
+                      <div className="input-group">
+                        <input
+                          name="password"
+                          type="password"
+                          placeholder="Password"
+                          className="signup-input"
+                          required
+                        />
+                      </div>
                       <button type="submit" className="signup-submit-btn">Sign Up with Email</button>
+                    </div>
+                    <div className="error-container">
                       <p>{error && error}</p>
+                    </div>
                   </form>
                 </div>
               </div>
