@@ -7,6 +7,7 @@ import crypto from 'crypto';
 export const POST = async (request) => {
   try {
     await connectDB();
+    // This line is not working properly
     const { email } = await request.json();
 
     const user = await User.findOne({ email });
