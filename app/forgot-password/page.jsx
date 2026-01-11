@@ -53,8 +53,8 @@ const ForgotPasswordPage = () => {
             <div className="relative">
                 <FaEnvelope className="absolute top-3 left-3 text-gray-400"/>
                 <input
+                name="email"
                 type="email"
-                id="email"
                 className="w-full border rounded py-2 pl-10 pr-3 focus:outline-none focus:border-blue-500"
                 placeholder="Enter your email"
                 value={email}
