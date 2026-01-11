@@ -32,8 +32,14 @@ const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
+
+    const username = e.target.username.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    if(!username || username.length < 0){
+      setError("Username is required");
+    }
 
     if (!isValidEmail(email)) {
       setError("Email is invalid");
@@ -52,6 +58,7 @@ const SignupPage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          username,
           email,
           password,
         }),
