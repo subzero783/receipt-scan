@@ -73,8 +73,24 @@
         }
       }
 
+      .top-menu-column {
+        width: 40%;
+        justify-content: center;
+      }
+
       .mobile-top-buttons {
         display: none;
+      }
+
+      .top-buttons {
+        width: 30%;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .logo-column {
+        width: 30%;
+        justify-content: flex-start;
       }
 
       @media screen and (max-width: 768px) {
