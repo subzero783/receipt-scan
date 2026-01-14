@@ -26,6 +26,23 @@ const UserSchema = new Schema(
       type: Date,
       required: false,
     },
+    // Payment and Subscription Updates
+    stripeCustomerId: {
+      type: String,
+      unique: true,
+      sparse: true, // Allows null/undefined values to not conflict
+    },
+    subscriptionId: {
+      type: String,
+    },
+    isPro: {
+      type: Boolean,
+      default: false, // Default to Free plan
+    },
+    planType: {
+      type: String,
+      default: 'free', // 'free' or 'pro'
+    },
   },
   {
     timestamps: true,
