@@ -157,6 +157,11 @@
         "link": "/"
       },
       {
+        "name": "About",
+        "link": "/about",
+        "guest_only": true
+      },
+      {
         "name": "Upload",
         "link": "/upload", 
         "auth_required": true
@@ -218,7 +223,8 @@
         "menu_items": [
           {
             "name": "About Us",
-            "link": "/about"
+            "link": "/about", 
+            "guest_only": true
           },
           {
             "name": "Contact",
@@ -422,6 +428,24 @@
             "text": "Data is automatically tagged with expense categories and securely archived, ready for search or one-click export."
           }
         ]
+      }
+    }
+  },
+  {
+    "blog_index": {
+      "hero_section": {
+        "small_title": "Blog",
+        "title": "Insights and Tips",
+        "subtitle": "Explore the latest trends in expense management."
+      }
+    }
+  }, 
+  {
+    "about_page": {
+      "hero_section": {
+        "small_title": "",
+        "title": "",
+        "subtitle": ""
       }
     }
   }
