@@ -32,24 +32,24 @@ const AboutPage = () => {
                         
                         {/* Left: Image */}
                         <div className="about-story_section-image-col">
-                        <div className="about-story_section-image-wrapper">
-                            <div className="about-placeholder-story_section">
-                            {/* [ story_section Image: {story_section.image} ] */}
+                            <div className="about-story_section-image-wrapper">
+                                <div className="about-placeholder-story_section">
+                                {/* [ story_section Image: {story_section.image} ] */}
+                                </div>
                             </div>
-                        </div>
                         </div>
 
                         {/* Right: Text */}
                         <div className="about-story_section-text-col">
-                        <span className="about-small-title">{story_section.small_title}</span>
-                        <h2 className="about-section-title">{story_section.title}</h2>
-                        <div className="about-prose">
-                            {story_section.paragraphs.map((text, index) => (
-                            <p key={index} className="about-paragraph">
-                                {text}
-                            </p>
-                            ))}
-                        </div>
+                            <span className="about-small-title">{story_section.small_title}</span>
+                            <h2 className="about-section-title">{story_section.title}</h2>
+                            <div className="about-prose">
+                                {story_section.paragraphs.map((text, index) => (
+                                    <p key={index} className="about-paragraph">
+                                        {text}
+                                    </p>
+                                ))}
+                            </div>
                         </div>
 
                     </div>
