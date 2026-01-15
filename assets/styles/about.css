@@ -1,3 +1,176 @@
-.about_page {
-    
+/* assets/styles/about.css */
+
+/* --- Hero Section --- */
+/* 
+.about-hero-section {
+  padding: 80px 0 80px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.about-text-wrapper {
+  max-width: 800px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+}
+
+.about-small-title {
+  color: #4F46E5;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.about-title {
+  font-size: 3rem;
+  line-height: 1.2;
+  color: #1e293b;
+  margin-bottom: 24px;
+  font-weight: 800;
+}
+
+.about-subtitle {
+  font-size: 1.25rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.about-image-wrapper {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.about-placeholder-image {
+  width: 100%;
+  height: 400px;
+  background-color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 1.2rem;
+} 
+*/
+
+/* --- Story Section --- */
+.about-story-section {
+  padding: 100px 0;
+  background-color: #F8FAFC;
+}
+
+.about-grid-two-columns {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.about-story-image-col {
+  flex: 1 1 400px;
+  max-width: 500px;
+}
+
+.about-story-text-col {
+  flex: 1 1 400px;
+  max-width: 600px;
+}
+
+.about-story-image-wrapper {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.about-placeholder-story {
+  width: 100%;
+  height: 500px;
+  background-color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+}
+
+.about-section-title {
+  font-size: 2.5rem;
+  color: #1e293b;
+  margin-bottom: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.about-prose {
+  margin-top: 20px;
+}
+
+.about-paragraph {
+  font-size: 1.1rem;
+  color: #475569;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* --- Core Values Section --- */
+.about-values-section {
+  padding: 100px 0;
+  background-color: #fff;
+}
+
+.about-values-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+}
+
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.about-value-card {
+  padding: 40px 30px;
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.about-icon-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background-color: #EEF2FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.about-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.about-card-desc {
+  font-size: 1rem;
+  color: #64748b;
+  line-height: 1.6;
 }

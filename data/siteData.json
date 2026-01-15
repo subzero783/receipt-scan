@@ -443,11 +443,43 @@
   {
     "about_page": {
       "hero_section": {
-        "small_title": "",
-        "title": "",
-        "subtitle": ""
+        "small_title": "Our Mission",
+        "title": "Empowering freelancers to focus on work, not paperwork",
+        "subtitle": "We believe that managing expenses shouldn't cost you your sanity. Receipt AI was built to help creators, builders, and hustlers reclaim their time from the chaos of receipts."
+      },
+      "story_section": {
+        "small_title": "Our Origin",
+        "title": "It started with a lost receipt",
+        "paragraphs": [
+          "In 2023, our founder David was auditing his expenses for a big client project. He realized he had lost a $450 receipt for materials—money he could no longer expense. He spent 3 hours digging through email trash bins and old jean pockets, only to come up empty.",
+          "That frustration sparked an idea: What if a tool could 'read' a receipt the moment you got it, categorize it instantly, and store it where you couldn't lose it? No manual data entry, no shoeboxes.",
+          "Today, Receipt AI processes thousands of receipts for freelancers who would rather be building their business than bookkeeping."
+        ],
+        "image": "/assets/images/about-story-origin.jpg", 
+        "image_alt": "Founder working late at a desk with papers"
+      },
+      "core_values": {
+        "small_title": "Our Philosophy",
+        "title": "Values we build by",
+        "subtitle": "We are guided by a few simple principles that keep us focused on what matters: your time and your peace of mind.",
+        "values": [
+          {
+            "title": "Simplicity First",
+            "description": "If it requires a tutorial, we failed. We build tools that feel invisible so you can focus on your craft.",
+            "icon": "sparkles" 
+          },
+          {
+            "title": "Data Privacy",
+            "description": "Your financial data is yours. We encrypt everything and will never sell your purchase history to advertisers.",
+            "icon": "shield"
+          },
+          {
+            "title": "User Obsessed",
+            "description": "We don't build for 'enterprises.' We build for the freelancer, the creator, and the one-person shop.",
+            "icon": "heart"
+          }
+        ]
       }
     }
   }
-
 ]
