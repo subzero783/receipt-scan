@@ -1,4 +1,5 @@
 import siteData from '@/data/siteData.json';
+import { FaHandSparkles, FaShieldAlt, FaHeart } from 'react-icons/fa'; 
 import HeroSectionThree from '@/components/HeroSectionThree';
 
 const AboutPage = () => {
@@ -12,7 +13,7 @@ const AboutPage = () => {
 
     const getIcon = (iconName) => {
         switch (iconName) {
-            case 'sparkles': return <FaSparkles size={24} color="#4F46E5" />;
+            case 'sparkles': return <FaHandSparkles size={24} color="#4F46E5" />;
             case 'shield': return <FaShieldAlt size={24} color="#4F46E5" />;
             case 'heart': return <FaHeart size={24} color="#4F46E5" />;
             default: return null;
@@ -68,14 +69,14 @@ const AboutPage = () => {
                     </div>
 
                     <div className="about-values-grid">
-                        {values_section.values_section.map((value, index) => (
-                        <div key={index} className="about-value-card">
-                            <div className="about-icon-circle">
-                            {getIcon(value.icon)}
+                        {values_section.values.map((value, index) => (
+                            <div key={index} className="about-value-card">
+                                <div className="about-icon-circle">
+                                {getIcon(value.icon)}
+                                </div>
+                                <h3 className="about-card-title">{value.title}</h3>
+                                <p className="about-card-desc">{value.description}</p>
                             </div>
-                            <h3 className="about-card-title">{value.title}</h3>
-                            <p className="about-card-desc">{value.description}</p>
-                        </div>
                         ))}
                     </div>
 
