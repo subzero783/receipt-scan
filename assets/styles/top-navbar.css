@@ -227,6 +227,10 @@
 
 /* Profile Image and Settings Dropdown */
 .right-side-menu-col {
+  width: 30%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
   @media screen and (max-width: 768px) {
     width: 25%;
 
