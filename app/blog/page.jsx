@@ -4,6 +4,7 @@ import Spinner from "@/components/Spinner";
 import BlogPostCard from "@/components/BlogPostCard";
 import Pagination from "@/components/Pagination";
 import HeroSectionThree from "@/components/HeroSectionThree";
+import siteData from '@/data/siteData.json';
 
 const BlogIndexPage = () => {
   const [blogPosts, setBlogPosts] = useState([]);
@@ -11,6 +12,9 @@ const BlogIndexPage = () => {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(4);
   const [totalPosts, setTotalPosts] = useState(0);
+
+  const blog_index = siteData[9].blog_index;
+  const hero_section = blog_index.hero_section;
 
   useEffect(() => {
     const fetchBlogPosts = async () => {
@@ -49,11 +53,7 @@ const BlogIndexPage = () => {
     <Spinner />
   ) : (
     <section className="blog-index">
-      <HeroSectionThree
-        small_title="Blog"
-        title="Insights and Tips"
-        subtitle="Explore the latest trends in expense management."
-      />
+      <HeroSectionThree data={hero_section} />
       <div className="container posts-container">
         {blogPosts.length === 0 ? (
           <p>No posts found</p>

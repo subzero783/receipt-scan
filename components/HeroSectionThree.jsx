@@ -1,4 +1,7 @@
-const HeroSectionThree = ({ small_title, title, subtitle }) => {
+const HeroSectionThree = ({ data }) => {
+
+  const {small_title, title, subtitle} = data;
+
   return (
     <section className="hero-section-three">
       <div className="container">
