@@ -32,8 +32,8 @@ export const POST = async (request) => {
             metadata: {
                 userId: user._id.toString(), // Important: Pass DB ID to Webhook
             },
-            success_url: `${process.env.NEXT_PUBLIC_URL}/dashboard?success=true`,
-            cancel_url: `${process.env.NEXT_PUBLIC_URL}/pricing?canceled=true`,
+            success_url: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard?success=true`,
+            cancel_url: `${process.env.NEXT_PUBLIC_DOMAIN}/pricing?canceled=true`,
         });
 
         return NextResponse.json({ url: stripeSession.url });
