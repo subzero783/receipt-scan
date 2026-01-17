@@ -68,16 +68,6 @@ const PricingPlans = ({ data }) => {
                       ))}
                     </ul>
                   </div>
-                  {/*
-                  <div className="button">
-                    <Link
-                      className="btn btn-primary"
-                      href={item.button.link}
-                    >
-                      {item.button.text}
-                    </Link>
-                  </div>
-                  */}
                   {item.paid ? (
                     // Renders for Pro Plan (Trigger Stripe)
                     <div className="button">
