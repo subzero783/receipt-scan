@@ -72,7 +72,7 @@ const AboutPage = () => {
                         {values_section.values.map((value, index) => (
                             <div key={index} className="about-value-card">
                                 <div className="about-icon-circle">
-                                {getIcon(value.icon)}
+                                    {getIcon(value.icon)}
                                 </div>
                                 <h3 className="about-card-title">{value.title}</h3>
                                 <p className="about-card-desc">{value.description}</p>
