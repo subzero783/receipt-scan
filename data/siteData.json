@@ -183,7 +183,7 @@
       {
         "name": "Pricing",
         "link": "/pricing",
-        "guest_only": true
+        "guest_only": false
       }
     ]
   },
@@ -204,7 +204,7 @@
           {
             "name": "Pricing",
             "link": "/pricing", 
-            "guest_only": true
+            "guest_only": false
           }, 
           {
             "name": "Upload", 
@@ -275,12 +275,13 @@
         "plans": [
           {
             "small_title": "Free plan",
-            "monthly_price": "19",
+            "monthly_price": "0",
             "discount_text": "Forever free",
             "includes": ["Unlimited receipt photo uploads", "Basic AI expense categorization", "Monthly expense summary"],
+            "paid": false,
             "button": {
               "text": "Start Free",
-              "link": "/"
+              "link": "/signup"
             }
           },
           {
@@ -288,9 +289,10 @@
             "monthly_price": "29",
             "discount_text": "or $199 yearly",
             "includes": ["All free plan features", "Advanced AI categorization", "Unlimited CSV exports", "Tax report generation", "Priority customer support"],
+            "paid": true,
             "button": {
-              "text": "Get Started",
-              "link": "/"
+              "text": "Upgrade to Pro",
+              "link": "#"
             }
           }
         ]

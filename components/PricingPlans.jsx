@@ -1,9 +1,35 @@
+'use client';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import Link from "next/link";
 import { FaCube } from "react-icons/fa6";
 import { IoMdCheckmark } from "react-icons/io";
 
 const PricingPlans = ({ data }) => {
   const { small_title, title, subtitle, plans } = data;
+
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  const handleSubscription = async () => {
+    if (!session) {
+      router.push('/login');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+      });
+      const data = await res.json();
+      
+      // Redirect to Stripe Payment Page
+      window.location.href = data.url;
+      
+    } catch (err) {
+      console.error('Payment Error:', err);
+    }
+  };
 
   return (
     <section className="pricing-plans">
@@ -42,6 +68,7 @@ const PricingPlans = ({ data }) => {
                       ))}
                     </ul>
                   </div>
+                  {/*
                   <div className="button">
                     <Link
                       className="btn btn-primary"
@@ -50,6 +77,28 @@ const PricingPlans = ({ data }) => {
                       {item.button.text}
                     </Link>
                   </div>
+                  */}
+                  {item.paid ? (
+                    // Renders for Pro Plan (Trigger Stripe)
+                    <div className="button">
+                      <button 
+                        onClick={handleSubscription} 
+                        className="btn btn-primary paid-plan"
+                      >
+                        {item.button.text}
+                      </button>
+                    </div>
+                  ) : (
+                    // Renders for Free Plan (Link to Signup)
+                    <div className="button">
+                      <Link 
+                        href={item.button.link} 
+                        className="btn btn-primary"
+                      >
+                        {item.button.text}
+                      </Link>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
