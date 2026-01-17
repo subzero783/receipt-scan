@@ -4,6 +4,7 @@ import OpenAI from 'openai';
 import connectDB from '@/config/database';
 import Receipt from '@/models/Receipt';
 import { getSessionUser } from '@/utils/getSessionUser';
+import User from '@/models/User'; // Import User model
 
 // 1. Config Cloudinary
 cloudinary.config({
@@ -23,12 +24,19 @@ export const POST = async (request) => {
 
     // --- A. Authenticate User ---
     const sessionUser = await getSessionUser();
-    
-    if (!sessionUser || !sessionUser.user) {
-      return new NextResponse(JSON.stringify({ message: 'You must be logged in to scan receipts' }), { status: 401 });
-    }
 
-    const { userId } = sessionUser;
+    if (!sessionUser) return new NextResponse('Unauthorized', { status: 401 });
+
+    // --- NEW: CHECK SUBSCRIPTION STATUS ---
+    const user = await User.findById(sessionUser.userId);
+
+    // Option A: Hard Gate (Must be Pro)
+    if (!user.isPro) {
+      return new NextResponse(JSON.stringify({
+        message: 'Subscription Required',
+        requiresUpgrade: true
+      }), { status: 403 });
+    }
 
     // --- B. Handle File Upload ---
     const formData = await request.formData();
@@ -102,18 +110,18 @@ export const POST = async (request) => {
     await newReceipt.save();
 
     return NextResponse.json(
-      { 
+      {
         message: 'Scan successful',
         data: {
-            // Return the MongoDB document structure so the UI can use the ID if needed
-            id: newReceipt._id,
-            merchant_name: newReceipt.merchantName,
-            total_amount: newReceipt.totalAmount,
-            date: newReceipt.transactionDate,
-            category: newReceipt.category,
-            imageUrl: newReceipt.imageUrl
-        } 
-      }, 
+          // Return the MongoDB document structure so the UI can use the ID if needed
+          id: newReceipt._id,
+          merchant_name: newReceipt.merchantName,
+          total_amount: newReceipt.totalAmount,
+          date: newReceipt.transactionDate,
+          category: newReceipt.category,
+          imageUrl: newReceipt.imageUrl
+        }
+      },
       { status: 200 }
     );
 
