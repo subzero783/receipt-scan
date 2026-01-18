@@ -34,7 +34,7 @@ const StorySection = ({data}) => {
                                             key={index}
                                         >
                                             <Link
-                                                className="btn btn-primary"
+                                                className="btn btn-fourth"
                                                 href={button.link}
                                             >
                                                 {button.text}
