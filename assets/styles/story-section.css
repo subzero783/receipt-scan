@@ -10,17 +10,29 @@
                 &:first-of-type {
                     margin-right: 32px;
                 }
-                img {
+                .story-image {
                     border-radius: 16px;
-                    /* width: 100%;
-                    height: 100%; */
-                    /* object-fit: cover; */
+                    width: 100%;
+                    min-height: 500px;
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
                 }
                 .top-text {
+                    align-items: flex-start;
+
+                    .title {
+                        font-weight: 600;
+                    }
                     .paragraphs {
                         > p {
+                            font-size: 16px;
+                            margin-bottom: 10px;
                             color: var(--color-black);
                         }
+                    }
+                    .buttons {
+                        margin-top: 22px;
                     }
                 }
             }

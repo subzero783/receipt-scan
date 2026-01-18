@@ -10,13 +10,7 @@ const StorySection = ({data}) => {
             <div className="container">
                 <div className="row">
                     <div className="col left-side">
-                        <Image 
-                            className="story-image"
-                            src={image} 
-                            alt={image_alt}
-                            width={0}
-                            height={0}
-                        />
+                        <div className="story-image" style={{"backgroundImage": `url(${image})`}}></div>
                     </div>
                     <div className="col right-side">
                         <div className="top-text">
