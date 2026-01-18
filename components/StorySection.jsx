@@ -23,13 +23,13 @@ const StorySection = ({data}) => {
                             <p className="small-title">{small_title}</p>
                             <h2 className="title">{title}</h2>
                             <div className="paragraphs">
-                                {
-                                    paragraphs.map((item, index)=>{
-                                        return(
-                                            <p key={index}>{item}</p>
-                                        )
-                                    })
-                                }
+                            {
+                                paragraphs.map((item, index)=>{
+                                    return(
+                                        <p key={index}>{item}</p>
+                                    )
+                                })
+                            }
                             </div>
                             <ul className="buttons">
                             {
