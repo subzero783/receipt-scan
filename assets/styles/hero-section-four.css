@@ -11,7 +11,7 @@
             background-image: url("/images/hero/hero-image.png");
             > .col {
                 display: flex;
-                padding: 118px 15px 118px 64px;
+                padding: 80px 15px 80px 64px;
                 text-align: center;
                 flex-flow: column nowrap;
                 color: var(--color-white);
@@ -33,6 +33,7 @@
                 }
                 .subtitle {
                     margin-bottom: 32px;
+                    white-space: pre-wrap;
                 }
                 .buttons {
                     display: flex;

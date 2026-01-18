@@ -1,6 +1,7 @@
 import siteData from '@/data/siteData.json';
 import { FaHandSparkles, FaShieldAlt, FaHeart } from 'react-icons/fa'; 
 import HeroSectionFour from '@/components/HeroSectionFour';
+import StorySection from '@/components/StorySection';
 
 const AboutPage = () => {
     const aboutData = siteData.find(item => item.about_page)?.about_page;
@@ -26,36 +27,7 @@ const AboutPage = () => {
             {/* ==================== 
                 SECTION 2: story_section 
             ==================== */}
-            <section className="about-story_section-section">
-                <div className="container">
-                    <div className="about-grid-two-columns">
-                        
-                        {/* Left: Image */}
-                        <div className="about-story_section-image-col">
-                            <div className="about-story_section-image-wrapper">
-                                <div className="about-placeholder-story_section">
-                                {/* [ story_section Image: {story_section.image} ] */}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Right: Text */}
-                        <div className="about-story_section-text-col">
-                            <span className="about-small-title">{story_section.small_title}</span>
-                            <h2 className="about-section-title">{story_section.title}</h2>
-                            <div className="about-prose">
-                                {story_section.paragraphs.map((text, index) => (
-                                    <p key={index} className="about-paragraph">
-                                        {text}
-                                    </p>
-                                ))}
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
+            <StorySection data={story_section}/>
             {/* ==================== 
                 SECTION 3: VALUES 
             ==================== */}

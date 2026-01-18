@@ -464,11 +464,20 @@
         "title": "It started with a lost receipt",
         "paragraphs": [
           "In 2023, our founder David was auditing his expenses for a big client project. He realized he had lost a $450 receipt for materials—money he could no longer expense. He spent 3 hours digging through email trash bins and old jean pockets, only to come up empty.",
-          "That frustration sparked an idea: What if a tool could 'read' a receipt the moment you got it, categorize it instantly, and store it where you couldn't lose it? No manual data entry, no shoeboxes.",
-          "Today, Receipt AI processes thousands of receipts for freelancers who would rather be building their business than bookkeeping."
+          "That frustration sparked an idea: What if a tool could 'read' a receipt the moment you got it, categorize it instantly, and store it where you couldn't lose it? No manual data entry, no shoeboxes.<br>Today, Receipt AI processes thousands of receipts for freelancers who would rather be building their business than bookkeeping."
         ],
-        "image": "/assets/images/about-story-origin.jpg", 
-        "image_alt": "Founder working late at a desk with papers"
+        "image": "/images/hero/hero-image.png", 
+        "image_alt": "Founder working late at a desk with papers", 
+        "buttons": [
+          {
+            "text": "Start",
+            "link": "/"
+          },
+          {
+            "text": "Learn More",
+            "link": "/"
+          }
+        ]
       },
       "core_values": {
         "small_title": "Our Philosophy",
