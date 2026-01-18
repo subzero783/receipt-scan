@@ -447,7 +447,17 @@
       "hero_section": {
         "small_title": "Our Mission",
         "title": "Empowering freelancers to focus on work, not paperwork",
-        "subtitle": "We believe that managing expenses shouldn't cost you your sanity. Receipt AI was built to help creators, builders, and hustlers reclaim their time from the chaos of receipts."
+        "subtitle": "We believe that managing expenses shouldn't cost you your sanity. Receipt AI was built to help creators, builders, and hustlers reclaim their time from the chaos of receipts.",
+        "buttons": [
+          {
+            "text": "Start",
+            "link": "/signup"
+          },
+          {
+            "text": "How It Works", 
+            "link": "#how-it-works"
+          }
+        ]
       },
       "story_section": {
         "small_title": "Our Origin",

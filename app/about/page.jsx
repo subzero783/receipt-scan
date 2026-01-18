@@ -1,6 +1,6 @@
 import siteData from '@/data/siteData.json';
 import { FaHandSparkles, FaShieldAlt, FaHeart } from 'react-icons/fa'; 
-import HeroSectionThree from '@/components/HeroSectionThree';
+import HeroSectionFour from '@/components/HeroSectionFour';
 
 const AboutPage = () => {
     const aboutData = siteData.find(item => item.about_page)?.about_page;
@@ -22,7 +22,7 @@ const AboutPage = () => {
 
     return(
         <div className="about-page">
-            <HeroSectionThree data={hero_section} />
+            <HeroSectionFour data={hero_section} />
             {/* ==================== 
                 SECTION 2: story_section 
             ==================== */}
