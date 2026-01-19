@@ -1,15 +1,24 @@
 .story-section {
     background-color: var(--color-third);
     padding: 112px 15px;
-    > .container {
-        > .row {
+
+    @media screen and (max-width: 768px) {
+        padding: 64px 15px;
+    }
+
+    >.container {
+        >.row {
             display: flex;
             flex-flow: row nowrap;
-            > .col {
+            align-items: center;
+
+            >.col {
                 width: 49%;
+
                 &:first-of-type {
                     margin-right: 32px;
                 }
+
                 .story-image {
                     border-radius: 16px;
                     width: 100%;
@@ -18,19 +27,22 @@
                     background-position: center;
                     background-repeat: no-repeat;
                 }
+
                 .top-text {
                     align-items: flex-start;
 
                     .title {
                         font-weight: 600;
                     }
+
                     .paragraphs {
-                        > p {
+                        >p {
                             font-size: 16px;
                             margin-bottom: 10px;
                             color: var(--color-black);
                         }
                     }
+
                     .buttons {
                         margin: 0;
                         padding: 0;
@@ -39,7 +51,33 @@
                         display: flex;
                         flex-flow: row nowrap;
                         align-items: center;
-                        gap: 16px
+                        gap: 16px;
+
+                        >.button {
+                            >.btn {
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @media screen and (max-width: 768px) {
+                flex-flow: column-reverse nowrap;
+
+                >.col {
+                    width: 100%;
+
+                    .story-image {
+                        min-height: 348px;
+                    }
+
+                    &.left-side {
+                        margin-right: 0;
+                    }
+
+                    &.right-side {
+                        margin-bottom: 48px;
                     }
                 }
             }

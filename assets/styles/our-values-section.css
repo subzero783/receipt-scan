@@ -1,0 +1,16 @@
+.our-values-section {
+    padding: 112px 15px;
+
+    >.container {
+        >.row {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            gap: 80px;
+
+            >.col {
+                width: 50%;
+            }
+        }
+    }
+}

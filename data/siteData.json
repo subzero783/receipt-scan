@@ -28,7 +28,8 @@
           {
             "text": "Start Free",
             "link": "/signup"
-          },{
+          },
+          {
             "text": "Learn More",
             "link": "/about"
           }
@@ -163,7 +164,7 @@
       },
       {
         "name": "Upload",
-        "link": "/upload", 
+        "link": "/upload",
         "auth_required": true
       },
       {
@@ -175,7 +176,7 @@
         "name": "Blog",
         "link": "/blog"
       },
-{
+      {
         "name": "Features",
         "link": "/features",
         "guest_only": true
@@ -203,17 +204,17 @@
           },
           {
             "name": "Pricing",
-            "link": "/pricing", 
+            "link": "/pricing",
             "guest_only": false
-          }, 
+          },
           {
-            "name": "Upload", 
-            "link": "/upload", 
+            "name": "Upload",
+            "link": "/upload",
             "auth_required": true
           },
           {
-            "name": "Dashboard", 
-            "link": "/dashboard", 
+            "name": "Dashboard",
+            "link": "/dashboard",
             "auth_required": true
           }
         ]
@@ -223,7 +224,7 @@
         "menu_items": [
           {
             "name": "About Us",
-            "link": "/about", 
+            "link": "/about",
             "guest_only": true
           },
           {
@@ -277,7 +278,11 @@
             "small_title": "Free plan",
             "monthly_price": "0",
             "discount_text": "Forever free",
-            "includes": ["Unlimited receipt photo uploads", "Basic AI expense categorization", "Monthly expense summary"],
+            "includes": [
+              "Unlimited receipt photo uploads",
+              "Basic AI expense categorization",
+              "Monthly expense summary"
+            ],
             "paid": false,
             "button": {
               "text": "Start Free",
@@ -288,7 +293,13 @@
             "small_title": "Pro plan",
             "monthly_price": "29",
             "discount_text": "or $199 yearly",
-            "includes": ["All free plan features", "Advanced AI categorization", "Unlimited CSV exports", "Tax report generation", "Priority customer support"],
+            "includes": [
+              "All free plan features",
+              "Advanced AI categorization",
+              "Unlimited CSV exports",
+              "Tax report generation",
+              "Priority customer support"
+            ],
             "paid": true,
             "button": {
               "text": "Upgrade to Pro",
@@ -311,15 +322,15 @@
     "signin_page": {
       "hero_section": {
         "title": "Sign in to your account",
-        "subtitle": "Access your expense tracking and manage your business finances with ease", 
+        "subtitle": "Access your expense tracking and manage your business finances with ease",
         "legal_disclaimer": "By signing in, you agree to our terms of service and privacy policy"
-      }, 
+      },
       "cta": {
         "title": "New to our platform?",
         "subtitle": "Create an account to start tracking your business expenses effortlessly",
         "buttons": [
           {
-            "text": "Sign Up", 
+            "text": "Sign Up",
             "link": "/signup"
           },
           {
@@ -346,10 +357,10 @@
             "link": "/"
           }
         ]
-      }, 
+      },
       "registration": {
-        "title": "Create your free account", 
-        "subtitle": "Get started in minutes and transform how you manage business expenses", 
+        "title": "Create your free account",
+        "subtitle": "Get started in minutes and transform how you manage business expenses",
         "legal_disclaimer": "By clicking Sign Up you're confirming that you agree with our Terms and Conditions."
       }
     }
@@ -392,23 +403,23 @@
           {
             "text": "Upload",
             "link": "#upload"
-          }, 
+          },
           {
-            "text": "Cancel", 
+            "text": "Cancel",
             "link": "/"
           }
         ]
-      }, 
+      },
       "drag_and_drop_area": {
         "top_text": {
           "small_title": "Easy",
-          "title": "Drag and drop your receipt", 
+          "title": "Drag and drop your receipt",
           "subtitle": "Simplify your expense tracking with our intuitive upload interface"
         }
       },
       "how_it_works": {
-        "small_title": "Workflow", 
-        "title": "How Receipt AI Works", 
+        "small_title": "Workflow",
+        "title": "How Receipt AI Works",
         "subtitle": "Turn physical receipts into digital data in three simple steps.",
         "steps": [
           {
@@ -441,7 +452,7 @@
         "subtitle": "Explore the latest trends in expense management."
       }
     }
-  }, 
+  },
   {
     "about_page": {
       "hero_section": {
@@ -454,7 +465,7 @@
             "link": "/signup"
           },
           {
-            "text": "How It Works", 
+            "text": "How It Works",
             "link": "#how-it-works"
           }
         ]
@@ -467,8 +478,8 @@
           "That frustration sparked an idea: What if a tool could 'read' a receipt the moment you got it, categorize it instantly, and store it where you couldn't lose it? No manual data entry, no shoeboxes.",
           "Today, Receipt AI processes thousands of receipts for freelancers who would rather be building their business than bookkeeping."
         ],
-        "image": "/images/hero/hero-image.png", 
-        "image_alt": "Founder working late at a desk with papers", 
+        "image": "/images/hero/hero-image.png",
+        "image_alt": "Founder working late at a desk with papers",
         "buttons": [
           {
             "text": "Start",
@@ -488,7 +499,7 @@
           {
             "title": "Simplicity First",
             "description": "If it requires a tutorial, we failed. We build tools that feel invisible so you can focus on your craft.",
-            "icon": "sparkles" 
+            "icon": "sparkles"
           },
           {
             "title": "Data Privacy",

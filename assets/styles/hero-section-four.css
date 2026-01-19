@@ -1,40 +1,65 @@
 .hero-section-four {
     z-index: 1;
     background-color: var(--color-secondary);
-    padding: 152px var(--container-padding) 80px;
-    > .container {
-        > .row {
+    padding: 152px 15px 80px;
+
+    @media screen and (max-width: 768px) {
+        padding: 112px 15px 48px;
+    }
+
+    >.container {
+        >.row {
             border-radius: 16px;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-image: url("/images/hero/hero-image.png");
-            > .col {
+
+            >.col {
                 display: flex;
                 padding: 80px 15px 80px 64px;
                 text-align: center;
                 flex-flow: column nowrap;
                 color: var(--color-white);
-                max-width: 576px;
+                max-width: 50%;
+
+                @media screen and (max-width: 768px) {
+                    padding: 32px;
+                    max-width: 90%;
+                }
+
+                @media screen and (max-width: 576px) {
+                    max-width: 100%;
+                }
             }
+
             .top-text {
                 color: var(--color-white);
                 align-items: flex-start;
                 text-align: left;
+
                 h1 {
                     font-size: 52px;
                     font-weight: 600;
-                    @media screen and (max-width: 768px){
+
+                    @media screen and (max-width: 768px) {
                         font-size: 36px;
                     }
                 }
+
                 .small-title {
                     text-align: left;
                 }
+
                 .subtitle {
                     margin-bottom: 32px;
                     white-space: pre-wrap;
+
+                    @media screen and (max-width: 768px) {
+                        margin-bottom: 24px;
+                    }
                 }
+
                 .buttons {
                     display: flex;
                     flex-flow: row nowrap;
@@ -42,7 +67,10 @@
                     list-style: none;
                     margin: 0;
                     padding: 0;
+
                     .button {
+                        font-size: 14px;
+
                         &:first-of-type {
                             margin-right: 16px;
                         }
