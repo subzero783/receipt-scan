@@ -25,11 +25,11 @@ const StorySection = ({ data }) => {
                                     })
                                 }
                             </div>
-                            <ul className="buttons">
+                            <div className="buttons">
                                 {
                                     buttons.map((button, index) => {
                                         return (
-                                            <li
+                                            <Link
                                                 className="button"
                                                 key={index}
                                             >
@@ -39,11 +39,11 @@ const StorySection = ({ data }) => {
                                                 >
                                                     {button.text}
                                                 </Link>
-                                            </li>
+                                            </Link>
                                         )
                                     })
                                 }
-                            </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

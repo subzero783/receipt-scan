@@ -1,14 +1,17 @@
 import { FaHandSparkles, FaShieldAlt, FaHeart } from 'react-icons/fa';
+import Link from "next/link";
 
 const OurValuesSection = ({ data }) => {
 
-    const { small_title, title, subtitle, values } = data;
+    const { image, small_title, title, subtitle, values, buttons } = data;
+
+    console.log(buttons);
 
     const getIcon = (iconName) => {
         switch (iconName) {
-            case 'sparkles': return <FaHandSparkles size={24} color="#4F46E5" />;
-            case 'shield': return <FaShieldAlt size={24} color="#4F46E5" />;
-            case 'heart': return <FaHeart size={24} color="#4F46E5" />;
+            case 'sparkles': return <FaHandSparkles size={24} />;
+            case 'shield': return <FaShieldAlt size={24} />;
+            case 'heart': return <FaHeart size={24} />;
             default: return null;
         }
     };
@@ -43,8 +46,24 @@ const OurValuesSection = ({ data }) => {
                                 })
                             }
                         </div>
+                        <div className="buttons">
+                            {
+                                buttons.map((button, index) => {
+                                    return (
+                                        <Link
+                                            className="button"
+                                            key={index}
+                                            href={button.link}
+                                        >
+                                            {button.text}
+                                        </Link>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
                     <div className="col">
+                        <div className="our-values-image" style={{ "backgroundImage": `url(${image})` }}></div>
                     </div>
                 </div>
             </div>

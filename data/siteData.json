@@ -465,8 +465,8 @@
             "link": "/signup"
           },
           {
-            "text": "How It Works",
-            "link": "#how-it-works"
+            "text": "Learn More",
+            "link": "/features"
           }
         ]
       },
@@ -483,11 +483,11 @@
         "buttons": [
           {
             "text": "Start",
-            "link": "/"
+            "link": "/signup"
           },
           {
             "text": "Learn More",
-            "link": "/"
+            "link": "/features"
           }
         ]
       },
@@ -495,6 +495,8 @@
         "small_title": "Our Philosophy",
         "title": "Values we build by",
         "subtitle": "We are guided by a few simple principles that keep us focused on what matters: your time and your peace of mind.",
+        "image": "/images/hero/hero-image.png",
+        "image_alt": "Founder working late at a desk with papers",
         "values": [
           {
             "title": "Simplicity First",
@@ -510,6 +512,16 @@
             "title": "User Obsessed",
             "description": "We don't build for 'enterprises.' We build for the freelancer, the creator, and the one-person shop.",
             "icon": "heart"
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Start",
+            "link": "/signup"
+          },
+          {
+            "text": "Learn More",
+            "link": "/features"
           }
         ]
       }

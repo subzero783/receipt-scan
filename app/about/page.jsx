@@ -12,6 +12,8 @@ const AboutPage = () => {
     const story_section = aboutData.story_section;
     const values_section = aboutData.core_values;
 
+    console.log(values_section);
+
     return (
         <div className="about-page">
             <HeroSectionFour data={hero_section} />

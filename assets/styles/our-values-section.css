@@ -1,15 +1,75 @@
 .our-values-section {
     padding: 112px 15px;
+    background-color: var(--color-secondary);
 
     >.container {
         >.row {
             display: flex;
-            flex-flow: column nowrap;
+            flex-flow: row nowrap;
             align-items: center;
             gap: 80px;
 
             >.col {
                 width: 50%;
+
+                .top-text {
+                    align-items: flex-start;
+                    color: var(--color-white);
+
+                    .title {
+                        font-weight: 600;
+                    }
+
+                    .subtitle {
+                        margin-bottom: 20px;
+                    }
+                }
+
+                .values {
+                    >.value {
+                        display: flex;
+                        flex-flow: row nowrap;
+                        align-items: flex-start;
+                        gap: 24px;
+                        margin-bottom: 32px;
+
+                        >.icon {
+                            position: relative;
+                            top: 7px;
+
+                            svg {
+                                width: 30px;
+                                color: var(--color-white);
+                            }
+                        }
+
+                        >.content {
+                            color: var(--color-white);
+
+                            >.title {
+                                font-size: 24px;
+                                font-weight: 600;
+                                margin-bottom: 10px;
+                            }
+
+                            >.description {
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 1.5;
+                            }
+                        }
+                    }
+                }
+
+                .our-values-image {
+                    width: 100%;
+                    padding-bottom: 100%;
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    border-radius: 16px;
+                }
+
             }
         }
     }
