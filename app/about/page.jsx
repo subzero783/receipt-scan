@@ -1,3 +1,4 @@
+'use client';
 import siteData from '@/data/siteData.json';
 import HeroSectionFour from '@/components/HeroSectionFour';
 import StorySection from '@/components/StorySection';
@@ -11,8 +12,6 @@ const AboutPage = () => {
     const hero_section = aboutData.hero_section;
     const story_section = aboutData.story_section;
     const values_section = aboutData.core_values;
-
-    console.log(values_section);
 
     return (
         <div className="about-page">

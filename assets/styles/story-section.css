@@ -50,10 +50,8 @@
                         align-items: center;
                         gap: 16px;
 
-                        >.button {
-                            >.btn {
-                                font-size: 14px;
-                            }
+                        >a {
+                            font-size: 14px;
                         }
                     }
                 }

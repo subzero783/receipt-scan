@@ -30,15 +30,11 @@ const StorySection = ({ data }) => {
                                     buttons.map((button, index) => {
                                         return (
                                             <Link
-                                                className="button"
+                                                className="btn btn-primary"
                                                 key={index}
+                                                href={button.link}
                                             >
-                                                <Link
-                                                    className="btn btn-primary"
-                                                    href={button.link}
-                                                >
-                                                    {button.text}
-                                                </Link>
+                                                {button.text}
                                             </Link>
                                         )
                                     })

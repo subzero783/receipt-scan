@@ -1,11 +1,10 @@
+'use client';
 import { FaHandSparkles, FaShieldAlt, FaHeart } from 'react-icons/fa';
 import Link from "next/link";
 
 const OurValuesSection = ({ data }) => {
 
     const { image, small_title, title, subtitle, values, buttons } = data;
-
-    console.log(buttons);
 
     const getIcon = (iconName) => {
         switch (iconName) {
@@ -15,6 +14,8 @@ const OurValuesSection = ({ data }) => {
             default: return null;
         }
     };
+
+    console.log(buttons);
 
     return (
         <section className="our-values-section">
@@ -48,14 +49,14 @@ const OurValuesSection = ({ data }) => {
                         </div>
                         <div className="buttons">
                             {
-                                buttons.map((button, index) => {
+                                buttons.map((item, index) => {
                                     return (
                                         <Link
-                                            className="button"
+                                            className="btn btn-secondary"
                                             key={index}
-                                            href={button.link}
+                                            href={item.link}
                                         >
-                                            {button.text}
+                                            {item.text}
                                         </Link>
                                     )
                                 })
