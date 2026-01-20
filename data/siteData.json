@@ -524,6 +524,21 @@
             "link": "/features"
           }
         ]
+      },
+      "cta": {
+        "small_title": "Ready to get started?",
+        "title": "Ready to reclaim your time",
+        "subtitle": "Stop wrestling with receipts. Start building your business instead.",
+        "buttons": [
+          {
+            "text": "Start",
+            "link": "/signup"
+          },
+          {
+            "text": "Learn More",
+            "link": "/features"
+          }
+        ]
       }
     }
   }

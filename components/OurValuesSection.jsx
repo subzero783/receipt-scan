@@ -15,8 +15,6 @@ const OurValuesSection = ({ data }) => {
         }
     };
 
-    console.log(buttons);
-
     return (
         <section className="our-values-section">
             <div className="container">

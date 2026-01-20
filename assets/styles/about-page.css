@@ -1,0 +1,27 @@
+.cta-2-section {
+    background-color: var(--color-fifth);
+
+    .cta-2-card {
+        background-color: var(--color-sixth);
+
+        h2,
+        p {
+            color: var(--color-white);
+        }
+
+        .action-buttons {
+            .btn {
+                color: var(--color-black);
+                background-color: var(--color-white);
+
+                &:hover,
+                &:active,
+                &:focus {
+                    color: var(--color-white);
+                    background-color: transparent;
+                    border-color: var(--color-white);
+                }
+            }
+        }
+    }
+}
