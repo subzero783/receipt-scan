@@ -74,10 +74,11 @@
                 }
 
                 .buttons {
-                    display: flex;
-                    flex-flow: row nowrap;
-                    align-items: center;
                     gap: 16px;
+                    display: flex;
+                    padding-left: 60px;
+                    align-items: center;
+                    flex-flow: row nowrap;
 
                     >a {
                         font-size: 14px;
