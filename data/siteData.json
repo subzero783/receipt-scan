@@ -415,12 +415,12 @@
           "small_title": "Easy",
           "title": "Drag and drop your receipt",
           "subtitle": "Simplify your expense tracking with our intuitive upload interface"
+        },         
+        "recent_scans": {
+          "small_title": "Recent Scans",
+          "title": "Check Extracted Data"
+  
         }
-      },
-      "recent_scans": {
-        "small_title": "Recent Scans",
-        "title": "Check Extracted Data"
-
       },
       "how_it_works": {
         "small_title": "Workflow",

@@ -28,15 +28,15 @@ export const POST = async (request) => {
     if (!sessionUser) return new NextResponse('Unauthorized', { status: 401 });
 
     // --- NEW: CHECK SUBSCRIPTION STATUS ---
-    const user = await User.findById(sessionUser.userId);
+    const userId = await User.findById(sessionUser.userId);
 
     // Option A: Hard Gate (Must be Pro)
-    if (!user.isPro) {
-      return new NextResponse(JSON.stringify({
-        message: 'Subscription Required',
-        requiresUpgrade: true
-      }), { status: 403 });
-    }
+    // if (!user.isPro) {
+    //   return new NextResponse(JSON.stringify({
+    //     message: 'Subscription Required',
+    //     requiresUpgrade: true
+    //   }), { status: 403 });
+    // }
 
     // --- B. Handle File Upload ---
     const formData = await request.formData();

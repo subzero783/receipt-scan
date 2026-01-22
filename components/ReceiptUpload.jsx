@@ -5,10 +5,12 @@ import { useDropzone } from 'react-dropzone';
 import { FaCloudUploadAlt, FaFileInvoiceDollar, FaTimes, FaSpinner } from 'react-icons/fa';
 
 const ReceiptUpload = ({data}) => {
-  const {small_title, title} = data;
+  const {top_text, recent_scans} = data;
   const [files, setFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
   const [scannedData, setScannedData] = useState([]); // Store AI results here
+
+  console.log('scannedData', scannedData);
 
   // Handle file drop
   const onDrop = useCallback((acceptedFiles) => {
@@ -190,9 +192,24 @@ const ReceiptUpload = ({data}) => {
           //     </div>
           // </div>
           <div className="upload-results-section">
-            <p className="small-title">{small_title}</p>
-            <h3 className="title">{title}</h3>
-            
+            <p className="small-title">{recent_scans.small_title}</p>
+            <h3 className="title">{recent_scans.title}</h3>
+            <div className="results-list">
+              {
+                scannedData.map((receipt, key)=>{
+                  return(
+                    <div className="result">
+                      <div className="image-container">
+                        
+                      </div>
+                      <div className="editing-container">
+
+                      </div>
+                    </div>
+                  )
+                })
+              }
+            </div>
           </div>
         )}
       </div>
