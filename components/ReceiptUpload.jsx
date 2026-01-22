@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
+import Image from "next/image";
 import { FaCloudUploadAlt, FaFileInvoiceDollar, FaTimes, FaSpinner } from 'react-icons/fa';
 
 const ReceiptUpload = ({data}) => {
@@ -171,7 +172,9 @@ const ReceiptUpload = ({data}) => {
         )}
 
         {/* --- Results Section (New) --- */}
-        {scannedData.length > 0 && (
+        {/* {scannedData.length > 0 && ( */}
+
+          {
           // <div className="results-section" style={{ marginTop: '30px' }}>
           //     <h3>Recent Scans</h3>
           //     <div className="scanned-list" style={{ display: 'grid', gap: '15px' }}>
@@ -199,28 +202,38 @@ const ReceiptUpload = ({data}) => {
           // imageUrl: "https://res.cloudinary.com/dswzkrkcx/image/upload/v1769122612/receipt-scan-app/m43poemezuobjco7lomq.png"
           // merchant_name:"Costco Wholesale"
           // total_amount: 39.59
+          } 
           
           <div className="upload-results-section">
             <p className="small-title">{recent_scans.small_title}</p>
             <h3 className="title">{recent_scans.title}</h3>
+            <p className="subtitle">Each receipt appears as an editable card. Verify the merchant name, date, and amount our AI captured, then assign the right tax category for your records.</p>
             <div className="results-list">
-              {
+              {/* {
                 scannedData.map((receipt, key)=>{
-                  return(
+                  return( */}
                     <div className="result">
-                      <div className="image-container">
-                        
+                      <div className="receipt-image-container">
+                        <Image 
+                          // src={receipt.imageUrl} 
+                          src="https://res.cloudinary.com/dswzkrkcx/image/upload/v1769122612/receipt-scan-app/m43poemezuobjco7lomq.png"
+                          // alt={receipt.fileName} 
+                          fill
+                          style={{ objectFit: "cover" }}
+                          priority
+                        />
                       </div>
                       <div className="editing-container">
 
                       </div>
                     </div>
-                  )
+                  {/* )
                 })
-              }
+              } */}
             </div>
           </div>
-        )}
+
+        {/* )} */}
       </div>
     </div>
   );
