@@ -189,7 +189,9 @@ const ReceiptUpload = ({top_text}) => {
           //     </div>
           // </div>
           <div className="upload-results-section">
-            <h3>Recent Scan</h3>
+            <p className="small-title">Recent Scans</p>
+            <h3 className="title"></h3>
+            
           </div>
         )}
       </div>
