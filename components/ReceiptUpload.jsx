@@ -169,24 +169,27 @@ const ReceiptUpload = ({top_text}) => {
 
         {/* --- Results Section (New) --- */}
         {scannedData.length > 0 && (
-          <div className="results-section" style={{ marginTop: '30px' }}>
-              <h3>Recent Scans</h3>
-              <div className="scanned-list" style={{ display: 'grid', gap: '15px' }}>
-                  {scannedData.map((data, idx) => (
-                      <div key={idx} style={{ padding: '15px', border: '1px solid #e2e8f0', borderRadius: '8px', background: '#f8fafc' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
-                              <strong style={{ color: '#1e293b' }}>{data.merchant_name || 'Unknown Merchant'}</strong>
-                              <strong style={{ color: '#10b981' }}>
-                                  {data.total_amount ? `$${data.total_amount.toFixed(2)}` : 'N/A'}
-                              </strong>
-                          </div>
-                          <div style={{ fontSize: '0.85rem', color: '#64748b', display: 'flex', gap: '15px' }}>
-                              <span>📅 {data.date || 'No Date'}</span>
-                              <span>🏷️ {data.category || 'Uncategorized'}</span>
-                          </div>
-                      </div>
-                  ))}
-              </div>
+          // <div className="results-section" style={{ marginTop: '30px' }}>
+          //     <h3>Recent Scans</h3>
+          //     <div className="scanned-list" style={{ display: 'grid', gap: '15px' }}>
+          //         {scannedData.map((data, idx) => (
+          //             <div key={idx} style={{ padding: '15px', border: '1px solid #e2e8f0', borderRadius: '8px', background: '#f8fafc' }}>
+          //                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
+          //                     <strong style={{ color: '#1e293b' }}>{data.merchant_name || 'Unknown Merchant'}</strong>
+          //                     <strong style={{ color: '#10b981' }}>
+          //                         {data.total_amount ? `$${data.total_amount.toFixed(2)}` : 'N/A'}
+          //                     </strong>
+          //                 </div>
+          //                 <div style={{ fontSize: '0.85rem', color: '#64748b', display: 'flex', gap: '15px' }}>
+          //                     <span>📅 {data.date || 'No Date'}</span>
+          //                     <span>🏷️ {data.category || 'Uncategorized'}</span>
+          //                 </div>
+          //             </div>
+          //         ))}
+          //     </div>
+          // </div>
+          <div className="upload-results-section">
+            <h3>Recent Scan</h3>
           </div>
         )}
       </div>
