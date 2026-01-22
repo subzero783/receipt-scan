@@ -191,6 +191,15 @@ const ReceiptUpload = ({data}) => {
           //         ))}
           //     </div>
           // </div>
+
+          // category: "Supplies"
+          // date: "2019-11-20T00:00:00.000Z"
+          // fileName: "receipt.png"
+          // id: "6972ab3912cdb61f568aa3e6"
+          // imageUrl: "https://res.cloudinary.com/dswzkrkcx/image/upload/v1769122612/receipt-scan-app/m43poemezuobjco7lomq.png"
+          // merchant_name:"Costco Wholesale"
+          // total_amount: 39.59
+          
           <div className="upload-results-section">
             <p className="small-title">{recent_scans.small_title}</p>
             <h3 className="title">{recent_scans.title}</h3>
