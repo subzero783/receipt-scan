@@ -13,9 +13,7 @@ const UploadPage = async () => {
         redirect("/login");
     }
 
-    const upload_page = siteData[8].upload_page;
-    // Rewrite line 16 to find the data of the upload_page in a different way
-    
+    const upload_page = siteData.find(item => item.upload_page)?.upload_page;
     const hero_section = upload_page.hero_section;
     const top_text = upload_page.drag_and_drop_area.top_text;
     const recent_scans = upload_page.recent_scans;
@@ -24,7 +22,7 @@ const UploadPage = async () => {
     return(
         <div className="upload-page">
             <HeroSectionTwo data={hero_section}/>
-            <ReceiptUpload top_text={top_text} />
+            <ReceiptUpload data={recent_scans} />
             <UploadReceiptSteps data={how_it_works} />
         </div>
     );

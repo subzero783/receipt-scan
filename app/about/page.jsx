@@ -15,8 +15,6 @@ const AboutPage = () => {
     const values_section = aboutData.core_values;
     const cta = aboutData.cta;
 
-    console.log(cta);
-
     return (
         <div className="about-page">
             <HeroSectionFour data={hero_section} />

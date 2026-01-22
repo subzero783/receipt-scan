@@ -4,7 +4,8 @@ import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FaCloudUploadAlt, FaFileInvoiceDollar, FaTimes, FaSpinner } from 'react-icons/fa';
 
-const ReceiptUpload = ({top_text}) => {
+const ReceiptUpload = ({data}) => {
+  const {small_title, title} = data;
   const [files, setFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
   const [scannedData, setScannedData] = useState([]); // Store AI results here
@@ -189,9 +190,9 @@ const ReceiptUpload = ({top_text}) => {
           //     </div>
           // </div>
           <div className="upload-results-section">
-            <p className="small-title">Recent Scans</p>
-            <h3 className="title"></h3>
-            
+            <p className="small-title">{small_title}</p>
+            <h3 className="title">{title}</h3>
+
           </div>
         )}
       </div>
