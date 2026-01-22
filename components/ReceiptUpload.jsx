@@ -192,7 +192,7 @@ const ReceiptUpload = ({data}) => {
           <div className="upload-results-section">
             <p className="small-title">{small_title}</p>
             <h3 className="title">{title}</h3>
-
+            
           </div>
         )}
       </div>
