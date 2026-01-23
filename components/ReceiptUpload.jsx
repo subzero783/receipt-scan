@@ -225,11 +225,59 @@ const ReceiptUpload = ({data}) => {
                           priority
                         />
                       </div>
-                      <div className="editing-container">
+                      <form onSubmit={handleUploadChanges} className="editing-container" autoComplete="on">
                         <div className="edit-text-container">
-                          <h4 className="edit-merchant-title"></h4>
+                          <h4 className="title">Merchant name</h4>
+                          <div className="input-group">
+                            <input
+                              name="merchant-name"
+                              type="text"
+                              value=""
+                              className="merchant-name"
+                              required
+                            />
+                          </div>
                         </div>
-                      </div>
+                        <div className="edit-text-container">
+                          <h4 className="title">Transaction Date</h4>
+                          <div className="input-group">
+                            <input
+                              name="transaction-date"
+                              type="date"
+                              value=""
+                              className="transaction-date"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div className="edit-text-container">
+                          <h4 className="title">Amount</h4>
+                          <div className="input-group">
+                            <input
+                              name="amount"
+                              type="date"
+                              value=""
+                              className="amount"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div className="edit-text-container">
+                          <h4 className="title">Category</h4>
+                          <div className="input-group">
+                            <input
+                              name="category"
+                              type="text"
+                              value=""
+                              className="category"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div className="form-buttons">
+                          <button type="submit">Save All</button>
+                        </div>
+                      </form>
                     </div>
                   {/* )
                 })
