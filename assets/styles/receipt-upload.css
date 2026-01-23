@@ -152,3 +152,18 @@
   background-color: #94a3b8;
   cursor: not-allowed;
 }
+
+.upload-results-section {
+  .results-list {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    .result {
+      .receipt-image-container {
+        .receipt-image {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
