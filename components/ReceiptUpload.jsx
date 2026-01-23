@@ -1,8 +1,8 @@
 'use client'; // This must be a Client Component
 
 import { useState, useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { FaCloudUploadAlt, FaFileInvoiceDollar, FaTimes, FaSpinner } from 'react-icons/fa';
+import ReceiptDropzone from './ReceiptDropzone';
+import ReceiptCard from './ReceiptResultsSection';
 
 const ReceiptUpload = ({data}) => {
   const {top_text, recent_scans} = data;
@@ -26,15 +26,6 @@ const ReceiptUpload = ({data}) => {
       ),
     ]);
   }, []);
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: {
-      'image/*': ['.jpeg', '.jpg', '.png'],
-      'application/pdf': ['.pdf'],
-    },
-    maxFiles: 5,
-  });
 
   // Remove file from list
   const removeFile = (name) => {
@@ -259,68 +250,16 @@ const ReceiptUpload = ({data}) => {
         </div>
       </div>
       <div className="upload-container">
-        {/* --- Drag & Drop Area --- */}
-        <div
-          {...getRootProps()}
-          className={`dropzone ${isDragActive ? 'active' : ''}`}
-        >
-          <input {...getInputProps()} />
-          <div className="icon-wrapper">
-            <FaCloudUploadAlt size={50} color="#4F46E5" />
-          </div>
-          {isDragActive ? (
-            <p>Drop the receipts here ...</p>
-          ) : (
-            <p>
-              Drag & drop receipts here, or <span className="browse-btn">browse</span>
-            </p>
-          )}
-          <span className="file-types">Supports JPG, PNG, PDF (Max 5MB)</span>
-        </div>
+        <ReceiptDropzone 
+          files={files}
+          isUploading={isUploading}
+          onDrop={onDrop}
+          onRemoveFile={removeFile}
+          onUpload={handleUpload}
+        />
 
-        {/* --- Preview Section --- */}
-        {files.length > 0 && (
-          <div className="preview-section">
-            <h3>Ready to Upload ({files.length})</h3>
-            <ul className="file-list">
-              {files.map((file) => (
-                <li key={file.name} className="file-item">
-                  <div className="file-info">
-                    <FaFileInvoiceDollar className="file-icon" />
-                    <span className="file-name">{file.name}</span>
-                    <span className="file-size">
-                      {(file.size / 1024).toFixed(0)} KB
-                    </span>
-                  </div>
-                  <button
-                    onClick={() => removeFile(file.name)}
-                    className="remove-btn"
-                  >
-                    <FaTimes />
-                  </button>
-                </li>
-              ))}
-            </ul>
-
-            <button
-              onClick={handleUpload}
-              disabled={isUploading}
-              className="upload-btn"
-            >
-              {isUploading ? (
-                <>
-                  <FaSpinner className="fa-spin" style={{marginRight: '8px'}}/> Scanning...
-                </>
-              ) : (
-                'Process Receipts'
-              )}
-            </button>
-          </div>
-        )}
-
-        {/* --- Results Section (New) --- */}
+        {/* --- Results Section --- */}
         {scannedData.length > 0 && (
-          
           <div className="upload-results-section container">
             <div className="row">
               <div className="col">
@@ -333,120 +272,18 @@ const ReceiptUpload = ({data}) => {
                   autoComplete="on"
                 >
                   {
-                    scannedData.map((receipt, index)=>{
-                      const currentData = {
-                        ...receipt,
-                        ...editedData[index]
-                      };
-
-                      return(
-                        <div className="result" key={index}>
-                          <div className="receipt-image-container">
-                            {/* <Image 
-                              className="receipt-image"
-                              src={receipt.imageUrl} 
-                              // src="https://res.cloudinary.com/dswzkrkcx/image/upload/v1769122612/receipt-scan-app/m43poemezuobjco7lomq.png"
-                              alt={receipt.fileName} 
-                              width={0}
-                              height={0}
-                              style={{ objectFit: "cover" }}
-                              priority
-                            /> */}
-                            <div 
-                              className="receipt-background-image" 
-                              style={{ "backgroundImage": `url(${receipt.imageUrl})` }}
-                            >
-                              
-                            </div>
-                          </div>
-                          {/* 
-                          // category: "Supplies"
-                          // date: "2019-11-20T00:00:00.000Z"
-                          // fileName: "receipt.png"
-                          // id: "6972ab3912cdb61f568aa3e6"
-                          // imageUrl: "https://res.cloudinary.com/dswzkrkcx/image/upload/v1769122612/receipt-scan-app/m43poemezuobjco7lomq.png"
-                          // merchant_name:"Costco Wholesale"
-                          // total_amount: 39.59
-                          */}
-                            <div className="edit-details-container">
-                              <div className="edit-text-container">
-                                <h4 className="title">Merchant name</h4>
-                                <div className="input-group">
-                                  <input
-                                    name="merchant-name"
-                                    type="text"
-                                    value={currentData.merchant_name || 'Unknown Merchant'}
-                                    onChange={(e) => handleInputChange(index, 'merchant_name', e.target.value)}
-                                    className="merchant-name"
-                                    required
-                                  />
-                                </div>
-                              </div>
-                              <div className="edit-text-container">
-                                <h4 className="title">Transaction Date</h4>
-                                <div className="input-group">
-                                  <input
-                                    name="transaction-date"
-                                    type="date"
-                                    value={currentData.date ? new Date(currentData.date).toISOString().split('T')[0] : ''}
-                                    onChange={(e) => handleInputChange(index, 'date', e.target.value)}
-                                    className="transaction-date"
-                                    required
-                                  />
-                                </div>
-                              </div>
-                              <div className="edit-text-container">
-                                <h4 className="title">Amount</h4>
-                                <div className="input-group">
-                                  <input
-                                    name="amount"
-                                    type="text"
-                                    value={currentData.total_amount ? `$${currentData.total_amount.toFixed(2)}` : 'N/A'}
-                                    onChange={(e) => {
-                                      const value = e.target.value.replace('$', '');
-                                      handleInputChange(index, 'total_amount', isNaN(parseFloat(value)) ? 0 : parseFloat(value));
-                                    }}
-                                    className="amount"
-                                    required
-                                  />
-                                </div>
-                              </div>
-                              <div className="edit-text-container">
-                                <h4 className="title">Category</h4>
-                                <div className="input-group">
-                                  <input
-                                    name="category"
-                                    type="text"
-                                    value={currentData.category || 'Uncategorized'}
-                                    onChange={(e) => handleInputChange(index, 'category', e.target.value)}
-                                    className="category"
-                                    required
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            <div className="receipt-button-group">
-                              <button 
-                                type="button"
-                                onClick={() => handleSaveReceipt(index)}
-                                disabled={isSaving}
-                                className="save-receipt-btn"
-                              >
-                                {isSaving ? 'Saving...' : 'Save'}
-                              </button>
-                              <button 
-                                type="button"
-                                onClick={() => handleDeleteReceipt(index)}
-                                disabled={isSaving}
-                                className="delete-receipt-btn"
-                              >
-                                {isSaving ? 'Deleting...' : 'Delete'}
-                              </button>
-                            </div>
-                            
-                        </div>
-                      )
-                    })
+                    scannedData.map((receipt, index) => (
+                      <ReceiptCard
+                        key={index}
+                        receipt={receipt}
+                        index={index}
+                        editedData={editedData}
+                        onInputChange={handleInputChange}
+                        onSaveReceipt={handleSaveReceipt}
+                        onDeleteReceipt={handleDeleteReceipt}
+                        isSaving={isSaving}
+                      />
+                    ))
                   }
                   <div className="form-buttons">
                     <button 
