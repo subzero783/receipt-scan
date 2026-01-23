@@ -80,24 +80,24 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
             />
           </div>
         </div>
-      </div>
-      <div className="receipt-button-group">
-        <button 
-          type="button"
-          onClick={() => onSaveReceipt(index)}
-          disabled={isSaving}
-          className="save-receipt-btn"
-        >
-          {isSaving ? 'Saving...' : 'Save'}
-        </button>
-        <button 
-          type="button"
-          onClick={() => onDeleteReceipt(index)}
-          disabled={isSaving}
-          className="delete-receipt-btn"
-        >
-          {isSaving ? 'Deleting...' : 'Delete'}
-        </button>
+        <div className="receipt-button-group">
+            <button 
+            type="button"
+            onClick={() => onSaveReceipt(index)}
+            disabled={isSaving}
+            className="save-receipt-btn"
+            >
+            {isSaving ? 'Saving...' : 'Save'}
+            </button>
+            <button 
+            type="button"
+            onClick={() => onDeleteReceipt(index)}
+            disabled={isSaving}
+            className="delete-receipt-btn"
+            >
+            {isSaving ? 'Deleting...' : 'Delete'}
+            </button>
+        </div>
       </div>
     </div>
   );
