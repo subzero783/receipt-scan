@@ -102,6 +102,10 @@ const ReceiptUpload = ({data}) => {
 
   };
 
+  const handleDeleteAllReceipts = () => {
+
+  };
+
   return (
     <div className="receipt-upload" id="upload">
       <div className="text-container container">
@@ -194,7 +198,7 @@ const ReceiptUpload = ({data}) => {
                       return(
                         <div className="result" key={index}>
                           <div className="receipt-image-container">
-                            <Image 
+                            {/* <Image 
                               className="receipt-image"
                               src={receipt.imageUrl} 
                               // src="https://res.cloudinary.com/dswzkrkcx/image/upload/v1769122612/receipt-scan-app/m43poemezuobjco7lomq.png"
@@ -203,7 +207,13 @@ const ReceiptUpload = ({data}) => {
                               height={0}
                               style={{ objectFit: "cover" }}
                               priority
-                            />
+                            /> */}
+                            <div 
+                              className="receipt-background-image" 
+                              style={{ "backgroundImage": `url(${receipt.imageUrl})` }}
+                            >
+                              
+                            </div>
                           </div>
                           {/* 
                           // category: "Supplies"
@@ -271,7 +281,9 @@ const ReceiptUpload = ({data}) => {
                   }
                   <div className="form-buttons">
                     <button type="submit">Save All</button>
-                    
+                    <buttion onClick={handleDeleteAllReceipts} className="delete-receipts">
+                      Delete All
+                    </buttion>
                   </div>
                 </form>
               </div>

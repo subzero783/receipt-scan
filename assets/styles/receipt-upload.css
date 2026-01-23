@@ -159,13 +159,21 @@
     display: flex;
     flex-flow: column nowrap;
     .result {
+      margin-top: 42px;
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
+      gap: 80px;
       .receipt-image-container {
         width: 50%;
-        .receipt-image {
+        border-radius: 16px;
+        border: 2px solid var(--color-primary);
+        .receipt-background-image {
           width: 100%;
+          padding-bottom: 80%;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
         }
       }
       .edit-details-container {
