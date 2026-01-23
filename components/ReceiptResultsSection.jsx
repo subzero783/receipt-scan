@@ -9,16 +9,6 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
   return (
     <div className="result">
       <div className="receipt-image-container">
-        {/* <Image 
-          className="receipt-image"
-          src={receipt.imageUrl} 
-          // src="https://res.cloudinary.com/dswzkrkcx/image/upload/v1769122612/receipt-scan-app/m43poemezuobjco7lomq.png"
-          alt={receipt.fileName} 
-          width={0}
-          height={0}
-          style={{ objectFit: "cover" }}
-          priority
-        /> */}
         <div 
           className="receipt-background-image" 
           style={{ backgroundImage: `url(${receipt.imageUrl})` }}
