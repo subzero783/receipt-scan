@@ -2,7 +2,6 @@
 
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import Image from "next/image";
 import { FaCloudUploadAlt, FaFileInvoiceDollar, FaTimes, FaSpinner } from 'react-icons/fa';
 
 const ReceiptUpload = ({data}) => {
@@ -10,6 +9,8 @@ const ReceiptUpload = ({data}) => {
   const [files, setFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
   const [scannedData, setScannedData] = useState([]); // Store AI results here
+  const [editedData, setEditedData] = useState({}); // Track edits per receipt
+  const [isSaving, setIsSaving] = useState(false);
 
   console.log('scannedData', scannedData);
 
@@ -99,11 +100,149 @@ const ReceiptUpload = ({data}) => {
   };
 
   const handleUploadChanges = async () => {
+    setIsSaving(true);
+    try {
+      // Save all receipts with edits
+      const receiptsToSave = scannedData.map((receipt, index) => ({
+        ...receipt,
+        ...editedData[index]
+      }));
 
+      const response = await fetch('/api/scan', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ receipts: receiptsToSave }),
+      });
+
+      if (response.ok) {
+        alert('All receipts saved successfully!');
+        setScannedData(receiptsToSave);
+        setEditedData({});
+      } else {
+        alert('Failed to save receipts.');
+      }
+    } catch (error) {
+      console.error('Error saving receipts:', error);
+      alert('Error saving receipts.');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
-  const handleDeleteAllReceipts = () => {
+  const handleDeleteAllReceipts = async () => {
+    if (!window.confirm('Are you sure you want to delete all receipts? This action cannot be undone.')) {
+      return;
+    }
 
+    setIsSaving(true);
+    try {
+      const receiptIds = scannedData.map(receipt => receipt.id);
+
+      const response = await fetch('/api/scan', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ids: receiptIds }),
+      });
+
+      if (response.ok) {
+        alert('All receipts deleted successfully!');
+        setScannedData([]);
+        setEditedData({});
+      } else {
+        alert('Failed to delete receipts.');
+      }
+    } catch (error) {
+      console.error('Error deleting receipts:', error);
+      alert('Error deleting receipts.');
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleSaveReceipt = async (index) => {
+    setIsSaving(true);
+    try {
+      const receiptToSave = {
+        ...scannedData[index],
+        ...editedData[index]
+      };
+
+      const response = await fetch('/api/scan', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ receipts: [receiptToSave] }),
+      });
+
+      if (response.ok) {
+        alert('Receipt saved successfully!');
+        const updatedScannedData = [...scannedData];
+        updatedScannedData[index] = receiptToSave;
+        setScannedData(updatedScannedData);
+        
+        const updatedEditedData = { ...editedData };
+        delete updatedEditedData[index];
+        setEditedData(updatedEditedData);
+      } else {
+        alert('Failed to save receipt.');
+      }
+    } catch (error) {
+      console.error('Error saving receipt:', error);
+      alert('Error saving receipt.');
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleDeleteReceipt = async (index) => {
+    if (!window.confirm('Are you sure you want to delete this receipt? This action cannot be undone.')) {
+      return;
+    }
+
+    setIsSaving(true);
+    try {
+      const receiptId = scannedData[index].id;
+
+      const response = await fetch('/api/scan', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ids: [receiptId] }),
+      });
+
+      if (response.ok) {
+        alert('Receipt deleted successfully!');
+        const updatedScannedData = scannedData.filter((_, i) => i !== index);
+        setScannedData(updatedScannedData);
+        
+        const updatedEditedData = { ...editedData };
+        delete updatedEditedData[index];
+        setEditedData(updatedEditedData);
+      } else {
+        alert('Failed to delete receipt.');
+      }
+    } catch (error) {
+      console.error('Error deleting receipt:', error);
+      alert('Error deleting receipt.');
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleInputChange = (index, field, value) => {
+    setEditedData((prev) => ({
+      ...prev,
+      [index]: {
+        ...prev[index],
+        [field]: value,
+      },
+    }));
   };
 
   return (
@@ -183,11 +322,11 @@ const ReceiptUpload = ({data}) => {
         {scannedData.length > 0 && (
           
           <div className="upload-results-section container">
-            <div class="row">
-              <div class="col">
+            <div className="row">
+              <div className="col">
                 <p className="small-title">{recent_scans.small_title}</p>
                 <h3 className="title">{recent_scans.title}</h3>
-                <p className="subtitle">Each receipt appears as an editable card. Verify the merchant name, date, and amount our AI captured, then assign the right tax category for your records.</p>
+                <p className="subtitle">{recent_scans.subtitle}</p>
                 <form 
                   className="results-list-form" 
                   onSubmit={handleUploadChanges} 
@@ -195,6 +334,11 @@ const ReceiptUpload = ({data}) => {
                 >
                   {
                     scannedData.map((receipt, index)=>{
+                      const currentData = {
+                        ...receipt,
+                        ...editedData[index]
+                      };
+
                       return(
                         <div className="result" key={index}>
                           <div className="receipt-image-container">
@@ -231,7 +375,8 @@ const ReceiptUpload = ({data}) => {
                                   <input
                                     name="merchant-name"
                                     type="text"
-                                    value={receipt.merchant_name || 'Unknown Merchant'}
+                                    value={currentData.merchant_name || 'Unknown Merchant'}
+                                    onChange={(e) => handleInputChange(index, 'merchant_name', e.target.value)}
                                     className="merchant-name"
                                     required
                                   />
@@ -243,7 +388,8 @@ const ReceiptUpload = ({data}) => {
                                   <input
                                     name="transaction-date"
                                     type="date"
-                                    value={receipt.date || 'No Date'}
+                                    value={currentData.date ? new Date(currentData.date).toISOString().split('T')[0] : ''}
+                                    onChange={(e) => handleInputChange(index, 'date', e.target.value)}
                                     className="transaction-date"
                                     required
                                   />
@@ -255,7 +401,11 @@ const ReceiptUpload = ({data}) => {
                                   <input
                                     name="amount"
                                     type="text"
-                                    value={receipt.total_amount ? `$${receipt.total_amount.toFixed(2)}` : 'N/A'}
+                                    value={currentData.total_amount ? `$${currentData.total_amount.toFixed(2)}` : 'N/A'}
+                                    onChange={(e) => {
+                                      const value = e.target.value.replace('$', '');
+                                      handleInputChange(index, 'total_amount', isNaN(parseFloat(value)) ? 0 : parseFloat(value));
+                                    }}
                                     className="amount"
                                     required
                                   />
@@ -267,12 +417,31 @@ const ReceiptUpload = ({data}) => {
                                   <input
                                     name="category"
                                     type="text"
-                                    value={receipt.category || 'Uncategorized'}
+                                    value={currentData.category || 'Uncategorized'}
+                                    onChange={(e) => handleInputChange(index, 'category', e.target.value)}
                                     className="category"
                                     required
                                   />
                                 </div>
                               </div>
+                            </div>
+                            <div className="receipt-button-group">
+                              <button 
+                                type="button"
+                                onClick={() => handleSaveReceipt(index)}
+                                disabled={isSaving}
+                                className="save-receipt-btn"
+                              >
+                                {isSaving ? 'Saving...' : 'Save'}
+                              </button>
+                              <button 
+                                type="button"
+                                onClick={() => handleDeleteReceipt(index)}
+                                disabled={isSaving}
+                                className="delete-receipt-btn"
+                              >
+                                {isSaving ? 'Deleting...' : 'Delete'}
+                              </button>
                             </div>
                             
                         </div>
@@ -280,10 +449,20 @@ const ReceiptUpload = ({data}) => {
                     })
                   }
                   <div className="form-buttons">
-                    <button type="submit">Save All</button>
-                    <buttion onClick={handleDeleteAllReceipts} className="delete-receipts">
-                      Delete All
-                    </buttion>
+                    <button 
+                      type="submit"
+                      disabled={isSaving}
+                    >
+                      {isSaving ? 'Saving...' : 'Save All'}
+                    </button>
+                    <button 
+                      type="button"
+                      onClick={handleDeleteAllReceipts}
+                      disabled={isSaving}
+                      className="delete-receipts"
+                    >
+                      {isSaving ? 'Deleting...' : 'Delete All'}
+                    </button>
                   </div>
                 </form>
               </div>

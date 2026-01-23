@@ -418,7 +418,8 @@
         },         
         "recent_scans": {
           "small_title": "Recent Scans",
-          "title": "Check Extracted Data"
+          "title": "Check Extracted Data",
+          "subtitle": "Review your recently uploaded receipts and their extracted details"
   
         }
       },
