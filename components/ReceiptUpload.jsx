@@ -98,6 +98,10 @@ const ReceiptUpload = ({data}) => {
     }
   };
 
+  const handleUploadChanges = async () => {
+
+  };
+
   return (
     <div className="receipt-upload" id="upload">
       <div className="text-container container">
@@ -172,120 +176,108 @@ const ReceiptUpload = ({data}) => {
         )}
 
         {/* --- Results Section (New) --- */}
-        {/* {scannedData.length > 0 && ( */}
-
-          {
-          // <div className="results-section" style={{ marginTop: '30px' }}>
-          //     <h3>Recent Scans</h3>
-          //     <div className="scanned-list" style={{ display: 'grid', gap: '15px' }}>
-          //         {scannedData.map((data, idx) => (
-          //             <div key={idx} style={{ padding: '15px', border: '1px solid #e2e8f0', borderRadius: '8px', background: '#f8fafc' }}>
-          //                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
-          //                     <strong style={{ color: '#1e293b' }}>{data.merchant_name || 'Unknown Merchant'}</strong>
-          //                     <strong style={{ color: '#10b981' }}>
-          //                         {data.total_amount ? `$${data.total_amount.toFixed(2)}` : 'N/A'}
-          //                     </strong>
-          //                 </div>
-          //                 <div style={{ fontSize: '0.85rem', color: '#64748b', display: 'flex', gap: '15px' }}>
-          //                     <span>📅 {data.date || 'No Date'}</span>
-          //                     <span>🏷️ {data.category || 'Uncategorized'}</span>
-          //                 </div>
-          //             </div>
-          //         ))}
-          //     </div>
-          // </div>
-
-          // category: "Supplies"
-          // date: "2019-11-20T00:00:00.000Z"
-          // fileName: "receipt.png"
-          // id: "6972ab3912cdb61f568aa3e6"
-          // imageUrl: "https://res.cloudinary.com/dswzkrkcx/image/upload/v1769122612/receipt-scan-app/m43poemezuobjco7lomq.png"
-          // merchant_name:"Costco Wholesale"
-          // total_amount: 39.59
-          } 
+        {scannedData.length > 0 && (
           
-          <div className="upload-results-section">
-            <p className="small-title">{recent_scans.small_title}</p>
-            <h3 className="title">{recent_scans.title}</h3>
-            <p className="subtitle">Each receipt appears as an editable card. Verify the merchant name, date, and amount our AI captured, then assign the right tax category for your records.</p>
-            <div className="results-list">
-              {/* {
-                scannedData.map((receipt, key)=>{
-                  return( */}
-                    <div className="result">
-                      <div className="receipt-image-container">
-                        <Image 
-                          className="receipt-image"
-                          // src={receipt.imageUrl} 
-                          src="https://res.cloudinary.com/dswzkrkcx/image/upload/v1769122612/receipt-scan-app/m43poemezuobjco7lomq.png"
-                          // alt={receipt.fileName} 
-                          width={0}
-                          height={0}
-                          style={{ objectFit: "cover" }}
-                          priority
-                        />
-                      </div>
-                      <form onSubmit={handleUploadChanges} className="editing-container" autoComplete="on">
-                        <div className="edit-text-container">
-                          <h4 className="title">Merchant name</h4>
-                          <div className="input-group">
-                            <input
-                              name="merchant-name"
-                              type="text"
-                              value=""
-                              className="merchant-name"
-                              required
+          <div className="upload-results-section container">
+            <div class="row">
+              <div class="col">
+                <p className="small-title">{recent_scans.small_title}</p>
+                <h3 className="title">{recent_scans.title}</h3>
+                <p className="subtitle">Each receipt appears as an editable card. Verify the merchant name, date, and amount our AI captured, then assign the right tax category for your records.</p>
+                <form 
+                  className="results-list-form" 
+                  onSubmit={handleUploadChanges} 
+                  autoComplete="on"
+                >
+                  {
+                    scannedData.map((receipt, index)=>{
+                      return(
+                        <div className="result" key={index}>
+                          <div className="receipt-image-container">
+                            <Image 
+                              className="receipt-image"
+                              src={receipt.imageUrl} 
+                              // src="https://res.cloudinary.com/dswzkrkcx/image/upload/v1769122612/receipt-scan-app/m43poemezuobjco7lomq.png"
+                              alt={receipt.fileName} 
+                              width={0}
+                              height={0}
+                              style={{ objectFit: "cover" }}
+                              priority
                             />
                           </div>
+                          {/* 
+                          // category: "Supplies"
+                          // date: "2019-11-20T00:00:00.000Z"
+                          // fileName: "receipt.png"
+                          // id: "6972ab3912cdb61f568aa3e6"
+                          // imageUrl: "https://res.cloudinary.com/dswzkrkcx/image/upload/v1769122612/receipt-scan-app/m43poemezuobjco7lomq.png"
+                          // merchant_name:"Costco Wholesale"
+                          // total_amount: 39.59
+                          */}
+                            <div className="edit-details-container">
+                              <div className="edit-text-container">
+                                <h4 className="title">Merchant name</h4>
+                                <div className="input-group">
+                                  <input
+                                    name="merchant-name"
+                                    type="text"
+                                    value={receipt.merchant_name || 'Unknown Merchant'}
+                                    className="merchant-name"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div className="edit-text-container">
+                                <h4 className="title">Transaction Date</h4>
+                                <div className="input-group">
+                                  <input
+                                    name="transaction-date"
+                                    type="date"
+                                    value={receipt.date || 'No Date'}
+                                    className="transaction-date"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div className="edit-text-container">
+                                <h4 className="title">Amount</h4>
+                                <div className="input-group">
+                                  <input
+                                    name="amount"
+                                    type="text"
+                                    value={receipt.total_amount ? `$${receipt.total_amount.toFixed(2)}` : 'N/A'}
+                                    className="amount"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div className="edit-text-container">
+                                <h4 className="title">Category</h4>
+                                <div className="input-group">
+                                  <input
+                                    name="category"
+                                    type="text"
+                                    value={receipt.category || 'Uncategorized'}
+                                    className="category"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            
                         </div>
-                        <div className="edit-text-container">
-                          <h4 className="title">Transaction Date</h4>
-                          <div className="input-group">
-                            <input
-                              name="transaction-date"
-                              type="date"
-                              value=""
-                              className="transaction-date"
-                              required
-                            />
-                          </div>
-                        </div>
-                        <div className="edit-text-container">
-                          <h4 className="title">Amount</h4>
-                          <div className="input-group">
-                            <input
-                              name="amount"
-                              type="date"
-                              value=""
-                              className="amount"
-                              required
-                            />
-                          </div>
-                        </div>
-                        <div className="edit-text-container">
-                          <h4 className="title">Category</h4>
-                          <div className="input-group">
-                            <input
-                              name="category"
-                              type="text"
-                              value=""
-                              className="category"
-                              required
-                            />
-                          </div>
-                        </div>
-                        <div className="form-buttons">
-                          <button type="submit">Save All</button>
-                        </div>
-                      </form>
-                    </div>
-                  {/* )
-                })
-              } */}
+                      )
+                    })
+                  }
+                  <div className="form-buttons">
+                    <button type="submit">Save All</button>
+                    
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-
-        {/* )} */}
+        )} 
       </div>
     </div>
   );
