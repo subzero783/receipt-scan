@@ -23,7 +23,7 @@ const ReceiptDropzone = ({ files, isUploading, onDrop, onRemoveFile, onUpload })
       >
         <input {...getInputProps()} />
         <div className="icon-wrapper">
-          <FaCloudUploadAlt size={50} color="#4F46E5" />
+          <FaCloudUploadAlt size={50} color="#1e90ff" />
         </div>
         {isDragActive ? (
           <p>Drop the receipts here ...</p>

@@ -417,7 +417,7 @@
           "subtitle": "Simplify your expense tracking with our intuitive upload interface"
         },         
         "recent_scans": {
-          "small_title": "Recent Scans",
+          "small_title": "Review Scans",
           "title": "Check Extracted Data",
           "subtitle": "Review your recently uploaded receipts and their extracted details"
   
