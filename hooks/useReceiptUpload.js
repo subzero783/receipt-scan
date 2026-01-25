@@ -148,7 +148,6 @@ export const useReceiptUpload = () => {
         const updatedScannedData = [...scannedData];
         updatedScannedData[index] = receiptToSave;
         setScannedData(updatedScannedData);
-        
         const updatedEditedData = { ...editedData };
         delete updatedEditedData[index];
         setEditedData(updatedEditedData);

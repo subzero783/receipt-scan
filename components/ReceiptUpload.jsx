@@ -27,7 +27,7 @@ const ReceiptUpload = ({ data }) => {
 
   return (
     <div className="receipt-upload" id="upload">
-      <div className="text-container container">
+      <div className="text-container">
         <div className="row">
           <div className="col">
             <TopText text={top_text} />
@@ -45,7 +45,7 @@ const ReceiptUpload = ({ data }) => {
 
         {/* --- Results Section --- */}
         {scannedData.length > 0 && (
-          <div className="upload-results-section">
+          <div className="upload-results-section container">
             <div className="row">
               <div className="col">
                 <div className="text-container">
@@ -58,18 +58,6 @@ const ReceiptUpload = ({ data }) => {
                   onSubmit={handleUploadChanges} 
                   autoComplete="on"
                 >
-                  {scannedData.map((receipt, index) => (
-                    <ReceiptCard
-                      key={index}
-                      receipt={receipt}
-                      index={index}
-                      editedData={editedData}
-                      onInputChange={handleInputChange}
-                      onSaveReceipt={handleSaveReceipt}
-                      onDeleteReceipt={handleDeleteReceipt}
-                      isSaving={isSaving}
-                    />
-                  ))}
                   <div className="form-buttons">
                     <button type="submit" disabled={isSaving}>
                       {isSaving ? 'Saving...' : 'Save All'}
@@ -83,6 +71,18 @@ const ReceiptUpload = ({ data }) => {
                       {isSaving ? 'Deleting...' : 'Delete All'}
                     </button>
                   </div>
+                  {scannedData.map((receipt, index) => (
+                    <ReceiptCard
+                      key={index}
+                      receipt={receipt}
+                      index={index}
+                      editedData={editedData}
+                      onInputChange={handleInputChange}
+                      onSaveReceipt={handleSaveReceipt}
+                      onDeleteReceipt={handleDeleteReceipt}
+                      isSaving={isSaving}
+                    />
+                  ))}
                 </form>
               </div>
             </div>

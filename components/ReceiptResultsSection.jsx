@@ -27,6 +27,7 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
       <div className="edit-details-container">
         <div className="edit-text-container">
           <h4 className="title">Merchant name</h4>
+          <p className="subtitle">Confirm the vendor or business where you made the purchase.</p>
           <div className="input-group">
             <input
               name="merchant-name"
@@ -40,6 +41,7 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
         </div>
         <div className="edit-text-container">
           <h4 className="title">Transaction Date</h4>
+          <p className="subtitle">Adjust the date if needed to match your actual purchase.</p>
           <div className="input-group">
             <input
               name="transaction-date"
@@ -53,6 +55,7 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
         </div>
         <div className="edit-text-container">
           <h4 className="title">Amount</h4>
+          <p className="subtitle">Set the total.</p>
           <div className="input-group">
             <input
               name="amount"
@@ -69,6 +72,7 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
         </div>
         <div className="edit-text-container">
           <h4 className="title">Category</h4>
+          <p className="subtitle">Set the category for this receipt.</p>
           <div className="input-group">
             <input
               name="category"
@@ -82,20 +86,20 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
         </div>
         <div className="receipt-button-group">
             <button 
-            type="button"
-            onClick={() => onSaveReceipt(index)}
-            disabled={isSaving}
-            className="save-receipt-btn"
+              type="button"
+              onClick={() => onSaveReceipt(index)}
+              disabled={isSaving}
+              className="save-receipt-btn"
             >
-            {isSaving ? 'Saving...' : 'Save'}
+              {isSaving ? 'Saving...' : 'Save'}
             </button>
             <button 
-            type="button"
-            onClick={() => onDeleteReceipt(index)}
-            disabled={isSaving}
-            className="delete-receipt-btn"
+              type="button"
+              onClick={() => onDeleteReceipt(index)}
+              disabled={isSaving}
+              className="delete-receipt-btn"
             >
-            {isSaving ? 'Deleting...' : 'Delete'}
+              {isSaving ? 'Deleting...' : 'Delete'}
             </button>
         </div>
       </div>
