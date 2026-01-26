@@ -1,4 +1,4 @@
-'use client'; 
+'use client';
 
 import ReceiptDropzone from './ReceiptDropzone';
 import ReceiptCard from './ReceiptResultsSection';
@@ -7,7 +7,7 @@ import TopText from './TopText';
 
 const ReceiptUpload = ({ data }) => {
   const { top_text, recent_scans } = data;
-  
+
   // Use the custom hook
   const {
     files,
@@ -35,7 +35,7 @@ const ReceiptUpload = ({ data }) => {
         </div>
       </div>
       <div className="upload-container">
-        <ReceiptDropzone 
+        <ReceiptDropzone
           files={files}
           isUploading={isUploading}
           onDrop={onDrop}
@@ -53,20 +53,24 @@ const ReceiptUpload = ({ data }) => {
                   <h3 className="title">{recent_scans.title}</h3>
                   <p className="subtitle">{recent_scans.subtitle}</p>
                 </div>
-                <form 
-                  className="results-list-form" 
-                  onSubmit={handleUploadChanges} 
+                <form
+                  className="results-list-form"
+                  onSubmit={handleUploadChanges}
                   autoComplete="on"
                 >
                   <div className="form-buttons">
-                    <button type="submit" disabled={isSaving}>
+                    <button
+                      type="submit"
+                      disabled={isSaving}
+                      className="btn btn-primary"
+                    >
                       {isSaving ? 'Saving...' : 'Save All'}
                     </button>
-                    <button 
+                    <button
                       type="button"
                       onClick={handleDeleteAllReceipts}
                       disabled={isSaving}
-                      className="delete-receipts"
+                      className="delete-receipts btn btn-primary"
                     >
                       {isSaving ? 'Deleting...' : 'Delete All'}
                     </button>
@@ -87,7 +91,7 @@ const ReceiptUpload = ({ data }) => {
               </div>
             </div>
           </div>
-        )} 
+        )}
       </div>
     </div>
   );
