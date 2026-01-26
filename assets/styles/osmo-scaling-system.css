@@ -502,6 +502,10 @@ strong {
   font-weight: 400;
 }
 
+.no-border {
+  border: none;
+}
+
 .btn {
   border-radius: 1em;
   flex: 0 auto;

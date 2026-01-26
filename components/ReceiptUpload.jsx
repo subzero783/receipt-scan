@@ -62,7 +62,7 @@ const ReceiptUpload = ({ data }) => {
                     <button
                       type="submit"
                       disabled={isSaving}
-                      className="btn btn-primary"
+                      className="btn btn-primary no-border"
                     >
                       {isSaving ? 'Saving...' : 'Save All'}
                     </button>
@@ -70,7 +70,7 @@ const ReceiptUpload = ({ data }) => {
                       type="button"
                       onClick={handleDeleteAllReceipts}
                       disabled={isSaving}
-                      className="delete-receipts btn btn-primary"
+                      className="delete-receipts btn btn-primary no-border"
                     >
                       {isSaving ? 'Deleting...' : 'Delete All'}
                     </button>

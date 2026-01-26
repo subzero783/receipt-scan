@@ -1,6 +1,11 @@
 'use client';
 
+import { useState } from 'react';
+import ImageModal from './ImageModal';
+
 const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt, onDeleteReceipt, isSaving }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const currentData = {
     ...receipt,
     ...editedData[index]
@@ -11,9 +16,16 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
       <div className="receipt-image-container">
         <div
           className="receipt-background-image"
-          style={{ backgroundImage: `url(${receipt.imageUrl})` }}
+          style={{ backgroundImage: `url(${receipt.imageUrl})`, cursor: 'pointer' }}
+          onClick={() => setIsModalOpen(true)}
         >
         </div>
+        {isModalOpen && (
+          <ImageModal
+            src={receipt.imageUrl}
+            onClose={() => setIsModalOpen(false)}
+          />
+        )}
       </div>
       {/* 
       // category: "Supplies"
@@ -74,7 +86,8 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
             <input
               name="category"
               type="text"
-              value={currentData.category || 'Uncategorized'}
+              // value={currentData.category || 'Uncategorized'}
+              value={currentData.category}
               onChange={(e) => onInputChange(index, 'category', e.target.value)}
               className="category"
               required
@@ -86,7 +99,7 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
             type="button"
             onClick={() => onSaveReceipt(index)}
             disabled={isSaving}
-            className="save-receipt-btn btn btn-fifth"
+            className="save-receipt-btn btn btn-primary no-border"
           >
             {isSaving ? 'Saving...' : 'Save'}
           </button>
@@ -94,7 +107,7 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
             type="button"
             onClick={() => onDeleteReceipt(index)}
             disabled={isSaving}
-            className="delete-receipt-btn btn btn-fifth"
+            className="delete-receipt-btn btn btn-primary no-border"
           >
             {isSaving ? 'Deleting...' : 'Delete'}
           </button>
