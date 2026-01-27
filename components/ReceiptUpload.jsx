@@ -15,6 +15,7 @@ const ReceiptUpload = ({ data }) => {
     scannedData,
     editedData,
     isSaving,
+    isDeleting,
     onDrop,
     removeFile,
     handleUpload,
@@ -69,10 +70,10 @@ const ReceiptUpload = ({ data }) => {
                     <button
                       type="button"
                       onClick={handleDeleteAllReceipts}
-                      disabled={isSaving}
+                      disabled={isDeleting}
                       className="delete-receipts btn btn-primary no-border"
                     >
-                      {isSaving ? 'Deleting...' : 'Delete All'}
+                      {isDeleting ? 'Deleting...' : 'Delete All'}
                     </button>
                   </div>
                   {scannedData.map((receipt, index) => (
@@ -85,6 +86,7 @@ const ReceiptUpload = ({ data }) => {
                       onSaveReceipt={handleSaveReceipt}
                       onDeleteReceipt={handleDeleteReceipt}
                       isSaving={isSaving}
+                      isDeleting={isDeleting}
                     />
                   ))}
                 </form>

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import ImageModal from './ImageModal';
 
-const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt, onDeleteReceipt, isSaving }) => {
+const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt, onDeleteReceipt, isSaving, isDeleting }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const currentData = {
@@ -106,10 +106,10 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
           <button
             type="button"
             onClick={() => onDeleteReceipt(index)}
-            disabled={isSaving}
+            disabled={isDeleting}
             className="delete-receipt-btn btn btn-primary no-border"
           >
-            {isSaving ? 'Deleting...' : 'Delete'}
+            {isDeleting ? 'Deleting...' : 'Delete'}
           </button>
         </div>
       </div>
