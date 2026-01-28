@@ -28,6 +28,15 @@
 .upload-container {
   margin: 0 auto;
   font-family: inherit;
+
+  .upload-error {
+    margin: 20px auto;
+    color: red;
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+  }
 }
 
 /* Dropzone Area */

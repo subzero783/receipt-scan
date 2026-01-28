@@ -279,8 +279,9 @@
             "monthly_price": "0",
             "discount_text": "Forever free",
             "includes": [
-              "Unlimited receipt photo uploads",
-              "Basic AI expense categorization",
+              "10 Free receipt photo uploads",
+              "Advanced AI categorization",
+              "One CSV export per month",
               "Monthly expense summary"
             ],
             "paid": false,
@@ -294,8 +295,8 @@
             "monthly_price": "29",
             "discount_text": "or $199 yearly",
             "includes": [
+              "Unlimited receipt photo uploads",
               "All free plan features",
-              "Advanced AI categorization",
               "Unlimited CSV exports",
               "Tax report generation",
               "Priority customer support"
@@ -405,8 +406,8 @@
             "link": "#upload"
           },
           {
-            "text": "Cancel",
-            "link": "/"
+            "text": "Dashboard",
+            "link": "/dashboard"
           }
         ]
       },
@@ -415,12 +416,11 @@
           "small_title": "Easy",
           "title": "Drag and drop your receipt",
           "subtitle": "Simplify your expense tracking with our intuitive upload interface"
-        },         
+        },
         "recent_scans": {
           "small_title": "Review Scans",
           "title": "Check Extracted Data",
           "subtitle": "Review your recently uploaded receipts and their extracted details"
-  
         }
       },
       "how_it_works": {

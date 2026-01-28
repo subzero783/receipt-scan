@@ -28,6 +28,19 @@ export const POST = async (request) => {
 
     const userId = sessionUser.userId;
 
+    // Check User Subscription and Receipt Count
+    const user = await User.findById(userId);
+    if (!user) {
+      return new NextResponse('User not found', { status: 404 });
+    }
+
+    if (user.planType === 'free' || !user.isPro) {
+      const receiptCount = await Receipt.countDocuments({ user: userId });
+      if (receiptCount >= 10) {
+        return new NextResponse(JSON.stringify({ message: 'Free plan limit reached. You can only upload 10 receipts. Please upgrade to Pro.' }), { status: 403 });
+      }
+    }
+
     const formData = await request.formData();
     const file = formData.get('file');
 
@@ -136,7 +149,7 @@ export const PUT = async (request) => {
       // Map frontend keys (from OpenAI) to Database keys
       // Frontend: merchant_name, total_amount, date
       // DB: merchantName, totalAmount, transactionDate
-      
+
       return Receipt.findOneAndUpdate(
         { _id: receiptData.id, user: sessionUser.userId }, // Ensure user owns the receipt
         {
@@ -186,7 +199,7 @@ export const DELETE = async (request) => {
     const cloudinaryPromises = receiptsToDelete
       .filter(r => r.publicId) // Only if they have a publicId
       .map(r => cloudinary.uploader.destroy(r.publicId));
-    
+
     await Promise.all(cloudinaryPromises);
 
     // 3. Delete from MongoDB

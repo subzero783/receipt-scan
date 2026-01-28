@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FaCloudUploadAlt, FaFileInvoiceDollar, FaTimes, FaSpinner } from 'react-icons/fa';
 
-const ReceiptDropzone = ({ files, isUploading, onDrop, onRemoveFile, onUpload }) => {
+const ReceiptDropzone = ({ files, isUploading, onDrop, onRemoveFile, onUpload, uploadError }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
@@ -34,6 +34,13 @@ const ReceiptDropzone = ({ files, isUploading, onDrop, onRemoveFile, onUpload })
         )}
         <span className="file-types">Supports JPG, PNG, PDF (Max 5MB)</span>
       </div>
+
+      {/* --- Error Message --- */}
+      {uploadError && (
+        <div className="upload-error">
+          {uploadError}
+        </div>
+      )}
 
       {/* --- Preview Section --- */}
       {files.length > 0 && (

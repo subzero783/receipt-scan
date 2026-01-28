@@ -8,9 +8,11 @@ export const useReceiptUpload = () => {
   const [isSaving, setIsSaving] = useState(false);
 
   const [isDeleting, setIsDeleting] = useState(false);
+  const [uploadError, setUploadError] = useState(null);
 
   // --- File Management ---
   const onDrop = useCallback((acceptedFiles) => {
+    setUploadError(null); // Clear error on new drop
     setFiles((prev) => [
       ...prev,
       ...acceptedFiles.map((file) =>
@@ -23,6 +25,7 @@ export const useReceiptUpload = () => {
 
   const removeFile = (name) => {
     setFiles((files) => files.filter((file) => file.name !== name));
+    if (files.length <= 1) setUploadError(null);
   };
 
   // --- Handlers ---
@@ -31,6 +34,7 @@ export const useReceiptUpload = () => {
     if (files.length === 0) return;
 
     setIsUploading(true);
+    setUploadError(null);
     const newScannedResults = [];
 
     try {
@@ -44,6 +48,12 @@ export const useReceiptUpload = () => {
         });
 
         if (!response.ok) {
+          if (response.status === 403) {
+            const errorData = await response.json();
+            setUploadError(errorData.message);
+            setIsUploading(false); // Stop uploading
+            return; // Stop processing further files
+          }
           console.error(`Failed to upload ${file.name}`);
           continue;
         }
@@ -219,6 +229,7 @@ export const useReceiptUpload = () => {
     handleDeleteAllReceipts,
     handleSaveReceipt,
     handleDeleteReceipt,
-    handleInputChange
+    handleInputChange,
+    uploadError
   };
 };
