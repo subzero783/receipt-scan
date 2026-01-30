@@ -23,7 +23,8 @@ const ReceiptUpload = ({ data }) => {
     handleDeleteAllReceipts,
     handleSaveReceipt,
     handleDeleteReceipt,
-    handleInputChange
+    handleInputChange,
+    uploadError
   } = useReceiptUpload();
 
   return (
@@ -42,6 +43,7 @@ const ReceiptUpload = ({ data }) => {
           onDrop={onDrop}
           onRemoveFile={removeFile}
           onUpload={handleUpload}
+          uploadError={uploadError}
         />
 
         {/* --- Results Section --- */}
@@ -88,7 +90,7 @@ const ReceiptUpload = ({ data }) => {
                       isSaving={isSaving}
                       isDeleting={isDeleting}
                     />
-                  ))
+                  ))}
                 </form>
               </div>
             </div>
