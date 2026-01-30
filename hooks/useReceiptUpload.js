@@ -7,6 +7,8 @@ export const useReceiptUpload = () => {
   const [editedData, setEditedData] = useState({});
   const [isSaving, setIsSaving] = useState(false);
 
+  const [isDeleting, setIsDeleting] = useState(false);
+
   // --- File Management ---
   const onDrop = useCallback((acceptedFiles) => {
     setFiles((prev) => [
@@ -27,7 +29,7 @@ export const useReceiptUpload = () => {
 
   const handleUpload = async () => {
     if (files.length === 0) return;
-    
+
     setIsUploading(true);
     const newScannedResults = [];
 
@@ -45,25 +47,25 @@ export const useReceiptUpload = () => {
           console.error(`Failed to upload ${file.name}`);
           continue;
         }
-        
+
         const result = await response.json();
-        
+
         if (result.data) {
-            newScannedResults.push({
-                fileName: file.name,
-                ...result.data
-            });
+          newScannedResults.push({
+            fileName: file.name,
+            ...result.data
+          });
         }
       }
 
       setScannedData((prev) => [...prev, ...newScannedResults]);
-      
+
       if (newScannedResults.length > 0) {
-          const lastItem = newScannedResults[newScannedResults.length - 1];
-          alert(`Scan Complete! Found ${newScannedResults.length} items.`);
+        const lastItem = newScannedResults[newScannedResults.length - 1];
+        alert(`Scan Complete! Found ${newScannedResults.length} items.`);
       }
 
-      setFiles([]); 
+      setFiles([]);
     } catch (error) {
       console.error(error);
       alert('Something went wrong uploading.');
@@ -105,7 +107,7 @@ export const useReceiptUpload = () => {
   const handleDeleteAllReceipts = async () => {
     if (!window.confirm('Are you sure you want to delete all receipts?')) return;
 
-    setIsSaving(true);
+    setIsDeleting(true);
     try {
       const receiptIds = scannedData.map(receipt => receipt.id);
       const response = await fetch('/api/scan', {
@@ -125,7 +127,7 @@ export const useReceiptUpload = () => {
       console.error(error);
       alert('Error deleting receipts.');
     } finally {
-      setIsSaving(false);
+      setIsDeleting(false);
     }
   };
 
@@ -165,7 +167,7 @@ export const useReceiptUpload = () => {
   const handleDeleteReceipt = async (index) => {
     if (!window.confirm('Delete this receipt?')) return;
 
-    setIsSaving(true);
+    setIsDeleting(true);
     try {
       const receiptId = scannedData[index].id;
       const response = await fetch('/api/scan', {
@@ -178,7 +180,7 @@ export const useReceiptUpload = () => {
         alert('Receipt deleted!');
         const updatedScannedData = scannedData.filter((_, i) => i !== index);
         setScannedData(updatedScannedData);
-        
+
         const updatedEditedData = { ...editedData };
         delete updatedEditedData[index];
         setEditedData(updatedEditedData);
@@ -189,7 +191,7 @@ export const useReceiptUpload = () => {
       console.error(error);
       alert('Error deleting receipt.');
     } finally {
-      setIsSaving(false);
+      setIsDeleting(false);
     }
   };
 
@@ -209,6 +211,7 @@ export const useReceiptUpload = () => {
     scannedData,
     editedData,
     isSaving,
+    isDeleting,
     onDrop,
     removeFile,
     handleUpload,

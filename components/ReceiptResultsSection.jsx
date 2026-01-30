@@ -1,6 +1,11 @@
 'use client';
 
-const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt, onDeleteReceipt, isSaving }) => {
+import { useState } from 'react';
+import ImageModal from './ImageModal';
+
+const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt, onDeleteReceipt, isSaving, isDeleting }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const currentData = {
     ...receipt,
     ...editedData[index]
@@ -9,11 +14,18 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
   return (
     <div className="result">
       <div className="receipt-image-container">
-        <div 
-          className="receipt-background-image" 
-          style={{ backgroundImage: `url(${receipt.imageUrl})` }}
+        <div
+          className="receipt-background-image"
+          style={{ backgroundImage: `url(${receipt.imageUrl})`, cursor: 'pointer' }}
+          onClick={() => setIsModalOpen(true)}
         >
         </div>
+        {isModalOpen && (
+          <ImageModal
+            src={receipt.imageUrl}
+            onClose={() => setIsModalOpen(false)}
+          />
+        )}
       </div>
       {/* 
       // category: "Supplies"
@@ -59,12 +71,9 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
           <div className="input-group">
             <input
               name="amount"
-              type="text"
-              value={currentData.total_amount ? `$${currentData.total_amount.toFixed(2)}` : 'N/A'}
-              onChange={(e) => {
-                const value = e.target.value.replace('$', '');
-                onInputChange(index, 'total_amount', isNaN(parseFloat(value)) ? 0 : parseFloat(value));
-              }}
+              type="number"
+              value={currentData.total_amount !== undefined ? currentData.total_amount : ''}
+              onChange={(e) => onInputChange(index, 'total_amount', e.target.value)}
               className="amount"
               required
             />
@@ -77,7 +86,8 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
             <input
               name="category"
               type="text"
-              value={currentData.category || 'Uncategorized'}
+              // value={currentData.category || 'Uncategorized'}
+              value={currentData.category}
               onChange={(e) => onInputChange(index, 'category', e.target.value)}
               className="category"
               required
@@ -85,22 +95,22 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
           </div>
         </div>
         <div className="receipt-button-group">
-            <button 
-              type="button"
-              onClick={() => onSaveReceipt(index)}
-              disabled={isSaving}
-              className="save-receipt-btn"
-            >
-              {isSaving ? 'Saving...' : 'Save'}
-            </button>
-            <button 
-              type="button"
-              onClick={() => onDeleteReceipt(index)}
-              disabled={isSaving}
-              className="delete-receipt-btn"
-            >
-              {isSaving ? 'Deleting...' : 'Delete'}
-            </button>
+          <button
+            type="button"
+            onClick={() => onSaveReceipt(index)}
+            disabled={isSaving}
+            className="save-receipt-btn btn btn-primary no-border"
+          >
+            {isSaving ? 'Saving...' : 'Save'}
+          </button>
+          <button
+            type="button"
+            onClick={() => onDeleteReceipt(index)}
+            disabled={isDeleting}
+            className="delete-receipt-btn btn btn-primary no-border"
+          >
+            {isDeleting ? 'Deleting...' : 'Delete'}
+          </button>
         </div>
       </div>
     </div>
