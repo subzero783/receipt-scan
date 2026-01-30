@@ -30,6 +30,10 @@ const DashboardPage = () => {
   const [selectedReceipt, setSelectedReceipt] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
 
+  // Selection State
+  const [selectedReceiptIds, setSelectedReceiptIds] = useState([]);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   // 1. Fetch Receipts
   useEffect(() => {
     if (status === 'authenticated') {
@@ -85,6 +89,51 @@ const DashboardPage = () => {
     setFilters(resetFilters);
     setPage(1);
     fetchReceipts(1, resetFilters);
+  };
+
+  // --- SELECTION HANDLERS ---
+  const handleSelectAll = (e) => {
+    if (e.target.checked) {
+      const allIds = receipts.map(r => r._id);
+      setSelectedReceiptIds(allIds);
+    } else {
+      setSelectedReceiptIds([]);
+    }
+  };
+
+  const handleSelectRow = (e, id) => {
+    // Stop propagation so row click doesn't open modal
+    e.stopPropagation();
+    if (e.target.checked) {
+      setSelectedReceiptIds(prev => [...prev, id]);
+    } else {
+      setSelectedReceiptIds(prev => prev.filter(itemId => itemId !== id));
+    }
+  };
+
+  const handleDeleteSelected = async () => {
+    if (!window.confirm(`Are you sure you want to delete ${selectedReceiptIds.length} receipt(s)?`)) return;
+
+    setIsDeleting(true);
+    try {
+      const res = await fetch('/api/receipts', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: selectedReceiptIds })
+      });
+
+      if (res.ok) {
+        // Refresh Current Page
+        fetchReceipts(page, filters);
+      } else {
+        alert('Failed to delete receipts');
+      }
+    } catch (error) {
+      console.error('Delete Error:', error);
+      alert('Error deleting receipts');
+    } finally {
+      setIsDeleting(false);
+    }
   };
 
   // 2. Handle Edit Click
@@ -178,6 +227,16 @@ const DashboardPage = () => {
               <button className="btn-secondary" onClick={applyFilters}>Apply</button>
               <button className="btn-text" onClick={clearFilters}>Clear</button>
             </div>
+            {selectedReceiptIds.length > 0 && (
+              <button
+                className="btn-danger"
+                style={{ marginLeft: 'auto', backgroundColor: '#e63946', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '4px', cursor: 'pointer' }}
+                onClick={handleDeleteSelected}
+                disabled={isDeleting}
+              >
+                {isDeleting ? 'Deleting...' : `Delete Selected (${selectedReceiptIds.length})`}
+              </button>
+            )}
           </div>
         </div>
         {/* ---------------------- */}
@@ -193,6 +252,13 @@ const DashboardPage = () => {
               <table className="receipt-table">
                 <thead>
                   <tr>
+                    <th style={{ width: '40px' }}>
+                      <input
+                        type="checkbox"
+                        checked={receipts.length > 0 && selectedReceiptIds.length === receipts.length}
+                        onChange={handleSelectAll}
+                      />
+                    </th>
                     <th>Date</th>
                     <th>Merchant</th>
                     <th>Category</th>
@@ -203,6 +269,13 @@ const DashboardPage = () => {
                 <tbody>
                   {receipts.map((receipt) => (
                     <tr key={receipt._id} onClick={() => openModal(receipt)} className="clickable-row">
+                      <td onClick={(e) => e.stopPropagation()}>
+                        <input
+                          type="checkbox"
+                          checked={selectedReceiptIds.includes(receipt._id)}
+                          onChange={(e) => handleSelectRow(e, receipt._id)}
+                        />
+                      </td>
                       <td>{new Date(receipt.transactionDate).toLocaleDateString()}</td>
                       <td className="font-bold">{receipt.merchantName}</td>
                       <td><span className="category-badge">{receipt.category}</span></td>
