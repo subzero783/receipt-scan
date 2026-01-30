@@ -12,6 +12,16 @@ const DashboardPage = () => {
   const [receipts, setReceipts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Filters State
+  const [filters, setFilters] = useState({
+    startDate: '',
+    endDate: '',
+    merchant: '',
+    category: '',
+    minTotal: '',
+    maxTotal: ''
+  });
+
   // Pagination State
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -23,14 +33,26 @@ const DashboardPage = () => {
   // 1. Fetch Receipts
   useEffect(() => {
     if (status === 'authenticated') {
-      fetchReceipts(page);
+      fetchReceipts(page, filters);
     }
-  }, [status, page]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status, page]); // Intentionally exclude filters to prevent auto-fetch on type
 
-  const fetchReceipts = async (pageNum) => {
+  const fetchReceipts = async (pageNum, currentFilters = filters) => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/receipts?page=${pageNum}&limit=8`);
+      const queryParams = new URLSearchParams({
+        page: pageNum,
+        limit: 8,
+        ...currentFilters
+      });
+
+      // Remove empty keys
+      for (const [key, value] of queryParams.entries()) {
+        if (!value) queryParams.delete(key);
+      }
+
+      const res = await fetch(`/api/receipts?${queryParams.toString()}`);
       const data = await res.json();
       setReceipts(data.receipts);
       setTotalPages(data.totalPages);
@@ -39,6 +61,30 @@ const DashboardPage = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters(prev => ({ ...prev, [name]: value }));
+  };
+
+  const applyFilters = () => {
+    setPage(1);
+    fetchReceipts(1, filters);
+  };
+
+  const clearFilters = () => {
+    const resetFilters = {
+      startDate: '',
+      endDate: '',
+      merchant: '',
+      category: '',
+      minTotal: '',
+      maxTotal: ''
+    };
+    setFilters(resetFilters);
+    setPage(1);
+    fetchReceipts(1, resetFilters);
   };
 
   // 2. Handle Edit Click
@@ -99,6 +145,42 @@ const DashboardPage = () => {
           <h1>Expense Dashboard</h1>
           <button className="btn-primary" onClick={() => window.location.href = '/upload'}>+ Upload New</button>
         </div>
+
+        {/* --- FILTER SECTION --- */}
+        <div className="filter-section">
+          <div className="filter-row">
+            <input
+              type="text"
+              name="merchant"
+              placeholder="Merchant Name"
+              value={filters.merchant}
+              onChange={handleFilterChange}
+            />
+            <select name="category" value={filters.category} onChange={handleFilterChange}>
+              <option value="">All Categories</option>
+              <option value="Food">Food & Dining</option>
+              <option value="Transport">Transportation</option>
+              <option value="Supplies">Office Supplies</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Other">Other</option>
+            </select>
+            <div className="date-group">
+              <input type="date" name="startDate" value={filters.startDate} onChange={handleFilterChange} title="Start Date" />
+              <span className="separator">-</span>
+              <input type="date" name="endDate" value={filters.endDate} onChange={handleFilterChange} title="End Date" />
+            </div>
+            <div className="amount-group">
+              <input type="number" name="minTotal" placeholder="Min $" value={filters.minTotal} onChange={handleFilterChange} />
+              <span className="separator">-</span>
+              <input type="number" name="maxTotal" placeholder="Max $" value={filters.maxTotal} onChange={handleFilterChange} />
+            </div>
+            <div className="filter-actions">
+              <button className="btn-secondary" onClick={applyFilters}>Apply</button>
+              <button className="btn-text" onClick={clearFilters}>Clear</button>
+            </div>
+          </div>
+        </div>
+        {/* ---------------------- */}
 
         {loading ? (
           <Spinner />

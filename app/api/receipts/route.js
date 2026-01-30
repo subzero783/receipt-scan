@@ -15,14 +15,45 @@ export const GET = async (request) => {
         const limit = parseInt(searchParams.get('limit')) || 10;
         const skip = (page - 1) * limit;
 
+        // Extract Filters
+        const startDate = searchParams.get('startDate');
+        const endDate = searchParams.get('endDate');
+        const merchant = searchParams.get('merchant');
+        const category = searchParams.get('category');
+        const minTotal = searchParams.get('minTotal');
+        const maxTotal = searchParams.get('maxTotal');
+
+        // Build Query
+        const query = { user: sessionUser.userId };
+
+        if (merchant) {
+            query.merchantName = { $regex: merchant, $options: 'i' };
+        }
+
+        if (category && category !== 'All') {
+            query.category = category;
+        }
+
+        if (startDate || endDate) {
+            query.transactionDate = {};
+            if (startDate) query.transactionDate.$gte = new Date(startDate);
+            if (endDate) query.transactionDate.$lte = new Date(endDate);
+        }
+
+        if (minTotal || maxTotal) {
+            query.totalAmount = {};
+            if (minTotal) query.totalAmount.$gte = Number(minTotal);
+            if (maxTotal) query.totalAmount.$lte = Number(maxTotal);
+        }
+
         // Get Receipts
-        const receipts = await Receipt.find({ user: sessionUser.userId })
+        const receipts = await Receipt.find(query)
             .sort({ transactionDate: -1 }) // Newest first
             .skip(skip)
             .limit(limit);
 
         // Get Total Count (for pagination)
-        const total = await Receipt.countDocuments({ user: sessionUser.userId });
+        const total = await Receipt.countDocuments(query);
 
         return NextResponse.json({
             receipts,
