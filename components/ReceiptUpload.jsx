@@ -82,7 +82,7 @@ const ReceiptUpload = ({ data }) => {
                       onDeleteReceipt={handleDeleteReceipt}
                       isSaving={isSaving}
                     />
-                  ))}
+                  ))
                 </form>
               </div>
             </div>
