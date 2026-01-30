@@ -584,6 +584,20 @@ strong {
   }
 }
 
+.btn-alert {
+  color: var(--color-white);
+  background-color: var(--color-red);
+  border: 1px solid var(--color-red);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--color-white);
+    background-color: var(--color-dark-1);
+    border-color: var(--color-dark-1);
+  }
+}
+
 .btn:hover {
   text-decoration: none;
 }

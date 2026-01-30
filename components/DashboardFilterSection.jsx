@@ -61,32 +61,25 @@ const DashboardFilterSection = ({
             onChange={handleFilterChange}
           />
         </div>
-        <div className="filter-actions">
-          <button className="btn-secondary" onClick={applyFilters}>
-            Apply
-          </button>
-          <button className="btn-text" onClick={clearFilters}>
-            Clear
-          </button>
+        <div className="buttons-row">
+          <div className="filter-actions">
+            <button className="btn btn-fifth" onClick={applyFilters}>
+              Apply
+            </button>
+            <button className="btn btn-fifth" onClick={clearFilters}>
+              Clear
+            </button>
+          </div>
+          {selectedReceiptIds.length > 0 && (
+            <button
+              className="btn btn-alert"
+              onClick={() => handleDeleteSelected(selectedReceiptIds)}
+              disabled={isDeleting}
+            >
+              {isDeleting ? 'Deleting...' : `Delete Selected (${selectedReceiptIds.length})`}
+            </button>
+          )}
         </div>
-        {selectedReceiptIds.length > 0 && (
-          <button
-            className="btn-danger"
-            style={{
-              marginLeft: 'auto',
-              backgroundColor: '#e63946',
-              color: 'white',
-              border: 'none',
-              padding: '0.5rem 1rem',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-            onClick={() => handleDeleteSelected(selectedReceiptIds)}
-            disabled={isDeleting}
-          >
-            {isDeleting ? 'Deleting...' : `Delete Selected (${selectedReceiptIds.length})`}
-          </button>
-        )}
       </div>
     </div>
   );
