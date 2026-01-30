@@ -1,0 +1,9 @@
+.dashboard-filter-section {
+    > .filter-row {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 10px;
+    }
+}

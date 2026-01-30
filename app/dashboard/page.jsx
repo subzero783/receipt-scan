@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import Spinner from '@/components/Spinner';
+import DashboardEditModal from '@/components/DashboardEditModal';
+import DashboardFilterSection from '@/components/DashboardFilterSection';
 import { FaEdit, FaTrash, FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
 import '@/assets/styles/dashboard.css'; // We will create this next
 import { getReceipts } from './receiptsApi';
@@ -75,50 +77,15 @@ const DashboardPage = () => {
         </div>
 
         {/* --- FILTER SECTION --- */}
-        <div className="filter-section">
-          <div className="filter-row">
-            <input
-              type="text"
-              name="merchant"
-              placeholder="Merchant Name"
-              value={filters.merchant}
-              onChange={handleFilterChange}
-            />
-            <select name="category" value={filters.category} onChange={handleFilterChange}>
-              <option value="">All Categories</option>
-              <option value="Food">Food & Dining</option>
-              <option value="Transport">Transportation</option>
-              <option value="Supplies">Office Supplies</option>
-              <option value="Utilities">Utilities</option>
-              <option value="Other">Other</option>
-            </select>
-            <div className="date-group">
-              <input type="date" name="startDate" value={filters.startDate} onChange={handleFilterChange} title="Start Date" />
-              <span className="separator">-</span>
-              <input type="date" name="endDate" value={filters.endDate} onChange={handleFilterChange} title="End Date" />
-            </div>
-            <div className="amount-group">
-              <input type="number" name="minTotal" placeholder="Min $" value={filters.minTotal} onChange={handleFilterChange} />
-              <span className="separator">-</span>
-              <input type="number" name="maxTotal" placeholder="Max $" value={filters.maxTotal} onChange={handleFilterChange} />
-            </div>
-            <div className="filter-actions">
-              <button className="btn-secondary" onClick={applyFilters}>Apply</button>
-              <button className="btn-text" onClick={clearFilters}>Clear</button>
-            </div>
-            {selectedReceiptIds.length > 0 && (
-              <button
-                className="btn-danger"
-                style={{ marginLeft: 'auto', backgroundColor: '#e63946', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '4px', cursor: 'pointer' }}
-                onClick={() => handleDeleteSelected(selectedReceiptIds)}
-                disabled={isDeleting}
-              >
-                {isDeleting ? 'Deleting...' : `Delete Selected (${selectedReceiptIds.length})`}
-              </button>
-            )}
-          </div>
-        </div>
-        {/* ---------------------- */}
+        <DashboardFilterSection
+          filters={filters}
+          handleFilterChange={handleFilterChange}
+          applyFilters={applyFilters}
+          clearFilters={clearFilters}
+          selectedReceiptIds={selectedReceiptIds}
+          handleDeleteSelected={handleDeleteSelected}
+          isDeleting={isDeleting}
+        />
 
         {loading ? (
           <Spinner />
@@ -188,88 +155,13 @@ const DashboardPage = () => {
         )}
 
         {/* EDIT MODAL */}
-        {selectedReceipt && (
-          <div className="modal-overlay">
-            <div className="modal-content">
-              <button className="close-btn" onClick={() => setSelectedReceipt(null)}><FaTimes /></button>
-
-              <div className="modal-grid">
-                {/* LEFT: Image Preview */}
-                <div className="modal-image-col">
-                  <h3>Receipt Image</h3>
-                  <div className="image-container">
-                    <Image
-                      src={selectedReceipt.imageUrl}
-                      alt="Receipt"
-                      fill
-                      style={{ objectFit: 'contain' }}
-                    />
-                  </div>
-                  <a href={selectedReceipt.imageUrl} target="_blank" className="text-link">View Full Size</a>
-                </div>
-
-                {/* RIGHT: Edit Form */}
-                <div className="modal-form-col">
-                  <h3>Edit Details</h3>
-                  <form onSubmit={handleSave}>
-                    <div className="form-group">
-                      <label>Merchant Name</label>
-                      <input
-                        type="text"
-                        name="merchantName"
-                        value={selectedReceipt.merchantName}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label>Total Amount ($)</label>
-                      <input
-                        type="number"
-                        step="0.01"
-                        name="totalAmount"
-                        value={selectedReceipt.totalAmount}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label>Date</label>
-                      <input
-                        type="date"
-                        name="transactionDate"
-                        value={selectedReceipt.transactionDate}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label>Category</label>
-                      <select
-                        name="category"
-                        value={selectedReceipt.category}
-                        onChange={handleInputChange}
-                      >
-                        <option value="Food">Food & Dining</option>
-                        <option value="Transport">Transportation</option>
-                        <option value="Supplies">Office Supplies</option>
-                        <option value="Utilities">Utilities</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-
-                    <div className="modal-actions">
-                      <button type="submit" className="btn-primary" disabled={isSaving}>
-                        {isSaving ? 'Saving...' : 'Save Changes'}
-                      </button>
-                      {/* Add Delete Button Logic Here if needed */}
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+        <DashboardEditModal
+          selectedReceipt={selectedReceipt}
+          setSelectedReceipt={setSelectedReceipt}
+          handleInputChange={handleInputChange}
+          handleSave={handleSave}
+          isSaving={isSaving}
+        />
       </div>
     </div>
   );
