@@ -6,6 +6,8 @@ import { useSession } from 'next-auth/react';
 import Spinner from '@/components/Spinner';
 import { FaEdit, FaTrash, FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
 import '@/assets/styles/dashboard.css'; // We will create this next
+import { getReceipts } from './receiptsApi';
+import { createFilterHandlers, createSelectionHandlers, createModalHandlers } from './dashboardHandlers';
 
 const DashboardPage = () => {
   const { data: session, status } = useSession();
@@ -45,19 +47,7 @@ const DashboardPage = () => {
   const fetchReceipts = async (pageNum, currentFilters = filters) => {
     setLoading(true);
     try {
-      const queryParams = new URLSearchParams({
-        page: pageNum,
-        limit: 8,
-        ...currentFilters
-      });
-
-      // Remove empty keys
-      for (const [key, value] of queryParams.entries()) {
-        if (!value) queryParams.delete(key);
-      }
-
-      const res = await fetch(`/api/receipts?${queryParams.toString()}`);
-      const data = await res.json();
+      const data = await getReceipts(pageNum, currentFilters);
       setReceipts(data.receipts);
       setTotalPages(data.totalPages);
     } catch (error) {
@@ -67,123 +57,12 @@ const DashboardPage = () => {
     }
   };
 
-  const handleFilterChange = (e) => {
-    const { name, value } = e.target;
-    setFilters(prev => ({ ...prev, [name]: value }));
-  };
+  // Initialize handlers
+  const { handleFilterChange, applyFilters, clearFilters } = createFilterHandlers(filters, setFilters, setPage, fetchReceipts);
+  const { handleSelectAll, handleSelectRow, handleDeleteSelected } = createSelectionHandlers(receipts, selectedReceiptIds, setSelectedReceiptIds, setIsDeleting, page, filters, fetchReceipts);
+  const { openModal, handleInputChange, handleSave: handleSaveModal } = createModalHandlers(setSelectedReceipt, setReceipts, setIsSaving);
 
-  const applyFilters = () => {
-    setPage(1);
-    fetchReceipts(1, filters);
-  };
-
-  const clearFilters = () => {
-    const resetFilters = {
-      startDate: '',
-      endDate: '',
-      merchant: '',
-      category: '',
-      minTotal: '',
-      maxTotal: ''
-    };
-    setFilters(resetFilters);
-    setPage(1);
-    fetchReceipts(1, resetFilters);
-  };
-
-  // --- SELECTION HANDLERS ---
-  const handleSelectAll = (e) => {
-    if (e.target.checked) {
-      const allIds = receipts.map(r => r._id);
-      setSelectedReceiptIds(allIds);
-    } else {
-      setSelectedReceiptIds([]);
-    }
-  };
-
-  const handleSelectRow = (e, id) => {
-    // Stop propagation so row click doesn't open modal
-    e.stopPropagation();
-    if (e.target.checked) {
-      setSelectedReceiptIds(prev => [...prev, id]);
-    } else {
-      setSelectedReceiptIds(prev => prev.filter(itemId => itemId !== id));
-    }
-  };
-
-  const handleDeleteSelected = async () => {
-    if (!window.confirm(`Are you sure you want to delete ${selectedReceiptIds.length} receipt(s)?`)) return;
-
-    setIsDeleting(true);
-    try {
-      const res = await fetch('/api/receipts', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ids: selectedReceiptIds })
-      });
-
-      if (res.ok) {
-        // Refresh Current Page
-        fetchReceipts(page, filters);
-      } else {
-        alert('Failed to delete receipts');
-      }
-    } catch (error) {
-      console.error('Delete Error:', error);
-      alert('Error deleting receipts');
-    } finally {
-      setIsDeleting(false);
-    }
-  };
-
-  // 2. Handle Edit Click
-  const openModal = (receipt) => {
-    // Format date for HTML input (YYYY-MM-DD)
-    const formattedDate = receipt.transactionDate
-      ? new Date(receipt.transactionDate).toISOString().split('T')[0]
-      : '';
-
-    setSelectedReceipt({ ...receipt, transactionDate: formattedDate });
-  };
-
-  // 3. Handle Form Changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setSelectedReceipt((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // 4. Save Changes
-  const handleSave = async (e) => {
-    e.preventDefault();
-    setIsSaving(true);
-
-    try {
-      const res = await fetch('/api/receipts', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: selectedReceipt._id,
-          merchantName: selectedReceipt.merchantName,
-          totalAmount: selectedReceipt.totalAmount,
-          transactionDate: selectedReceipt.transactionDate,
-          category: selectedReceipt.category
-        }),
-      });
-
-      if (res.ok) {
-        // Update local list
-        const updated = await res.json();
-        setReceipts((prev) =>
-          prev.map((r) => (r._id === updated._id ? updated : r))
-        );
-        setSelectedReceipt(null); // Close modal
-      }
-    } catch (error) {
-      alert('Failed to save changes');
-    } finally {
-      setIsSaving(false);
-    }
-  };
+  const handleSave = (e) => handleSaveModal(e, selectedReceipt);
 
   if (status === 'loading') return <Spinner />;
 
@@ -231,7 +110,7 @@ const DashboardPage = () => {
               <button
                 className="btn-danger"
                 style={{ marginLeft: 'auto', backgroundColor: '#e63946', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '4px', cursor: 'pointer' }}
-                onClick={handleDeleteSelected}
+                onClick={() => handleDeleteSelected(selectedReceiptIds)}
                 disabled={isDeleting}
               >
                 {isDeleting ? 'Deleting...' : `Delete Selected (${selectedReceiptIds.length})`}
