@@ -29,6 +29,7 @@ const DashboardPage = () => {
   // Pagination State
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   // Modal State
   const [selectedReceipt, setSelectedReceipt] = useState(null);
@@ -42,15 +43,15 @@ const DashboardPage = () => {
   // 1. Fetch Receipts
   useEffect(() => {
     if (status === 'authenticated') {
-      fetchReceipts(page, filters);
+      fetchReceipts(page, filters, itemsPerPage);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status, page]); // Intentionally exclude filters to prevent auto-fetch on type
+  }, [status, page, itemsPerPage]); // Re-fetch when page or itemsPerPage changes
 
-  const fetchReceipts = async (pageNum, currentFilters = filters) => {
+  const fetchReceipts = async (pageNum, currentFilters = filters, limit = itemsPerPage) => {
     setLoading(true);
     try {
-      const data = await getReceipts(pageNum, currentFilters);
+      const data = await getReceipts(pageNum, currentFilters, limit);
       setReceipts(data.receipts);
       setTotalPages(data.totalPages);
     } catch (error) {
@@ -149,19 +150,39 @@ const DashboardPage = () => {
 
             {/* PAGINATION */}
             <div className="pagination">
-              <button
-                disabled={page === 1}
-                onClick={() => setPage(p => p - 1)}
-              >
-                <FaChevronLeft /> Previous
-              </button>
-              <span>Page {page} of {totalPages}</span>
-              <button
-                disabled={page === totalPages}
-                onClick={() => setPage(p => p + 1)}
-              >
-                Next <FaChevronRight />
-              </button>
+              <div className="items-per-page">
+                <label>Rows per page:</label>
+                <select
+                  value={itemsPerPage}
+                  onChange={(e) => {
+                    setItemsPerPage(Number(e.target.value));
+                    setPage(1); // Reset to first page when limit changes
+                  }}
+                  style={{ marginLeft: '10px', padding: '5px', borderRadius: '4px' }}
+                >
+                  <option value={10}>10</option>
+                  <option value={20}>20</option>
+                  <option value={30}>30</option>
+                  <option value={50}>50</option>
+                  <option value={100}>100</option>
+                </select>
+              </div>
+
+              <div className="pagination-controls">
+                <button
+                  disabled={page === 1}
+                  onClick={() => setPage(p => p - 1)}
+                >
+                  <FaChevronLeft /> Previous
+                </button>
+                <span>Page {page} of {totalPages}</span>
+                <button
+                  disabled={page === totalPages}
+                  onClick={() => setPage(p => p + 1)}
+                >
+                  Next <FaChevronRight />
+                </button>
+              </div>
             </div>
           </>
         )}

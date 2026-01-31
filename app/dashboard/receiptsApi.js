@@ -13,8 +13,8 @@ export function buildQueryParams(currentFilters = {}, page = 1, limit = 8) {
   return queryParams.toString();
 }
 
-export async function getReceipts(pageNum = 1, currentFilters = {}) {
-  const qs = buildQueryParams(currentFilters, pageNum);
+export async function getReceipts(pageNum = 1, currentFilters = {}, limit = 10) {
+  const qs = buildQueryParams(currentFilters, pageNum, limit);
   const res = await fetch(`/api/receipts?${qs}`);
   if (!res.ok) throw new Error('Failed to fetch receipts');
   return res.json();
