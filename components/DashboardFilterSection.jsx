@@ -1,5 +1,7 @@
 'use client';
 
+import { useState, useRef, useEffect } from 'react';
+
 const DashboardFilterSection = ({
   filters,
   handleFilterChange,
@@ -11,6 +13,20 @@ const DashboardFilterSection = ({
   handleExportSelected,
   isExporting
 }) => {
+  const [showExportMenu, setShowExportMenu] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowExportMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <div className="dashboard-filter-section">
       <div className="filter-row">
@@ -73,24 +89,75 @@ const DashboardFilterSection = ({
             </button>
           </div>
           {selectedReceiptIds.length > 0 && (
-            <>
-              <button
-                className="btn btn-secondary"
-                style={{ marginLeft: '1rem', cursor: 'pointer' }}
-                onClick={handleExportSelected}
-                disabled={isExporting}
-              >
-                {isExporting ? 'Exporting...' : 'Export Selected'}
-              </button>
+            <div className="other-buttons">
+              <div style={{ position: 'relative' }} ref={dropdownRef}>
+                <button
+                  className="btn btn-third"
+                  onClick={() => setShowExportMenu(!showExportMenu)}
+                  disabled={isExporting}
+                >
+                  {isExporting ? 'Exporting...' : 'Export Selected ▼'}
+                </button>
+                {showExportMenu && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '100%',
+                      left: 0,
+                      backgroundColor: 'white',
+                      border: '1px solid #ccc',
+                      borderRadius: '4px',
+                      zIndex: 10,
+                      minWidth: '160px',
+                      boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
+                    }}
+                  >
+                    <button
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        padding: '8px 12px',
+                        border: 'none',
+                        background: 'transparent',
+                        textAlign: 'left',
+                        cursor: 'pointer'
+                      }}
+                      onClick={() => {
+                        handleExportSelected('zip');
+                        setShowExportMenu(false);
+                      }}
+                    >
+                      Export Images (ZIP)
+                    </button>
+                    <button
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        padding: '8px 12px',
+                        border: 'none',
+                        background: 'transparent',
+                        textAlign: 'left',
+                        cursor: 'pointer',
+                        borderTop: '1px solid #eee'
+                      }}
+                      onClick={() => {
+                        handleExportSelected('csv');
+                        setShowExportMenu(false);
+                      }}
+                    >
+                      Export Data (CSV)
+                    </button>
+                  </div>
+                )}
+              </div>
               <button
                 className="btn btn-alert"
-                style={{ marginLeft: '0.5rem' }}
                 onClick={() => handleDeleteSelected(selectedReceiptIds)}
                 disabled={isDeleting}
               >
                 {isDeleting ? 'Deleting...' : `Delete Selected (${selectedReceiptIds.length})`}
               </button>
-            </>
+            </div>
           )}
         </div>
       </div>

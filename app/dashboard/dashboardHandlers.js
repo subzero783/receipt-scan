@@ -70,14 +70,14 @@ export const createSelectionHandlers = (receipts, selectedReceiptIds, setSelecte
     }
   };
 
-  const handleExportSelected = async () => {
+  const handleExportSelected = async (exportType = 'zip') => {
     if (selectedReceiptIds.length === 0) return;
     if (setIsExporting) setIsExporting(true);
     try {
       const response = await fetch('/api/export-receipts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ids: selectedReceiptIds })
+        body: JSON.stringify({ ids: selectedReceiptIds, type: exportType })
       });
 
       if (!response.ok) throw new Error('Export failed');
@@ -86,7 +86,7 @@ export const createSelectionHandlers = (receipts, selectedReceiptIds, setSelecte
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'receipts.zip';
+      a.download = exportType === 'csv' ? 'receipts.csv' : 'receipts.zip';
       document.body.appendChild(a);
       a.click();
       a.remove();

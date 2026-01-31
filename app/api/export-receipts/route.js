@@ -11,7 +11,7 @@ export const POST = async (request) => {
         const sessionUser = await getSessionUser();
         if (!sessionUser) return new NextResponse('Unauthorized', { status: 401 });
 
-        const { ids } = await request.json();
+        const { ids, type = 'zip' } = await request.json();
 
         if (!ids || !Array.isArray(ids) || ids.length === 0) {
             return new NextResponse('No receipts selected', { status: 400 });
@@ -25,6 +25,30 @@ export const POST = async (request) => {
 
         if (receipts.length === 0) {
             return new NextResponse('No receipts found', { status: 404 });
+        }
+
+        if (type === 'csv') {
+            const csvRows = [
+                ['Date', 'Merchant', 'Category', 'Total']
+            ];
+
+            receipts.forEach(receipt => {
+                csvRows.push([
+                    receipt.transactionDate ? new Date(receipt.transactionDate).toISOString().split('T')[0] : '',
+                    `"${(receipt.merchantName || '').replace(/"/g, '""')}"`,
+                    `"${(receipt.category || '').replace(/"/g, '""')}"`,
+                    receipt.totalAmount || 0
+                ]);
+            });
+
+            const csvString = csvRows.map(row => row.join(',')).join('\n');
+
+            return new NextResponse(csvString, {
+                headers: {
+                    'Content-Type': 'text/csv',
+                    'Content-Disposition': 'attachment; filename="receipts.csv"'
+                }
+            });
         }
 
         const archive = archiver('zip', {
