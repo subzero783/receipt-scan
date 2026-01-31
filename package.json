@@ -13,6 +13,7 @@
   "dependencies": {
     "@auth/mongodb-adapter": "^3.11.0",
     "@vercel/speed-insights": "^1.2.0",
+    "archiver": "^7.0.1",
     "bcryptjs": "^3.0.3",
     "bootstrap": "^5.3.8",
     "cloudinary": "^2.8.0",

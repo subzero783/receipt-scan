@@ -37,6 +37,7 @@ const DashboardPage = () => {
   // Selection State
   const [selectedReceiptIds, setSelectedReceiptIds] = useState([]);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
 
   // 1. Fetch Receipts
   useEffect(() => {
@@ -61,7 +62,16 @@ const DashboardPage = () => {
 
   // Initialize handlers
   const { handleFilterChange, applyFilters, clearFilters } = createFilterHandlers(filters, setFilters, setPage, fetchReceipts);
-  const { handleSelectAll, handleSelectRow, handleDeleteSelected } = createSelectionHandlers(receipts, selectedReceiptIds, setSelectedReceiptIds, setIsDeleting, page, filters, fetchReceipts);
+  const { handleSelectAll, handleSelectRow, handleDeleteSelected, handleExportSelected } = createSelectionHandlers(
+    receipts,
+    selectedReceiptIds,
+    setSelectedReceiptIds,
+    setIsDeleting,
+    page,
+    filters,
+    fetchReceipts,
+    setIsExporting
+  );
   const { openModal, handleInputChange, handleSave: handleSaveModal } = createModalHandlers(setSelectedReceipt, setReceipts, setIsSaving);
 
   const handleSave = (e) => handleSaveModal(e, selectedReceipt);
@@ -85,6 +95,8 @@ const DashboardPage = () => {
           selectedReceiptIds={selectedReceiptIds}
           handleDeleteSelected={handleDeleteSelected}
           isDeleting={isDeleting}
+          handleExportSelected={handleExportSelected}
+          isExporting={isExporting}
         />
 
         {loading ? (

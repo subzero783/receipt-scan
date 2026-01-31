@@ -7,7 +7,9 @@ const DashboardFilterSection = ({
   clearFilters,
   selectedReceiptIds,
   handleDeleteSelected,
-  isDeleting
+  isDeleting,
+  handleExportSelected,
+  isExporting
 }) => {
   return (
     <div className="dashboard-filter-section">
@@ -71,13 +73,24 @@ const DashboardFilterSection = ({
             </button>
           </div>
           {selectedReceiptIds.length > 0 && (
-            <button
-              className="btn btn-alert"
-              onClick={() => handleDeleteSelected(selectedReceiptIds)}
-              disabled={isDeleting}
-            >
-              {isDeleting ? 'Deleting...' : `Delete Selected (${selectedReceiptIds.length})`}
-            </button>
+            <>
+              <button
+                className="btn btn-secondary"
+                style={{ marginLeft: '1rem', cursor: 'pointer' }}
+                onClick={handleExportSelected}
+                disabled={isExporting}
+              >
+                {isExporting ? 'Exporting...' : 'Export Selected'}
+              </button>
+              <button
+                className="btn btn-alert"
+                style={{ marginLeft: '0.5rem' }}
+                onClick={() => handleDeleteSelected(selectedReceiptIds)}
+                disabled={isDeleting}
+              >
+                {isDeleting ? 'Deleting...' : `Delete Selected (${selectedReceiptIds.length})`}
+              </button>
+            </>
           )}
         </div>
       </div>

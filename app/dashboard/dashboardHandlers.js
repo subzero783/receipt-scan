@@ -30,7 +30,7 @@ export const createFilterHandlers = (filters, setFilters, setPage, fetchReceipts
 };
 
 // --- SELECTION HANDLERS ---
-export const createSelectionHandlers = (receipts, selectedReceiptIds, setSelectedReceiptIds, setIsDeleting, page, filters, fetchReceipts) => {
+export const createSelectionHandlers = (receipts, selectedReceiptIds, setSelectedReceiptIds, setIsDeleting, page, filters, fetchReceipts, setIsExporting) => {
   const handleSelectAll = (e) => {
     if (e.target.checked) {
       const allIds = receipts.map((r) => r._id);
@@ -49,12 +49,12 @@ export const createSelectionHandlers = (receipts, selectedReceiptIds, setSelecte
     }
   };
 
-  const handleDeleteSelected = async (selectedIds) => {
-    if (!window.confirm(`Are you sure you want to delete ${selectedIds.length} receipt(s)?`)) return;
+  const handleDeleteSelected = async () => {
+    if (!window.confirm(`Are you sure you want to delete ${selectedReceiptIds.length} receipt(s)?`)) return;
 
     setIsDeleting(true);
     try {
-      const res = await deleteReceipts(selectedIds);
+      const res = await deleteReceipts(selectedReceiptIds);
 
       if (res.ok) {
         setSelectedReceiptIds([]);
@@ -70,7 +70,36 @@ export const createSelectionHandlers = (receipts, selectedReceiptIds, setSelecte
     }
   };
 
-  return { handleSelectAll, handleSelectRow, handleDeleteSelected };
+  const handleExportSelected = async () => {
+    if (selectedReceiptIds.length === 0) return;
+    if (setIsExporting) setIsExporting(true);
+    try {
+      const response = await fetch('/api/export-receipts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: selectedReceiptIds })
+      });
+
+      if (!response.ok) throw new Error('Export failed');
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'receipts.zip';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Export Error:', error);
+      alert('Failed to export receipts');
+    } finally {
+      if (setIsExporting) setIsExporting(false);
+    }
+  };
+
+  return { handleSelectAll, handleSelectRow, handleDeleteSelected, handleExportSelected };
 };
 
 // --- MODAL HANDLERS ---
