@@ -72,9 +72,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-flow: column nowrap;
     gap: 20px;
     margin-top: 20px;
     color: #64748b;
+
+    .pagination-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        color: var(--color-white);
+    }
+
+    .items-per-page {
+        color: var(--color-white);
+    }
 }
 
 .pagination button {
