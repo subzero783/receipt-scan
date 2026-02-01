@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import Spinner from '@/components/Spinner';
 import DashboardEditModal from '@/components/DashboardEditModal';
@@ -10,9 +9,18 @@ import { FaEdit, FaTrash, FaChevronLeft, FaChevronRight, FaTimes } from 'react-i
 import '@/assets/styles/dashboard.css'; // We will create this next
 import { getReceipts } from './receiptsApi';
 import { createFilterHandlers, createSelectionHandlers, createModalHandlers } from './dashboardHandlers';
+import { useRouter } from 'next/navigation';
 
 const DashboardPage = () => {
   const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    }
+  }, [status, router]);
+
   const [receipts, setReceipts] = useState([]);
   const [loading, setLoading] = useState(true);
 
