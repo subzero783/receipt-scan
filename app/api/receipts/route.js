@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import connectDB from '@/config/database';
 import Receipt from '@/models/Receipt';
 import { getSessionUser } from '@/utils/getSessionUser';
+import User from '@/models/User';
 
 // GET: Fetch paginated receipts
 export const GET = async (request) => {
@@ -52,17 +53,54 @@ export const GET = async (request) => {
             .skip(skip)
             .limit(limit);
 
-        // Get Total Count (for pagination)
+        // Get Total Count (for pagination - filtered)
         const total = await Receipt.countDocuments(query);
+
+        // Get User Status & Total Usage (Unfiltered for Limit Check)
+        const user = await User.findById(sessionUser.userId);
+        const totalReceipts = await Receipt.countDocuments({ user: sessionUser.userId });
 
         return NextResponse.json({
             receipts,
             totalPages: Math.ceil(total / limit),
-            currentPage: page
+            currentPage: page,
+            totalReceipts,
+            isPro: user ? user.isPro : false
         });
 
     } catch (error) {
         console.error('Fetch Error:', error);
+        return new NextResponse('Server Error', { status: 500 });
+    }
+};
+// POST: Create a new receipt manually
+export const POST = async (request) => {
+    try {
+        await connectDB();
+        const sessionUser = await getSessionUser();
+        if (!sessionUser) return new NextResponse('Unauthorized', { status: 401 });
+
+        const data = await request.json();
+
+        // Validate required fields
+        if (!data.merchantName || data.totalAmount === undefined || data.totalAmount === '') {
+            return new NextResponse('Merchant name and total amount are required', { status: 400 });
+        }
+
+        const newReceipt = await Receipt.create({
+            user: sessionUser.userId,
+            merchantName: data.merchantName,
+            totalAmount: data.totalAmount,
+            transactionDate: data.transactionDate || new Date(),
+            category: data.category || 'Other',
+            imageUrl: data.imageUrl || null, // Optional
+            isProcessed: true
+        });
+
+        return NextResponse.json(newReceipt, { status: 201 });
+
+    } catch (error) {
+        console.error('Create Receipt Error:', error);
         return new NextResponse('Server Error', { status: 500 });
     }
 };

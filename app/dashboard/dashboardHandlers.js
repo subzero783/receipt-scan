@@ -1,4 +1,4 @@
-import { getReceipts, deleteReceipts, updateReceipt } from './receiptsApi';
+import { getReceipts, deleteReceipts, updateReceipt, createReceipt } from './receiptsApi';
 
 // --- FILTER HANDLERS ---
 export const createFilterHandlers = (filters, setFilters, setPage, fetchReceipts) => {
@@ -122,21 +122,39 @@ export const createModalHandlers = (setSelectedReceipt, setReceipts, setIsSaving
     setIsSaving(true);
 
     try {
-      const updated = await updateReceipt({
-        id: selectedReceipt._id,
-        merchantName: selectedReceipt.merchantName,
-        totalAmount: selectedReceipt.totalAmount,
-        transactionDate: selectedReceipt.transactionDate,
-        category: selectedReceipt.category
-      });
+      if (selectedReceipt._id) {
+        // UPDATE EXISTING
+        const updated = await updateReceipt({
+          id: selectedReceipt._id,
+          merchantName: selectedReceipt.merchantName,
+          totalAmount: selectedReceipt.totalAmount,
+          transactionDate: selectedReceipt.transactionDate,
+          category: selectedReceipt.category
+        });
 
-      if (updated && updated._id) {
-        setReceipts((prev) =>
-          prev.map((r) => (r._id === updated._id ? updated : r))
-        );
-        setSelectedReceipt(null);
+        if (updated && updated._id) {
+          setReceipts((prev) =>
+            prev.map((r) => (r._id === updated._id ? updated : r))
+          );
+          setSelectedReceipt(null);
+        }
+      } else {
+        // CREATE NEW (Manual Entry)
+        const newReceipt = await createReceipt({
+          merchantName: selectedReceipt.merchantName,
+          totalAmount: selectedReceipt.totalAmount,
+          transactionDate: selectedReceipt.transactionDate,
+          category: selectedReceipt.category,
+          imageUrl: null // Explicitly null for manual entry
+        });
+
+        if (newReceipt && newReceipt._id) {
+          setReceipts((prev) => [newReceipt, ...prev]);
+          setSelectedReceipt(null);
+        }
       }
     } catch (error) {
+      console.error('Save Error:', error);
       alert('Failed to save changes');
     } finally {
       setIsSaving(false);

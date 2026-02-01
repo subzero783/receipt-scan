@@ -38,3 +38,18 @@ export async function updateReceipt(payload = {}) {
   if (!res.ok) throw new Error('Failed to update receipt');
   return res.json();
 }
+
+export async function createReceipt(payload = {}) {
+  const res = await fetch('/api/receipts', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    console.error('Create Receipt Failed:', errorText);
+    throw new Error(`Failed to create receipt: ${errorText}`);
+  }
+  return res.json();
+}

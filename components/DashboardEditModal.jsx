@@ -24,16 +24,31 @@ const DashboardEditModal = ({
           <div className="modal-image-col">
             <h3>Receipt Image</h3>
             <div className="image-container">
-              <Image
-                src={selectedReceipt.imageUrl}
-                alt="Receipt"
-                fill
-                style={{ objectFit: 'contain' }}
-              />
+              {selectedReceipt.imageUrl ? (
+                <Image
+                  src={selectedReceipt.imageUrl}
+                  alt="Receipt"
+                  fill
+                  style={{ objectFit: 'contain' }}
+                />
+              ) : (
+                <div className="no-image-placeholder" style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '100%',
+                  background: '#f1f5f9',
+                  color: '#64748b'
+                }}>
+                  No Image Available
+                </div>
+              )}
             </div>
-            <a href={selectedReceipt.imageUrl} target="_blank" className="text-link">
-              View Full Size
-            </a>
+            {selectedReceipt.imageUrl && (
+              <a href={selectedReceipt.imageUrl} target="_blank" className="text-link">
+                View Full Size
+              </a>
+            )}
           </div>
 
           {/* RIGHT: Edit Form */}

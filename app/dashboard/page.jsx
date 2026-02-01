@@ -40,6 +40,9 @@ const DashboardPage = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
 
+  // User Status State
+  const [userStatus, setUserStatus] = useState({ isPro: false, totalReceipts: 0 });
+
   // 1. Fetch Receipts
   useEffect(() => {
     if (status === 'authenticated') {
@@ -54,6 +57,14 @@ const DashboardPage = () => {
       const data = await getReceipts(pageNum, currentFilters, limit);
       setReceipts(data.receipts);
       setTotalPages(data.totalPages);
+
+      // Update User Status
+      if (data.isPro !== undefined) {
+        setUserStatus({
+          isPro: data.isPro,
+          totalReceipts: data.totalReceipts || 0
+        });
+      }
     } catch (error) {
       console.error('Error fetching receipts:', error);
     } finally {
@@ -79,12 +90,32 @@ const DashboardPage = () => {
 
   if (status === 'loading') return <Spinner />;
 
+  // Check if limit reached
+  const canAddReceipt = userStatus.isPro || userStatus.totalReceipts < 10;
+
   return (
     <div className="dashboard-page">
       <div className="dashboard-container">
         <div className="dashboard-header">
           <h1>Expense Dashboard</h1>
-          <button className="btn-primary" onClick={() => window.location.href = '/upload'}>+ Upload New</button>
+          <div className="action-buttons">
+            {canAddReceipt && (
+              <button
+                className="btn-secondary"
+                onClick={() => setSelectedReceipt({
+                  merchantName: '',
+                  totalAmount: '',
+                  transactionDate: new Date().toISOString().split('T')[0],
+                  category: 'Other',
+                  imageUrl: null
+                })}
+                style={{ marginRight: '10px' }}
+              >
+                + Manual Add
+              </button>
+            )}
+            <button className="btn-primary" onClick={() => window.location.href = '/upload'}>+ Upload New</button>
+          </div>
         </div>
 
         {/* --- FILTER SECTION --- */}

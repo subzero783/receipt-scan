@@ -8,7 +8,7 @@ const ReceiptSchema = new Schema({
   },
   imageUrl: {
     type: String,
-    required: [true, 'Receipt image URL is required'],
+    required: false, // Image is now optional
   },
   publicId: {
     type: String, // Cloudinary Public ID for easier deletion later

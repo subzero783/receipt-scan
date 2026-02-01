@@ -47,8 +47,8 @@ const ReceiptDropzone = ({ files, isUploading, onDrop, onRemoveFile, onUpload, u
         <div className="preview-section">
           <h3>Ready to Upload ({files.length})</h3>
           <ul className="file-list">
-            {files.map((file) => (
-              <li key={file.name} className="file-item">
+            {files.map((file, index) => (
+              <li key={index} className="file-item">
                 <div className="file-info">
                   <FaFileInvoiceDollar className="file-icon" />
                   <span className="file-name">{file.name}</span>
