@@ -7,41 +7,47 @@
         .filter-group {
             width: 100%;
             display: flex;
-            flex-flow: row nowrap;
-            align-items: center;
+            flex-flow: column nowrap;
+            align-items: self-end;
+            gap: 16px;
+
+            input {
+                width: 100%;
+            }
         }
 
         .merchant-group {
-            width: 50%;
+            width: 100%;
             display: flex;
             flex-flow: row nowrap;
-            align-items: center;
+            align-items: self-end;
 
             >input {
                 margin-right: 20px;
-                width: 50%;
+                width: 100%;
             }
 
             select {
-                width: 50%;
+                width: 100%;
             }
         }
 
         .date-and-amount-group {
-            width: 50%;
+            width: 100%;
             display: flex;
             flex-flow: row nowrap;
-            align-items: center;
+            align-items: self-end;
 
             .date-group {
-                width: 50%;
+                width: 100%;
                 display: flex;
                 flex-flow: row nowrap;
                 align-items: center;
+                margin-right: 20px;
             }
 
             .amount-group {
-                width: 50%;
+                width: 100%;
                 display: flex;
                 flex-flow: row nowrap;
                 align-items: center;
