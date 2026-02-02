@@ -109,7 +109,7 @@ const DashboardPage = () => {
           <div className="action-buttons">
             {canAddReceipt && (
               <button
-                className="btn-secondary"
+                className="btn btn-primary"
                 onClick={() => setSelectedReceipt({
                   merchantName: '',
                   totalAmount: '',
@@ -122,7 +122,7 @@ const DashboardPage = () => {
                 + Manual Add
               </button>
             )}
-            <button className="btn-primary" onClick={() => window.location.href = '/upload'}>+ Upload New</button>
+            <button className="btn btn-primary" onClick={() => window.location.href = '/upload'}>+ Upload New</button>
           </div>
         </div>
 
@@ -157,6 +157,7 @@ const DashboardPage = () => {
                         onChange={handleSelectAll}
                       />
                     </th>
+                    <th style={{ width: '50px' }}>#</th>
                     <th>Date</th>
                     <th>Merchant</th>
                     <th>Category</th>
@@ -165,7 +166,7 @@ const DashboardPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {receipts.map((receipt) => (
+                  {receipts.map((receipt, index) => (
                     <tr key={receipt._id} onClick={() => openModal(receipt)} className="clickable-row">
                       <td onClick={(e) => e.stopPropagation()}>
                         <input
@@ -173,6 +174,9 @@ const DashboardPage = () => {
                           checked={selectedReceiptIds.includes(receipt._id)}
                           onChange={(e) => handleSelectRow(e, receipt._id)}
                         />
+                      </td>
+                      <td style={{ color: '#94a3b8', fontWeight: '500' }}>
+                        {(page - 1) * itemsPerPage + index + 1}
                       </td>
                       <td>{new Date(receipt.transactionDate).toLocaleDateString()}</td>
                       <td className="font-bold">{receipt.merchantName}</td>

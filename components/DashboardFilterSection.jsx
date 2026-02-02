@@ -30,61 +30,72 @@ const DashboardFilterSection = ({
   return (
     <div className="dashboard-filter-section">
       <div className="filter-row">
-        <input
-          type="text"
-          name="merchant"
-          placeholder="Merchant Name"
-          value={filters.merchant}
-          onChange={handleFilterChange}
-        />
-        <select name="category" value={filters.category} onChange={handleFilterChange}>
-          <option value="">All Categories</option>
-          <option value="Food">Food & Dining</option>
-          <option value="Transport">Transportation</option>
-          <option value="Supplies">Office Supplies</option>
-          <option value="Utilities">Utilities</option>
-          <option value="Other">Other</option>
-        </select>
-        <div className="date-group">
-          <input
-            type="date"
-            name="startDate"
-            value={filters.startDate}
-            onChange={handleFilterChange}
-            title="Start Date"
-          />
-          <span className="separator">-</span>
-          <input
-            type="date"
-            name="endDate"
-            value={filters.endDate}
-            onChange={handleFilterChange}
-            title="End Date"
-          />
-        </div>
-        <div className="amount-group">
-          <input
-            type="number"
-            name="minTotal"
-            placeholder="Min $"
-            value={filters.minTotal}
-            onChange={handleFilterChange}
-          />
-          <span className="separator">-</span>
-          <input
-            type="number"
-            name="maxTotal"
-            placeholder="Max $"
-            value={filters.maxTotal}
-            onChange={handleFilterChange}
-          />
+        <div className="filter-group">
+          <div className="merchant-group">
+            <input
+              type="text"
+              name="merchant"
+              placeholder="Merchant Name"
+              value={filters.merchant}
+              onChange={handleFilterChange}
+            />
+            <select
+              name="category"
+              value={filters.category}
+              onChange={handleFilterChange}
+              className="filter-categories"
+            >
+              <option value="">All Categories</option>
+              <option value="Food">Food & Dining</option>
+              <option value="Transport">Transportation</option>
+              <option value="Supplies">Office Supplies</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div className="date-and-amount-group">
+            <div className="date-group">
+              <input
+                type="date"
+                name="startDate"
+                value={filters.startDate}
+                onChange={handleFilterChange}
+                title="Start Date"
+              />
+              <span className="separator">-</span>
+              <input
+                type="date"
+                name="endDate"
+                value={filters.endDate}
+                onChange={handleFilterChange}
+                title="End Date"
+              />
+            </div>
+            <div className="amount-group">
+              <input
+                type="number"
+                name="minTotal"
+                placeholder="Min $"
+                value={filters.minTotal}
+                onChange={handleFilterChange}
+              />
+              <span className="separator">-</span>
+              <input
+                type="number"
+                name="maxTotal"
+                placeholder="Max $"
+                value={filters.maxTotal}
+                onChange={handleFilterChange}
+              />
+            </div>
+          </div>
         </div>
         <div className="buttons-row">
           <div className="filter-actions">
-            <button className="btn btn-fifth" onClick={applyFilters}>
+            <button className="btn btn-primary" onClick={applyFilters}>
               Apply
             </button>
-            <button className="btn btn-fifth" onClick={clearFilters}>
+            <button className="btn btn-primary" onClick={clearFilters}>
               Clear
             </button>
           </div>

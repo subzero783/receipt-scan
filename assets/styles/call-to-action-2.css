@@ -4,6 +4,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+
+        >.btn {
+            border: 1px solid var(--color-primary);
+            font-size: 14px;
+
+            &:hover,
+            &:active,
+            &:focus {
+                border-color: var(--color-neutral-600);
+                background-color: transparent;
+                color: var(--color-neutral-600);
+            }
+        }
+    }
 }
 
 .cta-2-card {
@@ -30,25 +49,6 @@
     color: var(--color-neutral-600);
     margin-bottom: 32px;
     font-size: 16px;
-}
-
-.action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-
-    >.btn {
-        border: 1px solid var(--color-primary);
-        font-size: 14px;
-
-        &:hover,
-        &:active,
-        &:focus {
-            border-color: var(--color-neutral-600);
-            background-color: transparent;
-            color: var(--color-neutral-600);
-        }
-    }
 }
 
 @media screen and (max-width: 768px) {

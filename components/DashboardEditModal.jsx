@@ -102,7 +102,7 @@ const DashboardEditModal = ({
               </div>
 
               <div className="modal-actions">
-                <button type="submit" className="btn-primary" disabled={isSaving}>
+                <button type="submit" className="btn btn-primary" disabled={isSaving}>
                   {isSaving ? 'Saving...' : 'Save Changes'}
                 </button>
               </div>

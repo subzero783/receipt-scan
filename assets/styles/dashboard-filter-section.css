@@ -1,12 +1,84 @@
 .dashboard-filter-section {
     >.filter-row {
         display: flex;
-        flex-flow: row wrap;
-        align-items: center;
-        justify-content: space-between;
+        flex-flow: column nowrap;
         margin-bottom: 10px;
 
-        >.buttons-row {
+        .filter-group {
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+        }
+
+        .merchant-group {
+            width: 50%;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+
+            >input {
+                margin-right: 20px;
+                width: 50%;
+            }
+
+            select {
+                width: 50%;
+            }
+        }
+
+        .date-and-amount-group {
+            width: 50%;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+
+            .date-group {
+                width: 50%;
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+            }
+
+            .amount-group {
+                width: 50%;
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+            }
+        }
+
+        .separator {
+            color: var(--color-white);
+            margin: 0 5px;
+        }
+
+        input,
+        .filter-categories {
+            color: var(--color-white);
+            background: none;
+            border: none;
+            border-bottom: 1px solid #ffffff4d;
+            outline: none;
+            padding: 10px 0;
+            font-size: 14px;
+            font-weight: 500;
+            transition: border-color .3s;
+
+            &::placeholder {
+                color: var(--color-white);
+            }
+
+            &:focus {
+                border-bottom-color: var(--color-white);
+            }
+
+            &::-webkit-calendar-picker-indicator {
+                display: none;
+            }
+        }
+
+        .buttons-row {
             display: flex;
             flex-flow: row nowrap;
             align-items: center;
