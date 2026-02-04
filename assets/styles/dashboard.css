@@ -1,19 +1,32 @@
 .dashboard-page {
     padding: 120px 15px 64px;
     background-color: var(--color-fifth);
+
+    @media screen and (max-width: 650px) {
+        padding: 80px 15px 64px;
+    }
 }
 
 .dashboard-container {
     max-width: 1000px;
     margin: 50px auto;
     padding: 0 20px;
+
+    @media screen and (max-width: 650px) {
+        padding: 0;
+    }
 }
 
 .dashboard-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    flex-flow: column nowrap;
+    align-items: flex-start;
     margin-bottom: 30px;
+
+    h1 {
+        margin-bottom: 20px;
+    }
 }
 
 .dashboard-header h1 {
@@ -32,6 +45,11 @@
 .receipt-table {
     width: 100%;
     border-collapse: collapse;
+
+    @media screen and (max-width: 650px) {
+        overflow-x: auto;
+        display: block;
+    }
 }
 
 .receipt-table th {
@@ -47,6 +65,7 @@
 
 .receipt-table td {
     padding: 16px;
+    font-size: 14px;
     border-bottom: 1px solid #e2e8f0;
     color: #334155;
 }
