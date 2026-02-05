@@ -201,7 +201,6 @@ const DashboardPage = () => {
                     setItemsPerPage(Number(e.target.value));
                     setPage(1); // Reset to first page when limit changes
                   }}
-                  style={{ marginLeft: '10px', padding: '5px', borderRadius: '4px' }}
                 >
                   <option value={10}>10</option>
                   <option value={20}>20</option>
