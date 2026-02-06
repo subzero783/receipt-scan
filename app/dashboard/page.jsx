@@ -94,7 +94,7 @@ const DashboardPage = () => {
   );
   const { openModal, handleInputChange, handleSave: handleSaveModal } = createModalHandlers(setSelectedReceipt, setReceipts, setIsSaving);
 
-  const handleSave = (e) => handleSaveModal(e, selectedReceipt);
+  const handleSave = (e, file) => handleSaveModal(e, selectedReceipt, file);
 
   if (status === 'loading') return <Spinner />;
 
@@ -178,7 +178,7 @@ const DashboardPage = () => {
                       <td style={{ color: '#94a3b8', fontWeight: '500' }}>
                         {(page - 1) * itemsPerPage + index + 1}
                       </td>
-                      <td>{new Date(receipt.transactionDate).toLocaleDateString()}</td>
+                      <td>{new Date(receipt.transactionDate).toLocaleDateString(undefined, { timeZone: 'UTC' })}</td>
                       <td className="font-bold">{receipt.merchantName}</td>
                       <td><span className="category-badge">{receipt.category}</span></td>
                       <td>${receipt.totalAmount.toFixed(2)}</td>

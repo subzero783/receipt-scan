@@ -239,6 +239,10 @@
     >a {
         font-size: 14px;
     }
+
+    .no-image-placeholder {
+        font-size: 14px;
+    }
 }
 
 .image-container {

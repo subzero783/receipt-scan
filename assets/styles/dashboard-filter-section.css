@@ -131,6 +131,32 @@
                 justify-content: flex-end;
                 gap: 16px;
             }
+
+            @media screen and (max-width: 768px) {
+                .filter-actions {
+                    width: 30%;
+                }
+
+                .other-buttons {
+                    width: 70%;
+                }
+            }
+
+            @media screen and (max-width: 576px) {
+                flex-flow: column nowrap;
+
+                .filter-actions {
+                    width: 100%;
+                    margin-bottom: 16px;
+                    justify-content: center;
+                }
+
+                .other-buttons {
+                    width: 100%;
+                    justify-content: center;
+                    min-height: 40px;
+                }
+            }
         }
     }
 }

@@ -99,77 +99,79 @@ const DashboardFilterSection = ({
               Clear
             </button>
           </div>
-          {selectedReceiptIds.length > 0 && (
-            <div className="other-buttons">
-              <div style={{ position: 'relative' }} ref={dropdownRef}>
-                <button
-                  className="btn btn-third"
-                  onClick={() => setShowExportMenu(!showExportMenu)}
-                  disabled={isExporting}
-                >
-                  {isExporting ? 'Exporting...' : 'Export Selected ▼'}
-                </button>
-                {showExportMenu && (
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: '100%',
-                      left: 0,
-                      backgroundColor: 'white',
-                      border: '1px solid #ccc',
-                      borderRadius: '4px',
-                      zIndex: 10,
-                      minWidth: '160px',
-                      boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
-                    }}
+          <div className="other-buttons">
+            {selectedReceiptIds.length > 0 && (
+              <>
+                <div style={{ position: 'relative' }} ref={dropdownRef}>
+                  <button
+                    className="btn btn-third"
+                    onClick={() => setShowExportMenu(!showExportMenu)}
+                    disabled={isExporting}
                   >
-                    <button
+                    {isExporting ? 'Exporting...' : 'Export Selected ▼'}
+                  </button>
+                  {showExportMenu && (
+                    <div
                       style={{
-                        display: 'block',
-                        width: '100%',
-                        padding: '8px 12px',
-                        border: 'none',
-                        background: 'transparent',
-                        textAlign: 'left',
-                        cursor: 'pointer'
-                      }}
-                      onClick={() => {
-                        handleExportSelected('zip');
-                        setShowExportMenu(false);
+                        position: 'absolute',
+                        top: '100%',
+                        left: 0,
+                        backgroundColor: 'white',
+                        border: '1px solid #ccc',
+                        borderRadius: '4px',
+                        zIndex: 10,
+                        minWidth: '160px',
+                        boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
                       }}
                     >
-                      Export Images (ZIP)
-                    </button>
-                    <button
-                      style={{
-                        display: 'block',
-                        width: '100%',
-                        padding: '8px 12px',
-                        border: 'none',
-                        background: 'transparent',
-                        textAlign: 'left',
-                        cursor: 'pointer',
-                        borderTop: '1px solid #eee'
-                      }}
-                      onClick={() => {
-                        handleExportSelected('csv');
-                        setShowExportMenu(false);
-                      }}
-                    >
-                      Export Data (CSV)
-                    </button>
-                  </div>
-                )}
-              </div>
-              <button
-                className="btn btn-alert"
-                onClick={() => handleDeleteSelected(selectedReceiptIds)}
-                disabled={isDeleting}
-              >
-                {isDeleting ? 'Deleting...' : `Delete Selected (${selectedReceiptIds.length})`}
-              </button>
-            </div>
-          )}
+                      <button
+                        style={{
+                          display: 'block',
+                          width: '100%',
+                          padding: '8px 12px',
+                          border: 'none',
+                          background: 'transparent',
+                          textAlign: 'left',
+                          cursor: 'pointer'
+                        }}
+                        onClick={() => {
+                          handleExportSelected('zip');
+                          setShowExportMenu(false);
+                        }}
+                      >
+                        Export Images (ZIP)
+                      </button>
+                      <button
+                        style={{
+                          display: 'block',
+                          width: '100%',
+                          padding: '8px 12px',
+                          border: 'none',
+                          background: 'transparent',
+                          textAlign: 'left',
+                          cursor: 'pointer',
+                          borderTop: '1px solid #eee'
+                        }}
+                        onClick={() => {
+                          handleExportSelected('csv');
+                          setShowExportMenu(false);
+                        }}
+                      >
+                        Export Data (CSV)
+                      </button>
+                    </div>
+                  )}
+                </div>
+                <button
+                  className="btn btn-alert"
+                  onClick={() => handleDeleteSelected(selectedReceiptIds)}
+                  disabled={isDeleting}
+                >
+                  {isDeleting ? 'Deleting...' : `Delete Selected (${selectedReceiptIds.length})`}
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

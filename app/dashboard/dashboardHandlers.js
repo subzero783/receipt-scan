@@ -117,11 +117,29 @@ export const createModalHandlers = (setSelectedReceipt, setReceipts, setIsSaving
     setSelectedReceipt((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = async (e, selectedReceipt) => {
+  const handleSave = async (e, selectedReceipt, imageFile = null) => {
     e.preventDefault();
     setIsSaving(true);
 
     try {
+      let finalImageUrl = selectedReceipt.imageUrl;
+
+      // Handle Image Upload if file provided
+      if (imageFile) {
+        const formData = new FormData();
+        formData.append('file', imageFile);
+
+        const uploadRes = await fetch('/api/upload-image', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!uploadRes.ok) throw new Error('Failed to upload image');
+
+        const uploadData = await uploadRes.json();
+        finalImageUrl = uploadData.imageUrl;
+      }
+
       if (selectedReceipt._id) {
         // UPDATE EXISTING
         const updated = await updateReceipt({
@@ -145,7 +163,7 @@ export const createModalHandlers = (setSelectedReceipt, setReceipts, setIsSaving
           totalAmount: selectedReceipt.totalAmount,
           transactionDate: selectedReceipt.transactionDate,
           category: selectedReceipt.category,
-          imageUrl: null // Explicitly null for manual entry
+          imageUrl: finalImageUrl || null
         });
 
         if (newReceipt && newReceipt._id) {
