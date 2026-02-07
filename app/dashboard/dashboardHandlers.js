@@ -99,7 +99,29 @@ export const createSelectionHandlers = (receipts, selectedReceiptIds, setSelecte
     }
   };
 
-  return { handleSelectAll, handleSelectRow, handleDeleteSelected, handleExportSelected };
+  const handleEmailSelected = async () => {
+    if (selectedReceiptIds.length === 0) return;
+    if (setIsExporting) setIsExporting(true); // Reusing state for loading
+    try {
+      const response = await fetch('/api/email-receipts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: selectedReceiptIds })
+      });
+
+      if (!response.ok) throw new Error('Email failed');
+
+      alert('Email sent successfully!');
+      setSelectedReceiptIds([]); // Optional: clear selection after action
+    } catch (error) {
+      console.error('Email Error:', error);
+      alert('Failed to send email');
+    } finally {
+      if (setIsExporting) setIsExporting(false);
+    }
+  };
+
+  return { handleSelectAll, handleSelectRow, handleDeleteSelected, handleExportSelected, handleEmailSelected };
 };
 
 // --- MODAL HANDLERS ---

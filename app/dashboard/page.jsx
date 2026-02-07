@@ -82,7 +82,7 @@ const DashboardPage = () => {
 
   // Initialize handlers
   const { handleFilterChange, applyFilters, clearFilters } = createFilterHandlers(filters, setFilters, setPage, fetchReceipts);
-  const { handleSelectAll, handleSelectRow, handleDeleteSelected, handleExportSelected } = createSelectionHandlers(
+  const { handleSelectAll, handleSelectRow, handleDeleteSelected, handleExportSelected, handleEmailSelected } = createSelectionHandlers(
     receipts,
     selectedReceiptIds,
     setSelectedReceiptIds,
@@ -136,6 +136,7 @@ const DashboardPage = () => {
           handleDeleteSelected={handleDeleteSelected}
           isDeleting={isDeleting}
           handleExportSelected={handleExportSelected}
+          handleEmailSelected={handleEmailSelected}
           isExporting={isExporting}
         />
 

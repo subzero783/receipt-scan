@@ -11,6 +11,7 @@ const DashboardFilterSection = ({
   handleDeleteSelected,
   isDeleting,
   handleExportSelected,
+  handleEmailSelected,
   isExporting
 }) => {
   const [showExportMenu, setShowExportMenu] = useState(false);
@@ -108,7 +109,7 @@ const DashboardFilterSection = ({
                     onClick={() => setShowExportMenu(!showExportMenu)}
                     disabled={isExporting}
                   >
-                    {isExporting ? 'Exporting...' : 'Export Selected ▼'}
+                    {isExporting ? 'Processing...' : 'Actions ▼'}
                   </button>
                   {showExportMenu && (
                     <div
@@ -133,6 +134,24 @@ const DashboardFilterSection = ({
                           background: 'transparent',
                           textAlign: 'left',
                           cursor: 'pointer'
+                        }}
+                        onClick={() => {
+                          handleEmailSelected();
+                          setShowExportMenu(false);
+                        }}
+                      >
+                        Email Selected
+                      </button>
+                      <button
+                        style={{
+                          display: 'block',
+                          width: '100%',
+                          padding: '8px 12px',
+                          border: 'none',
+                          background: 'transparent',
+                          textAlign: 'left',
+                          cursor: 'pointer',
+                          borderTop: '1px solid #eee'
                         }}
                         onClick={() => {
                           handleExportSelected('zip');
