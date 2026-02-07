@@ -3,7 +3,6 @@ import { Resend } from 'resend';
 import connectDB from '@/config/database';
 import Receipt from '@/models/Receipt';
 import { getSessionUser } from '@/utils/getSessionUser';
-import User from '@/models/User';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

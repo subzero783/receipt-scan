@@ -103,7 +103,7 @@ const DashboardFilterSection = ({
           <div className="other-buttons">
             {selectedReceiptIds.length > 0 && (
               <>
-                <div style={{ position: 'relative' }} ref={dropdownRef}>
+                <div style={{ position: 'relative' }} ref={dropdownRef} className="actions-dropdown-container">
                   <button
                     className="btn btn-third"
                     onClick={() => setShowExportMenu(!showExportMenu)}
@@ -113,6 +113,7 @@ const DashboardFilterSection = ({
                   </button>
                   {showExportMenu && (
                     <div
+                      className="actions-dropdown-inner-container"
                       style={{
                         position: 'absolute',
                         top: '100%',
