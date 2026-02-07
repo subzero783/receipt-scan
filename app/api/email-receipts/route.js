@@ -75,7 +75,7 @@ export const POST = async (request) => {
 
         // Send Email
         const data = await resend.emails.send({
-            from: 'Receipt Scan <noreply@receiptscan.app>', // Update this if you have a verified domain
+            from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
             to: [sessionUser.user.email],
             subject: `Your Selected Receipts Report - ${new Date().toLocaleDateString()}`,
             html: emailHtml,
