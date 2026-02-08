@@ -2,8 +2,7 @@ import { NextResponse } from 'next/server';
 import connectDB from '@/config/database';
 import Receipt from '@/models/Receipt';
 import { getSessionUser } from '@/utils/getSessionUser';
-import archiver from 'archiver';
-import { PassThrough } from 'stream';
+import { generateCsv, generateZip } from '@/utils/exportHelpers';
 
 export const POST = async (request) => {
     try {
@@ -28,20 +27,7 @@ export const POST = async (request) => {
         }
 
         if (type === 'csv') {
-            const csvRows = [
-                ['Date', 'Merchant', 'Category', 'Total']
-            ];
-
-            receipts.forEach(receipt => {
-                csvRows.push([
-                    receipt.transactionDate ? new Date(receipt.transactionDate).toISOString().split('T')[0] : '',
-                    `"${(receipt.merchantName || '').replace(/"/g, '""')}"`,
-                    `"${(receipt.category || '').replace(/"/g, '""')}"`,
-                    receipt.totalAmount || 0
-                ]);
-            });
-
-            const csvString = csvRows.map(row => row.join(',')).join('\n');
+            const csvString = generateCsv(receipts);
 
             return new NextResponse(csvString, {
                 headers: {
@@ -51,46 +37,7 @@ export const POST = async (request) => {
             });
         }
 
-        const archive = archiver('zip', {
-            zlib: { level: 9 }
-        });
-
-        const stream = new PassThrough();
-
-        // Error handling for archive
-        archive.on('error', (err) => {
-            console.error('Archiver Error:', err);
-            // It's hard to send an error response if streaming started, but we log it.
-        });
-
-        // Pipe archive to the pass-through stream
-        archive.pipe(stream);
-
-        // Process files concurrently
-        const appendPromises = receipts.map(async (receipt) => {
-            if (receipt.imageUrl) {
-                try {
-                    const response = await fetch(receipt.imageUrl);
-                    if (!response.ok) throw new Error(`Failed to fetch ${receipt.imageUrl}`);
-
-                    const arrayBuffer = await response.arrayBuffer();
-                    const buffer = Buffer.from(arrayBuffer);
-
-                    const filename = `${receipt.merchantName.replace(/[^a-z0-9]/gi, '_')}_${receipt.transactionDate ? new Date(receipt.transactionDate).toISOString().split('T')[0] : 'date'}_${receipt._id}.jpg`;
-
-                    archive.append(buffer, { name: filename });
-                } catch (err) {
-                    console.error(`Failed to append image for receipt ${receipt._id}`, err);
-                    // Optionally append a text file with error?
-                }
-            }
-        });
-
-        // Wait for all fetches and appends to queue
-        await Promise.all(appendPromises);
-
-        // Finalize the archive (closes the stream)
-        archive.finalize();
+        const stream = await generateZip(receipts);
 
         // Return the stream
         return new NextResponse(stream, {

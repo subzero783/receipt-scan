@@ -99,14 +99,14 @@ export const createSelectionHandlers = (receipts, selectedReceiptIds, setSelecte
     }
   };
 
-  const handleEmailSelected = async () => {
+  const handleEmailSelected = async (message = '', toEmail = '', includeZip = false, includeCsv = false) => {
     if (selectedReceiptIds.length === 0) return;
     if (setIsExporting) setIsExporting(true); // Reusing state for loading
     try {
       const response = await fetch('/api/email-receipts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ids: selectedReceiptIds })
+        body: JSON.stringify({ ids: selectedReceiptIds, message, toEmail, includeZip, includeCsv })
       });
 
       if (!response.ok) throw new Error('Email failed');

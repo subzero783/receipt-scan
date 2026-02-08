@@ -10,6 +10,7 @@ import '@/assets/styles/dashboard.css'; // We will create this next
 import { getReceipts } from './receiptsApi';
 import { createFilterHandlers, createSelectionHandlers, createModalHandlers } from './dashboardHandlers';
 import { useRouter } from 'next/navigation';
+import EmailModal from '@/components/EmailModal';
 
 const DashboardPage = () => {
   const { data: session, status } = useSession();
@@ -42,6 +43,9 @@ const DashboardPage = () => {
   // Modal State
   const [selectedReceipt, setSelectedReceipt] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
+
+  // Email Modal State
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
 
   // Selection State
   const [selectedReceiptIds, setSelectedReceiptIds] = useState([]);
@@ -136,7 +140,7 @@ const DashboardPage = () => {
           handleDeleteSelected={handleDeleteSelected}
           isDeleting={isDeleting}
           handleExportSelected={handleExportSelected}
-          handleEmailSelected={handleEmailSelected}
+          handleEmailSelected={() => setIsEmailModalOpen(true)}
           isExporting={isExporting}
         />
 
@@ -237,6 +241,18 @@ const DashboardPage = () => {
           handleInputChange={handleInputChange}
           handleSave={handleSave}
           isSaving={isSaving}
+        />
+
+        {/* EMAIL MODAL */}
+        <EmailModal
+          isOpen={isEmailModalOpen}
+          onClose={() => setIsEmailModalOpen(false)}
+          onSend={async (message, toEmail, includeZip, includeCsv) => {
+            await handleEmailSelected(message, toEmail, includeZip, includeCsv);
+            setIsEmailModalOpen(false);
+          }}
+          isSending={isExporting}
+          defaultEmail={session?.user?.email}
         />
       </div>
     </div>
