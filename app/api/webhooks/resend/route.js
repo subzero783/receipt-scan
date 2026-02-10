@@ -79,7 +79,9 @@ export const POST = async (request) => {
             emailId: email_id,
         });
 
-        console.log("attachmentsList: ", attachmentsList);
+        const dataAttachments = attachmentsList.data;
+
+        console.log("dataAttachments: ", dataAttachments);
         console.log("listError: ", listError);
 
         if (listError) {
@@ -87,7 +89,7 @@ export const POST = async (request) => {
             return new NextResponse('Failed to list attachments', { status: 500 });
         }
 
-        const attachments = attachmentsList || [];
+        const attachments = dataAttachments || [];
         console.log(`Found ${attachments.length} attachments from Resend API.`);
 
         const processedReceipts = [];
