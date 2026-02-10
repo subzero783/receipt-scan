@@ -79,6 +79,9 @@ export const POST = async (request) => {
             emailId: email_id,
         });
 
+        console.log("attachmentsList: ", attachmentsList);
+        console.log("listError: ", listError);
+
         if (listError) {
             console.error('Error listing attachments:', listError);
             return new NextResponse('Failed to list attachments', { status: 500 });
