@@ -74,7 +74,8 @@ export const POST = async (request) => {
         // 3. Process Attachments - FETCH CONTENT
         // Fetch list of attachments from Resend to ensure we have the correct IDs
         console.log(`Listing attachments for email ID: ${email_id}`);
-        const { data: attachmentsList, error: listError } = await resendClient.attachments.receiving.list({
+        // Correct SDK Path: resend.emails.receiving.attachments.list
+        const { data: attachmentsList, error: listError } = await resendClient.emails.receiving.attachments.list({
             emailId: email_id,
         });
 
@@ -100,7 +101,8 @@ export const POST = async (request) => {
             console.log('email ID: ', email_id);
 
             console.log(`Fetching content for attachment ID: ${attachment.id}`);
-            const { data: attachmentData, error: attachmentError } = await resendClient.attachments.receiving.get({
+            // Correct SDK Path: resend.emails.receiving.attachments.get
+            const { data: attachmentData, error: attachmentError } = await resendClient.emails.receiving.attachments.get({
                 id: attachment.id,
                 emailId: email_id,
             });
