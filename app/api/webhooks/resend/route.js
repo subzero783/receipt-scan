@@ -103,32 +103,25 @@ export const POST = async (request) => {
             }
 
             console.log('attachment ID: ', attachment.id);
-            console.log('email ID: ', email_id);
 
-            console.log(`Fetching content for attachment ID: ${attachment.id}`);
-            // Correct SDK Path: resend.emails.receiving.attachments.get
-            const { data: attachmentData, error: attachmentError } = await resendClient.emails.receiving.attachments.get({
-                id: attachment.id,
-                emailId: email_id,
-            });
-
-            if (attachmentError) {
-                console.error(`Error fetching attachment ${attachment.id}:`, attachmentError);
+            // Check for download_url
+            if (!attachment.download_url) {
+                console.log(`Attachment ${attachment.id} has no download_url.`);
                 continue;
             }
 
-            // Convert Buffer array/object to Buffer for Cloudinary
-            // resend.attachments.receiving.get returns { content: Buffer }
+            console.log(`Fetching content from URL: ${attachment.download_url}`);
+
             let buffer;
-            if (attachmentData && attachmentData.content) {
-                // Ensure it is a buffer
-                if (Buffer.isBuffer(attachmentData.content)) {
-                    buffer = attachmentData.content;
-                } else {
-                    buffer = Buffer.from(attachmentData.content);
+            try {
+                const response = await fetch(attachment.download_url);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch attachment content: ${response.statusText}`);
                 }
-            } else {
-                console.log(`Attachment ${attachment.filename} has no content after fetch.`);
+                const arrayBuffer = await response.arrayBuffer();
+                buffer = Buffer.from(arrayBuffer);
+            } catch (err) {
+                console.error(`Error downloading attachment ${attachment.id}:`, err);
                 continue;
             }
 
