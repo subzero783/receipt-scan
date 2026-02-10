@@ -26,6 +26,8 @@ export const POST = async (request) => {
         // Structure: https://resend.com/docs/dashboard/webhooks/event-types
         const { to, attachments } = payload;
 
+        console.log("Webhook payload: ", payload);
+
         // Safety check: Ensure there is a recipient and attachments
         if (!to || !to.length || !attachments || !attachments.length) {
             return new NextResponse('No recipient or attachments found', { status: 200 }); // Return 200 to stop Resend from retrying
