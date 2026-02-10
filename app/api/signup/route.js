@@ -3,11 +3,16 @@ import connectDB from "@/config/database";
 import bcrypt from "bcryptjs";
 
 export const POST = async (request) => {
-  const { username, email, password } = await request.json();
+  const { username, email, password, inboundHandle } = await request.json();
+
+  const handle = email.split('@')[0];
 
   await connectDB();
 
   const userExists = await User.findOne({ email });
+  // Check if handle exists, if so, append random number
+  const existingHandle = await User.findOne({ inboundHandle: handle });
+  const finalHandle = existingHandle ? `${handle}${Math.floor(Math.random() * 1000)}` : handle;
 
   if (userExists) {
     return new Response(JSON.stringify({ message: "User already exists" }), { status: 400 });
@@ -19,6 +24,7 @@ export const POST = async (request) => {
     username,
     email,
     password: hashedPassword,
+    inboundHandle: finalHandle
   });
 
   try {

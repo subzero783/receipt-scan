@@ -43,6 +43,12 @@ const UserSchema = new Schema(
       type: String,
       default: 'free', // 'free' or 'pro'
     },
+    inboundHandle: {
+      type: String,
+      unique: true,
+      sparse: true, // Allows nulls for old users until migrated
+      description: "The unique part of the email address for inbound receipts (e.g. 'steve' in steve@reermi.resend.app)"
+    },
   },
   {
     timestamps: true,
