@@ -72,24 +72,12 @@ export const POST = async (request) => {
         }
 
         // 3. Process Attachments - FETCH CONTENT
-        // The webhook payload attachments don't have content. We need to fetch the email details.
-        console.log(`Fetching email details for ID: ${email_id}`);
-        const { data: emailData, error: emailError } = await resendClient.emails.get(email_id);
-
-        if (emailError) {
-            console.error('Error fetching email details:', emailError);
-            return new NextResponse('Failed to fetch email details', { status: 500 });
-        }
-
-        const attachments = emailData.attachments || [];
-        console.log(`Found ${attachments.length} attachments in fetched email details.`);
+        const attachments = payload.attachments || [];
+        console.log(`Found ${attachments.length} attachments in webhook payload.`);
 
         const processedReceipts = [];
 
         for (const attachment of attachments) {
-            // attachment should now have 'content' as a buffer (array of integers) or similar
-            // OR checks might be needed depending on SDK version return type
-
             // Skip non-images/pdfs
             const supportedTypes = ['image/jpeg', 'image/png', 'application/pdf', 'image/webp'];
             if (!supportedTypes.includes(attachment.content_type)) {
@@ -97,12 +85,29 @@ export const POST = async (request) => {
                 continue;
             }
 
+            console.log(`Fetching content for attachment ID: ${attachment.id}`);
+            const { data: attachmentData, error: attachmentError } = await resendClient.attachments.receiving.get({
+                id: attachment.id,
+                emailId: email_id,
+            });
+
+            if (attachmentError) {
+                console.error(`Error fetching attachment ${attachment.id}:`, attachmentError);
+                continue;
+            }
+
             // Convert Buffer array/object to Buffer for Cloudinary
+            // resend.attachments.receiving.get returns { content: Buffer }
             let buffer;
-            if (attachment.content) {
-                buffer = Buffer.from(attachment.content);
+            if (attachmentData && attachmentData.content) {
+                // Ensure it is a buffer
+                if (Buffer.isBuffer(attachmentData.content)) {
+                    buffer = attachmentData.content;
+                } else {
+                    buffer = Buffer.from(attachmentData.content);
+                }
             } else {
-                console.log(`Attachment ${attachment.filename} has no content.`);
+                console.log(`Attachment ${attachment.filename} has no content after fetch.`);
                 continue;
             }
 
