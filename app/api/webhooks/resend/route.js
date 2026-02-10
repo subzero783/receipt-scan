@@ -46,7 +46,7 @@ export const POST = async (request) => {
         let targetUser = null;
 
         for (const recipient of to) {
-            const emailAddress = recipient.email; // "a4882786@reermi.resend.app"
+            const emailAddress = recipient; // "a4882786@reermi.resend.app"
             const handle = emailAddress.split('@')[0]; // "a4882786"
 
             // Find user by this handle
