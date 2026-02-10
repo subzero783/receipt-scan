@@ -12,41 +12,50 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+import { Resend } from 'resend';
+
+// ... other imports ...
 // 2. Config OpenAI
 const openai = new OpenAI({
     apiKey: process.env.NEXT_OPENAI_API_KEY, // Ensure this matches your env variable name
 });
+
+const resendClient = new Resend(process.env.RESEND_API_KEY);
 
 export const POST = async (request) => {
     try {
         // 1. Parse Resend Payload
         console.log("Webhook received");
         const data = await request.json();
-        const payload = data.data;
+        const payload = data.data || data; // Handle both wrapped and unwrapped payloads, just in case
 
         // Resend sends the email object inside the payload
         // Structure: https://resend.com/docs/dashboard/webhooks/event-types
-        const { to, attachments } = payload;
+        // The payload usually contains 'email_id' but not the content.
+        const { to, email_id } = payload;
 
         console.log("to: ", to);
-        console.log("attachments: ", attachments);
+        console.log("email_id: ", email_id);
         console.log("Webhook payload: ", payload);
 
-        // Safety check: Ensure there is a recipient and attachments
-        if (!to || !to.length || !attachments || !attachments.length) {
-            return new NextResponse('No recipient or attachments found', { status: 200 }); // Return 200 to stop Resend from retrying
+        // Safety check: Ensure there is a recipient and email_id
+        if (!to || !to.length || !email_id) {
+            return new NextResponse('No recipient or email_id found', { status: 200 }); // Return 200 to stop Resend from retrying
         }
 
         await connectDB();
 
         // 2. Identify the User
         // The 'to' field is an array. We need to find the one matching our domain.
-        // Example to[0].email = "a4882786@reermi.resend.app"
+        // Example to[0] (string or object)
+        let recipientsList = to;
+        // If 'to' is an array of objects ({ email: '...' }), map it. If strings, keep it.
+        // User payload showed: to: [ 'estark3923@reermi.resend.app' ] (strings)
 
         let targetUser = null;
 
-        for (const recipient of to) {
-            const emailAddress = recipient; // "a4882786@reermi.resend.app"
+        for (const recipient of recipientsList) {
+            const emailAddress = typeof recipient === 'string' ? recipient : recipient.email;
             const handle = emailAddress.split('@')[0]; // "a4882786"
 
             // Find user by this handle
@@ -58,23 +67,44 @@ export const POST = async (request) => {
         }
 
         if (!targetUser) {
-            console.error('Inbound Email: No matching user found for handles:', to.map(t => t.email));
+            console.error('Inbound Email: No matching user found for recipients:', recipientsList);
             return new NextResponse('User not found', { status: 200 });
         }
 
-        // 3. Process Attachments
+        // 3. Process Attachments - FETCH CONTENT
+        // The webhook payload attachments don't have content. We need to fetch the email details.
+        console.log(`Fetching email details for ID: ${email_id}`);
+        const { data: emailData, error: emailError } = await resendClient.emails.get(email_id);
+
+        if (emailError) {
+            console.error('Error fetching email details:', emailError);
+            return new NextResponse('Failed to fetch email details', { status: 500 });
+        }
+
+        const attachments = emailData.attachments || [];
+        console.log(`Found ${attachments.length} attachments in fetched email details.`);
+
         const processedReceipts = [];
 
         for (const attachment of attachments) {
-            // Resend provides 'content' as a buffer array or base64? 
-            // Resend Webhooks usually provide content as a Buffer array (integers).
+            // attachment should now have 'content' as a buffer (array of integers) or similar
+            // OR checks might be needed depending on SDK version return type
 
             // Skip non-images/pdfs
             const supportedTypes = ['image/jpeg', 'image/png', 'application/pdf', 'image/webp'];
-            if (!supportedTypes.includes(attachment.content_type)) continue;
+            if (!supportedTypes.includes(attachment.content_type)) {
+                console.log(`Skipping unsupported type: ${attachment.content_type}`);
+                continue;
+            }
 
-            // Convert Buffer array to Base64 for Cloudinary
-            const buffer = Buffer.from(attachment.content);
+            // Convert Buffer array/object to Buffer for Cloudinary
+            let buffer;
+            if (attachment.content) {
+                buffer = Buffer.from(attachment.content);
+            } else {
+                console.log(`Attachment ${attachment.filename} has no content.`);
+                continue;
+            }
 
             // --- A. Upload to Cloudinary ---
             const uploadResult = await new Promise((resolve, reject) => {
