@@ -72,8 +72,19 @@ export const POST = async (request) => {
         }
 
         // 3. Process Attachments - FETCH CONTENT
-        const attachments = payload.attachments || [];
-        console.log(`Found ${attachments.length} attachments in webhook payload.`);
+        // Fetch list of attachments from Resend to ensure we have the correct IDs
+        console.log(`Listing attachments for email ID: ${email_id}`);
+        const { data: attachmentsList, error: listError } = await resendClient.attachments.receiving.list({
+            emailId: email_id,
+        });
+
+        if (listError) {
+            console.error('Error listing attachments:', listError);
+            return new NextResponse('Failed to list attachments', { status: 500 });
+        }
+
+        const attachments = attachmentsList || [];
+        console.log(`Found ${attachments.length} attachments from Resend API.`);
 
         const processedReceipts = [];
 
