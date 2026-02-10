@@ -85,6 +85,9 @@ export const POST = async (request) => {
                 continue;
             }
 
+            console.log('attachment ID: ', attachment.id);
+            console.log('email ID: ', email_id);
+
             console.log(`Fetching content for attachment ID: ${attachment.id}`);
             const { data: attachmentData, error: attachmentError } = await resendClient.attachments.receiving.get({
                 id: attachment.id,
