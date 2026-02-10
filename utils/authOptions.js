@@ -55,10 +55,42 @@ export const authOptions = {
         const userExists = await User.findOne({ email: profile.email });
         if (!userExists) {
           const username = profile.name.slice(0, 20);
+
+          // Handle Generation Logic
+          let baseHandle = profile.email.split('@')[0];
+          // Sanitize
+          baseHandle = baseHandle.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+          // Fallback
+          if (!baseHandle) {
+            baseHandle = `user${Math.floor(Math.random() * 10000)}`;
+          }
+
+          let finalHandle = baseHandle;
+          let isUnique = false;
+          let attempts = 0;
+
+          // Try to find a unique handle
+          while (!isUnique && attempts < 10) {
+            const existing = await User.findOne({ inboundHandle: finalHandle });
+            if (!existing) {
+              isUnique = true;
+            } else {
+              attempts++;
+              finalHandle = `${baseHandle}${Math.floor(Math.random() * 10000)}`;
+            }
+          }
+
+          if (!isUnique) {
+            // Fallback to a timestamp-based handle if loop fails
+            finalHandle = `${baseHandle}${Date.now()}`;
+          }
+
           await User.create({
             email: profile.email,
             username,
             image: profile.picture,
+            inboundHandle: finalHandle
           });
         }
       }
