@@ -20,12 +20,16 @@ const openai = new OpenAI({
 export const POST = async (request) => {
     try {
         // 1. Parse Resend Payload
-        const payload = await request.json();
+        console.log("Webhook received");
+        const data = await request.json();
+        const payload = data.data;
 
         // Resend sends the email object inside the payload
         // Structure: https://resend.com/docs/dashboard/webhooks/event-types
         const { to, attachments } = payload;
 
+        console.log("to: ", to);
+        console.log("attachments: ", attachments);
         console.log("Webhook payload: ", payload);
 
         // Safety check: Ensure there is a recipient and attachments
