@@ -108,6 +108,14 @@
     }
 }
 
+.login-error-container {
+    color: var(--color-white);
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
 .sign-in-with-google {
     display: flex;
     flex-flow: row nowrap;
