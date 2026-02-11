@@ -34,10 +34,10 @@ const SignupPage = () => {
     e.preventDefault();
 
     const username = e.target.username.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
-    if(!username || username.length < 0){
+    if (!username || username.length < 0) {
       setError("Username is required");
     }
 
@@ -77,13 +77,12 @@ const SignupPage = () => {
   };
 
   if (sessionStatus === "loading") {
-    return <Spinner/>;
+    return <Spinner />;
   }
 
   return (
     sessionStatus !== "authenticated" && (
       <>
-        <HeroSectionTwo data={hero_section}/>
         <section className="signup-section">
           <div className="register-form-section">
             <div className="container">

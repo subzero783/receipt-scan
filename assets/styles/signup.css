@@ -1,36 +1,44 @@
 .signup-section {
-    background-color: var(--color-third);
+    background-color: var(--color-secondary);
     padding: 112px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    > .register-form-section {
+
+    >.register-form-section {
         display: flex;
         align-items: center;
         flex-flow: column nowrap;
         text-align: center;
-        background-color: var(--color-fourth);
+        background-color: var(--color-primary);
         width: 100%;
         border-radius: 16px;
         padding: 85px 15px;
         max-width: 91%;
-        > .container {
+
+        >.container {
             .title {
                 margin-bottom: 24px;
                 font-weight: 600;
+                color: var(--color-white);
             }
+
             .subtitle {
                 margin-bottom: 32px;
+                color: var(--color-white);
             }
-            > .row {
-                max-width: 530px;
+
+            >.row {
+                max-width: 600px;
                 margin: 0 auto;
             }
         }
     }
-    @media screen and (max-width: 576px){
+
+    @media screen and (max-width: 576px) {
         padding: 64px 0;
-        > .register-form-section {
+
+        >.register-form-section {
             padding: 32px 15px;
         }
     }
@@ -45,28 +53,23 @@
     background: transparent;
     justify-content: center;
     flex-flow: column nowrap;
+
     .name-container,
     .email-password-button-container {
         width: 100%;
     }
+
+    .signup-input {
+        margin-bottom: 15px;
+    }
+
     .email-password-button-container {
-        margin-top: 15px;
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: column nowrap;
         align-items: center;
-        > .input-group {
-            margin-right: 15px;
-        }
-        
-        @media screen and (max-width: 768px){
-            flex-flow: column nowrap;
-            .input-group {
-                width: 100%;
-                margin-right: 0;
-                &:nth-of-type(2){
-                    margin: 15px 0;
-                }
-            }
+
+        >.input-group {
+            width: 100%;
         }
     }
 }
@@ -80,16 +83,16 @@
     width: 100%;
     background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     padding: 10px 0;
-    color: var(--color-black);
+    color: var(--color-white);
     font-size: 14px;
     outline: none;
     transition: border-color 0.3s ease;
 }
 
 .signup-input::placeholder {
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .signup-input:focus {
@@ -98,21 +101,21 @@
 
 .signup-submit-btn {
     background: transparent;
-    color: var(--color-black);
+    color: var(--color-white);
     border: none;
     font-weight: 500;
     font-size: 14px;
     cursor: pointer;
     padding: 10px 20px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 16px;
     text-decoration: unset;
-    &:hover, 
+
+    &:hover,
     &:active,
     &:focus {
-        border-color: var(--color-primary);
-        background-color: var( --color-primary);
-        color: var(--color-white);
+        background-color: var(--color-white);
+        color: var(--color-primary);
     }
 }
 
@@ -129,9 +132,11 @@
     font-weight: 500;
     color: var(--color-black);
     background-color: var(--color-neutral-200);
-    > svg {
+
+    >svg {
         margin-right: 10px;
     }
+
     &:focus,
     &:active,
     &:hover {
@@ -140,9 +145,11 @@
 }
 
 .or-text {
-    margin: 20px 0;
+    margin: 10px 0 20px;
     font-size: 14px;
-    @media screen and (max-width: 768px){
+    color: var(--color-white);
+
+    @media screen and (max-width: 768px) {
         margin: 10px 0;
     }
 }

@@ -36,13 +36,15 @@
     width: 100%;
     max-width: 91%;
     border-radius: 16px;
-    @media screen and (max-width: 768px){
+
+    @media screen and (max-width: 768px) {
         margin-top: 20px;
     }
 }
 
 .login-form {
     display: flex;
+    flex-flow: column nowrap;
     width: 100%;
     gap: 1em;
     align-items: center;
@@ -50,11 +52,13 @@
     /* Subtle background for form area if needed, or transparent as per design */
     background: transparent;
     justify-content: center;
-    @media screen and (max-width: 768px){
+
+    >.input-group {
+        width: 100%;
+    }
+
+    @media screen and (max-width: 768px) {
         flex-flow: column nowrap;
-        > .input-group {
-            width: 100%;
-        }
     }
 }
 
@@ -95,7 +99,8 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 16px;
     text-decoration: unset;
-    &:hover, 
+
+    &:hover,
     &:active,
     &:focus {
         background-color: var(--color-white);
@@ -116,9 +121,11 @@
     font-weight: 500;
     color: var(--color-black);
     background-color: var(--color-neutral-200);
-    > svg {
+
+    >svg {
         margin-right: 10px;
     }
+
     &:focus,
     &:active,
     &:hover {
