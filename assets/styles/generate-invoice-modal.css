@@ -1,22 +1,55 @@
 .modal-overlay-invoice {
     >.modal-content-invoice {
-        display: flex;
-        flex-flow: row nowrap;
 
-        >.invoice-edit {
+        .top-text {
+            margin-top: 64px;
+
+            .title {
+                font-size: 32px;
+                font-weight: 500;
+                color: var(--color-white);
+            }
+        }
+
+        >.edit-and-preview-container {
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        .invoice-edit {
             width: 30%;
             background: #f8fafc;
             padding: 20px;
             border-right: 1px solid #e2e8f0;
             overflow-y: auto;
+
+            .form-group {
+                label {
+                    font-size: 14px;
+                }
+            }
+
+            .edit-invoice-title {
+                margin-bottom: 16px;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            textarea {
+                width: 100% !important;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                resize: vertical;
+            }
+
         }
 
-        >.invoice-preview {
-            width: 70%;
+        .invoice-preview {
             flex: 1;
             padding: 40px;
             overflow-y: auto;
-            background: white;
+            background: var(--color-white);
 
             /* PDF document styling which should also be applied to the Preview Panel to see the exact same styling*/
             .invoice-header {
