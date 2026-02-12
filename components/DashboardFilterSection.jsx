@@ -12,7 +12,8 @@ const DashboardFilterSection = ({
   isDeleting,
   handleExportSelected,
   handleEmailSelected,
-  isExporting
+  isExporting,
+  handleGenerateInvoice
 }) => {
   const [showExportMenu, setShowExportMenu] = useState(false);
   const dropdownRef = useRef(null);
@@ -142,6 +143,24 @@ const DashboardFilterSection = ({
                         }}
                       >
                         Email Selected
+                      </button>
+                      <button
+                        style={{
+                          display: 'block',
+                          width: '100%',
+                          padding: '8px 12px',
+                          border: 'none',
+                          background: 'transparent',
+                          textAlign: 'left',
+                          cursor: 'pointer',
+                          borderTop: '1px solid #eee'
+                        }}
+                        onClick={() => {
+                          handleGenerateInvoice(); // Call the handler
+                          setShowExportMenu(false);
+                        }}
+                      >
+                        Generate Invoice
                       </button>
                       <button
                         style={{
