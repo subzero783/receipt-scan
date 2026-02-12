@@ -65,11 +65,11 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
     };
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content" style={{ maxWidth: '900px', height: '90vh', display: 'flex' }}>
+        <div className="modal-overlay-invoice">
+            <div className="modal-content-invoice">
 
                 {/* LEFT: EDIT PANEL */}
-                <div style={{ width: '300px', background: '#f8fafc', padding: '20px', borderRight: '1px solid #e2e8f0', overflowY: 'auto' }}>
+                <div className="invoice-edit">
                     <h3 style={{ marginBottom: '20px' }}>Invoice Settings</h3>
 
                     <div className="form-group">
@@ -134,7 +134,7 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
                 </div>
 
                 {/* RIGHT: PREVIEW PANEL */}
-                <div style={{ flex: 1, padding: '40px', overflowY: 'auto', background: 'white' }}>
+                <div className="invoice-preview">
                     <button className="close-btn" onClick={onClose}><FaTimes /></button>
 
                     <div ref={printRef}>
