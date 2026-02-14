@@ -78,7 +78,7 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
     };
 
     return (
-        <div className="modal-overlay-invoice">
+        <div className="modal-overlay-invoice" id="invoice-modal">
             <div className="modal-content-invoice">
                 <div className="top-text">
                     <h2 className="title">Invoice Settings</h2>

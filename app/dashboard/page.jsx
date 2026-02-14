@@ -64,6 +64,17 @@ const DashboardPage = () => {
     return receipts.filter(r => selectedReceiptIds.includes(r._id));
   };
 
+  const handleGenerateInvoice = () => {
+    setIsInvoiceModalOpen(true);
+    // Wait for modal to render
+    setTimeout(() => {
+      const modalElement = document.getElementById('invoice-modal');
+      if (modalElement) {
+        modalElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   // 1. Fetch Receipts
   useEffect(() => {
     if (status === 'authenticated') {
@@ -142,7 +153,7 @@ const DashboardPage = () => {
         {/* --- FILTER SECTION --- */}
         <DashboardFilterSection
           filters={filters}
-          handleGenerateInvoice={() => setIsInvoiceModalOpen(true)}
+          handleGenerateInvoice={handleGenerateInvoice}
           handleFilterChange={handleFilterChange}
           applyFilters={applyFilters}
           clearFilters={clearFilters}
