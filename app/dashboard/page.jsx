@@ -11,6 +11,7 @@ import { getReceipts } from './receiptsApi';
 import { createFilterHandlers, createSelectionHandlers, createModalHandlers } from './dashboardHandlers';
 import { useRouter } from 'next/navigation';
 import EmailModal from '@/components/EmailModal';
+import GenerateInvoiceModal from '@/components/GenerateInvoiceModal';
 
 const DashboardPage = () => {
   const { data: session, status } = useSession();
@@ -54,6 +55,25 @@ const DashboardPage = () => {
 
   // User Status State
   const [userStatus, setUserStatus] = useState({ isPro: false, totalReceipts: 0 });
+
+  // Invoice Modal State
+  const [isInvoiceModalOpen, setIsInvoiceModalOpen] = useState(false);
+
+  // Helper to get selected receipt objects
+  const getSelectedReceiptObjects = () => {
+    return receipts.filter(r => selectedReceiptIds.includes(r._id));
+  };
+
+  const handleGenerateInvoice = () => {
+    setIsInvoiceModalOpen(true);
+    // Wait for modal to render
+    setTimeout(() => {
+      const modalElement = document.getElementById('invoice-modal');
+      if (modalElement) {
+        modalElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
 
   // 1. Fetch Receipts
   useEffect(() => {
@@ -133,6 +153,7 @@ const DashboardPage = () => {
         {/* --- FILTER SECTION --- */}
         <DashboardFilterSection
           filters={filters}
+          handleGenerateInvoice={handleGenerateInvoice}
           handleFilterChange={handleFilterChange}
           applyFilters={applyFilters}
           clearFilters={clearFilters}
@@ -253,6 +274,12 @@ const DashboardPage = () => {
           }}
           isSending={isExporting}
           defaultEmail={session?.user?.email}
+        />
+        {/* Invoice Modal */}
+        <GenerateInvoiceModal
+          isOpen={isInvoiceModalOpen}
+          onClose={() => setIsInvoiceModalOpen(false)}
+          selectedReceipts={getSelectedReceiptObjects()}
         />
       </div>
     </div>

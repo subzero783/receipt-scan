@@ -19,7 +19,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (sessionStatus === "authenticated") {
-      router.replace("/");
+      router.replace("/dashboard");
     }
   }, [sessionStatus, router]);
 
@@ -90,7 +90,7 @@ const LoginPage = () => {
                   <button type="submit" className="login-submit-btn">Sign in</button>
 
                 </form>
-                {error && <p style={{ color: 'red', marginTop: '10px', fontWeight: '600', fontSize: '14px' }}>{error}</p>}
+                {error && <p className="login-error-container">{error}</p>}
                 <button
                   className="sign-in-with-google"
                   onClick={() => {

@@ -1,0 +1,135 @@
+.modal-overlay-invoice {
+    >.modal-content-invoice {
+
+        .top-text {
+            margin-top: 64px;
+
+            .title {
+                font-size: 32px;
+                font-weight: 500;
+                color: var(--color-white);
+            }
+        }
+
+        >.edit-and-preview-container {
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        .invoice-edit {
+            width: 30%;
+            background: #f8fafc;
+            padding: 20px;
+            border-right: 1px solid #e2e8f0;
+            overflow-y: auto;
+
+            .form-group {
+                label {
+                    font-size: 14px;
+                }
+            }
+
+            .edit-invoice-title {
+                margin-bottom: 16px;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            textarea {
+                width: 100% !important;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                resize: vertical;
+            }
+
+        }
+
+        .invoice-preview {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background: var(--color-white);
+
+            /* PDF document styling which should also be applied to the Preview Panel to see the exact same styling*/
+            .invoice-header {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 40px;
+                border-bottom: 2px solid #eee;
+                padding-bottom: 20px;
+            }
+
+            .invoice-title {
+                font-size: 32px;
+                font-weight: bold;
+                color: #2c3e50;
+            }
+
+            .meta-group {
+                text-align: right;
+            }
+
+            .addresses {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 40px;
+            }
+
+            .address-block h3 {
+                font-size: 14px;
+                text-transform: uppercase;
+                color: #7f8c8d;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 5px;
+                margin-bottom: 10px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 30px;
+            }
+
+            th {
+                text-align: left;
+                padding: 12px;
+                background: #f8f9fa;
+                border-bottom: 2px solid #ddd;
+                font-size: 12px;
+                text-transform: uppercase;
+            }
+
+            td {
+                padding: 12px;
+                border-bottom: 1px solid #eee;
+            }
+
+            .totals {
+                margin-left: auto;
+                width: 300px;
+            }
+
+            .total-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 8px 0;
+            }
+
+            .total-final {
+                font-weight: bold;
+                font-size: 18px;
+                border-top: 2px solid #333;
+                padding-top: 10px;
+            }
+
+            .notes {
+                margin-top: 50px;
+                padding: 20px;
+                background: #f9f9f9;
+                border-radius: 5px;
+                font-size: 14px;
+            }
+        }
+    }
+}
