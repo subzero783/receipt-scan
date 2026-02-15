@@ -12,8 +12,11 @@ import { createFilterHandlers, createSelectionHandlers, createModalHandlers } fr
 import { useRouter } from 'next/navigation';
 import EmailModal from '@/components/EmailModal';
 import GenerateInvoiceModal from '@/components/GenerateInvoiceModal';
+import siteData from '@/data/siteData.json';
 
 const DashboardPage = () => {
+  const dashboardData = siteData.find(item => item.dashboard_page)?.dashboard_page;
+  // const expenseBreakdownSection = dashboardData.expense_breakdown_section;
   const { data: session, status } = useSession();
   const router = useRouter();
 

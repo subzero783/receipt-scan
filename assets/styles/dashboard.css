@@ -12,9 +12,18 @@
     margin: 50px auto;
     padding: 0 20px;
 
+    .empty-state {
+        text-align: center;
+        color: var(--color-white);
+        font-size: 16px;
+        margin-top: 20px;
+        font-weight: 600;
+    }
+
     @media screen and (max-width: 650px) {
         padding: 0;
     }
+
 }
 
 .dashboard-header {
@@ -91,10 +100,11 @@
 
 .category-badge {
     background: #eef2ff;
-    color: #4f46e5;
-    padding: 4px 10px;
+    color: var(--color-fifth);
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 14px;
+    padding: 4px 10px;
+    line-height: 20px;
     font-weight: 600;
 }
 
@@ -282,7 +292,7 @@
     padding: 10px;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 1rem;
 }
 
 .modal-actions {
