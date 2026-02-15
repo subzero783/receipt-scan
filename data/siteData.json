@@ -547,5 +547,22 @@
         ]
       }
     }
+  },
+  {
+    "dashboard_page": {
+      "hero_section": {
+        "title": "Receipts Dashboard"
+      },
+      "expense_breakdown_section": {
+        "small_title": "Insights",
+        "title": "Expense Breakdown",
+        "subtitle": "Track spending across key business categories"
+      },
+      "recent_transactions_section": {
+        "small_title": "Recent",
+        "title": "Recent Transactions",
+        "subtitle": "View and manage all your business expenses in one convenient location. Stay organized and track your spending effortlessly."
+      }
+    }
   }
 ]

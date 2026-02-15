@@ -1,9 +1,9 @@
 .dashboard-page {
-    padding: 120px 15px 64px;
+    padding: 120px 0 64px;
     background-color: var(--color-fifth);
 
     @media screen and (max-width: 650px) {
-        padding: 80px 15px 64px;
+        padding: 80px 0 64px;
     }
 }
 
@@ -21,7 +21,7 @@
     }
 
     @media screen and (max-width: 650px) {
-        padding: 0;
+        padding: 0 15px;
     }
 
 }
