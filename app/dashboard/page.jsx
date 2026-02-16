@@ -12,8 +12,17 @@ import { createFilterHandlers, createSelectionHandlers, createModalHandlers } fr
 import { useRouter } from 'next/navigation';
 import EmailModal from '@/components/EmailModal';
 import GenerateInvoiceModal from '@/components/GenerateInvoiceModal';
+import siteData from '@/data/siteData.json';
+import ExpenseBreakdown from '@/components/ExpenseBreakdown';
+import AiInsights from '@/components/AiInsights';
+// import RecentTransactions from '@/components/RecentTransactions';
 
 const DashboardPage = () => {
+  const dashboardData = siteData.find(item => item.dashboard_page)?.dashboard_page;
+  const hero_section = dashboardData.hero_section;
+  const expenseBreakdownSection = dashboardData.expense_breakdown_section;
+  // const recentTransactionsSection = dashboardData.recent_transactions_section;
+  const aiInsightsSection = dashboardData.ai_insights_section;
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -129,7 +138,7 @@ const DashboardPage = () => {
     <div className="dashboard-page">
       <div className="dashboard-container">
         <div className="dashboard-header">
-          <h1>Expense Dashboard</h1>
+          <h1>{hero_section.title}</h1>
           <div className="action-buttons">
             {canAddReceipt && (
               <button
@@ -282,6 +291,9 @@ const DashboardPage = () => {
           selectedReceipts={getSelectedReceiptObjects()}
         />
       </div>
+      <ExpenseBreakdown data={expenseBreakdownSection} receipts={receipts} />
+      <AiInsights receipts={receipts} data={aiInsightsSection} />
+      {/* <RecentTransactions data={recentTransactionsSection} /> */}
     </div>
   );
 };

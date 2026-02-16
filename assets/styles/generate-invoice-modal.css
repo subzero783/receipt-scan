@@ -14,6 +14,11 @@
         >.edit-and-preview-container {
             display: flex;
             flex-flow: row nowrap;
+            margin-bottom: 64px;
+
+            @media screen and (max-width: 991px) {
+                flex-flow: column nowrap;
+            }
         }
 
         .invoice-edit {
@@ -22,6 +27,14 @@
             padding: 20px;
             border-right: 1px solid #e2e8f0;
             overflow-y: auto;
+
+            @media screen and (max-width: 991px) {
+                width: 100%;
+            }
+
+            .save-pdf-btn {
+                margin-bottom: 20px;
+            }
 
             .form-group {
                 label {
@@ -50,6 +63,13 @@
             padding: 40px;
             overflow-y: auto;
             background: var(--color-white);
+            font-size: 14px;
+
+            .invoice-preview-title {
+                margin-bottom: 16px;
+                font-size: 24px;
+                font-weight: 600;
+            }
 
             /* PDF document styling which should also be applied to the Preview Panel to see the exact same styling*/
             .invoice-header {

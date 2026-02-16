@@ -1,0 +1,116 @@
+.expense-breakdown-section {
+    background-color: var(--color-fourth);
+    padding: 64px 0;
+
+    .top-text {
+        text-align: center;
+    }
+
+    .breakdown-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+
+        .categories-list {
+            .category-card {
+                background-color: var(--color-third);
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* LEFT SIDE: Categories */
+    .categories-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .category-card {
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        transition: transform 0.2s;
+
+        &:hover {
+            transform: translateY(-2px);
+        }
+
+        .cat-percent {
+            font-size: 48px;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .cat-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #374151;
+        }
+    }
+
+    /* RIGHT SIDE: Pie Chart */
+    .chart-container {
+        background-color: var(--color-white);
+        /* Gray background similar to design placeholder */
+        border-radius: 12px;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+        gap: 30px;
+
+        .pie-chart {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            position: relative;
+            /* background is set via inline style */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Optional: Donut hole */
+        .chart-hole {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            background-color: var(--color-white);
+            /* Match container bg */
+            border-radius: 50%;
+        }
+
+        .chart-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #374151;
+            background: var(--color-third);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+    }
+}

@@ -162,7 +162,7 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
                             />
                         </div>
 
-                        <button className="btn btn-primary full-width" style={{ marginTop: '20px' }} onClick={handlePrint}>
+                        <button className="btn btn-primary full-width save-pdf-btn" onClick={handlePrint}>
                             <FaPrint /> Print / Save PDF
                         </button>
                     </div>

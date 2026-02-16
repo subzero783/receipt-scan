@@ -1,20 +1,29 @@
 .dashboard-page {
-    padding: 120px 15px 64px;
+    padding: 120px 0 64px;
     background-color: var(--color-fifth);
 
     @media screen and (max-width: 650px) {
-        padding: 80px 15px 64px;
+        padding: 80px 0 64px;
     }
 }
 
 .dashboard-container {
     max-width: 1000px;
-    margin: 50px auto;
+    margin: 50px auto 80px;
     padding: 0 20px;
 
-    @media screen and (max-width: 650px) {
-        padding: 0;
+    .empty-state {
+        text-align: center;
+        color: var(--color-white);
+        font-size: 16px;
+        margin-top: 20px;
+        font-weight: 600;
     }
+
+    @media screen and (max-width: 650px) {
+        padding: 0 15px;
+    }
+
 }
 
 .dashboard-header {
@@ -91,10 +100,11 @@
 
 .category-badge {
     background: #eef2ff;
-    color: #4f46e5;
-    padding: 4px 10px;
+    color: var(--color-fifth);
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 14px;
+    padding: 4px 10px;
+    line-height: 20px;
     font-weight: 600;
 }
 
@@ -194,7 +204,7 @@
 }
 
 .modal-content {
-    background: white;
+    background: var(--color-white);
     width: 90%;
     max-width: 900px;
     height: 80vh;
@@ -282,7 +292,7 @@
     padding: 10px;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 1rem;
 }
 
 .modal-actions {
