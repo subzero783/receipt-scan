@@ -71,7 +71,7 @@ const DashboardEditModal = ({
               onClick={onImageClick}
               style={{
                 cursor: isAddMode ? 'pointer' : 'default',
-                border: isAddMode ? '2px dashed #cbd5e1' : '1px solid #e2e8f0',
+                border: isAddMode ? '2px dashed #cbd5e1' : '',
                 position: 'relative'
               }}
             >

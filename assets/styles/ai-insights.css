@@ -1,0 +1,59 @@
+.ai-insights-section {
+    background: var(--color-white);
+    padding: 64px 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+
+    .top-text {
+        .subtitle {
+            margin-bottom: 20px;
+        }
+    }
+
+    .insights-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .insight-card {
+        background: #F8FAFC;
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+
+        &.anomaly {
+            border-left: 4px solid #F59E0B;
+        }
+
+        &.tip {
+            border-left: 4px solid #10B981;
+        }
+
+        .card-header-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+
+            .card-label {
+                margin-bottom: 0;
+            }
+        }
+
+        .card-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #334155;
+            line-height: 1.5;
+        }
+    }
+}

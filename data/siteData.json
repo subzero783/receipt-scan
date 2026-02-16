@@ -562,6 +562,11 @@
         "small_title": "Recent",
         "title": "Recent Transactions",
         "subtitle": "View and manage all your business expenses in one convenient location. Stay organized and track your spending effortlessly."
+      },
+      "ai_insights_section": {
+        "small_title": "AI Insights",
+        "title": "Smart Financial Analysis",
+        "subtitle": "Let AI analyze your spending patterns and provide valuable insights."
       }
     }
   }

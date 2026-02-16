@@ -9,7 +9,7 @@
 
 .dashboard-container {
     max-width: 1000px;
-    margin: 50px auto;
+    margin: 50px auto 80px;
     padding: 0 20px;
 
     .empty-state {
@@ -204,7 +204,7 @@
 }
 
 .modal-content {
-    background: white;
+    background: var(--color-white);
     width: 90%;
     max-width: 900px;
     height: 80vh;
