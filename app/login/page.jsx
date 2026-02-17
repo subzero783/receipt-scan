@@ -88,7 +88,6 @@ const LoginPage = () => {
                     />
                   </div>
                   <button type="submit" className="login-submit-btn">Sign in</button>
-
                 </form>
                 {error && <p className="login-error-container">{error}</p>}
                 <button
@@ -100,6 +99,8 @@ const LoginPage = () => {
                   <FaGoogle />
                   <span>Sign In with Google</span>
                 </button>
+                {/* Add a link to the forgot password page */}
+                <Link href="/forgot-password" className="forgot-password-link">Forgot Password?</Link>
                 <div className="legal-text">
                   {hero_section.legal_disclaimer}
                 </div>

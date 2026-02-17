@@ -141,6 +141,15 @@
     }
 }
 
+.forgot-password-link {
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: underline;
+    color: var(--color-white);
+    display: block;
+}
+
 .legal-text {
     margin-top: 1.5em;
     font-size: 14px;
