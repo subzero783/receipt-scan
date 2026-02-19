@@ -569,5 +569,13 @@
         "subtitle": "Let AI analyze your spending patterns and provide valuable insights."
       }
     }
+  },
+  {
+    "forgot_password_page": {
+      "hero_section": {
+        "title": "Reset Your Password",
+        "success_message": "Check your email! We sent you a link to reset your password."
+      }
+    }
   }
 ]

@@ -2,8 +2,16 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { FaEnvelope } from 'react-icons/fa';
+import siteData from '@/data/siteData.json';
 
 const ForgotPasswordPage = () => {
+
+  const forgot_password_page = siteData.find(item => item.forgot_password_page)?.forgot_password_page;
+
+  if (!forgot_password_page) return <div>Loading...</div>;
+
+  const hero_section = forgot_password_page.hero_section;
+
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -42,19 +50,21 @@ const ForgotPasswordPage = () => {
         <div className="row">
           <div className="col">
             <section className="forgot-password-section">
-              <h1 className="title">Reset Password</h1>
+              <div className="top-text">
+                <h1 className="title">{hero_section.title}</h1>
+              </div>
 
               {success ? (
                 <div className="success-message">
-                  Check your email! We sent you a link to reset your password.
+                  {hero_section.success_message}
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
                   <div className="input-group">
                     <label htmlFor="email" className="">
-                      Email Address
+                      <h2>Email Address</h2>
                     </label>
-                    <div className="relative">
+                    <div className="icon-and-input">
                       <FaEnvelope className="" />
                       <input
                         name="email"
@@ -72,7 +82,7 @@ const ForgotPasswordPage = () => {
 
                   <button
                     type="submit"
-                    className="btn btn-primary"
+                    className="btn btn-sixth"
                     disabled={loading}
                   >
                     {loading ? 'Sending...' : 'Send Reset Link'}

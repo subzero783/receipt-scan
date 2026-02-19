@@ -586,6 +586,20 @@ strong {
   }
 }
 
+.btn-sixth {
+  color: var(--color-white);
+  background-color: var(--color-sixth);
+  border: 1px solid var(--color-sixth);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--color-white);
+    background-color: transparent;
+    border-color: var(--color-white);
+  }
+}
+
 .btn-alert {
   color: var(--color-white);
   background-color: var(--color-red);
