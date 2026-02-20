@@ -1,0 +1,28 @@
+.not-found-page {
+    background-color: var(--color-primary);
+    padding: 120px 0;
+
+    .not-found-section {
+        .top-text {
+            color: var(--color-white);
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+
+            .icon {
+                font-size: 48px;
+                margin-bottom: 20px;
+            }
+
+            .subtitle {
+                margin-bottom: 24px;
+            }
+
+            .buttons-container {
+                display: flex;
+                gap: 16px;
+                justify-content: center;
+            }
+        }
+    }
+}
