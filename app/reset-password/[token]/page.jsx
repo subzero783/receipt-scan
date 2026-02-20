@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 const ResetPasswordPage = ({ params }) => {
   // Unwrap params (Next.js 15 requires awaiting params, prior versions didn't)
   // If you are on an older Next.js 14 version, you can just use params.token directly.
-  const { token } = use(params); 
-  
+  const { token } = use(params);
+
   const router = useRouter();
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -17,7 +17,7 @@ const ResetPasswordPage = ({ params }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
@@ -50,53 +50,63 @@ const ResetPasswordPage = ({ params }) => {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '100px auto', padding: '20px' }}>
-      <h1 className="text-2xl font-bold mb-4">Set New Password</h1>
+    <div className="reset-password-page">
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <div className="top-text">
+              <h1 className="title">Set New Password</h1>
+              <p className="subtitle">Please enter your new password below.</p>
+            </div>
+            <div className="bottom-container">
+              {message && (
+                <div className="success-message">
+                  {message}
+                </div>
+              )}
 
-      {message && (
-        <div className="bg-green-100 text-green-700 p-4 rounded mb-4">
-          {message}
+              {error && (
+                <div className="error-message">
+                  {error}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit}>
+                <div className="new-password-form">
+                  <label className="new-password-label">New Password</label>
+                  <input
+                    type="password"
+                    className="new-password-input"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    minLength={6}
+                  />
+                </div>
+
+                <div className="confirm-password-container">
+                  <label className="confirm-password-label">Confirm Password</label>
+                  <input
+                    type="password"
+                    className="confirm-password-input"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="confirm-password-button btn btn-third"
+                  disabled={loading}
+                >
+                  {loading ? 'Updating...' : 'Update Password'}
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
-      )}
-
-      {error && (
-        <div className="bg-red-100 text-red-700 p-4 rounded mb-4">
-          {error}
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">New Password</label>
-          <input
-            type="password"
-            className="w-full border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={6}
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Confirm Password</label>
-          <input
-            type="password"
-            className="w-full border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-          disabled={loading}
-        >
-          {loading ? 'Updating...' : 'Update Password'}
-        </button>
-      </form>
+      </div>
     </div>
   );
 };
