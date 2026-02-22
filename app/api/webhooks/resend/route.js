@@ -3,7 +3,7 @@ import connectDB from '@/config/database';
 import User from '@/models/User';
 import Receipt from '@/models/Receipt';
 import { v2 as cloudinary } from 'cloudinary';
-import OpenAI from 'openai';
+import { GoogleGenAI } from '@google/genai';
 
 // 1. Config Cloudinary
 cloudinary.config({
@@ -16,8 +16,13 @@ import { Resend } from 'resend';
 
 // ... other imports ...
 // 2. Config OpenAI
-const openai = new OpenAI({
-    apiKey: process.env.NEXT_OPENAI_API_KEY, // Ensure this matches your env variable name
+// const openai = new OpenAI({
+//     apiKey: process.env.NEXT_OPENAI_API_KEY, // Ensure this matches your env variable name
+// });
+
+// Configure Gemini API
+const ai = new GoogleGenAI({
+    apiKey: process.env.NEXT_GEMINI_API_KEY,
 });
 
 const resendClient = new Resend(process.env.RESEND_API_KEY);
@@ -141,25 +146,39 @@ export const POST = async (request) => {
             const publicId = uploadResult.public_id;
 
             // --- B. Scan with OpenAI ---
-            const response = await openai.chat.completions.create({
-                model: "gpt-4o",
-                messages: [
-                    {
-                        role: "system",
-                        content: "You are a receipt scanning assistant. Extract data from the image and return ONLY a valid JSON object. Keys: 'merchant_name', 'total_amount', 'date', 'category'."
-                    },
+            // const response = await openai.chat.completions.create({
+            //     model: "gpt-4o",
+            //     messages: [
+            //         {
+            //             role: "system",
+            //             content: "You are a receipt scanning assistant. Extract data from the image and return ONLY a valid JSON object. Keys: 'merchant_name', 'total_amount', 'date', 'category'."
+            //         },
+            //         {
+            //             role: "user",
+            //             content: [
+            //                 { type: "text", text: "Analyze this receipt." },
+            //                 { type: "image_url", image_url: { "url": imageUrl } },
+            //             ],
+            //         },
+            //     ],
+            //     max_tokens: 300,
+            // });
+
+            // Scan with Gemini API
+            const response = await ai.models.generateContent({
+                model: "gemini-3-flash-preview",
+                contents: [
                     {
                         role: "user",
-                        content: [
-                            { type: "text", text: "Analyze this receipt." },
-                            { type: "image_url", image_url: { "url": imageUrl } },
+                        parts: [
+                            { text: "You are a receipt scanning assistant. Extract data from the image and return ONLY a valid JSON object. Keys: 'merchant_name', 'total_amount', 'date', 'category'." },
+                            { inlineData: { mimeType: "image/jpeg", data: buffer.toString("base64") } },
                         ],
                     },
                 ],
-                max_tokens: 300,
             });
 
-            const aiContent = response.choices[0].message.content;
+            const aiContent = response.text;
             const cleanJson = aiContent.replace(/```json/g, '').replace(/```/g, '').trim();
             const extractedData = JSON.parse(cleanJson);
 
