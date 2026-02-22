@@ -107,7 +107,7 @@ export const POST = async (request) => {
             { text: "You are a receipt scanning assistant. Extract data from the image and return ONLY a valid JSON object. Keys: 'merchant_name', 'total_amount', 'date', 'category'." },
             {
               inlineData: {
-                type: "image/jpeg",
+                mimeType: file.type || "image/jpeg", // <--- Changed to mimeType and made dynamic
                 data: buffer.toString("base64")
               }
             }

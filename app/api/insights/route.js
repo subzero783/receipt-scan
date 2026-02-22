@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
-import OpenAI from 'openai';
+import { GoogleGenAI } from "@google/genai";
 import { getSessionUser } from '@/utils/getSessionUser';
 
-const openai = new OpenAI({
-    apiKey: process.env.NEXT_OPENAI_API_KEY,
+// Configure Gemini API
+const ai = new GoogleGenAI({
+    apiKey: process.env.NEXT_GEMINI_API_KEY,
 });
 
 export const POST = async (request) => {
