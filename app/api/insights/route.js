@@ -38,17 +38,29 @@ export const POST = async (request) => {
       Return ONLY valid JSON.
     `;
 
-        const response = await openai.chat.completions.create({
-            model: "gpt-4o",
-            messages: [
-                { role: "system", content: "You are a helpful financial analyst bot." },
-                { role: "user", content: prompt }
-            ],
-            response_format: { type: "json_object" },
-            max_tokens: 200,
+        // const response = await openai.chat.completions.create({
+        //     model: "gpt-4o",
+        //     messages: [
+        //         { role: "system", content: "You are a helpful financial analyst bot." },
+        //         { role: "user", content: prompt }
+        //     ],
+        //     response_format: { type: "json_object" },
+        //     max_tokens: 200,
+        // });
+
+        const response = await ai.models.generateContent({
+            model: "gemini-3-flash-preview",
+            contents: [
+                {
+                    role: "user",
+                    parts: [
+                        { text: prompt }
+                    ]
+                }
+            ]
         });
 
-        const insights = JSON.parse(response.choices[0].message.content);
+        const insights = JSON.parse(response.text);
 
         return NextResponse.json(insights);
 
