@@ -577,5 +577,14 @@
         "success_message": "Check your email! We sent you a link to reset your password."
       }
     }
+  },
+  {
+    "settings_page": {
+      "hero_section": {
+        "small_title": "Manage",
+        "title": "Account Settings",
+        "subtitle": "Control your profile, security, and subscription settings with easy-to-use account management tools."
+      }
+    }
   }
 ]
