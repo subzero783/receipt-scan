@@ -1,0 +1,9 @@
+.settings-page {
+    .hero-section-two {
+        background-color: var(--color-fifth);
+
+        .container {
+            padding-bottom: 0;
+        }
+    }
+}

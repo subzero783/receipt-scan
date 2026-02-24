@@ -12,17 +12,19 @@ const HeroSectionTwo = ({ data }) => {
               <p className="small-title">{small_title}</p>
               <h1 className="title">{title}</h1>
               <p className="subtitle">{subtitle}</p>
-              <div className="buttons">
-                {buttons.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.link}
-                    className="btn btn-primary"
-                  >
-                    {item.text}
-                  </Link>
-                ))}
-              </div>
+              {buttons && buttons.length > 0 && (
+                <div className="buttons">
+                  {buttons.map((item, index) => (
+                    <Link
+                      key={index}
+                      href={item.link}
+                      className="btn btn-primary"
+                    >
+                      {item.text}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

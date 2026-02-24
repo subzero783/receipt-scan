@@ -14,12 +14,6 @@ cloudinary.config({
 
 import { Resend } from 'resend';
 
-// ... other imports ...
-// 2. Config OpenAI
-// const openai = new OpenAI({
-//     apiKey: process.env.NEXT_OPENAI_API_KEY, // Ensure this matches your env variable name
-// });
-
 // Configure Gemini API
 const ai = new GoogleGenAI({
     apiKey: process.env.NEXT_GEMINI_API_KEY,
@@ -144,25 +138,6 @@ export const POST = async (request) => {
 
             const imageUrl = uploadResult.secure_url;
             const publicId = uploadResult.public_id;
-
-            // --- B. Scan with OpenAI ---
-            // const response = await openai.chat.completions.create({
-            //     model: "gpt-4o",
-            //     messages: [
-            //         {
-            //             role: "system",
-            //             content: "You are a receipt scanning assistant. Extract data from the image and return ONLY a valid JSON object. Keys: 'merchant_name', 'total_amount', 'date', 'category'."
-            //         },
-            //         {
-            //             role: "user",
-            //             content: [
-            //                 { type: "text", text: "Analyze this receipt." },
-            //                 { type: "image_url", image_url: { "url": imageUrl } },
-            //             ],
-            //         },
-            //     ],
-            //     max_tokens: 300,
-            // });
 
             // Scan with Gemini API
             const response = await ai.models.generateContent({

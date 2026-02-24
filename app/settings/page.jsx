@@ -1,4 +1,6 @@
 import siteData from '@/data/siteData.json';
+import HeroSectionTwo from '@/components/HeroSectionTwo';
+import AccountSettings from '@/components/AccountSettings';
 
 const Settings = () => {
 
@@ -10,19 +12,8 @@ const Settings = () => {
 
     return (
         <div className="settings-page">
-            <section className="settings-hero-section">
-                <div className="container">
-                    <div className="row">
-                        <div className="col">
-                            <div className="top-text">
-                                <span className="small-title">{hero_section.small_title}</span>
-                                <h1 className="title">{hero_section.title}</h1>
-                                <p className="subtitle">{hero_section.subtitle}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <HeroSectionTwo data={hero_section} />
+            <AccountSettings />
         </div>
     );
 };
