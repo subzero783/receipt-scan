@@ -128,7 +128,7 @@ const AccountSettings = () => {
                                     <label className="form-label" htmlFor="website">Website</label>
                                     <div className="input-with-prefix">
                                         <span className="prefix">http://</span>
-                                        <input type="url" id="website" className="form-input" placeholder="www.relume.io" value={formData.website} onChange={handleChange} />
+                                        <input type="url" id="website" className="form-input" placeholder="www.receiptscan.com" value={formData.website} onChange={handleChange} />
                                     </div>
                                 </div>
 
