@@ -1,8 +1,22 @@
+'use client';
+
 import siteData from '@/data/siteData.json';
 import HeroSectionTwo from '@/components/HeroSectionTwo';
 import AccountSettings from '@/components/AccountSettings';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 const Settings = () => {
+
+    const { data: session, status } = useSession();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (status === 'unauthenticated') {
+            router.push('/login');
+        }
+    }, [status, router]);
 
     const settingsData = siteData.find(item => item.settings_page)?.settings_page;
 

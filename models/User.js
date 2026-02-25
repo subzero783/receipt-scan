@@ -26,6 +26,18 @@ const UserSchema = new Schema(
       type: Date,
       required: false,
     },
+    website: {
+      type: String,
+      required: false,
+    },
+    about: {
+      type: String,
+      required: false,
+    },
+    language: {
+      type: String,
+      default: 'en',
+    },
     // Payment and Subscription Updates
     stripeCustomerId: {
       type: String,

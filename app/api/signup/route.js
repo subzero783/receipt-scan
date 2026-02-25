@@ -48,7 +48,11 @@ export const POST = async (request) => {
     username,
     email,
     password: hashedPassword,
-    inboundHandle: finalHandle
+    inboundHandle: finalHandle,
+    language: 'English',
+    website: '',
+    about: '',
+    photo: ''
   });
 
   try {

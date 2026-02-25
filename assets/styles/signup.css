@@ -96,7 +96,7 @@
 }
 
 .signup-input:focus {
-    border-bottom-color: var(--color-primary);
+    border-bottom-color: var(--color-white);
 }
 
 .signup-submit-btn {
@@ -140,7 +140,7 @@
     &:focus,
     &:active,
     &:hover {
-        background-color: var(--color-neutral-100);
+        background-color: var(--color-white);
     }
 }
 

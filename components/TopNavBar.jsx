@@ -103,14 +103,6 @@ const Navbar = () => {
                     <div className="profile-dropdown-menu-content">
                       <div className="profile-dropdown-menu-item">
                         <Link
-                          href="/profile"
-                          onClick={() => setIsProfileMenuOpen(false)}
-                        >
-                          Profile
-                        </Link>
-                      </div>
-                      <div className="profile-dropdown-menu-item">
-                        <Link
                           href="/settings"
                           onClick={() => setIsProfileMenuOpen(false)}
                         >
