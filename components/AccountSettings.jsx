@@ -18,7 +18,7 @@ const AccountSettings = () => {
         currentPassword: '',
         newPassword: '',
         language: '',
-        photo: ''
+        image: ''
     });
     const [loading, setLoading] = useState(true);
     const [statusMessage, setStatusMessage] = useState({ type: '', text: '' });
@@ -37,7 +37,8 @@ const AccountSettings = () => {
                             about: data.about || '',
                             currentPassword: '',
                             newPassword: '',
-                            language: data.language || 'en'
+                            language: data.language || 'en',
+                            image: data.image || ''
                         });
                     }
                 } catch (error) {

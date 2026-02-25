@@ -52,7 +52,7 @@ export const POST = async (request) => {
     language: 'English',
     website: '',
     about: '',
-    photo: ''
+    image: ''
   });
 
   try {
