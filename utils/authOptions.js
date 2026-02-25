@@ -101,10 +101,14 @@ export const authOptions = {
 
     async session({ session }) {
       // 1. Get user from database
+      await connectDB();
       const user = await User.findOne({ email: session.user.email });
-      // 2. Assign the user id to the session
-      session.user.id = user._id.toString();
-      // 3. return session
+      if (user) {
+        // 2. Assign the user id to the session
+        session.user.id = user._id.toString();
+        // 3. Keep the user image in sync with the database
+        session.user.image = user.image || null;
+      }
       return session;
     },
   },

@@ -4,6 +4,14 @@ import { authOptions } from '@/utils/authOptions';
 import connectDB from '@/config/database';
 import User from '@/models/User';
 import bcrypt from 'bcryptjs';
+import { v2 as cloudinary } from 'cloudinary';
+
+// Config Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export async function GET(request) {
     try {
@@ -36,7 +44,7 @@ export async function PUT(request) {
             return new Response('Unauthorized', { status: 401 });
         }
 
-        const { username, website, email, about, currentPassword, newPassword, language } = await request.json();
+        const { username, website, email, about, currentPassword, newPassword, language, image } = await request.json();
 
         const user = await User.findOne({ email: session.user.email });
         if (!user) {
@@ -57,6 +65,21 @@ export async function PUT(request) {
             const salt = await bcrypt.genSalt(10);
             const hashedPassword = await bcrypt.hash(newPassword, salt);
             user.password = hashedPassword;
+        }
+
+        // Handle image upload to Cloudinary
+        if (image && image.startsWith('data:image')) {
+            try {
+                const uploadResponse = await cloudinary.uploader.upload(image, {
+                    folder: 'receipt-scan-app/users',
+                });
+                user.image = uploadResponse.secure_url;
+            } catch (imageError) {
+                console.error("Cloudinary Upload Error:", imageError);
+                return new Response('Error uploading image', { status: 500 });
+            }
+        } else if (image === '') {
+            user.image = '';
         }
 
         // Update fields

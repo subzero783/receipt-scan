@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 const AccountSettings = () => {
 
-    const { data: session, status } = useSession();
+    const { data: session, status, update } = useSession();
 
     const [formData, setFormData] = useState({
         username: '',
@@ -53,6 +53,21 @@ const AccountSettings = () => {
         fetchUserData();
     }, [status]);
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData({ ...formData, image: reader.result }); // Set base64 image
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleRemoveImage = () => {
+        setFormData({ ...formData, image: '' });
+    };
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value });
     };
@@ -74,6 +89,11 @@ const AccountSettings = () => {
                 setStatusMessage({ type: 'success', text: 'Settings updated successfully!' });
                 toast.success("Settings updated successfully!");
                 setFormData({ ...formData, currentPassword: '', newPassword: '' });
+
+                // Force a NextAuth session update to fetch the new image
+                if (update) {
+                    await update();
+                }
             } else {
                 const text = await res.text();
                 setStatusMessage({ type: 'error', text: text || 'Error updating settings.' });
@@ -95,45 +115,51 @@ const AccountSettings = () => {
                     <div className="col">
                         <div className="account-settings-container">
                             <form className="account-settings-form" onSubmit={handleSubmit}>
-                                <div className="form-group">
-                                    <label className="form-label">Photo</label>
+                                <div className="settings-form-group">
+                                    <label className="settings-form-label">Photo</label>
                                     <div className="photo-upload-wrapper">
                                         <div className="photo-avatar">
                                             {
-                                                session?.user?.image ? (
-                                                    <img src={session.user.image} alt="" />
+                                                formData.image !== '' ? (
+                                                    <img src={formData.image} alt="User" />
                                                 ) : (
                                                     <Image
                                                         src={profileDefault}
-                                                        alt=""
+                                                        alt="User Default"
                                                         width={40}
                                                         height={40}
                                                     />
                                                 )
+
                                             }
                                         </div>
-                                        <label className="upload-profile-btn btn btn-primary">
-                                            Upload photo
-                                            <input type="file" className="hidden-input" accept="image/*" />
-                                        </label>
+                                        <div className="photo-buttons-container">
+                                            <label className="upload-profile-btn btn btn-primary">
+                                                Upload photo
+                                                <input type="file" name="image" className="hidden-input" accept="image/*" onChange={handleImageChange} />
+                                            </label>
+                                            <button type="button" className="remove-profile-btn btn btn-secondary" onClick={handleRemoveImage}>
+                                                Remove photo
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="form-group username-form-group">
-                                    <label className="form-label" htmlFor="username">Username</label>
+                                <div className="settings-form-group username-form-group">
+                                    <label className="settings-form-label" htmlFor="username">Username</label>
                                     <input type="text" id="username" className="form-input" value={formData.username} onChange={handleChange} required />
                                 </div>
 
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="website">Website</label>
+                                <div className="settings-form-group">
+                                    <label className="settings-form-label" htmlFor="website">Website</label>
                                     <div className="input-with-prefix">
                                         <span className="prefix">http://</span>
                                         <input type="url" id="website" className="form-input" placeholder="www.receiptscan.com" value={formData.website} onChange={handleChange} />
                                     </div>
                                 </div>
 
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="email">Email address</label>
+                                <div className="settings-form-group">
+                                    <label className="settings-form-label" htmlFor="email">Email address</label>
                                     <div className="input-wrapper">
                                         <FiMail className="input-icon-left" />
                                         <input type="email" id="email" className="form-input with-icon-left with-icon-right" placeholder="email@example.com" value={formData.email} onChange={handleChange} required />
@@ -141,14 +167,14 @@ const AccountSettings = () => {
                                     </div>
                                 </div>
 
-                                <div className="form-group about-form-group">
-                                    <label className="form-label" htmlFor="about">About</label>
+                                <div className="settings-form-group about-form-group">
+                                    <label className="settings-form-label" htmlFor="about">About</label>
                                     <textarea id="about" className="form-textarea" placeholder="Type your message..." value={formData.about} onChange={handleChange}></textarea>
                                     <div className="char-count">{263 - formData.about.length} characters left</div>
                                 </div>
 
-                                <div className="form-group password-form-group">
-                                    <label className="form-label">Password</label>
+                                <div className="settings-form-group password-form-group">
+                                    <label className="settings-form-label">Password</label>
                                     <div className="passwords-container">
                                         <div className="input-wrapper password-input">
                                             <input type="password" id="currentPassword" placeholder="Current password" className="form-input with-icon-right" value={formData.currentPassword} onChange={handleChange} />
@@ -161,8 +187,8 @@ const AccountSettings = () => {
                                     </div>
                                 </div>
 
-                                <div className="form-group last-form-group">
-                                    <label className="form-label" htmlFor="language">Language</label>
+                                <div className="settings-form-group last-form-group">
+                                    <label className="settings-form-label" htmlFor="language">Language</label>
                                     <div className="select-wrapper">
                                         <select id="language" className="form-select" value={formData.language} onChange={handleChange}>
                                             <option value="" disabled>Select one...</option>

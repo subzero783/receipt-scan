@@ -6,7 +6,6 @@ import Spinner from '@/components/Spinner';
 import DashboardEditModal from '@/components/DashboardEditModal';
 import DashboardFilterSection from '@/components/DashboardFilterSection';
 import { FaEdit, FaTrash, FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
-import '@/assets/styles/dashboard.css'; // We will create this next
 import { getReceipts } from './receiptsApi';
 import { createFilterHandlers, createSelectionHandlers, createModalHandlers } from './dashboardHandlers';
 import { useRouter } from 'next/navigation';
