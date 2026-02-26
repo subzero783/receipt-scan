@@ -35,6 +35,19 @@
     >div {
         width: 75%;
     }
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+
+        &.password-form-group {
+            align-items: center;
+        }
+
+        >label {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+    }
 }
 
 
@@ -124,11 +137,15 @@
         position: absolute;
         bottom: -14px;
         right: 0;
+
+        @media screen and (max-width: 768px) {
+            position: relative;
+            bottom: auto;
+        }
     }
 }
 
 .password-form-group {
-
     align-items: flex-start;
 
     .passwords-container {
@@ -146,7 +163,7 @@
     background: transparent;
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid var(--color-white);
+    border-bottom: 1px solid #ffffff4d;
     padding: 8px 0;
     font-size: 14px;
     color: var(--color-white);
@@ -169,7 +186,7 @@
 .form-input:focus,
 .form-textarea:focus,
 .form-select:focus {
-    border-bottom: 1px solid var(--color-neutral-400);
+    border-bottom: 1px solid var(--color-white);
 }
 
 .form-input::placeholder,

@@ -584,6 +584,11 @@
         "small_title": "Manage",
         "title": "Account Settings",
         "subtitle": "Control your profile, security, and subscription settings with easy-to-use account management tools."
+      },
+      "manage_subscription": {
+        "small_title": "Billing",
+        "title": "Manage Subscription",
+        "subtitle": "Manage your subscription and billing information here."
       }
     }
   }
