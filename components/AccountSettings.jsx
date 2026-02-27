@@ -106,6 +106,23 @@ const AccountSettings = () => {
         }
     };
 
+    const handleManageSubscription = async () => {
+        try {
+            const res = await fetch('/api/stripe/portal', { method: 'POST' });
+            if (res.ok) {
+                const data = await res.json();
+                window.location.href = data.url;
+            } else if (res.status === 400) {
+                toast.error("You don't have an active subscription to manage.");
+            } else {
+                toast.error("An error occurred while loading the subscription portal.");
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("An error occurred while loading the subscription portal.");
+        }
+    };
+
     if (loading) return <div>Loading...</div>;
 
     return (
@@ -198,6 +215,10 @@ const AccountSettings = () => {
                                         </select>
                                         <FiChevronDown className="select-icon" />
                                     </div>
+                                </div>
+
+                                <div className="settings-form-group manage-subscription-group">
+                                    <button type="button" className="manage-subscription-btn btn btn-primary" onClick={handleManageSubscription}>Manage Subscription</button>
                                 </div>
 
                                 <div className="form-actions">
