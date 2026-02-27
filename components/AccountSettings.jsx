@@ -186,7 +186,7 @@ const AccountSettings = () => {
 
                                 <div className="settings-form-group about-form-group">
                                     <label className="settings-form-label" htmlFor="about">About</label>
-                                    <textarea id="about" className="form-textarea" placeholder="Type your message..." value={formData.about} onChange={handleChange}></textarea>
+                                    <textarea id="about" className="form-textarea" placeholder="Type your message..." value={formData.about} onChange={handleChange} maxLength={263}></textarea>
                                     <div className="char-count">{263 - formData.about.length} characters left</div>
                                 </div>
 
@@ -223,7 +223,7 @@ const AccountSettings = () => {
                                             Manage Subscription
                                         </button>
                                     ) : (
-                                        <a href="/#pricing" className="manage-subscription-btn btn btn-primary">
+                                        <a href="/pricing" className="manage-subscription-btn btn btn-primary">
                                             Upgrade to Pro
                                         </a>
                                     )}
