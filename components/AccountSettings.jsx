@@ -218,7 +218,15 @@ const AccountSettings = () => {
                                 </div>
 
                                 <div className="settings-form-group manage-subscription-group">
-                                    <button type="button" className="manage-subscription-btn btn btn-primary" onClick={handleManageSubscription}>Manage Subscription</button>
+                                    {session?.user?.isPro ? (
+                                        <button type="button" className="manage-subscription-btn btn btn-primary" onClick={handleManageSubscription}>
+                                            Manage Subscription
+                                        </button>
+                                    ) : (
+                                        <a href="/#pricing" className="manage-subscription-btn btn btn-primary">
+                                            Upgrade to Pro
+                                        </a>
+                                    )}
                                 </div>
 
                                 <div className="form-actions">

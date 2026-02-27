@@ -108,6 +108,8 @@ export const authOptions = {
         session.user.id = user._id.toString();
         // 3. Keep the user image in sync with the database
         session.user.image = user.image || null;
+        // 4. Pass the pro status to the frontend
+        session.user.isPro = user.isPro || false;
       }
       return session;
     },
