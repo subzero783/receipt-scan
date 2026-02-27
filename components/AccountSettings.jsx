@@ -5,6 +5,7 @@ import profileDefault from "@/assets/images/profile.png";
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { toast } from "react-toastify";
+import Spinner from "./Spinner";
 
 const AccountSettings = () => {
 
@@ -123,7 +124,7 @@ const AccountSettings = () => {
         }
     };
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <Spinner />;
 
     return (
         <section className="account-settings-section">
