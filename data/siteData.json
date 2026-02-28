@@ -386,10 +386,6 @@
         {
           "question": "How secure is my data?",
           "answer": "We use bank-level encryption and secure cloud storage to protect your financial information. Your data privacy is our top priority."
-        },
-        {
-          "question": "Do you offer refunds?",
-          "answer": "We provide a 30-day money-back guarantee on our pro plan. If you're not satisfied, we'll refund your first month's payment."
         }
       ]
     }

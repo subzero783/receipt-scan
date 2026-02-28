@@ -50,6 +50,7 @@
 
       button {
         border: unset;
+        color: var(--color-primary);
       }
 
       .pagination__span {

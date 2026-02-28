@@ -36,6 +36,7 @@
 
     >a {
       font-size: 16px;
+      color: var(--color-white);
 
       >svg {
         color: var(--color-white);
