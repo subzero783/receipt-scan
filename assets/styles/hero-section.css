@@ -2,14 +2,15 @@
   z-index: 1;
   background-color: var(--color-secondary);
   padding: 152px var(--container-padding) 80px;
-  > .container {
-    > .row {
+
+  >.container {
+    >.row {
       border-radius: 16px;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-image: url("/images/hero/hero-image.png");
     }
+
     .col {
       display: flex;
       margin: 0 auto;
@@ -19,20 +20,25 @@
       flex-flow: column nowrap;
       color: var(--color-white);
       max-width: 768px;
+
       h1 {
         font-size: 52px;
         font-weight: 600;
-        @media screen and (max-width: 768px){
+
+        @media screen and (max-width: 768px) {
           font-size: 36px;
         }
       }
+
       p {
         font-size: 16px;
         padding: 24px 0 32px;
       }
+
       .buttons {
-        > a {
+        >a {
           font-size: 14px;
+
           &:first-of-type {
             margin-right: 10px;
           }

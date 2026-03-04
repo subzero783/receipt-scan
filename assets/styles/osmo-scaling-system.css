@@ -600,6 +600,20 @@ strong {
   }
 }
 
+.btn-seventh {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: 1px solid var(--color-primary);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: transparent;
+    color: var(--color-white);
+    border-color: var(--color-white);
+  }
+}
+
 .btn-alert {
   color: var(--color-white);
   background-color: var(--color-red);

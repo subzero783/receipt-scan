@@ -10,13 +10,13 @@ export default async function Home() {
   const how_it_works = siteData[1].home_page.how_it_works;
   const features = siteData[1].home_page.features;
   const testimonials = siteData[1].home_page.testimonials;
-  
+
 
   return (
     <div className="home-page">
-      <HeroSection data={hero_section} />
+      <HeroSection data={hero_section} background_image={hero_section.background_image} />
       <HowItWorks data={how_it_works} />
-      <Features data={features} />  
+      <Features data={features} />
       <Testimonials data={testimonials} />
     </div>
   );
