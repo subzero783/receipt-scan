@@ -529,9 +529,8 @@
         ]
       },
       "cta": {
-        "small_title": "Ready to get started?",
-        "title": "Ready to reclaim your time",
-        "subtitle": "Stop wrestling with receipts. Start building your business instead.",
+        "title": "Ready to ditch the receipt chaos",
+        "subtitle": "Join thousands of freelancers and agencies saving hours every month.",
         "buttons": [
           {
             "text": "Start",
@@ -605,6 +604,96 @@
           }
         ],
         "background_image": "/images/hero/hero-image.png"
+      },
+      "extraction_description_section": {
+        "title": "Extraction",
+        "subtitle": "Stop typing out merchant names and totals. Our advanced AI scans your receipt images and PDFs, extracting the exact merchant, date, total amount, and category with pinpoint accuracy in seconds. Supports JPG, PNG, and PDF formats. Multi-language recognition. Automatic categorization.",
+        "buttons": [
+          {
+            "text": "Start for Free",
+            "link": "/signup"
+          },
+          {
+            "text": "See Pricing",
+            "link": "/pricing"
+          }
+        ]
+      },
+      "upload_description_section": {
+        "title": "Upload from Anywhere",
+        "subtitle": "Upload receipts from anywhere, by sending to a personal email provided.",
+        "buttons": [
+          {
+            "text": "Start for Free",
+            "link": "/signup"
+          },
+          {
+            "text": "See Pricing",
+            "link": "/pricing"
+          }
+        ]
+      },
+      "personal_analyst_description_section": {
+        "title": "Personal Analyst",
+        "subtitle": "Get a clear picture of your spending. Our dashboard breaks down your expenses by category and uses AI to analyze your spending habits, spotting anomalies and suggesting tax deduction opportunities.",
+        "buttons": [
+          {
+            "text": "Start for Free",
+            "link": "/signup"
+          },
+          {
+            "text": "See Pricing",
+            "link": "/pricing"
+          }
+        ]
+      },
+      "tools": {
+        "small_title": "More",
+        "title": "Tools to simplify your workflow",
+        "subtitle": "Select receipts and instantly generate a professional, printable invoice report for your clients.",
+        "tools": [
+          {
+            "small_title": "Invoices",
+            "title": "Generate invoices",
+            "text": "Select receipts and instantly generate a professional, printable invoice report for your clients.",
+            "button": {
+              "text": "Start for Free",
+              "link": "/signup"
+            }
+          },
+          {
+            "small_title": "Export",
+            "title": "CSV and ZIP exports",
+            "text": "Download your extracted data as a CSV for Excel, or export all your receipt images in a single ZIP file for tax season.",
+            "button": {
+              "text": "Start for Free",
+              "link": "/signup"
+            }
+          },
+          {
+            "small_title": "Email",
+            "title": "Email Receipts to Anyone",
+            "text": "Send your receipts to anyone, anywhere, and with the attached receipt images and CSV file, they can easily import your receipts into their accounting software.",
+            "button": {
+              "text": "Start for Free",
+              "link": "/signup"
+            }
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to reclaim your time",
+        "subtitle": "Stop wrestling with receipts. Start building your business instead.",
+        "buttons": [
+          {
+            "text": "Start",
+            "link": "/signup"
+          },
+          {
+            "text": "Learn More",
+            "link": "/features"
+          }
+        ]
       }
     }
   }
