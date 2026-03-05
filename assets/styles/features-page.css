@@ -1,1 +1,20 @@
-.features_page {}
+.features_page {
+    .extraction-description-section {
+        padding: 120px 0;
+
+        .row {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: space-between;
+
+            .left-column {
+                width: 50%;
+            }
+
+            .right-column {
+                width: 50%;
+            }
+        }
+    }
+}

@@ -606,8 +606,10 @@
         "background_image": "/images/hero/hero-image.png"
       },
       "extraction_description_section": {
-        "title": "Extraction",
+        "title": "Instant AI-powered extraction",
         "subtitle": "Stop typing out merchant names and totals. Our advanced AI scans your receipt images and PDFs, extracting the exact merchant, date, total amount, and category with pinpoint accuracy in seconds. Supports JPG, PNG, and PDF formats. Multi-language recognition. Automatic categorization.",
+        "image": "/images/hero/hero-image.png",
+        "image_alt": "Receipt AI",
         "buttons": [
           {
             "text": "Start for Free",
@@ -620,8 +622,10 @@
         ]
       },
       "upload_description_section": {
-        "title": "Upload from Anywhere",
+        "title": "Upload from Anywhere, even Your Email Inbox",
         "subtitle": "Upload receipts from anywhere, by sending to a personal email provided.",
+        "image": "/images/hero/hero-image.png",
+        "image_alt": "Receipt AI",
         "buttons": [
           {
             "text": "Start for Free",
@@ -634,8 +638,21 @@
         ]
       },
       "personal_analyst_description_section": {
-        "title": "Personal Analyst",
+        "title": "Your Personal AI Financial Analyst",
         "subtitle": "Get a clear picture of your spending. Our dashboard breaks down your expenses by category and uses AI to analyze your spending habits, spotting anomalies and suggesting tax deduction opportunities.",
+        "image": "/images/hero/hero-image.png",
+        "image_alt": "Receipt AI",
+        "list": [
+          {
+            "text": "Spending Breakdown by Category"
+          },
+          {
+            "text": "AI-powered Anomaly Detection"
+          },
+          {
+            "text": "Tax Reduction Recommendations"
+          }
+        ],
         "buttons": [
           {
             "text": "Start for Free",
@@ -656,6 +673,8 @@
             "small_title": "Invoices",
             "title": "Generate invoices",
             "text": "Select receipts and instantly generate a professional, printable invoice report for your clients.",
+            "image": "/images/hero/hero-image.png",
+            "image_alt": "Receipt AI",
             "button": {
               "text": "Start for Free",
               "link": "/signup"
@@ -665,6 +684,8 @@
             "small_title": "Export",
             "title": "CSV and ZIP exports",
             "text": "Download your extracted data as a CSV for Excel, or export all your receipt images in a single ZIP file for tax season.",
+            "image": "/images/hero/hero-image.png",
+            "image_alt": "Receipt AI",
             "button": {
               "text": "Start for Free",
               "link": "/signup"
@@ -674,6 +695,8 @@
             "small_title": "Email",
             "title": "Email Receipts to Anyone",
             "text": "Send your receipts to anyone, anywhere, and with the attached receipt images and CSV file, they can easily import your receipts into their accounting software.",
+            "image": "/images/hero/hero-image.png",
+            "image_alt": "Receipt AI",
             "button": {
               "text": "Start for Free",
               "link": "/signup"
