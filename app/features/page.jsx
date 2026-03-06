@@ -1,7 +1,7 @@
 import siteData from "@/data/siteData.json";
 import HeroSection from "@/components/HeroSection";
 import CallToActionTwo from "@/components/CallToActionTwo";
-import Image from "next/image";
+import TwoColumns from "@/components/TwoColumns";
 
 const FeaturesPage = () => {
 
@@ -20,23 +20,8 @@ const FeaturesPage = () => {
     <div className="features_page">
       <HeroSection data={hero_section} />
 
-      <section className="extraction-description-section">
-        <div className="container">
-          <div className="row">
-            <div className="col left-column">
-              <div className="content">
-                <h2 className="title">{extraction_description_section.title}</h2>
-                <p className="description">{extraction_description_section.subtitle}</p>
-              </div>
-            </div>
-            <div className="col right-column">
-              <div className="image-wrapper">
-                <Image width={0} height={0} src={extraction_description_section.image} alt={extraction_description_section.image_alt} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TwoColumns data={extraction_description_section} text_direction="right" />
+
       <section className="upload-description-section"></section>
       <section className="personal-analyst-description-section"></section>
       <section className="tools-description-section"></section>
