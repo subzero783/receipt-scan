@@ -1,18 +1,17 @@
-import { IoDocumentTextOutline } from "react-icons/io5";
 import Link from "next/link";
 
-const TwoColumns = ({ data, text_direction }) => {
+const TwoColumns = ({ data, text_direction, section_class, icon }) => {
 
     const { title, subtitle, buttons, image } = data;
 
     return (
-        <section className={`two-columns-section ${text_direction}`}>
+        <section className={`two-columns-section ${text_direction} ${section_class}`}>
             <div className="container">
                 <div className="row">
                     <div className="col left-column">
                         <div className="content">
                             <div className="icon-wrapper">
-                                <IoDocumentTextOutline />
+                                {icon}
                             </div>
                             <div className="text-wrapper">
                                 <h2 className="title">{title}</h2>

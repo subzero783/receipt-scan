@@ -1,59 +1,11 @@
 .features_page {
 
-    .extraction-description-section,
-    .upload-description-section,
-    .personal-analyst-description-section,
-    .tools-description-section {
-        padding: 112px 0;
-
-        .row {
-            display: flex;
-            flex-flow: row nowrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 80px;
-
-            .left-column {
-                width: 50%;
-            }
-
-            .right-column {
-                width: 50%;
-
-                .background-image {
-                    border-radius: 16px;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    background-position: center;
-                    min-height: 640px;
-                }
-            }
-
-            .text-wrapper {
-                .title {
-                    margin-bottom: 24px;
-                }
-
-                .description {
-                    font-size: 16px;
-                    margin-bottom: 32px;
-                }
-            }
-
-            .buttons-wrapper {
-                display: flex;
-                flex-flow: row nowrap;
-                gap: 16px;
-            }
-
-        }
+    .upload-description-section {
+        background-color: var(--color-third);
+        color: var(--color-dark);
     }
 
-    .extraction-description-section {
-        .icon-wrapper {
-            svg {
-                font-size: 80px;
-            }
-        }
+    .cta-2-section {
+        background-color: var(--color-white);
     }
 }

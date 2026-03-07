@@ -36,6 +36,7 @@
 @import "account-settings.css";
 @import "manage-subscription-section.css";
 @import "two-columns-section.css";
+@import "tools-section.css";
 
 
 /* Text */
@@ -66,6 +67,7 @@
 
   .small-title {
     margin-bottom: 16px;
+    font-size: 16px;
 
     @media screen and (max-width: 768px) {
       margin-bottom: 12px;

@@ -1,0 +1,105 @@
+.tools-section {
+    padding: 112px 0;
+    background-color: var(--color-fifth);
+
+    .top-text {
+        color: var(--color-white);
+    }
+
+    .tools-row {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 32px;
+
+        .col {
+            width: calc(33.333% - 32px);
+
+            .tool-image {
+                width: 100%;
+                height: 233px;
+                background-size: cover;
+                background-position: center;
+                border-top-left-radius: 16px;
+                border-top-right-radius: 16px;
+            }
+
+            .text-wrapper {
+                padding: 32px;
+                background-color: var(--color-primary);
+                border-bottom-left-radius: 16px;
+                border-bottom-right-radius: 16px;
+                color: var(--color-white);
+
+                .small-title {
+                    margin-bottom: 8px;
+                    display: block;
+                }
+
+                .title {
+                    margin-bottom: 16px;
+                    font-size: 36px;
+                    font-weight: 600;
+                }
+
+                .description {
+                    font-size: 16px;
+                    margin-bottom: 24px;
+                }
+
+                .btn {
+                    font-size: 14px;
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        background-color: var(--color-white);
+                        color: var(--color-primary);
+
+
+                    }
+                }
+
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+            gap: 24px;
+            flex-flow: column wrap;
+
+
+            .col {
+                width: 100%;
+
+                .text-wrapper {
+                    padding: 24px;
+
+                    .small-title {
+                        font-size: 14px;
+                    }
+
+                    .title {
+                        font-size: 24px;
+                    }
+
+                    .description {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+
+
+        @media screen and (max-width: 768px) {
+
+            .col {
+                width: 100%;
+            }
+        }
+    }
+
+    @media screen and (max-width: 991px) {
+        padding: 64px 0;
+    }
+}

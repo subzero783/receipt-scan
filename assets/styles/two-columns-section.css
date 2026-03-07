@@ -5,6 +5,11 @@
     &.right {
         .row {
             flex-direction: row-reverse;
+
+            @media screen and (max-width: 991px) {
+
+                flex-direction: column;
+            }
         }
     }
 
@@ -21,14 +26,14 @@
 
         .right-column {
             width: 50%;
+        }
 
-            .background-image {
-                border-radius: 16px;
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center;
-                min-height: 640px;
-            }
+        .background-image {
+            border-radius: 16px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            min-height: 640px;
         }
 
     }
@@ -45,6 +50,10 @@
             .left-column,
             .right-column {
                 width: 100%;
+            }
+
+            .background-image {
+                min-height: 348px;
             }
         }
     }
