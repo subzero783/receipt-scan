@@ -9,21 +9,27 @@ const HeroSection = ({ data }) => {
       <div className="container">
         <div className="row" style={{ backgroundImage: `url(${background_image})` }}>
           <div className="col">
-            <h1>{title}</h1>
-            <p className="subtitle">{subtitle}</p>
-            <div className="buttons">
-              {
-                buttons.map((item, index) => (
-                  <Link
-                    href={item.link}
-                    className="btn btn-seventh"
-                    key={index}
-                  >
-                    {item.text}
-                  </Link>
-                ))
-              }
-            </div>
+            {
+              title && <h1>{title}</h1>
+            }
+            {
+              subtitle && <p className="subtitle">{subtitle}</p>
+            }
+            {
+              buttons && <div className="buttons">
+                {
+                  buttons.map((item, index) => (
+                    <Link
+                      href={item.link}
+                      className="btn btn-seventh"
+                      key={index}
+                    >
+                      {item.text}
+                    </Link>
+                  ))
+                }
+              </div>
+            }
           </div>
         </div>
       </div>

@@ -20,6 +20,11 @@
     ]
   },
   {
+    "contact_info": {
+      "email": "contact@receiptscan.org"
+    }
+  },
+  {
     "home_page": {
       "hero_section": {
         "title": "Say goodbye to your messy receipt shoebox",
@@ -237,10 +242,6 @@
       {
         "menu_name": "Legal",
         "menu_items": [
-          {
-            "name": "Cookies",
-            "link": "/cookies"
-          },
           {
             "name": "Privacy Policy",
             "link": "/privacy"
@@ -717,6 +718,30 @@
             "link": "/features"
           }
         ]
+      }
+    }
+  },
+  {
+    "terms_page": {
+      "hero_section": {
+        "title": "Terms of Service",
+        "subtitle": "Last updated: March 10, 2026"
+      }
+    }
+  },
+  {
+    "privacy_policy_page": {
+      "hero_section": {
+        "title": "Privacy Policy",
+        "subtitle": "Last updated: March 10, 2026"
+      }
+    }
+  },
+  {
+    "contact_page": {
+      "hero_section": {
+        "title": "Contact Us",
+        "subtitle": "We'd love to hear from you. Whether you have a question, need support, or want to share feedback, we're here to help."
       }
     }
   }

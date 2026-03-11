@@ -9,6 +9,9 @@ const Footer = () => {
 
   const { data: session } = useSession();
 
+  const footer_menu = siteData.find(item => item.footer_menu)?.footer_menu;
+
+
   return (
     <section className="footer">
       <div className="container top-footer">
@@ -17,7 +20,7 @@ const Footer = () => {
             <div className="col">
               <LogoLinkImage />
             </div>
-            {siteData[3].footer_menu.map((item, index) => (
+            {footer_menu.map((item, index) => (
               <div
                 className="col"
                 key={index}
@@ -36,18 +39,18 @@ const Footer = () => {
                       return null;
                     }
 
-                    return(
-                    <Link
-                      key={index}
-                      href={item.link}
-                    >
-                      {item.name}
-                    </Link>
+                    return (
+                      <Link
+                        key={index}
+                        href={item.link}
+                      >
+                        {item.name}
+                      </Link>
                     )
                   })}
                 </div>
               </div>
-              ))}
+            ))}
           </div>
           <div className="col subscribe-column">
             <h3>Subscribe</h3>
@@ -60,7 +63,7 @@ const Footer = () => {
         <div className="row">
           <div className="col copyright-column">
             <p>&#169; 2024 Receipt AI Manager. All rights reserved</p>
-            {siteData[3].footer_menu
+            {footer_menu
               .find((menu) => menu.menu_name === "Legal")
               ?.menu_items.map((item, index) => (
                 <Link

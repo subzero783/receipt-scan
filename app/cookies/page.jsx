@@ -1,5 +1,5 @@
 const CookiesPage = () => {
-  return <div>CookiesPage</div>;
+  return <div>Cookies Page</div>;
 };
 
 export default CookiesPage;

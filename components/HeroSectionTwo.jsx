@@ -9,22 +9,30 @@ const HeroSectionTwo = ({ data }) => {
         <div className="row">
           <div className="col">
             <div className="top-text">
-              <p className="small-title">{small_title}</p>
-              <h1 className="title">{title}</h1>
-              <p className="subtitle">{subtitle}</p>
-              {buttons && buttons.length > 0 && (
-                <div className="buttons">
-                  {buttons.map((item, index) => (
-                    <Link
-                      key={index}
-                      href={item.link}
-                      className="btn btn-primary"
-                    >
-                      {item.text}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              {
+                small_title && <p className="small-title">{small_title}</p>
+              }
+              {
+                title && <h1 className="title">{title}</h1>
+              }
+              {
+                subtitle && <p className="subtitle">{subtitle}</p>
+              }
+              {
+                buttons && buttons.length > 0 && (
+                  <div className="buttons">
+                    {buttons.map((item, index) => (
+                      <Link
+                        key={index}
+                        href={item.link}
+                        className="btn btn-primary"
+                      >
+                        {item.text}
+                      </Link>
+                    ))}
+                  </div>
+                )
+              }
             </div>
           </div>
         </div>
