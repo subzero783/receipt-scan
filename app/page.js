@@ -6,11 +6,14 @@ import siteData from '@/data/siteData.json';
 
 export default async function Home() {
 
-  const hero_section = siteData[1].home_page.hero_section;
-  const how_it_works = siteData[1].home_page.how_it_works;
-  const features = siteData[1].home_page.features;
-  const testimonials = siteData[1].home_page.testimonials;
+  const homeData = siteData.find(item => item.home_page)?.home_page;
 
+  if (!homeData) return <div>Loading...</div>;
+
+  const hero_section = homeData.hero_section;
+  const how_it_works = homeData.how_it_works;
+  const features = homeData.features;
+  const testimonials = homeData.testimonials;
 
   return (
     <div className="home-page">

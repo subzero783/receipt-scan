@@ -41,8 +41,18 @@ const AweberSubscribeFormOne = () => {
                                     name="name"
                                     className="text"
                                     defaultValue=""
-                                    onFocus=" if (this.value == '') { this.value = ''; }"
-                                    onBlur="if (this.value == '') { this.value='';} "
+                                    onFocus={(e) => {
+                                        {
+                                            if (e.target.value === "") {
+                                                e.target.value = "";
+                                            }
+                                        }
+                                    }}
+                                    onBlur={(e) => {
+                                        if (e.target.value === "") {
+                                            e.target.value = "";
+                                        }
+                                    }}
                                     tabIndex={500}
                                 />
                             </div>
@@ -60,8 +70,18 @@ const AweberSubscribeFormOne = () => {
                                     name="email"
                                     defaultValue=""
                                     tabIndex={501}
-                                    onFocus=" if (this.value == '') { this.value = ''; }"
-                                    onBlur="if (this.value == '') { this.value='';}"
+                                    onFocus={(e) => {
+                                        {
+                                            if (e.target.value === "") {
+                                                e.target.value = "";
+                                            }
+                                        }
+                                    }}
+                                    onBlur={(e) => {
+                                        if (e.target.value === "") {
+                                            e.target.value = "";
+                                        }
+                                    }}
                                 />
                             </div>
                             <div className="af-clear" />

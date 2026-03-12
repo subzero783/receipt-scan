@@ -13,7 +13,10 @@ const BlogIndexPage = () => {
   const [pageSize, setPageSize] = useState(4);
   const [totalPosts, setTotalPosts] = useState(0);
 
-  const blog_index = siteData[9].blog_index;
+  const blog_index = siteData.find(item => item.blog_index)?.blog_index;
+
+  if (!blog_index) return <div>Loading...</div>;
+
   const hero_section = blog_index.hero_section;
 
   useEffect(() => {
