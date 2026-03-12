@@ -14,7 +14,7 @@ const ContactForm = () => {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <AweberSubscribeFormOne />
+
                     </div>
                     <div className="col">
                         <div className="contact-info">

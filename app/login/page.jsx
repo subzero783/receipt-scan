@@ -13,7 +13,10 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const { data: session, status: sessionStatus } = useSession();
 
-  const signin_data = siteData[5].signin_page;
+  const signin_data = siteData.find(item => item.signin_page)?.signin_page;
+
+  if (!signin_data) return <div>Loading...</div>;
+
   const hero_section = signin_data.hero_section;
   const cta = signin_data.cta;
 

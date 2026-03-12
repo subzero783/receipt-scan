@@ -4,13 +4,13 @@ import SocialMedia from "@/components/SocialMedia";
 import LogoLinkImage from "./LogoLinkImage";
 import { useSession } from "next-auth/react";
 import siteData from "@/data/siteData.json";
+import AweberSubscribeFormOne from '@/components/AweberSubscribeFormOne';
 
 const Footer = () => {
 
   const { data: session } = useSession();
 
   const footer_menu = siteData.find(item => item.footer_menu)?.footer_menu;
-
 
   return (
     <section className="footer">
@@ -55,7 +55,7 @@ const Footer = () => {
           <div className="col subscribe-column">
             <h3>Subscribe</h3>
             <p>Stay updated with our latest features and product improvements</p>
-            {/* Email subscription signup Goes Here */}
+            <AweberSubscribeFormOne />
           </div>
         </div>
       </div>

@@ -14,10 +14,12 @@ const SignupPage = () => {
   const router = useRouter();
   const { data: session, status: sessionStatus } = useSession();
 
-  const signup_data = siteData[6].signup_page;
-  const hero_section = signup_data.hero_section;
+  const signup_data = siteData.find(item => item.signup_page)?.signup_page;
+
+  if (!signup_data) return <div>Loading...</div>;
+
   const registration_section = signup_data.registration;
-  const faqs = siteData[7].faqs;
+  const faqs = siteData.find(item => item.faqs)?.faqs;
 
   useEffect(() => {
     if (sessionStatus === "authenticated") {
