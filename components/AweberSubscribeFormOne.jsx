@@ -89,7 +89,7 @@ const AweberSubscribeFormOne = () => {
                         <div className="af-element buttonContainer">
                             <input
                                 name="submit"
-                                className="submit"
+                                className="submit btn btn-secondary"
                                 type="submit"
                                 defaultValue="Submit"
                                 tabIndex={502}

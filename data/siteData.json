@@ -191,6 +191,11 @@
         "name": "Pricing",
         "link": "/pricing",
         "guest_only": false
+      },
+      {
+        "name": "Contact",
+        "link": "/contact",
+        "guest_only": false
       }
     ]
   },
@@ -235,7 +240,8 @@
           },
           {
             "name": "Contact",
-            "link": "/contact"
+            "link": "/contact",
+            "guest_only": false
           }
         ]
       },

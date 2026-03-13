@@ -4,5 +4,36 @@
         display: flex;
         flex-flow: column nowrap;
         gap: 16px;
+
+        .af-textWrap {
+            input {
+                width: 100%;
+                color: var(--color-black);
+                border: unset;
+                border-radius: 14px;
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+
+        label {
+            color: var(--color-white);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .submit {
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--color-black);
+
+            &:hover,
+            &:active,
+            &:focus {
+                color: var(--color-white);
+            }
+        }
     }
 }

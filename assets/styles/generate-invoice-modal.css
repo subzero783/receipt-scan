@@ -27,8 +27,11 @@
             padding: 20px;
             border-right: 1px solid #e2e8f0;
             overflow-y: auto;
+            border-top-left-radius: 16px;
+            border-bottom-left-radius: 16px;
 
             @media screen and (max-width: 991px) {
+                border-radius: 16px;
                 width: 100%;
             }
 
@@ -64,6 +67,13 @@
             overflow-y: auto;
             background: var(--color-white);
             font-size: 14px;
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+
+            @media screen and (max-width: 991px) {
+                border-radius: 16px;
+                margin-top: 20px;
+            }
 
             .invoice-preview-title {
                 margin-bottom: 16px;
@@ -71,7 +81,6 @@
                 font-weight: 600;
             }
 
-            /* PDF document styling which should also be applied to the Preview Panel to see the exact same styling*/
             .invoice-header {
                 display: flex;
                 justify-content: space-between;
