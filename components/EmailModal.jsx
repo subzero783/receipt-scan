@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaTimes, FapaperPlane } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 
 const EmailModal = ({ isOpen, onClose, onSend, isSending, defaultEmail = '' }) => {
     const [message, setMessage] = useState('');
