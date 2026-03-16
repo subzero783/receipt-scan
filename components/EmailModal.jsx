@@ -17,16 +17,14 @@ const EmailModal = ({ isOpen, onClose, onSend, isSending, defaultEmail = '' }) =
     };
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content" style={{ maxWidth: '500px' }}>
+        <div className="email-modal-overlay">
+            <div className="modal-content">
                 <button className="close-btn" onClick={onClose}>
                     <FaTimes />
                 </button>
 
-                <h3>Email Selected Receipts</h3>
-                <p style={{ marginBottom: '16px', color: '#64748b' }}>
-                    Send the selected receipts to an email address. You can add an optional note below.
-                </p>
+                <h3 className="modal-title">Email Selected Receipts</h3>
+                <p className="modal-description">Send the selected receipts to an email address. You can add an optional note below.</p>
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -36,71 +34,61 @@ const EmailModal = ({ isOpen, onClose, onSend, isSending, defaultEmail = '' }) =
                             value={recipientEmail}
                             onChange={(e) => setRecipientEmail(e.target.value)}
                             placeholder="Enter recipient email"
+                            className="email-input"
                             required
-                            style={{
-                                width: '100%',
-                                padding: '10px',
-                                borderRadius: '6px',
-                                border: '1px solid #cbd5e1',
-                                marginBottom: '10px'
-                            }}
                         />
                     </div>
 
                     <div className="form-group">
                         <label>Message (Optional)</label>
                         <textarea
-                            rows="4"
+                            rows="6"
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                             placeholder="Add a note to your email..."
-                            style={{
-                                width: '100%',
-                                padding: '10px',
-                                borderRadius: '6px',
-                                border: '1px solid #cbd5e1',
-                                resize: 'vertical'
-                            }}
                         />
                     </div>
 
-                    <div className="form-group" style={{ display: 'flex', gap: '20px', marginTop: '10px' }}>
-                        <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: '8px' }}>
-                            <input
-                                type="checkbox"
-                                checked={includeZip}
-                                onChange={(e) => setIncludeZip(e.target.checked)}
-                            />
-                            Attach Images (ZIP)
-                        </label>
-                        <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: '8px' }}>
-                            <input
-                                type="checkbox"
-                                checked={includeCsv}
-                                onChange={(e) => setIncludeCsv(e.target.checked)}
-                            />
-                            Attach Data (CSV)
-                        </label>
+                    <div className="checkboxes-and-actions">
+
+                        <div className="form-group checkbox-group">
+                            <label className="checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    checked={includeZip}
+                                    onChange={(e) => setIncludeZip(e.target.checked)}
+                                />
+                                <div>Attach Images (ZIP)</div>
+                            </label>
+                            <label className="checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    checked={includeCsv}
+                                    onChange={(e) => setIncludeCsv(e.target.checked)}
+                                />
+                                <div>Attach Data (CSV)</div>
+                            </label>
+                        </div>
+
+                        <div className="modal-actions">
+                            <button
+                                type="button"
+                                className="btn btn-secondary"
+                                onClick={onClose}
+                                disabled={isSending}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="submit"
+                                className="btn btn-secondary"
+                                disabled={isSending}
+                            >
+                                {isSending ? 'Sending...' : 'Send Email'}
+                            </button>
+                        </div>
                     </div>
 
-                    <div className="modal-actions" style={{ justifyContent: 'flex-end', gap: '10px', marginTop: '20px', display: 'flex' }}>
-                        <button
-                            type="button"
-                            className="btn btn-secondary"
-                            onClick={onClose}
-                            disabled={isSending}
-                            style={{ background: '#e2e8f0', color: '#475569', border: 'none', padding: '10px 20px', borderRadius: '6px', cursor: 'pointer' }}
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            type="submit"
-                            className="btn btn-primary"
-                            disabled={isSending}
-                        >
-                            {isSending ? 'Sending...' : 'Send Email'}
-                        </button>
-                    </div>
                 </form>
             </div>
         </div>

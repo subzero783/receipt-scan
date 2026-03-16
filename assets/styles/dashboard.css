@@ -184,7 +184,7 @@
 }
 
 /* Modal Styles */
-.modal-overlay {
+.email-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -201,100 +201,138 @@
             flex-flow: column nowrap;
         }
     }
-}
 
-.modal-content {
-    background: var(--color-white);
-    width: 90%;
-    max-width: 900px;
-    height: 80vh;
-    border-radius: 16px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
+    .modal-content {
+        background: var(--color-primary);
+        width: 90%;
+        max-width: 900px;
+        padding: 24px;
+        height: 80vh;
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
 
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #64748b;
-    z-index: 10;
-}
+        .modal-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--color-white);
+        }
 
-.modal-grid {
-    display: flex;
-    height: 100%;
-}
-
-.modal-image-col {
-    flex: 1;
-    background: var(--color-primary);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-white);
-
-    h3 {
-        margin-bottom: 20px;
+        .modal-description {
+            margin-bottom: 16px;
+            color: var(--color-white);
+        }
     }
 
-    >a {
-        font-size: 14px;
+    .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--color-white);
+        z-index: 10;
     }
 
-    .no-image-placeholder {
-        font-size: 14px;
+    .form-group {
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 16px;
+            color: var(--color-white);
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            margin-bottom: 20px
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+        }
     }
-}
 
-.image-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin-bottom: 10px;
-}
+    .checkboxes-and-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-flow: row nowrap;
+        margin-top: 20px;
 
-.modal-form-col {
-    flex: 1;
-    padding: 40px;
-    overflow-y: auto;
-}
+        .checkbox-group {
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 10px;
+            width: 70%;
 
-.modal-form-col h3 {
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    color: #1e293b;
-}
+            .checkbox-label {
+                gap: 8px;
+                display: flex;
+                align-items: center;
+                flex-flow: row nowrap;
 
-.form-group {
-    margin-bottom: 20px;
-}
+                input {
+                    width: unset;
+                }
+            }
+        }
 
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    font-size: 16px;
-    color: #475569;
-}
+        .modal-actions {
+            width: 30%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
 
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 1rem;
-}
+            .btn {
+                color: var(--color-primary);
+                background-color: var(--color-white);
 
-.modal-actions {
-    margin-top: 30px;
+                &:hover,
+                &:focus,
+                &:active {
+                    background-color: transparent;
+                    color: var(--color-white);
+                }
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+            flex-flow: column nowrap;
+            align-items: flex-start;
+
+            .checkbox-group {
+                width: 100%;
+            }
+
+            .modal-actions {
+                width: 100%;
+                margin-top: 20px;
+                justify-content: flex-start;
+            }
+        }
+    }
+
 }

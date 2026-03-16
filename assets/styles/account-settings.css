@@ -107,11 +107,14 @@
     font-size: 14px;
 }
 
-.upload-profile-btn:hover,
-.upload-profile-btn:focus,
-.upload-profile-btn:active {
-    background-color: var(--color-white);
-    color: var(--color-fifth);
+.upload-profile-btn {
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: var(--color-white);
+        color: var(--color-fifth);
+    }
 }
 
 .hidden-input {
@@ -146,12 +149,10 @@
 }
 
 .password-form-group {
-    align-items: flex-start;
 
     .passwords-container {
         display: flex;
         flex-flow: column nowrap;
-        gap: 16px;
     }
 }
 
@@ -165,7 +166,7 @@
     border: none;
     border-bottom: 1px solid #ffffff4d;
     padding: 8px 0;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--color-white);
     outline: none;
     transition: border-bottom-color 0.2s;
@@ -174,24 +175,30 @@
     appearance: none;
 }
 
-.form-input:-webkit-autofill,
-.form-input:-webkit-autofill:hover,
-.form-input:-webkit-autofill:focus,
-.form-input:-webkit-autofill:active {
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: var(--color-white);
-    transition: background-color 5000s ease-in-out 0s;
+.form-input:-webkit-autofill {
+
+    &:hover,
+    &:focus,
+    &:active {
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: var(--color-white);
+        transition: background-color 5000s ease-in-out 0s;
+    }
 }
 
-.form-input:focus,
-.form-textarea:focus,
-.form-select:focus {
-    border-bottom: 1px solid var(--color-white);
+.form-input,
+.form-textarea,
+.form-select {
+    &:focus {
+        border-bottom: 1px solid var(--color-white);
+    }
 }
 
-.form-input::placeholder,
-.form-textarea::placeholder {
-    color: var(--color-white);
+.form-input,
+.form-textarea {
+    &::placeholder {
+        color: var(--color-white);
+    }
 }
 
 .form-textarea {

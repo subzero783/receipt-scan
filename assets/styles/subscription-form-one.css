@@ -7,7 +7,7 @@
 
         .af-textWrap {
             input {
-                width: 100%;
+                width: 70%;
                 color: var(--color-black);
                 border: unset;
                 border-radius: 14px;
