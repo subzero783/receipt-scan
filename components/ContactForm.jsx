@@ -42,7 +42,7 @@ const ContactForm = () => {
     };
 
     return (
-        <section className="contact-form">
+        <section className="contact-form-section">
             <div className="container">
                 <div className="row">
                     <div className="col contact-form-wrapper">
@@ -67,7 +67,7 @@ const ContactForm = () => {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="message">Message</label>
-                                    <textarea id="message" name="message" className="form-control" rows="5" required value={formData.message} onChange={handleChange}></textarea>
+                                    <textarea id="message" name="message" className="form-control" rows="5" required value={formData.message} onChange={handleChange} placeholder="Type your message..."></textarea>
                                 </div>
                                 <button type="submit" className="btn btn-primary" disabled={status.submitting}>
                                     {status.submitting ? 'Submitting...' : 'Submit'}

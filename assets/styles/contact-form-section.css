@@ -1,0 +1,92 @@
+.contact-form-section {
+    padding: 0 0 64px 0;
+    background-color: var(--color-secondary);
+
+    >.container {
+        >.row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 80px;
+
+            >.col {
+                width: 50%;
+
+                &.contact-form-wrapper {
+                    >form {
+                        .form-group {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 16px;
+                            margin-bottom: 24px;
+
+                            >label {
+                                color: var(--color-white);
+                                font-size: 16px;
+                            }
+
+                            >input,
+                            >textarea {
+                                width: 100%;
+                                color: var(--color-white);
+                                background: none;
+                                border: none;
+                                border-bottom: 1px solid #ffffff4d;
+                                outline: none;
+                                padding: 10px 0;
+                                font-size: 14px;
+                                transition: border-color .3s;
+
+                                &:focus {
+                                    border-bottom-color: var(--color-white);
+                                }
+
+                                &::placeholder {
+                                    color: var(--color-white);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .contact-info {
+                    .icon-wrapper {
+                        svg {
+                            width: 32px;
+                            height: 32px;
+                            fill: var(--color-white);
+                        }
+                    }
+
+                    h2 {
+                        font-size: 22px;
+                        font-weight: 600;
+                        color: var(--color-white);
+                        margin-bottom: 16px;
+                    }
+
+                    a {
+                        font-size: 16px;
+                        color: var(--color-white);
+                        text-decoration: underline;
+
+                        &:hover,
+                        &:focus,
+                        &:active {
+                            color: var(--color-black);
+                        }
+                    }
+                }
+            }
+
+            @media screen and (max-width: 768px) {
+                flex-direction: column;
+                gap: 40px;
+
+                >.col {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

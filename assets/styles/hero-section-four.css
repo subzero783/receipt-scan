@@ -1,10 +1,10 @@
 .hero-section-four {
     z-index: 1;
     background-color: var(--color-secondary);
-    padding: 152px 15px 80px;
+    padding: 152px 0;
 
     @media screen and (max-width: 768px) {
-        padding: 112px 15px 48px;
+        padding: 112px 0;
     }
 
     >.container {
