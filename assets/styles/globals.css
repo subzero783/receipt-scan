@@ -24,7 +24,6 @@
 @import "our-values-section.css";
 @import "about-page.css";
 @import "dashboard-filter-section.css";
-@import "generate-invoice-modal.css";
 @import "expense-breakdown.css";
 @import "recent-transactions.css";
 @import "ai-insights.css";
@@ -33,6 +32,7 @@
 @import "reset-password-page.css";
 @import "settings-page.css";
 @import "dashboard.css";
+@import "generate-invoice-modal.css";
 @import "account-settings.css";
 @import "manage-subscription-section.css";
 @import "two-columns-section.css";
@@ -42,6 +42,8 @@
 @import "contact-page.css";
 @import "subscription-form-one.css";
 @import "contact-form-section.css";
+@import "dashboard-edit-receipt-modal.css";
+@import "dashboard-email-modal.css";
 
 
 /* Text */

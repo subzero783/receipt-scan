@@ -36,6 +36,12 @@
         width: 75%;
     }
 
+    &.manage-subscription-group {
+        >a {
+            font-size: 14px;
+        }
+    }
+
     @media screen and (max-width: 768px) {
         flex-direction: column;
 

@@ -3,6 +3,7 @@ import HeroSectionTwo from "@/components/HeroSectionTwo";
 
 const TermsPage = () => {
   const termsData = siteData.find(item => item.terms_page)?.terms_page;
+  const contactEmail = siteData.find(item => item.contact_info)?.contact_info.email;
 
   if (!termsData) return <div>Loading...</div>;
 
@@ -25,10 +26,10 @@ const TermsPage = () => {
 
               <p>Your agreement with us includes these Terms and our Privacy Policy (“Agreements”). You acknowledge that you have read and understood Agreements, and agree to be bound of them.</p>
 
-              <p>If you do not agree with (or cannot comply with) Agreements, then you may not use the Service, but please let us know by emailing at contact@receiptscan.org so we can try to find a solution. These Terms apply to all visitors, users and others who wish to access or use Service.</p>
+              <p>If you do not agree with (or cannot comply with) Agreements, then you may not use the Service, but please let us know by emailing at {contactEmail} so we can try to find a solution. These Terms apply to all visitors, users and others who wish to access or use Service.</p>
 
               <h2>2. Communications</h2>
-              <p>By using our Service, you agree to subscribe to newsletters, marketing or promotional materials and other information we may send. However, you may opt out of receiving any, or all, of these communications from us by following the unsubscribe link or by emailing at contact@receiptscan.org.</p>
+              <p>By using our Service, you agree to subscribe to newsletters, marketing or promotional materials and other information we may send. However, you may opt out of receiving any, or all, of these communications from us by following the unsubscribe link or by emailing at {contactEmail}.</p>
 
               <h2>3. Purchases</h2>
               <p>If you wish to purchase any product or service made available through Service (“Purchase”), you may be asked to supply certain information relevant to your Purchase including but not limited to, your credit or debit card number, the expiration date of your card, your billing address, and your shipping information.</p>
@@ -47,7 +48,7 @@ const TermsPage = () => {
               <h2>5. Subscriptions</h2>
               <p>Some parts of Service are billed on a subscription basis ("Subscription(s)"). You will be billed in advance on a recurring and periodic basis ("Billing Cycle"). Billing cycles will be set depending on the type of subscription plan you select when purchasing a Subscription.</p>
 
-              <p>At the end of each Billing Cycle, your Subscription will automatically renew under the exact same conditions unless you cancel it or Receipt Scan cancels it. You may cancel your Subscription renewal either through your online account management page or by contacting contact@receiptscan.org.</p>
+              <p>At the end of each Billing Cycle, your Subscription will automatically renew under the exact same conditions unless you cancel it or Receipt Scan cancels it. You may cancel your Subscription renewal either through your online account management page or by contacting {contactEmail}.</p>
 
               <p>A valid payment method is required to process the payment for your subscription. You shall provide Receipt Scan with accurate and complete billing information that may include but not limited to full name, address, state, postal or zip code, telephone number, and a valid payment method information. By submitting such payment information, you automatically authorize Receipt Scan to charge all Subscription fees incurred through your account to any such payment instruments.</p>
 
@@ -120,7 +121,7 @@ const TermsPage = () => {
               <h2>14. Copyright Policy</h2>
               <p>We respect the intellectual property rights of others. It is our policy to respond to any claim that Content posted on Service infringes on the copyright or other intellectual property rights (“Infringement”) of any person or entity.</p>
 
-              <p>If you are a copyright owner, or authorized on behalf of one, and you believe that the copyrighted work has been copied in a way that constitutes copyright infringement, please submit your claim via email to contact@receiptscan.org, with the subject line: “Copyright Infringement” and include in your claim a detailed description of the alleged Infringement as detailed below, under “DMCA Notice and Procedure for Copyright Infringement Claims”</p>
+              <p>If you are a copyright owner, or authorized on behalf of one, and you believe that the copyrighted work has been copied in a way that constitutes copyright infringement, please submit your claim via email to {contactEmail}, with the subject line: “Copyright Infringement” and include in your claim a detailed description of the alleged Infringement as detailed below, under “DMCA Notice and Procedure for Copyright Infringement Claims”</p>
 
               <p>You may be held accountable for damages (including costs and attorneys’ fees) for misrepresentation or bad-faith claims on the infringement of any Content found on and/or through Service on your copyright.</p>
 
@@ -134,10 +135,10 @@ const TermsPage = () => {
               <p>0.5. a statement by you that you have a good faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law;</p>
               <p>0.6. a statement by you, made under penalty of perjury, that the above information in your notice is accurate and that you are the copyright owner or authorized to act on the copyright owner’s behalf.</p>
 
-              <p>You can contact our Copyright Agent via email at contact@receiptscan.org.</p>
+              <p>You can contact our Copyright Agent via email at {contactEmail}.</p>
 
               <h2>16. Error Reporting and Feedback</h2>
-              <p>You may provide us either directly at contact@receiptscan.org or via third party sites and tools with information and feedback concerning errors, suggestions for improvements, ideas, problems, complaints, and other matters related to our Service (“Feedback”). You acknowledge and agree that: (i) you shall not retain, acquire or assert any intellectual property right or other right, title or interest in or to the Feedback; (ii) Company may have development ideas similar to the Feedback; (iii) Feedback does not contain confidential information or proprietary information from you or any third party; and (iv) Company is not under any obligation of confidentiality with respect to the Feedback. In the event the transfer of the ownership to the Feedback is not possible due to applicable mandatory laws, you grant Company and its affiliates an exclusive, transferable, irrevocable, free-of-charge, sub-licensable, unlimited and perpetual right to use (including copy, modify, create derivative works, publish, distribute and commercialize) Feedback in any manner and for any purpose.</p>
+              <p>You may provide us either directly at {contactEmail} or via third party sites and tools with information and feedback concerning errors, suggestions for improvements, ideas, problems, complaints, and other matters related to our Service (“Feedback”). You acknowledge and agree that: (i) you shall not retain, acquire or assert any intellectual property right or other right, title or interest in or to the Feedback; (ii) Company may have development ideas similar to the Feedback; (iii) Feedback does not contain confidential information or proprietary information from you or any third party; and (iv) Company is not under any obligation of confidentiality with respect to the Feedback. In the event the transfer of the ownership to the Feedback is not possible due to applicable mandatory laws, you grant Company and its affiliates an exclusive, transferable, irrevocable, free-of-charge, sub-licensable, unlimited and perpetual right to use (including copy, modify, create derivative works, publish, distribute and commercialize) Feedback in any manner and for any purpose.</p>
 
               <h2>17. Links To Other Web Sites</h2>
               <p>Our Service may contain links to third party web sites or services that are not owned or controlled by Receipt Scan.</p>
@@ -193,7 +194,7 @@ const TermsPage = () => {
               <p>BY USING SERVICE OR OTHER SERVICES PROVIDED BY US, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE TERMS OF SERVICE AND AGREE TO BE BOUND BY THEM.</p>
 
               <h2>26. Contact Us</h2>
-              <p>Please send your feedback, comments, requests for technical support by email: contact@receiptscan.org.</p>
+              <p>Please send your feedback, comments, requests for technical support by email: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</p>
             </div>
           </div>
         </div>

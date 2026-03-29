@@ -44,7 +44,7 @@ const DashboardEditModal = ({
   };
 
   return (
-    <div className="modal-overlay">
+    <div className="edit-receipt-modal">
       <div className="modal-content">
         <button className="close-btn" onClick={() => setSelectedReceipt(null)}>
           <FaTimes />

@@ -19,146 +19,164 @@
             @media screen and (max-width: 991px) {
                 flex-flow: column nowrap;
             }
-        }
 
-        .invoice-edit {
-            width: 30%;
-            background: #f8fafc;
-            padding: 20px;
-            border-right: 1px solid #e2e8f0;
-            overflow-y: auto;
-            border-top-left-radius: 16px;
-            border-bottom-left-radius: 16px;
+            .invoice-edit {
+                width: 30%;
+                background: #f8fafc;
+                padding: 20px;
+                border-right: 1px solid #e2e8f0;
+                overflow-y: auto;
+                border-top-left-radius: 16px;
+                border-bottom-left-radius: 16px;
 
-            @media screen and (max-width: 991px) {
-                border-radius: 16px;
-                width: 100%;
+                @media screen and (max-width: 991px) {
+                    border-radius: 16px;
+                    width: 100%;
+                }
+
+                .save-pdf-btn {
+                    margin-bottom: 20px;
+                }
+
+                .form-group {
+                    margin-bottom: 20px;
+
+                    label {
+                        display: block;
+                        margin-bottom: 8px;
+                        font-weight: 500;
+                        font-size: 16px;
+                        color: #475569;
+                    }
+
+                    input,
+                    select {
+                        width: 100%;
+                        padding: 10px;
+                        border: 1px solid #cbd5e1;
+                        border-radius: 8px;
+                        font-size: 1rem;
+                    }
+                }
+
+
+                .edit-invoice-title {
+                    margin-bottom: 16px;
+                    font-size: 24px;
+                    font-weight: 600;
+                }
+
+                textarea {
+                    width: 100% !important;
+                    padding: 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 8px;
+                    resize: vertical;
+                }
+
             }
 
-            .save-pdf-btn {
-                margin-bottom: 20px;
-            }
+            .invoice-preview {
+                flex: 1;
+                padding: 40px;
+                overflow-y: auto;
+                background: var(--color-white);
+                font-size: 14px;
+                border-top-right-radius: 16px;
+                border-bottom-right-radius: 16px;
 
-            .form-group {
-                label {
+                @media screen and (max-width: 991px) {
+                    border-radius: 16px;
+                    margin-top: 20px;
+                }
+
+                .invoice-preview-title {
+                    margin-bottom: 16px;
+                    font-size: 24px;
+                    font-weight: 600;
+                }
+
+                .invoice-header {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 40px;
+                    border-bottom: 2px solid #eee;
+                    padding-bottom: 20px;
+                }
+
+                .invoice-title {
+                    font-size: 32px;
+                    font-weight: bold;
+                    color: #2c3e50;
+                }
+
+                .meta-group {
+                    text-align: right;
+                }
+
+                .addresses {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 40px;
+                }
+
+                .address-block h3 {
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    color: #7f8c8d;
+                    border-bottom: 1px solid #eee;
+                    padding-bottom: 5px;
+                    margin-bottom: 10px;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 30px;
+                }
+
+                th {
+                    text-align: left;
+                    padding: 12px;
+                    background: #f8f9fa;
+                    border-bottom: 2px solid #ddd;
+                    font-size: 12px;
+                    text-transform: uppercase;
+                }
+
+                td {
+                    padding: 12px;
+                    border-bottom: 1px solid #eee;
+                }
+
+                .totals {
+                    margin-left: auto;
+                    width: 300px;
+                }
+
+                .total-row {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 8px 0;
+                }
+
+                .total-final {
+                    font-weight: bold;
+                    font-size: 18px;
+                    border-top: 2px solid #333;
+                    padding-top: 10px;
+                }
+
+                .notes {
+                    margin-top: 50px;
+                    padding: 20px;
+                    background: #f9f9f9;
+                    border-radius: 5px;
                     font-size: 14px;
                 }
             }
-
-            .edit-invoice-title {
-                margin-bottom: 16px;
-                font-size: 24px;
-                font-weight: 600;
-            }
-
-            textarea {
-                width: 100% !important;
-                padding: 8px;
-                border: 1px solid #ccc;
-                border-radius: 8px;
-                resize: vertical;
-            }
-
         }
 
-        .invoice-preview {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-            background: var(--color-white);
-            font-size: 14px;
-            border-top-right-radius: 16px;
-            border-bottom-right-radius: 16px;
 
-            @media screen and (max-width: 991px) {
-                border-radius: 16px;
-                margin-top: 20px;
-            }
-
-            .invoice-preview-title {
-                margin-bottom: 16px;
-                font-size: 24px;
-                font-weight: 600;
-            }
-
-            .invoice-header {
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 40px;
-                border-bottom: 2px solid #eee;
-                padding-bottom: 20px;
-            }
-
-            .invoice-title {
-                font-size: 32px;
-                font-weight: bold;
-                color: #2c3e50;
-            }
-
-            .meta-group {
-                text-align: right;
-            }
-
-            .addresses {
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 40px;
-            }
-
-            .address-block h3 {
-                font-size: 14px;
-                text-transform: uppercase;
-                color: #7f8c8d;
-                border-bottom: 1px solid #eee;
-                padding-bottom: 5px;
-                margin-bottom: 10px;
-            }
-
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-bottom: 30px;
-            }
-
-            th {
-                text-align: left;
-                padding: 12px;
-                background: #f8f9fa;
-                border-bottom: 2px solid #ddd;
-                font-size: 12px;
-                text-transform: uppercase;
-            }
-
-            td {
-                padding: 12px;
-                border-bottom: 1px solid #eee;
-            }
-
-            .totals {
-                margin-left: auto;
-                width: 300px;
-            }
-
-            .total-row {
-                display: flex;
-                justify-content: space-between;
-                padding: 8px 0;
-            }
-
-            .total-final {
-                font-weight: bold;
-                font-size: 18px;
-                border-top: 2px solid #333;
-                padding-top: 10px;
-            }
-
-            .notes {
-                margin-top: 50px;
-                padding: 20px;
-                background: #f9f9f9;
-                border-radius: 5px;
-                font-size: 14px;
-            }
-        }
     }
 }
