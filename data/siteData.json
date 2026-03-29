@@ -206,7 +206,8 @@
         "menu_items": [
           {
             "name": "Blog",
-            "link": "/blog"
+            "link": "/blog",
+            "guest_only": false
           },
           {
             "name": "Features",
