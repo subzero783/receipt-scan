@@ -23,7 +23,6 @@
     @media screen and (max-width: 650px) {
         padding: 0 15px;
     }
-
 }
 
 .dashboard-header {
@@ -35,16 +34,13 @@
 
     h1 {
         margin-bottom: 20px;
+        font-size: 2rem;
+        color: var(--color-white);
     }
 
     @media screen and (max-width: 650px) {
         flex-flow: column nowrap;
     }
-}
-
-.dashboard-header h1 {
-    font-size: 2rem;
-    color: var(--color-white);
 }
 
 /* Table Styles */
@@ -63,39 +59,39 @@
         overflow-x: scroll;
         display: block;
     }
-}
 
-.receipt-table th {
-    /* background: #f8fafc; */
-    background-color: var(--color-primary);
-    text-align: left;
-    padding: 16px;
-    font-weight: 600;
-    /* color: #64748b; */
-    color: var(--color-white);
-    font-size: 0.9rem;
-}
+    th {
+        /* background: #f8fafc; */
+        background-color: var(--color-primary);
+        text-align: left;
+        padding: 16px;
+        font-weight: 600;
+        /* color: #64748b; */
+        color: var(--color-white);
+        font-size: 0.9rem;
+    }
 
-.receipt-table td {
-    padding: 16px;
-    font-size: 14px;
-    border-bottom: 1px solid #e2e8f0;
-    color: #334155;
-}
+    td {
+        padding: 16px;
+        font-size: 14px;
+        border-bottom: 1px solid #e2e8f0;
+        color: #334155;
+    }
 
-.clickable-row {
-    cursor: pointer;
-    transition: background 0.2s;
-}
+    .clickable-row {
+        cursor: pointer;
+        transition: background 0.2s;
 
-.clickable-row:hover {
-    background: #e2e8f0;
-    /* Slightly darker hover to be visible over stripes */
-}
+        &:hover {
+            background: #e2e8f0;
+            /* Slightly darker hover to be visible over stripes */
+        }
+    }
 
-/* Zebra Striping */
-.receipt-table tbody tr:nth-child(odd) {
-    background-color: #ededed;
+    /* Zebra Striping */
+    tbody tr:nth-child(odd) {
+        background-color: #ededed;
+    }
 }
 
 .category-badge {
@@ -124,11 +120,10 @@
         align-items: center;
         gap: 20px;
 
-        >button {
+        > button {
             color: var(--color-primary);
 
             &:not(:disabled) {
-
                 &:hover,
                 &:focus,
                 &:active {
@@ -137,21 +132,19 @@
                     border-color: var(--color-primary);
                 }
             }
-
         }
 
-        >span {
+        > span {
             color: var(--color-white);
             font-size: 14px;
         }
-
     }
 
     .items-per-page {
         color: var(--color-white);
         font-size: 14px;
 
-        >select {
+        > select {
             color: var(--color-white);
             background: none;
             border: none;
@@ -165,20 +158,20 @@
             padding: 5px;
         }
     }
-}
 
-.pagination button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    cursor: pointer;
-}
+    button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        cursor: pointer;
 
-.pagination button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
 }

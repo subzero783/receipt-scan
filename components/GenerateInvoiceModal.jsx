@@ -169,7 +169,6 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
 
                     {/* RIGHT: PREVIEW PANEL */}
                     <div className="invoice-preview">
-                        <button className="close-btn" onClick={onClose}><FaTimes /></button>
 
                         <div ref={printRef}>
                             {/* --- INVOICE DOCUMENT START --- */}
