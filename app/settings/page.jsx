@@ -1,6 +1,6 @@
 'use client';
 
-import siteData from '@/data/siteData.json';
+import siteData from '@/data/siteData.js';
 import HeroSectionTwo from '@/components/HeroSectionTwo';
 import AccountSettings from '@/components/AccountSettings';
 // import ManageSubscription from '@/components/ManageSubscription';

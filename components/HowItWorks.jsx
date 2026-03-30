@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import siteData from "@/data/siteData.json";
+import siteData from "@/data/siteData.js";
 
 const HowItWorks = ({data}) => {
 

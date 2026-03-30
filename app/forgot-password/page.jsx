@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { FaEnvelope } from 'react-icons/fa';
-import siteData from '@/data/siteData.json';
+import siteData from '@/data/siteData.js';
 
 const ForgotPasswordPage = () => {
 

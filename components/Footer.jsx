@@ -3,7 +3,7 @@ import Link from "next/link";
 import SocialMedia from "@/components/SocialMedia";
 import LogoLinkImage from "./LogoLinkImage";
 import { useSession } from "next-auth/react";
-import siteData from "@/data/siteData.json";
+import siteData from "@/data/siteData.js";
 import AweberSubscribeFormOne from '@/components/AweberSubscribeFormOne';
 
 const Footer = () => {

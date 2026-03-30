@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import { FaGoogle } from "react-icons/fa";
-import siteData from '@/data/siteData.json';
+import siteData from '@/data/siteData.js';
 import HeroSectionTwo from "@/components/HeroSectionTwo";
 import Spinner from "@/components/Spinner";
 import FAQs from "@/components/FAQs";

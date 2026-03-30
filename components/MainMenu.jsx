@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import siteData from "@/data/siteData.json";
+import siteData from "@/data/siteData.js";
 
 function MainMenu({session}) {
   const pathName = usePathname();

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { FaRegEnvelope } from "react-icons/fa";
 import Link from "next/link";
-import siteData from "@/data/siteData.json";
+import siteData from "@/data/siteData.js";
 
 const ContactForm = () => {
 

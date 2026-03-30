@@ -1,4 +1,4 @@
-import siteData from "@/data/siteData.json";
+import siteData from "@/data/siteData.js";
 import HeroSectionThree from "@/components/HeroSectionThree";
 import ContactForm from "@/components/ContactForm";
 

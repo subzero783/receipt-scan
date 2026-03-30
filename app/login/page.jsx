@@ -5,7 +5,7 @@ import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import Spinner from "@/components/Spinner";
-import siteData from '@/data/siteData.json';
+import siteData from '@/data/siteData.js';
 import CallToActionTwo from "@/components/CallToActionTwo";
 
 const LoginPage = () => {

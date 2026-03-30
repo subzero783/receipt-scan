@@ -1,4 +1,4 @@
-import siteData from "@/data/siteData.json";
+import siteData from "@/data/siteData.js";
 import HeroSection from "@/components/HeroSection";
 import CallToActionTwo from "@/components/CallToActionTwo";
 import TwoColumns from "@/components/TwoColumns";

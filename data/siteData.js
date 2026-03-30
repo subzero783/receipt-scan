@@ -1,4 +1,4 @@
-[
+const siteData = [
   {
     "social_media": [
       {
@@ -21,7 +21,7 @@
   },
   {
     "contact_info": {
-      "email": "contact@receiptscan.org"
+      "email": process.env.CONTACT_EMAIL || "contact@receiptscan.org"
     }
   },
   {
@@ -737,4 +737,5 @@
       }
     }
   }
-]
+];
+export default siteData;

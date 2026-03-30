@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaCube } from "react-icons/fa6";
-import siteData from "@/data/siteData.json";
+import siteData from "@/data/siteData.js";
 
 const Features = ({data}) => {
   const {small_title, title, subtitle, boxes} = data;

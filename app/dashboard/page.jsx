@@ -11,7 +11,7 @@ import { createFilterHandlers, createSelectionHandlers, createModalHandlers } fr
 import { useRouter } from 'next/navigation';
 import EmailModal from '@/components/EmailModal';
 import GenerateInvoiceModal from '@/components/GenerateInvoiceModal';
-import siteData from '@/data/siteData.json';
+import siteData from '@/data/siteData.js';
 import ExpenseBreakdown from '@/components/ExpenseBreakdown';
 import AiInsights from '@/components/AiInsights';
 // import RecentTransactions from '@/components/RecentTransactions';

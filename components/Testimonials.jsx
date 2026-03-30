@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { LiaStarSolid } from "react-icons/lia";
-import siteData from "@/data/siteData.json";
+import siteData from "@/data/siteData.js";
 
 const Testimonials = ({ data }) => {
   const { title, subtitle, boxes } = data;

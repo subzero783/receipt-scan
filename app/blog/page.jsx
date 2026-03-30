@@ -4,7 +4,7 @@ import Spinner from "@/components/Spinner";
 import BlogPostCard from "@/components/BlogPostCard";
 import Pagination from "@/components/Pagination";
 import HeroSectionThree from "@/components/HeroSectionThree";
-import siteData from '@/data/siteData.json';
+import siteData from '@/data/siteData.js';
 
 const BlogIndexPage = () => {
   const [blogPosts, setBlogPosts] = useState([]);

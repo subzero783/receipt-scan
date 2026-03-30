@@ -1,5 +1,5 @@
 'use client';
-import siteData from '@/data/siteData.json';
+import siteData from '@/data/siteData.js';
 import HeroSectionFour from '@/components/HeroSectionFour';
 import StorySection from '@/components/StorySection';
 import OurValuesSection from '@/components/OurValuesSection';
