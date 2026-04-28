@@ -31,7 +31,8 @@
     "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5",
     "resend": "^6.9.1",
-    "stripe": "^20.2.0"
+    "stripe": "^20.2.0",
+    "vercel-plugin": "github:vercel/vercel-plugin"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
