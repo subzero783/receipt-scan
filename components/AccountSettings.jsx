@@ -209,7 +209,6 @@ const AccountSettings = () => {
                                     <label className="settings-form-label" htmlFor="language">Language</label>
                                     <div className="select-wrapper">
                                         <select id="language" className="form-select" value={formData.language} onChange={handleChange}>
-                                            <option value="" disabled>Select one...</option>
                                             <option value="en">English</option>
                                             <option value="es">Spanish</option>
                                             <option value="fr">French</option>
