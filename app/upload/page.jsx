@@ -5,6 +5,7 @@ import siteData from '@/data/siteData.js';
 import UploadReceiptSteps from '@/components/UploadReceiptSteps';
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import InboundHandleText from "@/components/InboundHandleText";
 
 const UploadPage = async () => {
     const session = await getServerSession();
@@ -17,9 +18,9 @@ const UploadPage = async () => {
     const drag_and_drop_area = upload_page.drag_and_drop_area;
     const how_it_works = upload_page.how_it_works;
 
-    return(
+    return (
         <div className="upload-page">
-            <HeroSectionTwo data={hero_section}/>
+            <HeroSectionTwo data={hero_section} extra={<InboundHandleText />} />
             <ReceiptUpload data={drag_and_drop_area} />
             <UploadReceiptSteps data={how_it_works} />
         </div>

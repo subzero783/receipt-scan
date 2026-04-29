@@ -120,10 +120,11 @@
         align-items: center;
         gap: 20px;
 
-        > button {
+        >button {
             color: var(--color-primary);
 
             &:not(:disabled) {
+
                 &:hover,
                 &:focus,
                 &:active {
@@ -134,7 +135,7 @@
             }
         }
 
-        > span {
+        >span {
             color: var(--color-white);
             font-size: 14px;
         }
@@ -144,7 +145,7 @@
         color: var(--color-white);
         font-size: 14px;
 
-        > select {
+        >select {
             color: var(--color-white);
             background: none;
             border: none;

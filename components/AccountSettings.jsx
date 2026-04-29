@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { toast } from "react-toastify";
 import Spinner from "./Spinner";
+import InboundHandleText from "./InboundHandleText";
 
 const AccountSettings = () => {
 
@@ -31,6 +32,7 @@ const AccountSettings = () => {
                     const res = await fetch('/api/user/settings');
                     if (res.ok) {
                         const data = await res.json();
+
                         setFormData({
                             username: data.username || '',
                             website: data.website || '',
@@ -161,6 +163,11 @@ const AccountSettings = () => {
                                             </button>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div className="settings-form-group">
+                                    <p className="settings-form-label">Inbound Email</p>
+                                    <InboundHandleText />
                                 </div>
 
                                 <div className="settings-form-group username-form-group">

@@ -1,0 +1,16 @@
+.inbound-email-container {
+    margin-bottom: 20px;
+
+    .inbound-email-address {
+        color: var(--color-white);
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .inbound-email-description {
+        color: var(--color-white);
+        font-size: 16px;
+        font-style: italic;
+        font-weight: 500;
+    }
+}

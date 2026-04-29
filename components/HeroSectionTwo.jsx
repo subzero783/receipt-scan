@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const HeroSectionTwo = ({ data }) => {
+const HeroSectionTwo = ({ data, extra }) => {
   const { small_title, title, subtitle, buttons } = data;
 
   return (
@@ -17,6 +17,9 @@ const HeroSectionTwo = ({ data }) => {
               }
               {
                 subtitle && <p className="subtitle">{subtitle}</p>
+              }
+              {
+                extra && extra
               }
               {
                 buttons && buttons.length > 0 && (

@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import Spinner from '@/components/Spinner';
 import DashboardEditModal from '@/components/DashboardEditModal';
 import DashboardFilterSection from '@/components/DashboardFilterSection';
-import { FaEdit, FaTrash, FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
+import { FaEdit, FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
 import { getReceipts } from './receiptsApi';
 import { createFilterHandlers, createSelectionHandlers, createModalHandlers } from './dashboardHandlers';
 import { useRouter } from 'next/navigation';
@@ -14,15 +14,17 @@ import GenerateInvoiceModal from '@/components/GenerateInvoiceModal';
 import siteData from '@/data/siteData.js';
 import ExpenseBreakdown from '@/components/ExpenseBreakdown';
 import AiInsights from '@/components/AiInsights';
-// import RecentTransactions from '@/components/RecentTransactions';
+import InboundHandleText from '@/components/InboundHandleText';
 
 const DashboardPage = () => {
   const dashboardData = siteData.find(item => item.dashboard_page)?.dashboard_page;
+
   const hero_section = dashboardData.hero_section;
   const expenseBreakdownSection = dashboardData.expense_breakdown_section;
-  // const recentTransactionsSection = dashboardData.recent_transactions_section;
   const aiInsightsSection = dashboardData.ai_insights_section;
+
   const { data: session, status } = useSession();
+
   const router = useRouter();
 
   useEffect(() => {
@@ -60,6 +62,9 @@ const DashboardPage = () => {
   const [selectedReceiptIds, setSelectedReceiptIds] = useState([]);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
+
+  // Inbound Handle State
+  const [inboundHandle, setInboundHandle] = useState('');
 
   // User Status State
   const [userStatus, setUserStatus] = useState({ isPro: false, totalReceipts: 0 });
@@ -136,6 +141,7 @@ const DashboardPage = () => {
   return (
     <div className="dashboard-page">
       <div className="dashboard-container">
+        <InboundHandleText />
         <div className="dashboard-header">
           <h1>{hero_section.title}</h1>
           <div className="action-buttons">
