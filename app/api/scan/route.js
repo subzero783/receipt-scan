@@ -6,17 +6,12 @@ import Receipt from '@/models/Receipt';
 import { getSessionUser } from '@/utils/getSessionUser';
 import User from '@/models/User';
 
-// 1. Config Cloudinary
+// Config Cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
-// 2. Config OpenAI
-// const openai = new OpenAI({
-//   apiKey: process.env.NEXT_OPENAI_API_KEY,
-// });
 
 // Configure Gemini API
 const ai = new GoogleGenAI({
@@ -72,30 +67,6 @@ export const POST = async (request) => {
 
     const imageUrl = uploadResult.secure_url;
     const publicId = uploadResult.public_id;
-
-    // Send to OpenAI
-    // const response = await openai.chat.completions.create({
-    //   model: "gpt-4o",
-    //   messages: [
-    //     {
-    //       role: "system",
-    //       content: "You are a receipt scanning assistant. Extract data from the image and return ONLY a valid JSON object with no markdown formatting. Keys: 'merchant_name' (string), 'total_amount' (number), 'date' (YYYY-MM-DD), 'category' (string: e.g., 'Food', 'Transport', 'Supplies', 'Utilities', 'Other'). If a field is missing, use reasonable defaults or null."
-    //     },
-    //     {
-    //       role: "user",
-    //       content: [
-    //         { type: "text", text: "Analyze this receipt." },
-    //         {
-    //           type: "image_url",
-    //           image_url: {
-    //             "url": imageUrl,
-    //           },
-    //         },
-    //       ],
-    //     },
-    //   ],
-    //   max_tokens: 300,
-    // });
 
     // Scan with Gemini API
     const response = await ai.models.generateContent({
