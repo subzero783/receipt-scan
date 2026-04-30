@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { useSession } from 'next-auth/react';
-import { FaTimes, FaPrint } from 'react-icons/fa';
+import { FaPrint } from 'react-icons/fa';
 
 const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
     const { data: session } = useSession();
@@ -17,7 +17,7 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
         senderName: session?.user?.name || '',
         senderAddress: '',
         notes: 'Thank you for your business!',
-        taxRate: 0,
+        vatRate: 0,
         logo: null
     });
 
@@ -36,15 +36,11 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
 
     // Calculate Totals
     const subtotal = selectedReceipts.reduce((sum, r) => sum + r.totalAmount, 0);
-    const taxAmount = subtotal * (invoiceDetails.taxRate / 100);
-    const total = subtotal + taxAmount;
+    const vatAmount = subtotal * (invoiceDetails.vatRate / 100);
+    const total = subtotal + vatAmount;
 
     const handlePrint = () => {
         const printContent = printRef.current.innerHTML;
-        const originalContent = document.body.innerHTML;
-
-        // Create a print window or replace body content temporarily
-        // A safer way for single page apps:
         const printWindow = window.open('', '', 'height=900,width=900');
         printWindow.document.write('<html><head><title>Invoice</title>');
         // Add simple styles for printing
@@ -145,11 +141,11 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
                         </div>
 
                         <div className="form-group">
-                            <label>Tax Rate (%)</label>
+                            <label>VAT Rate (%)</label>
                             <input
                                 type="number"
-                                value={invoiceDetails.taxRate}
-                                onChange={(e) => setInvoiceDetails({ ...invoiceDetails, taxRate: parseFloat(e.target.value) || 0 })}
+                                value={invoiceDetails.vatRate}
+                                onChange={(e) => setInvoiceDetails({ ...invoiceDetails, vatRate: parseFloat(e.target.value) || 0 })}
                             />
                         </div>
 
@@ -229,10 +225,10 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
                                     <span>Subtotal:</span>
                                     <span>${subtotal.toFixed(2)}</span>
                                 </div>
-                                {invoiceDetails.taxRate > 0 && (
+                                {invoiceDetails.vatRate > 0 && (
                                     <div className="total-row">
-                                        <span>Tax ({invoiceDetails.taxRate}%):</span>
-                                        <span>${taxAmount.toFixed(2)}</span>
+                                        <span>VAT ({invoiceDetails.vatRate}%):</span>
+                                        <span>${vatAmount.toFixed(2)}</span>
                                     </div>
                                 )}
                                 <div className="total-row total-final">
