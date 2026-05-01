@@ -471,6 +471,7 @@ const siteData = [
   {
     "about_page": {
       "hero_section": {
+        "background_image": "/images/features/Artisan_working_on_physical_project.jpeg",
         "small_title": "Our Mission",
         "title": "Empowering freelancers to focus on work, not paperwork",
         "subtitle": "We believe that managing expenses shouldn't cost you your sanity. Receipt Scan was built to help creators, builders, and hustlers reclaim their time from the chaos of receipts.",
@@ -493,8 +494,8 @@ const siteData = [
           "With an extensive background architecting modern frontend applications and complex API integrations, Gustavo decided to build his own solution. The goal was to create a modern platform that didn't just store files, but utilized AI-driven categorization logic to instantly process and organize receipts the moment they were received.",
           "Today, Receipt Scan leverages advanced technologies to fully automate financial workflows. It empowers freelancers and professionals with a mobile-first, high-utility tool designed to eliminate manual data entry so they can get back to building their business."
         ],
-        "image": "/images/hero/hero-image.png",
-        "image_alt": "Founder working late at a desk with papers",
+        "image": "/images/features/Hand_holding_receipt_in_front_of_monitor.jpeg",
+        "image_alt": "Hand holding receipt in front of monitor",
         "buttons": [
           {
             "text": "Start",
@@ -510,8 +511,8 @@ const siteData = [
         "small_title": "Our Philosophy",
         "title": "Values we build by",
         "subtitle": "We are guided by a few simple principles that keep us focused on what matters: your time and your peace of mind.",
-        "image": "/images/hero/hero-image.png",
-        "image_alt": "Founder working late at a desk with papers",
+        "image": "/images/features/Notebook_coffee_cup_and_plant.jpeg",
+        "image_alt": "Notebook coffee cup and plant",
         "values": [
           {
             "title": "Simplicity First",
