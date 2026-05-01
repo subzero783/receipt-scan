@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaCube } from "react-icons/fa6";
-import siteData from "@/data/siteData.js";
 
-const Features = ({data}) => {
-  const {small_title, title, subtitle, boxes} = data;
+const Features = ({ data }) => {
+  const { small_title, title, subtitle, boxes } = data;
 
-  return(
+  return (
     <section className="features">
       <div className="container">
         <div className="row">
@@ -21,13 +20,13 @@ const Features = ({data}) => {
                 <div
                   className="box"
                   key={index}
-                  style={{backgroundImage: `url(/images${item.image})`}}
+                  style={{ backgroundImage: `url(/images${item.image})` }}
                 >
                   <div className="box-text-container">
-                    <FaCube/>
+                    <FaCube />
                     <p className="title">{item.title}</p>
                     <p className="text">{item.text}</p>
-                    <Link href={item.link.url}>{item.link.text} <MdKeyboardArrowRight/></Link>
+                    <Link href={item.link.url}>{item.link.text} <MdKeyboardArrowRight /></Link>
                   </div>
                 </div>
               ))}

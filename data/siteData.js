@@ -90,7 +90,7 @@ const siteData = [
             "id": "1",
             "title": "Mobile receipt capture",
             "text": "Snap photos of receipts anytime, anywhere",
-            "image": "/how-it-works/capture-receipts.png",
+            "image": "/features/Hand_holding_smartphone_photographing_receipt.jpeg",
             "link": {
               "url": "/",
               "text": "Learn More"
@@ -100,7 +100,7 @@ const siteData = [
             "id": "2",
             "title": "AI categorization",
             "text": "Intelligent expense classification and tagging",
-            "image": "/how-it-works/capture-receipts.png",
+            "image": "/features/Expense_processing_system_infographic.jpeg",
             "link": {
               "url": "/",
               "text": "Learn More"
@@ -109,8 +109,8 @@ const siteData = [
           {
             "id": "3",
             "title": "CSV/Excel export",
-            "text": "Instant tax-ready financial reports",
-            "image": "/how-it-works/capture-receipts.png",
+            "text": "Export your expense data for tax season",
+            "image": "/features/Tablet_screen_displays_spreadsheet.jpeg",
             "link": {
               "url": "/",
               "text": "Learn More"
@@ -118,9 +118,28 @@ const siteData = [
           },
           {
             "id": "4",
-            "title": "Email receipt import",
-            "text": "Forward receipts directly to your account",
-            "image": "/how-it-works/capture-receipts.png",
+            "title": "Email receipts into account",
+            "text": "Email receipts to your account and get them imported automatically",
+            "image": "/features/Email_inbox_data_visualization.jpeg",
+            "link": {
+              "url": "/",
+              "text": "Learn More"
+            }
+          },
+          {
+            "id": "5",
+            "title": "Generate invoices",
+            "text": "Create professional invoices from your receipts in PDF format",
+            "image": "/features/Receipts_to_digital_invoice.jpeg",
+            "link": {
+              "url": "/",
+              "text": "Learn More"
+            }
+          }, {
+            "id": "6",
+            "title": "Export and email receipt images and spreadsheets",
+            "text": "Images and spreadsheets of receipts can be exported and emailed",
+            "image": "/features/Digital_folder_with_receipt_icons.jpeg",
             "link": {
               "url": "/",
               "text": "Learn More"

@@ -1,32 +1,38 @@
 .features {
   padding: 80px 0;
   background-color: var(--color-white);
+
   @media screen and (max-width: 768px) {
     padding: 48px 0;
   }
+
   .row {
     display: flex;
     flex-flow: row nowrap;
   }
+
   .col {
     width: 100%;
+
     .top-text {
       .title {
         text-align: center;
       }
     }
+
     .boxes {
       display: flex;
-      align-items: stretch;
-      justify-content: space-between;
       flex-flow: row wrap;
+      align-items: stretch;
+      justify-content: center;
+
       .box {
         overflow: hidden;
         min-height: 320px;
         border-radius: 16px;
         background-color: var(--color-fourth);
         box-shadow: 0px 1px 6px -1px var(--color-neutral-400);
-        width: 23%;
+        width: 31%;
         margin-right: 2%;
         margin-bottom: 2%;
         background-size: cover;
@@ -34,20 +40,27 @@
         background-repeat: no-repeat;
         background-color: var(--color-fourth);
         box-shadow: 0px 1px 6px -1px var(--color-neutral-400);
+
+
+
         @media screen and (max-width: 991px) {
           width: 48%;
           margin-bottom: 3%;
+
           &:nth-of-type(2) {
             margin-right: 0;
           }
+
           &:last-of-type {
             margin-right: 0;
           }
         }
+
         @media screen and (max-width: 576px) {
           width: 100%;
           margin-right: 0;
         }
+
         .box-text-container {
           color: var(--color-white);
           position: relative;
@@ -56,9 +69,15 @@
           display: flex;
           flex-flow: column nowrap;
           justify-content: center;
-          > .title {
+
+          >.title {
             margin-bottom: 16px;
           }
+
+          >.text {
+            font-weight: 600;
+          }
+
           &:after {
             content: "";
             background-color: rgba(0, 0, 0, 0.3);
@@ -69,28 +88,35 @@
             width: 100%;
             height: 100%;
           }
-          > svg {
+
+          >svg {
             font-size: 30px;
             color: var(--color-white);
           }
         }
       }
+
       @media screen and (max-width: 1070px) {
         flex-flow: row wrap;
+
         .box {
           width: 48%;
         }
       }
+
       @media screen and (max-width: 845px) {
         .box {
           width: 47%;
         }
       }
+
       @media screen and (max-width: 576px) {
         gap: 0;
+
         .box {
           width: 100%;
           margin-bottom: 32px;
+
           &:last-of-type {
             margin-bottom: 0;
           }
