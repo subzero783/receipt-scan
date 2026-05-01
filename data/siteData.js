@@ -53,8 +53,8 @@ const siteData = [
             "text": "Quickly photograph or upload your business receipts",
             "image": "/how-it-works/capture-receipts.png",
             "link": {
-              "url": "/",
-              "text": "Learn"
+              "url": "/signup",
+              "text": "Get started"
             }
           },
           {
@@ -64,18 +64,18 @@ const siteData = [
             "text": "Our AI instantly extracts and categorizes expense details",
             "image": "/how-it-works/smart-categorization.png",
             "link": {
-              "url": "/",
-              "text": "Explore"
+              "url": "/signup",
+              "text": "Get started"
             }
           },
           {
             "id": "3",
-            "small_title": "Export",
+            "small_title": "Export & Email",
             "title": "Seamless tax preparation",
-            "text": "Generate CSV or Excel files with a single click",
+            "text": "Generate CSV or Excel files, export receipts as images, create invoices instantly, and get organized for tax season",
             "image": "/how-it-works/seamless-tax-preparation.png",
             "link": {
-              "url": "/",
+              "url": "/signup",
               "text": "Get started"
             }
           }
@@ -473,7 +473,7 @@ const siteData = [
       "hero_section": {
         "small_title": "Our Mission",
         "title": "Empowering freelancers to focus on work, not paperwork",
-        "subtitle": "We believe that managing expenses shouldn't cost you your sanity. Receipt AI was built to help creators, builders, and hustlers reclaim their time from the chaos of receipts.",
+        "subtitle": "We believe that managing expenses shouldn't cost you your sanity. Receipt Scan was built to help creators, builders, and hustlers reclaim their time from the chaos of receipts.",
         "buttons": [
           {
             "text": "Start",
@@ -487,11 +487,11 @@ const siteData = [
       },
       "story_section": {
         "small_title": "Our Origin",
-        "title": "It started with a lost receipt",
+        "title": "It started with a need for better automation",
         "paragraphs": [
-          "In 2023, our founder David was auditing his expenses for a big client project. He realized he had lost a $450 receipt for materials—money he could no longer expense. He spent 3 hours digging through email trash bins and old jean pockets, only to come up empty.",
-          "That frustration sparked an idea: What if a tool could 'read' a receipt the moment you got it, categorize it instantly, and store it where you couldn't lose it? No manual data entry, no shoeboxes.",
-          "Today, Receipt AI processes thousands of receipts for freelancers who would rather be building their business than bookkeeping."
+          "After years spent engineering high-traffic e-commerce platforms and complex digital systems for various agencies, our founder, Gustavo, recognized a frustrating gap. While he was building seamless, automated digital experiences for clients, managing the business's own project expenses and receipts remained a manual, time-consuming chore.",
+          "With an extensive background architecting modern frontend applications and complex API integrations, Gustavo decided to build his own solution. The goal was to create a modern platform that didn't just store files, but utilized AI-driven categorization logic to instantly process and organize receipts the moment they were received.",
+          "Today, Receipt Scan leverages advanced technologies to fully automate financial workflows. It empowers freelancers and professionals with a mobile-first, high-utility tool designed to eliminate manual data entry so they can get back to building their business."
         ],
         "image": "/images/hero/hero-image.png",
         "image_alt": "Founder working late at a desk with papers",
