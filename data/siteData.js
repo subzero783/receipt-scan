@@ -29,6 +29,7 @@ const siteData = [
       "hero_section": {
         "title": "Say goodbye to your messy receipt shoebox",
         "subtitle": "Automatically capture and categorize business expenses with AI-powered technology. Transform receipt management from a headache to a one-click solution.",
+        "background_image": "/images/hero/Workspace_with_financial_charts_on_tablet_2.jpeg",
         "buttons": [
           {
             "text": "Start Free",
@@ -606,6 +607,7 @@ const siteData = [
       "hero_section": {
         "title": "Everything you need to automate your expense tracking",
         "subtitle": "From AI-powered data extraction to smart financial insights, discover how our platform turns your messy shoebox of receipts into actionable financial data.",
+        "background_image": "/images/hero/Workspace_with_financial_charts_on_tablet_2.jpeg",
         "buttons": [
           {
             "text": "Start for Free",
@@ -616,7 +618,6 @@ const siteData = [
             "link": "/pricing"
           }
         ],
-        "background_image": "/images/hero/hero-image.png"
       },
       "extraction_description_section": {
         "title": "Instant AI-powered extraction",
