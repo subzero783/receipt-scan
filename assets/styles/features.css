@@ -32,7 +32,7 @@
         margin-right: 2%;
         margin-bottom: 2%;
         border-radius: 16px;
-        background-color: var(--color-secondary);
+        background-color: var(--color-fourth);
 
         .image {
           background-size: cover;
@@ -47,7 +47,7 @@
           position: relative;
           justify-content: center;
           flex-flow: column nowrap;
-          color: var(--color-white);
+          color: var(--color-black);
           border-bottom-left-radius: 16px;
           border-bottom-right-radius: 16px;
 
@@ -66,7 +66,7 @@
 
           >svg {
             font-size: 30px;
-            color: var(--color-white);
+            color: var(--color-black);
           }
         }
 
