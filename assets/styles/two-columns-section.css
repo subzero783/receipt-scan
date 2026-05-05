@@ -1,5 +1,4 @@
 .two-columns-section {
-
     padding: 112px 0;
 
     &.right {
@@ -10,6 +9,15 @@
 
                 flex-direction: column;
             }
+        }
+    }
+
+    .content {
+        .small-title {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            display: block;
         }
     }
 

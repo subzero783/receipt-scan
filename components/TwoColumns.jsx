@@ -1,18 +1,21 @@
 import Link from "next/link";
 
-const TwoColumns = ({ data, text_direction, section_class, icon }) => {
+const TwoColumns = ({ data, text_direction, section_class, icon, background_color = "", bottom_border }) => {
 
-    const { title, subtitle, buttons, image } = data;
+    const { small_title, title, subtitle, buttons, image } = data;
+
+    console.log(bottom_border);
 
     return (
-        <section className={`two-columns-section ${text_direction} ${section_class}`}>
+        <section className={`two-columns-section ${text_direction} ${section_class}`} style={background_color ? { backgroundColor: background_color } : null | bottom_border ? { borderBottom: "1px solid var(--color-neutral-600)" } : null}>
             <div className="container">
                 <div className="row">
                     <div className="col left-column">
                         <div className="content">
-                            <div className="icon-wrapper">
+                            {small_title ? <span className="small-title">{small_title}</span> : null}
+                            {icon ? <div className="icon-wrapper">
                                 {icon}
-                            </div>
+                            </div> : null}
                             <div className="text-wrapper">
                                 <h2 className="title">{title}</h2>
                                 <p className="description">{subtitle}</p>

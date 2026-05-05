@@ -30,7 +30,7 @@ const FeaturesPage = () => {
       <ReceiptsManagedTaxesConquered data={receipts_managed_taxes_conquered} />
 
       <ToolsSection data={tools} />
-      <TwoColumns data={extraction_description_section} text_direction="left" icon={<IoDocumentTextOutline />} />
+      <TwoColumns data={extraction_description_section} text_direction="left" icon={<IoDocumentTextOutline />} background_color={"var(--color-third)"} bottom_border={true} />
 
       <TwoColumns data={upload_description_section} text_direction="right" section_class="upload-description-section" icon={<FiUpload />} />
 

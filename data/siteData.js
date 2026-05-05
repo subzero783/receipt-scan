@@ -667,8 +667,9 @@ const siteData = [
         ]
       },
       "extraction_description_section": {
-        "title": "Instant AI-powered extraction",
-        "subtitle": "Stop typing out merchant names and totals. Our advanced AI scans your receipt images and PDFs, extracting the exact merchant, date, total amount, and category with pinpoint accuracy in seconds. Supports JPG, PNG, and PDF formats. Multi-language recognition. Automatic categorization.",
+        "small_title": "01 Capture Receipts",
+        "title": "Snap a photo, upload a batch, or forward an email",
+        "subtitle": "Receipt Scan accepts receipts however you want to send them. Phone photos, PDF batches, or emails forwarded to your unique inbound address all work instantly.",
         "image": "/images/hero/hero-image.png",
         "image_alt": "Receipt AI",
         "buttons": [

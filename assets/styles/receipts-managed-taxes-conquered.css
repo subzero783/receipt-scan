@@ -2,6 +2,10 @@
     padding: 112px 0;
     background-color: var(--color-third);
 
+    @media screen and (max-width: 991px) {
+        padding: 64px 0;
+    }
+
     >.container {
         >.row {
             display: flex;
@@ -10,8 +14,34 @@
             justify-content: space-between;
             gap: 32px;
 
+            .small-title {
+                margin-bottom: 16px;
+                font-size: 16px;
+                font-weight: 600;
+                display: block;
+            }
+
+            .title {
+                font-size: 60px;
+                font-weight: 500;
+            }
+
             >.col {
                 width: calc(50% - 16px);
+
+                .text-container {
+                    p {
+                        font-size: 18px;
+                    }
+
+                    .btn-wrapper {
+                        margin-top: 16px;
+
+                        a {
+                            font-size: 14px;
+                        }
+                    }
+                }
             }
         }
     }
