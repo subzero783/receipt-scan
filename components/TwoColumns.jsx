@@ -4,15 +4,21 @@ const TwoColumns = ({ data, text_direction, section_class, icon, background_colo
 
     const { small_title, title, subtitle, buttons, image } = data;
 
-    console.log(bottom_border);
-
     return (
-        <section className={`two-columns-section ${text_direction} ${section_class}`} style={background_color ? { backgroundColor: background_color } : null | bottom_border ? { borderBottom: "1px solid var(--color-neutral-600)" } : null}>
+        <section className={`two-columns-section ${text_direction} ${section_class}`} style={{
+            backgroundColor: background_color ? background_color : "",
+            borderBottom: bottom_border ? "1px solid var(--color-neutral-400)" : ""
+        }}>
             <div className="container">
+                <div className="row">
+                    <div className="col">
+                        {small_title ? <span className="small-title">{small_title}</span> : null}
+                    </div>
+                </div>
                 <div className="row">
                     <div className="col left-column">
                         <div className="content">
-                            {small_title ? <span className="small-title">{small_title}</span> : null}
+
                             {icon ? <div className="icon-wrapper">
                                 {icon}
                             </div> : null}
