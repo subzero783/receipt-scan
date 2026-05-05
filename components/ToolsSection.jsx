@@ -1,9 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const ToolsSection = ({ data }) => {
 
-    const { small_title, title, subtitle, tools } = data;
+    const { small_title, title, subtitle, tools, buttons } = data;
 
     return (
         <section className="tools-section">
@@ -25,8 +24,14 @@ const ToolsSection = ({ data }) => {
                                 <span className="small-title">{tool.small_title}</span>
                                 <h3 className="title">{tool.title}</h3>
                                 <p className="description">{tool.text}</p>
-                                <Link href={tool.button.link} className="btn btn-secondary">{tool.button.text}</Link>
                             </div>
+                        </div>
+                    ))}
+                </div>
+                <div className="row buttons-row">
+                    {buttons.map((button, index) => (
+                        <div className="col" key={index}>
+                            <Link href={button.link} className="btn btn-secondary">{button.text}</Link>
                         </div>
                     ))}
                 </div>

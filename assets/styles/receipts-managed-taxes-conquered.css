@@ -1,0 +1,18 @@
+.receipts-managed-taxes-conquered {
+    padding: 112px 0;
+    background-color: var(--color-third);
+
+    >.container {
+        >.row {
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+
+            >.col {
+                width: calc(50% - 16px);
+            }
+        }
+    }
+}

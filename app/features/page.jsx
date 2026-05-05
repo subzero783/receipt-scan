@@ -6,6 +6,7 @@ import ToolsSection from "@/components/ToolsSection";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { FiUpload } from "react-icons/fi";
 import { LuBrain } from "react-icons/lu";
+import ReceiptsManagedTaxesConquered from "@/components/ReceiptsManagedTaxesConquered";
 
 
 const FeaturesPage = () => {
@@ -18,6 +19,7 @@ const FeaturesPage = () => {
   const extraction_description_section = featuresData.extraction_description_section;
   const upload_description_section = featuresData.upload_description_section;
   const personal_analyst_description_section = featuresData.personal_analyst_description_section;
+  const receipts_managed_taxes_conquered = featuresData.receipts_managed_taxes_conquered;
   const tools = featuresData.tools;
   const cta = featuresData.cta;
 
@@ -25,13 +27,15 @@ const FeaturesPage = () => {
     <div className="features_page">
       <HeroSection data={hero_section} />
 
+      <ReceiptsManagedTaxesConquered data={receipts_managed_taxes_conquered} />
+
+      <ToolsSection data={tools} />
       <TwoColumns data={extraction_description_section} text_direction="left" icon={<IoDocumentTextOutline />} />
 
       <TwoColumns data={upload_description_section} text_direction="right" section_class="upload-description-section" icon={<FiUpload />} />
 
       <TwoColumns data={personal_analyst_description_section} text_direction="left" section_class="personal-analyst-description-section" icon={<LuBrain />} />
 
-      <ToolsSection data={tools} />
       <CallToActionTwo data={cta} />
     </div>
   )

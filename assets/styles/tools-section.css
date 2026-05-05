@@ -6,6 +6,29 @@
         color: var(--color-white);
     }
 
+    .buttons-row {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+
+        .col {
+            width: auto;
+
+            .btn {
+                font-size: 14px;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    background-color: var(--color-white);
+                    color: var(--color-primary);
+                }
+            }
+        }
+    }
+
     .tools-row {
         display: flex;
         flex-flow: row wrap;
@@ -21,16 +44,13 @@
                 height: 233px;
                 background-size: cover;
                 background-position: center;
-                border-top-left-radius: 16px;
-                border-top-right-radius: 16px;
+                border-radius: 16px;
             }
 
             .text-wrapper {
                 padding: 32px;
-                background-color: var(--color-primary);
-                border-bottom-left-radius: 16px;
-                border-bottom-right-radius: 16px;
                 color: var(--color-white);
+                text-align: center;
 
                 .small-title {
                     margin-bottom: 8px;

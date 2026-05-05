@@ -619,6 +619,53 @@ const siteData = [
           }
         ],
       },
+      "receipts_managed_taxes_conquered": {
+        "small_title": "Effortless",
+        "title": "Receipts managed, taxes conquered",
+        "text": "Stop wrestling with paper trails and spreadsheets. Receipt Scan turns chaos into clarity with AI that reads, sorts, and exports your expenses in seconds.",
+        "button": {
+          "text": "Start for Free",
+          "link": "/signup"
+        }
+      },
+      "tools": {
+        "small_title": "Core",
+        "title": "Three ways Receipt Scan saves your time",
+        "subtitle": "From the moment you upload a receipt to the moment your accountant receives clean data, everything happens automatically.",
+        "buttons": [
+          {
+            "text": "Start for Free",
+            "link": "/signup"
+          },
+          {
+            "text": "See Pricing",
+            "link": "/pricing"
+          }
+        ],
+        "tools": [
+          {
+            "small_title": "Extraction",
+            "title": "Instant data extraction",
+            "text": "Advanced OCR reads receipts in seconds, no matter the format.",
+            "image": "/images/hero/hero-image.png",
+            "image_alt": "Receipt AI"
+          },
+          {
+            "small_title": "Export",
+            "title": "CSV and ZIP exports",
+            "text": "Download your extracted data as a CSV for Excel, or export all your receipt images in a single ZIP file for tax season.",
+            "image": "/images/hero/hero-image.png",
+            "image_alt": "Receipt AI"
+          },
+          {
+            "small_title": "Email",
+            "title": "Email Receipts to Anyone",
+            "text": "Send your receipts to anyone, anywhere, and with the attached receipt images and CSV file, they can easily import your receipts into their accounting software.",
+            "image": "/images/hero/hero-image.png",
+            "image_alt": "Receipt AI"
+          }
+        ]
+      },
       "extraction_description_section": {
         "title": "Instant AI-powered extraction",
         "subtitle": "Stop typing out merchant names and totals. Our advanced AI scans your receipt images and PDFs, extracting the exact merchant, date, total amount, and category with pinpoint accuracy in seconds. Supports JPG, PNG, and PDF formats. Multi-language recognition. Automatic categorization.",
@@ -678,48 +725,9 @@ const siteData = [
           }
         ]
       },
-      "tools": {
-        "small_title": "More",
-        "title": "Tools to simplify your workflow",
-        "subtitle": "Select receipts and instantly generate a professional, printable invoice report for your clients.",
-        "tools": [
-          {
-            "small_title": "Invoices",
-            "title": "Generate invoices",
-            "text": "Select receipts and instantly generate a professional, printable invoice report for your clients.",
-            "image": "/images/hero/hero-image.png",
-            "image_alt": "Receipt AI",
-            "button": {
-              "text": "Start for Free",
-              "link": "/signup"
-            }
-          },
-          {
-            "small_title": "Export",
-            "title": "CSV and ZIP exports",
-            "text": "Download your extracted data as a CSV for Excel, or export all your receipt images in a single ZIP file for tax season.",
-            "image": "/images/hero/hero-image.png",
-            "image_alt": "Receipt AI",
-            "button": {
-              "text": "Start for Free",
-              "link": "/signup"
-            }
-          },
-          {
-            "small_title": "Email",
-            "title": "Email Receipts to Anyone",
-            "text": "Send your receipts to anyone, anywhere, and with the attached receipt images and CSV file, they can easily import your receipts into their accounting software.",
-            "image": "/images/hero/hero-image.png",
-            "image_alt": "Receipt AI",
-            "button": {
-              "text": "Start for Free",
-              "link": "/signup"
-            }
-          }
-        ]
-      },
+
       "cta": {
-        "title": "Ready to reclaim your time",
+        "title": "Reclaim your time",
         "subtitle": "Stop wrestling with receipts. Start building your business instead.",
         "buttons": [
           {
