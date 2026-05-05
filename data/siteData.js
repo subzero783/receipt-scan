@@ -683,9 +683,10 @@ const siteData = [
           }
         ]
       },
-      "upload_description_section": {
-        "title": "Upload from Anywhere, even Your Email Inbox",
-        "subtitle": "Upload receipts from anywhere, by sending to a personal email provided.",
+      "categorize_expenses": {
+        "small_title": "02 Categorize Expenses",
+        "title": "AI learns your spending patterns and sorts automatically",
+        "subtitle": "Our system reads more than just numbers. It understands your business and categorizes each expense into the right bucket. Train it with custom rules whenever your workflow changes.",
         "image": "/images/hero/hero-image.png",
         "image_alt": "Receipt AI",
         "buttons": [
@@ -699,33 +700,7 @@ const siteData = [
           }
         ]
       },
-      "personal_analyst_description_section": {
-        "title": "Your Personal AI Financial Analyst",
-        "subtitle": "Get a clear picture of your spending. Our dashboard breaks down your expenses by category and uses AI to analyze your spending habits, spotting anomalies and suggesting tax deduction opportunities.",
-        "image": "/images/hero/hero-image.png",
-        "image_alt": "Receipt AI",
-        "list": [
-          {
-            "text": "Spending Breakdown by Category"
-          },
-          {
-            "text": "AI-powered Anomaly Detection"
-          },
-          {
-            "text": "Tax Reduction Recommendations"
-          }
-        ],
-        "buttons": [
-          {
-            "text": "Start for Free",
-            "link": "/signup"
-          },
-          {
-            "text": "See Pricing",
-            "link": "/pricing"
-          }
-        ]
-      },
+
 
       "cta": {
         "title": "Reclaim your time",

@@ -11,26 +11,23 @@ const TwoColumns = ({ data, text_direction, section_class, icon, background_colo
         }}>
             <div className="container">
                 <div className="row">
-                    <div className="col">
-                        {small_title ? <span className="small-title">{small_title}</span> : null}
-                    </div>
-                </div>
-                <div className="row">
                     <div className="col left-column">
                         <div className="content">
-
-                            {icon ? <div className="icon-wrapper">
-                                {icon}
-                            </div> : null}
-                            <div className="text-wrapper">
-                                <h2 className="title">{title}</h2>
-                                <p className="description">{subtitle}</p>
-                                <div className="buttons-wrapper">
-                                    {buttons.map((button, index) => (
-                                        <Link key={index} href={button.link} className="btn btn-fourth">
-                                            {button.text}
-                                        </Link>
-                                    ))}
+                            {small_title ? <span className="small-title">{small_title}</span> : null}
+                            <div className="icon-and-text">
+                                {icon ? <div className="icon-wrapper">
+                                    {icon}
+                                </div> : null}
+                                <div className="text-wrapper">
+                                    <h2 className="title">{title}</h2>
+                                    <p className="description">{subtitle}</p>
+                                    <div className="buttons-wrapper">
+                                        {buttons.map((button, index) => (
+                                            <Link key={index} href={button.link} className="btn btn-fourth">
+                                                {button.text}
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>

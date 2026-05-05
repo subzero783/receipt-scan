@@ -17,8 +17,7 @@ const FeaturesPage = () => {
 
   const hero_section = featuresData.hero_section;
   const extraction_description_section = featuresData.extraction_description_section;
-  const upload_description_section = featuresData.upload_description_section;
-  const personal_analyst_description_section = featuresData.personal_analyst_description_section;
+  const categorize_expenses = featuresData.categorize_expenses;
   const receipts_managed_taxes_conquered = featuresData.receipts_managed_taxes_conquered;
   const tools = featuresData.tools;
   const cta = featuresData.cta;
@@ -32,9 +31,7 @@ const FeaturesPage = () => {
       <ToolsSection data={tools} />
       <TwoColumns data={extraction_description_section} text_direction="left" icon={<IoDocumentTextOutline />} background_color={"var(--color-third)"} bottom_border={true} />
 
-      <TwoColumns data={upload_description_section} text_direction="right" section_class="upload-description-section" icon={<FiUpload />} />
-
-      <TwoColumns data={personal_analyst_description_section} text_direction="left" section_class="personal-analyst-description-section" icon={<LuBrain />} />
+      <TwoColumns data={categorize_expenses} text_direction="right" section_class="categorize_expenses" icon={<FiUpload />} background_color={"var(--color-third)"} bottom_border={true} />
 
       <CallToActionTwo data={cta} />
     </div>

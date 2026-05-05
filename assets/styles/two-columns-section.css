@@ -9,22 +9,29 @@
 
                 flex-direction: column;
             }
+
         }
     }
 
     .content {
-        .small-title {
+        position: relative;
+
+        >.small-title {
             margin-bottom: 20px;
             font-size: 18px;
             font-weight: 700;
             display: block;
+        }
+
+        >.icon-and-text {
+            position: relative;
+            margin-top: 20%;
         }
     }
 
     .row {
         display: flex;
         flex-flow: row nowrap;
-        align-items: center;
         justify-content: space-between;
         gap: 80px;
 
