@@ -70,6 +70,14 @@
           }
         }
 
+        @media screen and (max-width: 1070px) {
+          flex-flow: row wrap;
+
+          .box {
+            width: 48%;
+          }
+        }
+
         @media screen and (max-width: 991px) {
           width: 48%;
           margin-bottom: 3%;
@@ -86,14 +94,6 @@
         @media screen and (max-width: 576px) {
           width: 100%;
           margin-right: 0;
-        }
-      }
-
-      @media screen and (max-width: 1070px) {
-        flex-flow: row wrap;
-
-        .box {
-          width: 48%;
         }
       }
 

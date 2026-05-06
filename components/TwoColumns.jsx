@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const TwoColumns = ({ data, text_direction, section_class, icon, background_color = "", bottom_border = false }) => {
+const TwoColumns = ({ data, text_direction, section_class, icon, background_color = "", bottom_border = false, small_title_margin = false }) => {
 
     const { small_title, title, subtitle, buttons, image } = data;
 
@@ -10,7 +10,7 @@ const TwoColumns = ({ data, text_direction, section_class, icon, background_colo
             borderBottom: bottom_border ? "1px solid var(--color-neutral-400)" : ""
         }}>
             <div className="container">
-                <div className="row">
+                <div className={`row ${small_title_margin ? "small_title_margin" : ""}`}>
                     <div className="col left-column">
                         <div className="content">
                             {small_title ? <span className="small-title">{small_title}</span> : null}

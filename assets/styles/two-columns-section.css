@@ -25,7 +25,6 @@
 
         >.icon-and-text {
             position: relative;
-            margin-top: 20%;
         }
     }
 
@@ -34,6 +33,15 @@
         flex-flow: row nowrap;
         justify-content: space-between;
         gap: 80px;
+        align-items: center;
+
+        &.small_title_margin {
+            align-items: flex-start;
+
+            .small-title {
+                margin-bottom: 20%;
+            }
+        }
 
         .left-column {
             width: 50%;
@@ -62,6 +70,12 @@
             align-items: flex-start;
             justify-content: flex-start;
 
+            &.small_title_margin {
+                .small-title {
+                    margin-bottom: 10%;
+                }
+            }
+
             .left-column,
             .right-column {
                 width: 100%;
@@ -70,14 +84,9 @@
             .background-image {
                 min-height: 348px;
             }
+
         }
 
-        .content {
-            >.icon-and-text {
-                position: relative;
-                margin-top: 10%;
-            }
-        }
     }
 
     .icon-wrapper {

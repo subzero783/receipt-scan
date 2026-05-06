@@ -717,7 +717,40 @@ const siteData = [
           }
         ]
       },
-
+      "capture_data_instantly": {
+        "small_title": "Capture",
+        "title": "Capture data instantly, no matter where it is",
+        "subtitle": "Stop hoarding paper and digging through inboxes. Our advanced OCR technology accurately extracts vendor names, dates, amounts, and taxes from any receipt. Whether you snap a photo on your phone, upload a bulk batch of PDFs, or forward an email directly to your custom inbound address, Receipt Scan processes it in seconds.",
+        "image": "/images/hero/hero-image.png",
+        "image_alt": "Receipt AI",
+        "buttons": [
+          {
+            "text": "Start for Free",
+            "link": "/signup"
+          },
+          {
+            "text": "See Pricing",
+            "link": "/pricing"
+          }
+        ]
+      },
+      "let_ai_do_the_sorting": {
+        "small_title": "Organize",
+        "title": "Let AI do the sorting",
+        "subtitle": "Say goodbye to manual data entry. Our proprietary AI doesn't just read your receipts; it understands them. It automatically learns your spending habits and categorizes expenses so your records are always tax-ready. Need custom rules? You can easily train the AI to fit your specific accounting workflow.",
+        "image": "/images/hero/hero-image.png",
+        "image_alt": "Receipt AI",
+        "buttons": [
+          {
+            "text": "Start for Free",
+            "link": "/signup"
+          },
+          {
+            "text": "See Pricing",
+            "link": "/pricing"
+          }
+        ]
+      },
 
       "cta": {
         "title": "Reclaim your time",

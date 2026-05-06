@@ -19,6 +19,8 @@ const FeaturesPage = () => {
   const extraction_description_section = featuresData.extraction_description_section;
   const categorize_expenses = featuresData.categorize_expenses;
   const receipts_managed_taxes_conquered = featuresData.receipts_managed_taxes_conquered;
+  const capture_data_instantly = featuresData.capture_data_instantly;
+  const let_ai_do_the_sorting = featuresData.let_ai_do_the_sorting;
   const tools = featuresData.tools;
   const export_and_invoice = featuresData.export_and_invoice;
   const cta = featuresData.cta;
@@ -30,11 +32,16 @@ const FeaturesPage = () => {
       <ReceiptsManagedTaxesConquered data={receipts_managed_taxes_conquered} />
 
       <ToolsSection data={tools} />
-      <TwoColumns data={extraction_description_section} text_direction="left" icon={<FiUpload />} background_color={"var(--color-third)"} bottom_border={true} />
 
-      <TwoColumns data={categorize_expenses} text_direction="left" section_class="categorize_expenses" icon={<LuBrain />} background_color={"var(--color-third)"} bottom_border={true} />
+      <TwoColumns data={extraction_description_section} text_direction="left" icon={<FiUpload />} background_color={"var(--color-third)"} bottom_border={true} small_title_margin={true} />
 
-      <TwoColumns data={export_and_invoice} text_direction="left" section_class="categorize_expenses" icon={<IoDocumentTextOutline />} background_color={"var(--color-third)"} />
+      <TwoColumns data={categorize_expenses} text_direction="left" section_class="categorize_expenses" icon={<LuBrain />} background_color={"var(--color-third)"} bottom_border={true} small_title_margin={true} />
+
+      <TwoColumns data={export_and_invoice} text_direction="left" section_class="categorize_expenses" icon={<IoDocumentTextOutline />} background_color={"var(--color-third)"} small_title_margin={true} />
+
+      <TwoColumns data={capture_data_instantly} text_direction="left" section_class="capture_data_instantly" background_color={"var(--color-secondary)"} />
+
+      <TwoColumns data={let_ai_do_the_sorting} text_direction="right" section_class="let_ai_do_the_sorting" background_color={"var(--color-white)"} />
 
       <CallToActionTwo data={cta} />
     </div>
