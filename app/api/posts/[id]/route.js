@@ -1,6 +1,5 @@
 import connectDB from "@/config/database";
 import BlogPost from "@/models/BlogPost";
-import { getSessionUser } from "@/utils/getSessionUser";
 
 // GET /api/properties/:id
 export const GET = async (request, { params }) => {

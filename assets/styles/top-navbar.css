@@ -92,6 +92,14 @@
       .logo-column {
         width: 30%;
         justify-content: flex-start;
+
+        >a {
+          >img {
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+          }
+        }
       }
 
       @media screen and (max-width: 768px) {
