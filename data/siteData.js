@@ -809,10 +809,6 @@ const siteData = [
           {
             "text": "Start",
             "link": "/signup"
-          },
-          {
-            "text": "Learn More",
-            "link": "/features"
           }
         ]
       }
