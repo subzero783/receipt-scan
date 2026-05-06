@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const TwoColumns = ({ data, text_direction, section_class, icon, background_color = "", bottom_border }) => {
+const TwoColumns = ({ data, text_direction, section_class, icon, background_color = "", bottom_border = false }) => {
 
     const { small_title, title, subtitle, buttons, image } = data;
 

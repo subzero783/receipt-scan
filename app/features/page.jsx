@@ -20,6 +20,7 @@ const FeaturesPage = () => {
   const categorize_expenses = featuresData.categorize_expenses;
   const receipts_managed_taxes_conquered = featuresData.receipts_managed_taxes_conquered;
   const tools = featuresData.tools;
+  const export_and_invoice = featuresData.export_and_invoice;
   const cta = featuresData.cta;
 
   return (
@@ -29,9 +30,11 @@ const FeaturesPage = () => {
       <ReceiptsManagedTaxesConquered data={receipts_managed_taxes_conquered} />
 
       <ToolsSection data={tools} />
-      <TwoColumns data={extraction_description_section} text_direction="left" icon={<IoDocumentTextOutline />} background_color={"var(--color-third)"} bottom_border={true} />
+      <TwoColumns data={extraction_description_section} text_direction="left" icon={<FiUpload />} background_color={"var(--color-third)"} bottom_border={true} />
 
-      <TwoColumns data={categorize_expenses} text_direction="right" section_class="categorize_expenses" icon={<FiUpload />} background_color={"var(--color-third)"} bottom_border={true} />
+      <TwoColumns data={categorize_expenses} text_direction="left" section_class="categorize_expenses" icon={<LuBrain />} background_color={"var(--color-third)"} bottom_border={true} />
+
+      <TwoColumns data={export_and_invoice} text_direction="left" section_class="categorize_expenses" icon={<IoDocumentTextOutline />} background_color={"var(--color-third)"} />
 
       <CallToActionTwo data={cta} />
     </div>

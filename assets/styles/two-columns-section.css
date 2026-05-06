@@ -71,6 +71,13 @@
                 min-height: 348px;
             }
         }
+
+        .content {
+            >.icon-and-text {
+                position: relative;
+                margin-top: 10%;
+            }
+        }
     }
 
     .icon-wrapper {

@@ -700,6 +700,23 @@ const siteData = [
           }
         ]
       },
+      "export_and_invoice": {
+        "small_title": "03 Export and Invoice",
+        "title": "Send clean data to your accountant or create invoices",
+        "subtitle": "Pull your categorized expenses into CSV, Excel, or PDF invoices. Everything is formatted and ready to use in your accounting software or send directly to clients.",
+        "image": "/images/hero/hero-image.png",
+        "image_alt": "Receipt AI",
+        "buttons": [
+          {
+            "text": "Start for Free",
+            "link": "/signup"
+          },
+          {
+            "text": "See Pricing",
+            "link": "/pricing"
+          }
+        ]
+      },
 
 
       "cta": {
