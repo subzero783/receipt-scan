@@ -5,7 +5,9 @@
         color: var(--color-dark);
     }
 
-    .capture_data_instantly {
+    .capture_data_instantly,
+    .turn_expenses_into_billable_invoices,
+    .forward_emails {
         color: var(--color-white);
 
         .btn {

@@ -21,6 +21,9 @@ const FeaturesPage = () => {
   const receipts_managed_taxes_conquered = featuresData.receipts_managed_taxes_conquered;
   const capture_data_instantly = featuresData.capture_data_instantly;
   const let_ai_do_the_sorting = featuresData.let_ai_do_the_sorting;
+  const turn_expenses_into_billable_invoices = featuresData.turn_expenses_into_billable_invoices;
+  const your_data = featuresData.your_data;
+  const forward_emails = featuresData.forward_emails;
   const tools = featuresData.tools;
   const export_and_invoice = featuresData.export_and_invoice;
   const cta = featuresData.cta;
@@ -42,6 +45,12 @@ const FeaturesPage = () => {
       <TwoColumns data={capture_data_instantly} text_direction="left" section_class="capture_data_instantly" background_color={"var(--color-secondary)"} />
 
       <TwoColumns data={let_ai_do_the_sorting} text_direction="right" section_class="let_ai_do_the_sorting" background_color={"var(--color-white)"} />
+
+      <TwoColumns data={turn_expenses_into_billable_invoices} text_direction="left" section_class="turn_expenses_into_billable_invoices" background_color={"var(--color-secondary)"} />
+
+      <TwoColumns data={your_data} text_direction="right" section_class="your_data" background_color={"var(--color-white)"} />
+
+      <TwoColumns data={forward_emails} text_direction="left" section_class="forward_emails" background_color={"var(--color-secondary)"} />
 
       <CallToActionTwo data={cta} />
     </div>

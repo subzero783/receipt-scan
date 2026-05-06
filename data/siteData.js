@@ -647,22 +647,22 @@ const siteData = [
             "small_title": "Extraction",
             "title": "Instant data extraction",
             "text": "Advanced OCR reads receipts in seconds, no matter the format.",
-            "image": "/images/hero/hero-image.png",
-            "image_alt": "Receipt AI"
+            "image": "/images/features_page/Paper_receipt_passing_scanner.jpeg",
+            "image_alt": "Paper receipt passing scanner"
           },
           {
             "small_title": "Export",
             "title": "CSV and ZIP exports",
             "text": "Download your extracted data as a CSV for Excel, or export all your receipt images in a single ZIP file for tax season.",
-            "image": "/images/hero/hero-image.png",
-            "image_alt": "Receipt AI"
+            "image": "/images/features_page/Digital_folder_morphing_into_zip_folder.jpeg",
+            "image_alt": "Digital folder morphing into zip folder"
           },
           {
             "small_title": "Email",
             "title": "Email Receipts to Anyone",
             "text": "Send your receipts to anyone, anywhere, and with the attached receipt images and CSV file, they can easily import your receipts into their accounting software.",
-            "image": "/images/hero/hero-image.png",
-            "image_alt": "Receipt AI"
+            "image": "/images/features_page/Paper_airplane_flying_out_over_envelope.jpeg",
+            "image_alt": "Paper airplane flying out over envelope"
           }
         ]
       },
@@ -670,8 +670,8 @@ const siteData = [
         "small_title": "01 Capture Receipts",
         "title": "Snap a photo, upload a batch, or forward an email",
         "subtitle": "Receipt Scan accepts receipts however you want to send them. Phone photos, PDF batches, or emails forwarded to your unique inbound address all work instantly.",
-        "image": "/images/hero/hero-image.png",
-        "image_alt": "Receipt AI",
+        "image": "/images/features_page/Data_inputs_feeding_cloud_database.jpeg",
+        "image_alt": "Data inputs feeding cloud database",
         "buttons": [
           {
             "text": "Start for Free",
@@ -687,8 +687,8 @@ const siteData = [
         "small_title": "02 Categorize Expenses",
         "title": "AI learns your spending patterns and sorts automatically",
         "subtitle": "Our system reads more than just numbers. It understands your business and categorizes each expense into the right bucket. Train it with custom rules whenever your workflow changes.",
-        "image": "/images/hero/hero-image.png",
-        "image_alt": "Receipt AI",
+        "image": "/images/features_page/Receipts_processed_by_AI.jpeg",
+        "image_alt": "Receipts processed by AI",
         "buttons": [
           {
             "text": "Start for Free",
@@ -704,8 +704,8 @@ const siteData = [
         "small_title": "03 Export and Invoice",
         "title": "Send clean data to your accountant or create invoices",
         "subtitle": "Pull your categorized expenses into CSV, Excel, or PDF invoices. Everything is formatted and ready to use in your accounting software or send directly to clients.",
-        "image": "/images/hero/hero-image.png",
-        "image_alt": "Receipt AI",
+        "image": "/images/features_page/Digital_dashboard_with_CSV_ZIP_PDF_INVOICE.jpeg",
+        "image_alt": "Digital dashboard with CSV ZIP PDF Invoice",
         "buttons": [
           {
             "text": "Start for Free",
@@ -721,8 +721,8 @@ const siteData = [
         "small_title": "Capture",
         "title": "Capture data instantly, no matter where it is",
         "subtitle": "Stop hoarding paper and digging through inboxes. Our advanced OCR technology accurately extracts vendor names, dates, amounts, and taxes from any receipt. Whether you snap a photo on your phone, upload a bulk batch of PDFs, or forward an email directly to your custom inbound address, Receipt Scan processes it in seconds.",
-        "image": "/images/hero/hero-image.png",
-        "image_alt": "Receipt AI",
+        "image": "/images/features_page/Smartphone_capturing_receipt.jpeg",
+        "image_alt": "Illustration of a smartphone scanning a receipt, alongside PDF and email icons, smoothly transferring data into a central cloud database.",
         "buttons": [
           {
             "text": "Start for Free",
@@ -736,10 +736,10 @@ const siteData = [
       },
       "let_ai_do_the_sorting": {
         "small_title": "Organize",
-        "title": "Let AI do the sorting",
+        "title": "Let AI do the sorting for you",
         "subtitle": "Say goodbye to manual data entry. Our proprietary AI doesn't just read your receipts; it understands them. It automatically learns your spending habits and categorizes expenses so your records are always tax-ready. Need custom rules? You can easily train the AI to fit your specific accounting workflow.",
-        "image": "/images/hero/hero-image.png",
-        "image_alt": "Receipt AI",
+        "image": "/images/features_page/Paper_receipts_processed_by_AI.jpeg",
+        "image_alt": "Illustration showing a messy pile of paper receipts passing through an AI processor and emerging as neatly organized, color-coded digital folders.",
         "buttons": [
           {
             "text": "Start for Free",
@@ -751,7 +751,57 @@ const siteData = [
           }
         ]
       },
-
+      "turn_expenses_into_billable_invoices": {
+        "small_title": "Invoice",
+        "title": "Turn expenses into billable invoices in seconds",
+        "subtitle": "Stop duplicating work. Select any combination of categorized receipts and instantly generate a professional, formatted PDF invoice. Perfect for freelancers passing material costs to clients. Customize the invoice with your logo, add custom tax rates, and download it instantly—ready to send.",
+        "image": "/images/features_page/one_click_invoice.jpeg",
+        "image_alt": "Dashboard UI illustration demonstrating a list of categorized expenses automatically generating a completed professional PDF invoice.",
+        "buttons": [
+          {
+            "text": "Start for Free",
+            "link": "/signup"
+          },
+          {
+            "text": "See Pricing",
+            "link": "/pricing"
+          }
+        ]
+      },
+      "your_data": {
+        "small_title": "Export",
+        "title": "Your data, ready for your accountant",
+        "subtitle": "Getting your data out of Receipt Scan is as easy as getting it in. Export your categorized expenses as a clean CSV or Excel spreadsheet, perfectly formatted for your accounting software. Need the original files for an audit? Download a ZIP file containing the pristine, original images of every receipt.",
+        "image": "/images/features_page/accountant_data_export.jpeg",
+        "image_alt": "3D illustration of a glowing CSV spreadsheet and a ZIP archive resting on a modern desk, representing clean and easily exportable financial data.",
+        "buttons": [
+          {
+            "text": "Start for Free",
+            "link": "/signup"
+          },
+          {
+            "text": "See Pricing",
+            "link": "/pricing"
+          }
+        ]
+      },
+      "forward_emails": {
+        "small_title": "Export",
+        "title": "Forward emails, forget the rest",
+        "subtitle": "Every account comes with a unique, secure inbound email address. When you receive an Uber receipt or a software subscription invoice, simply forward it to your Receipt Scan address. Our system automatically parses the email, extracts the receipt attachment, and categorizes the expense before you even log in.",
+        "image": "/images/features_page/email_forwarding_automation.jpeg",
+        "image_alt": "Illustration showing a digital email receipt being automatically routed from an inbox interface directly into a secure database lockbox.",
+        "buttons": [
+          {
+            "text": "Start for Free",
+            "link": "/signup"
+          },
+          {
+            "text": "See Pricing",
+            "link": "/pricing"
+          }
+        ]
+      },
       "cta": {
         "title": "Reclaim your time",
         "subtitle": "Stop wrestling with receipts. Start building your business instead.",

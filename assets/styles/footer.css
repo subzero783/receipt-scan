@@ -1,43 +1,60 @@
 .footer {
   background-color: var(--color-fifth);
   padding: 80px 0;
+
   @media screen and (max-width: 576px) {
     padding: 48px 0;
   }
-  > .container {
-    > .row {
+
+  >.container {
+    >.row {
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
       justify-content: space-between;
     }
+
     &.top-footer {
-      > .row {
+      >.row {
         align-items: flex-start;
         justify-content: flex-start;
-        > .links-columns {
+
+        >.links-columns {
           margin-right: 10%;
           width: 58%;
         }
-        > .subscribe-column {
+
+        >.subscribe-column {
           width: 31%;
         }
+
         @media screen and (max-width: 991px) {
           flex-flow: column nowrap;
-          > .links-columns {
+
+          >.links-columns {
             width: 100%;
             margin-bottom: 40px;
           }
-          > .subscribe-column {
-            width: 100%;
+
+          >.subscribe-column {
+            width: 50%;
           }
         }
+
+        @media screen and (max-width: 768px) {
+          >.subscribe-column {
+            width: 80%;
+          }
+        }
+
         @media screen and (max-width: 576px) {
-          > .links-columns {
+          >.links-columns {
             flex-flow: column nowrap;
-            > .col {
+
+            >.col {
               width: 100%;
               margin-bottom: 40px;
+
               &:last-of-type {
                 margin-bottom: 0;
               }
@@ -46,35 +63,43 @@
         }
       }
     }
+
     &.bottom-container {
       padding-top: 80px;
       padding-bottom: 0;
-      > .row {
+
+      >.row {
         align-items: center;
         justify-content: space-between;
         border-top: 1px solid var(--color-neutral-400);
         padding-top: 32px;
       }
+
       p {
         font-size: 14px;
         color: var(--color-white);
       }
+
       .copyright-column {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
+
         p,
         a {
           margin-right: 24px;
         }
+
         a {
           padding: 5px;
           font-size: 14px;
           color: var(--color-white);
           text-decoration: underline;
+
           &:last-of-type {
             margin-right: 0;
           }
+
           &:hover,
           &:active,
           &:focus {
@@ -82,17 +107,21 @@
           }
         }
       }
+
       .social-media-column {
         a {
           padding: 5px;
           margin-right: 12px;
+
           &:last-of-type {
             margin-right: 0;
           }
+
           svg {
             font-size: 24px;
             color: var(--color-white);
           }
+
           &:hover,
           &:active,
           &:focus {
@@ -102,32 +131,40 @@
           }
         }
       }
+
       @media screen and (max-width: 870px) {
-        > .row {
+        >.row {
           flex-flow: column-reverse nowrap;
-          > .copyright-column {
+
+          >.copyright-column {
             width: 100%;
           }
-          > .social-media-column {
+
+          >.social-media-column {
             width: 100%;
             margin-bottom: 32px;
           }
         }
       }
+
       @media screen and (max-width: 670px) {
-        > .row {
+        >.row {
           flex-flow: column-reverse nowrap;
-          > .copyright-column {
+
+          >.copyright-column {
             width: 100%;
             flex-flow: column-reverse nowrap;
             align-items: flex-start;
-            > a {
+
+            >a {
               margin-bottom: 16px;
+
               &:first-of-type {
                 margin-bottom: 0;
               }
             }
-            > p {
+
+            >p {
               margin-top: 32px;
             }
           }
@@ -135,38 +172,46 @@
       }
     }
   }
+
   .links-columns {
     display: flex;
     flex-flow: row nowrap;
-    > .col {
+
+    >.col {
       margin-right: 6%;
       width: 25%;
+
       &:last-of-type {
         margin-right: 0;
       }
     }
   }
+
   h3 {
     font-size: 16px;
     color: var(--color-white);
     padding-bottom: 16px;
     font-weight: 600;
   }
+
   .links-container {
     display: flex;
     flex-flow: column nowrap;
-    > a {
+
+    >a {
       padding: 5px;
       font-size: 14px;
       font-weight: 400;
       margin-left: -5px;
       margin-bottom: 8px;
       color: var(--color-white);
+
       &:last-of-type {
         margin-bottom: 0;
       }
     }
   }
+
   .subscribe-column {
     p {
       font-size: 16px;
