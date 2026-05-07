@@ -41,10 +41,9 @@ const ReceiptImageModal = ({ src, onClose }) => {
             <button type="button" className="modal-close-btn" onClick={handleClose}>
                 <MdClose size={32} />
             </button>
-
+            {/* No change */}
             <div
                 className="image-modal-content"
-                onClick={(e) => e.stopPropagation()} // Prevent close when clicking content area
             >
                 <div className="image-wrapper" style={{ transform: `scale(${scale})` }}>
                     <img
