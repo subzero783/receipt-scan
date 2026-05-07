@@ -77,11 +77,10 @@ const DashboardEditModal = ({
             >
               {selectedReceipt.imageUrl ? (
                 <>
-                  <Image
-                    src={selectedReceipt.imageUrl}
+                  <img
+                    src={`/api/receipts/view-image?publicId=${encodeURIComponent(selectedReceipt.publicId)}&url=${encodeURIComponent(selectedReceipt.imageUrl)}&mimeType=image/jpeg`}
                     alt="Receipt"
-                    fill
-                    style={{ objectFit: 'contain' }}
+                    className="receipt-image"
                   />
                   {isAddMode && (
                     <div className="image-hover-overlay">
@@ -113,7 +112,7 @@ const DashboardEditModal = ({
             </div>
 
             {!isAddMode && selectedReceipt.imageUrl && (
-              <a href={selectedReceipt.imageUrl} target="_blank" className="text-link">
+              <a href={`/api/receipts/view-image?publicId=${encodeURIComponent(selectedReceipt.publicId)}&url=${encodeURIComponent(selectedReceipt.imageUrl)}&mimeType=image/jpeg`} target="_blank" className="text-link">
                 View Full Size
               </a>
             )}

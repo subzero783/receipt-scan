@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { MdClose, MdZoomIn, MdZoomOut } from 'react-icons/md';
-import Image from 'next/image';
 
 const ReceiptImageModal = ({ src, onClose }) => {
     const [scale, setScale] = useState(1);
@@ -48,11 +47,10 @@ const ReceiptImageModal = ({ src, onClose }) => {
                 onClick={(e) => e.stopPropagation()} // Prevent close when clicking content area
             >
                 <div className="image-wrapper" style={{ transform: `scale(${scale})` }}>
-                    <Image
+                    <img
                         src={src}
                         alt="Receipt"
-                        fill
-                        style={{ objectFit: 'contain' }}
+                        className="receipt-image"
                     />
                 </div>
             </div>

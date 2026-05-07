@@ -16,13 +16,14 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
       <div className="receipt-image-container">
         <div
           className="receipt-background-image"
-          style={{ backgroundImage: `url(${receipt.imageUrl})`, cursor: 'pointer' }}
+          style={{ backgroundImage: `url(/api/receipts/view-image?publicId=${encodeURIComponent(receipt.publicId)}&url=${encodeURIComponent(receipt.imageUrl)}&mimeType=image/jpeg)`, cursor: 'pointer' }}
           onClick={() => setIsModalOpen(true)}
         >
         </div>
         {isModalOpen && (
           <ReceiptImageModal
-            src={receipt.imageUrl}
+            src={`/api/receipts/view-image?publicId=${encodeURIComponent(receipt.publicId)}&url=${encodeURIComponent(receipt.imageUrl)}&mimeType=image/jpeg`}
+            alt="Receipt"
             onClose={() => setIsModalOpen(false)}
           />
         )}

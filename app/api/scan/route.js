@@ -124,7 +124,8 @@ export const POST = async (request) => {
           total_amount: newReceipt.totalAmount,
           date: newReceipt.transactionDate,
           category: newReceipt.category,
-          imageUrl: newReceipt.imageUrl
+          imageUrl: newReceipt.imageUrl,
+          publicId: newReceipt.publicId
         }
       },
       { status: 200 }

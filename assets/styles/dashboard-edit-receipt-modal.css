@@ -73,6 +73,13 @@
         width: 100%;
         height: 100%;
         margin-bottom: 10px;
+
+        img {
+            max-width: 200px;
+            object-fit: contain;
+            margin: 0 auto;
+            display: block;
+        }
     }
 
     .modal-form-col {
