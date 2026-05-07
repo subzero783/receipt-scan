@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import ImageModal from './ImageModal';
+import ReceiptImageModal from './ReceiptImageModal';
 
 const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt, onDeleteReceipt, isSaving, isDeleting }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +21,7 @@ const ReceiptCard = ({ receipt, index, editedData, onInputChange, onSaveReceipt,
         >
         </div>
         {isModalOpen && (
-          <ImageModal
+          <ReceiptImageModal
             src={receipt.imageUrl}
             onClose={() => setIsModalOpen(false)}
           />

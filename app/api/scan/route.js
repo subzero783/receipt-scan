@@ -66,7 +66,14 @@ export const POST = async (request) => {
       uploadStream.end(buffer);
     });
 
-    const imageUrl = uploadResult.secure_url;
+    // Generate a signed URL for the uploaded image with 1 hour expiration
+    const signedUrl = cloudinary.url(uploadResult.public_id, {
+      type: "authenticated",
+      sign_url: true, // Signs the URL with your API secret
+      expires_at: Math.floor(Date.now() / 1000) + (60 * 60) // 1 hour from now
+    });
+
+    const imageUrl = signedUrl;
     const publicId = uploadResult.public_id;
 
     // Scan with Gemini API
