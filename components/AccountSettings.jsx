@@ -178,8 +178,8 @@ const AccountSettings = () => {
                                 <div className="settings-form-group">
                                     <label className="settings-form-label" htmlFor="website">Website</label>
                                     <div className="input-with-prefix">
-                                        <span className="prefix">http://</span>
-                                        <input type="url" id="website" className="form-input" placeholder="www.receiptscan.com" value={formData.website} onChange={handleChange} />
+                                        <span className="prefix">https://</span>
+                                        <input type="url" id="website" className="form-input" placeholder="www.receiptscan.org" value={formData.website} onChange={handleChange} />
                                     </div>
                                 </div>
 

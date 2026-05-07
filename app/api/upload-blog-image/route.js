@@ -35,7 +35,7 @@ export const POST = async (request) => {
 
         // Upload to Cloudinary into the specific folder
         const uploadResult = await cloudinary.uploader.upload(fileUri, {
-            folder: "blog-posts-images",
+            folder: "receipt-scan-app/blog-posts-images",
             // Blog images should be public so readers can see them
             type: "upload",
         });

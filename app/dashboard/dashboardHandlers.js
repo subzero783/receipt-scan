@@ -151,7 +151,7 @@ export const createModalHandlers = (setSelectedReceipt, setReceipts, setIsSaving
         const formData = new FormData();
         formData.append('file', imageFile);
 
-        const uploadRes = await fetch('/api/upload-image', {
+        const uploadRes = await fetch('/api/upload-receipt-images', {
           method: 'POST',
           body: formData
         });

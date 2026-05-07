@@ -4,6 +4,7 @@ import User from '@/models/User';
 import Receipt from '@/models/Receipt';
 import { v2 as cloudinary } from 'cloudinary';
 import { GoogleGenAI } from '@google/genai';
+import { Resend } from 'resend';
 
 // 1. Config Cloudinary
 cloudinary.config({
@@ -12,7 +13,6 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-import { Resend } from 'resend';
 
 // Configure Gemini API
 const ai = new GoogleGenAI({
@@ -32,10 +32,6 @@ export const POST = async (request) => {
         // Structure: https://resend.com/docs/dashboard/webhooks/event-types
         // The payload usually contains 'email_id' but not the content.
         const { to, email_id } = payload;
-
-        console.log("to: ", to);
-        console.log("email_id: ", email_id);
-        console.log("Webhook payload: ", payload);
 
         // Safety check: Ensure there is a recipient and email_id
         if (!to || !to.length || !email_id) {
