@@ -127,7 +127,7 @@ export const POST = async (request) => {
             // --- A. Upload to Cloudinary ---
             const uploadResult = await new Promise((resolve, reject) => {
                 const uploadStream = cloudinary.uploader.upload_stream(
-                    { folder: 'receipt-scan-app/email-uploads' },
+                    { folder: 'receipt-scan-app/email-uploads', type: 'authenticated' },
                     (error, result) => {
                         if (error) reject(error);
                         else resolve(result);

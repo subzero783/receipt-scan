@@ -27,9 +27,16 @@ const BlogPostSchema = new Schema(
       email: {
         type: String,
       },
+      role: {
+        type: String,
+      },
+      bio: {
+        type: String,
+      },
     },
     featured_image: {
       type: String,
+      default: ''
     },
     is_featured: {
       type: Boolean,

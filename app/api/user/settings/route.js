@@ -72,6 +72,7 @@ export async function PUT(request) {
             try {
                 const uploadResponse = await cloudinary.uploader.upload(image, {
                     folder: 'receipt-scan-app/users',
+                    type: 'authenticated'
                 });
                 user.image = uploadResponse.secure_url;
             } catch (imageError) {

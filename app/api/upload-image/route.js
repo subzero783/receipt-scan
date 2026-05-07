@@ -29,6 +29,7 @@ export const POST = async (request) => {
             const uploadStream = cloudinary.uploader.upload_stream(
                 {
                     folder: 'receipt-scan-app',
+                    type: 'authenticated'
                 },
                 (error, result) => {
                     if (error) reject(error);

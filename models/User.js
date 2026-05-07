@@ -61,6 +61,11 @@ const UserSchema = new Schema(
       sparse: true, // Allows nulls for old users until migrated
       description: "The unique part of the email address for inbound receipts (e.g. 'steve' in steve@reermi.resend.app)"
     },
+    role: {
+      type: String,
+      enum: ['user', 'admin'],
+      default: 'user'
+    }
   },
   {
     timestamps: true,
