@@ -3,6 +3,14 @@ import connectDB from '@/config/database';
 import Receipt from '@/models/Receipt';
 import { getSessionUser } from '@/utils/getSessionUser';
 import User from '@/models/User';
+import { v2 as cloudinary } from 'cloudinary';
+
+// Config Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // GET: Fetch paginated receipts
 export const GET = async (request) => {
@@ -164,17 +172,11 @@ export const DELETE = async (request) => {
             return new NextResponse('No receipts found to delete', { status: 404 });
         }
 
-        // 2. Delete from Cloudinary (if needed) - Assuming Receipt model has publicId
-        // Ideally we would import cloudinary here, but sticking to logic pattern
-        // (If cloudinary is needed, I should make sure it is imported or available)
-        // CHECK: route.js doesn't have cloudinary imported.
-        // DECISION: To avoid breaking if cloudinary isn't setup in this specific file,
-        // I will just do DB delete for now as per plan focus, BUT since I saw publicId in model,
-        // it's better to verify if I should import it. 
-        // Re-reading `api/scan/route.js`, it does import cloudinary. 
-        // I will stick to DB deletion for this specific request unless I see cloudinary imported.
-        // Wait, the prompt implies "delete those selected rows". 
-        // I will just perform DB delete to be safe and consistent with the file's current state.
+        const cloudinaryPromises = receiptsToDelete
+            .filter(r => r.publicId) // Only process receipts that have an image attached
+            .map(r => cloudinary.uploader.destroy(r.publicId, { resource_type: 'raw' }));
+
+        await Promise.all(cloudinaryPromises);
 
         // 3. Delete from MongoDB
         await Receipt.deleteMany({

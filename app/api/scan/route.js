@@ -5,6 +5,7 @@ import connectDB from '@/config/database';
 import Receipt from '@/models/Receipt';
 import { getSessionUser } from '@/utils/getSessionUser';
 import User from '@/models/User';
+import { encryptBuffer } from '@/utils/encryption'; // <-- IMPORT ENCRYPTION
 
 // Config Cloudinary
 cloudinary.config({
@@ -18,7 +19,7 @@ const ai = new GoogleGenAI({
   apiKey: process.env.NEXT_GEMINI_API_KEY,
 });
 
-// --- POST: Upload and Scan (Existing Logic) ---
+// --- POST: Upload, Scan, and Encrypt ---
 export const POST = async (request) => {
   try {
     await connectDB();
@@ -49,34 +50,9 @@ export const POST = async (request) => {
     }
 
     const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    const originalBuffer = Buffer.from(bytes);
 
-    // Upload to Cloudinary
-    const uploadResult = await new Promise((resolve, reject) => {
-      const uploadStream = cloudinary.uploader.upload_stream(
-        {
-          folder: 'receipt-scan-app/receipts',
-          type: 'authenticated'
-        },
-        (error, result) => {
-          if (error) reject(error);
-          else resolve(result);
-        }
-      );
-      uploadStream.end(buffer);
-    });
-
-    // Generate a signed URL for the uploaded image with 1 hour expiration
-    const signedUrl = cloudinary.url(uploadResult.public_id, {
-      type: "authenticated",
-      sign_url: true, // Signs the URL with your API secret
-      expires_at: Math.floor(Date.now() / 1000) + (60 * 60) // 1 hour from now
-    });
-
-    const imageUrl = signedUrl;
-    const publicId = uploadResult.public_id;
-
-    // Scan with Gemini API
+    // 1. SCAN WITH GEMINI (Must happen BEFORE encryption)
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: [
@@ -86,8 +62,8 @@ export const POST = async (request) => {
             { text: "You are a receipt scanning assistant. Extract data from the image and return ONLY a valid JSON object. Keys: 'merchant_name', 'total_amount', 'date', 'category'." },
             {
               inlineData: {
-                mimeType: file.type || "image/jpeg", // <--- Changed to mimeType and made dynamic
-                data: buffer.toString("base64")
+                mimeType: file.type || "image/jpeg",
+                data: originalBuffer.toString("base64")
               }
             }
           ],
@@ -97,13 +73,40 @@ export const POST = async (request) => {
 
     const aiContent = response.text;
     const cleanJson = aiContent.replace(/```json/g, '').replace(/```/g, '').trim();
-    const extractedData = JSON.parse(cleanJson);
+    let extractedData = {};
+    try {
+      extractedData = JSON.parse(cleanJson);
+    } catch (e) {
+      console.error("Failed to parse Gemini JSON", cleanJson);
+      return new NextResponse(JSON.stringify({ message: 'AI failed to extract readable data' }), { status: 500 });
+    }
 
-    // Save to MongoDB
+    // 2. ENCRYPT THE RECEIPT (Zero-Knowledge)
+    const encryptedBuffer = encryptBuffer(originalBuffer);
+
+    // 3. UPLOAD ENCRYPTED DATA TO CLOUDINARY
+    const uploadResult = await new Promise((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        {
+          folder: 'receipt-scan-app/receipts',
+          resource_type: 'raw', // CRITICAL: Cloudinary handles this as locked data, not an image
+          type: 'authenticated'
+        },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        }
+      );
+      uploadStream.end(encryptedBuffer); // Send the scrambled buffer
+    });
+
+    // 4. SAVE TO MONGODB
+    // Note: Do not save a 1-hour signed URL to DB, or the image breaks tomorrow!
+    // Save the permanent secure_url. The frontend will decrypt it on the fly.
     const newReceipt = new Receipt({
       user: userId,
-      imageUrl: imageUrl,
-      publicId: publicId,
+      imageUrl: uploadResult.secure_url,
+      publicId: uploadResult.public_id,
       merchantName: extractedData.merchant_name || 'Unknown',
       totalAmount: extractedData.total_amount || 0,
       transactionDate: extractedData.date ? new Date(extractedData.date) : new Date(),
@@ -133,7 +136,7 @@ export const POST = async (request) => {
   }
 };
 
-// --- PUT: Update Receipts (Batch or Single) ---
+// --- PUT: Update Receipts (Existing Logic) ---
 export const PUT = async (request) => {
   try {
     await connectDB();
@@ -141,20 +144,15 @@ export const PUT = async (request) => {
 
     if (!sessionUser) return new NextResponse('Unauthorized', { status: 401 });
 
-    const { receipts } = await request.json(); // Expects { receipts: [...] }
+    const { receipts } = await request.json();
 
     if (!receipts || !Array.isArray(receipts)) {
       return new NextResponse('Invalid data format', { status: 400 });
     }
 
-    // Process updates in parallel
     const updatePromises = receipts.map(async (receiptData) => {
-      // Map frontend keys (from OpenAI) to Database keys
-      // Frontend: merchant_name, total_amount, date
-      // DB: merchantName, totalAmount, transactionDate
-
       return Receipt.findOneAndUpdate(
-        { _id: receiptData.id, user: sessionUser.userId }, // Ensure user owns the receipt
+        { _id: receiptData.id, user: sessionUser.userId },
         {
           merchantName: receiptData.merchant_name || receiptData.merchantName,
           totalAmount: receiptData.total_amount || receiptData.totalAmount,
@@ -166,7 +164,6 @@ export const PUT = async (request) => {
     });
 
     await Promise.all(updatePromises);
-
     return NextResponse.json({ message: 'Receipts updated successfully' }, { status: 200 });
 
   } catch (error) {
@@ -175,20 +172,19 @@ export const PUT = async (request) => {
   }
 };
 
-// --- DELETE: Delete Receipts (Batch or Single) ---
+// --- DELETE: Delete Receipts (Updated for Encryption) ---
 export const DELETE = async (request) => {
   try {
     await connectDB();
     const sessionUser = await getSessionUser();
     if (!sessionUser) return new NextResponse('Unauthorized', { status: 401 });
 
-    const { ids } = await request.json(); // Expects { ids: [id1, id2] }
+    const { ids } = await request.json();
 
     if (!ids || !Array.isArray(ids)) {
       return new NextResponse('Invalid data format', { status: 400 });
     }
 
-    // 1. Find receipts to get their Cloudinary Public IDs
     const receiptsToDelete = await Receipt.find({
       _id: { $in: ids },
       user: sessionUser.userId
@@ -198,14 +194,13 @@ export const DELETE = async (request) => {
       return new NextResponse('No receipts found to delete', { status: 404 });
     }
 
-    // 2. Delete images from Cloudinary
+    // UPDATED: Must specify resource_type: 'raw' to delete encrypted files
     const cloudinaryPromises = receiptsToDelete
-      .filter(r => r.publicId) // Only if they have a publicId
-      .map(r => cloudinary.uploader.destroy(r.publicId));
+      .filter(r => r.publicId)
+      .map(r => cloudinary.uploader.destroy(r.publicId, { resource_type: 'raw' }));
 
     await Promise.all(cloudinaryPromises);
 
-    // 3. Delete from MongoDB
     await Receipt.deleteMany({
       _id: { $in: ids },
       user: sessionUser.userId

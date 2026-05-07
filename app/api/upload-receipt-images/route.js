@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { v2 as cloudinary } from 'cloudinary';
+import { encryptBuffer } from '@/utils/encryption';
 import { getSessionUser } from '@/utils/getSessionUser';
 
 // Config Cloudinary
@@ -16,19 +17,20 @@ export const POST = async (request) => {
 
         const formData = await request.formData();
         const file = formData.get('file');
+        if (!file) return new NextResponse("No file provided", { status: 400 });
 
-        if (!file) {
-            return new NextResponse(JSON.stringify({ message: 'No file uploaded' }), { status: 400 });
-        }
+        const arrayBuffer = await file.arrayBuffer();
+        const originalBuffer = Buffer.from(arrayBuffer);
 
-        const bytes = await file.arrayBuffer();
-        const buffer = Buffer.from(bytes);
+        // 1. Encrypt the file
+        const encryptedBuffer = encryptBuffer(originalBuffer);
 
-        // Upload to Cloudinary
+        // 2. Upload to Cloudinary securely
         const uploadResult = await new Promise((resolve, reject) => {
             const uploadStream = cloudinary.uploader.upload_stream(
                 {
                     folder: 'receipt-scan-app/receipts',
+                    resource_type: 'raw',
                     type: 'authenticated'
                 },
                 (error, result) => {
@@ -36,7 +38,7 @@ export const POST = async (request) => {
                     else resolve(result);
                 }
             );
-            uploadStream.end(buffer);
+            uploadStream.end(encryptedBuffer);
         });
 
         // Generate a signed URL for the uploaded image with 1 hour expiration
@@ -47,12 +49,13 @@ export const POST = async (request) => {
         });
 
         return NextResponse.json({
-            imageUrl: signedUrl,
-            publicId: uploadResult.public_id
+            secure_url: uploadResult.secure_url,
+            public_id: uploadResult.public_id,
+            mime_type: file.type || "image/jpeg"
         }, { status: 200 });
 
     } catch (error) {
-        console.error('Image Upload Error:', error);
-        return new NextResponse('Server Error Uploading Image', { status: 500 });
+        console.error("Upload failed:", error);
+        return new NextResponse("Upload failed", { status: 500 });
     }
 };
