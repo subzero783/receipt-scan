@@ -125,7 +125,7 @@ export const createSelectionHandlers = (receipts, selectedReceiptIds, setSelecte
 };
 
 // --- MODAL HANDLERS ---
-export const createModalHandlers = (setSelectedReceipt, setReceipts, setIsSaving) => {
+export const createModalHandlers = (setSelectedReceipt, setReceipts, setIsSaving, setNewReceipt = null) => {
   const openModal = (receipt) => {
     const formattedDate = receipt.transactionDate
       ? new Date(receipt.transactionDate).toISOString().split('T')[0]
@@ -182,7 +182,11 @@ export const createModalHandlers = (setSelectedReceipt, setReceipts, setIsSaving
         const newReceipt = await createReceipt(finalReceiptData);
         if (newReceipt && newReceipt._id) {
           setReceipts((prev) => [newReceipt, ...prev]);
-          setSelectedReceipt(null);
+          if (setNewReceipt) {
+            setNewReceipt(null);
+          } else {
+            setSelectedReceipt(null);
+          }
         }
       } else {
         const updated = await updateReceipt({ ...finalReceiptData, id: selectedReceipt._id });

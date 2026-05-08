@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import Spinner from '@/components/Spinner';
 import DashboardEditModal from '@/components/DashboardEditModal';
+import DashboardAddModal from '@/components/DashboardAddModal';
 import DashboardFilterSection from '@/components/DashboardFilterSection';
 import { FaEdit, FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
 import { getReceipts } from './receiptsApi';
@@ -53,6 +54,7 @@ const DashboardPage = () => {
 
   // Modal State
   const [selectedReceipt, setSelectedReceipt] = useState(null);
+  const [newReceipt, setNewReceipt] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
 
   // Email Modal State
@@ -129,9 +131,9 @@ const DashboardPage = () => {
     fetchReceipts,
     setIsExporting
   );
-  const { openModal, handleInputChange, handleSave: handleSaveModal } = createModalHandlers(setSelectedReceipt, setReceipts, setIsSaving);
+  const { openModal, handleInputChange, handleSave: handleSaveModal } = createModalHandlers(setSelectedReceipt, setReceipts, setIsSaving, setNewReceipt);
 
-  const handleSave = (e, file) => handleSaveModal(e, selectedReceipt, file);
+  const handleSave = (e, receipt, file) => handleSaveModal(e, receipt, file);
 
   if (status === 'loading') return <Spinner />;
 
@@ -148,7 +150,7 @@ const DashboardPage = () => {
             {canAddReceipt && (
               <button
                 className="btn btn-primary"
-                onClick={() => setSelectedReceipt({
+                onClick={() => setNewReceipt({
                   merchantName: '',
                   totalAmount: '',
                   transactionDate: new Date().toISOString().split('T')[0],
@@ -274,6 +276,14 @@ const DashboardPage = () => {
           selectedReceipt={selectedReceipt}
           setSelectedReceipt={setSelectedReceipt}
           handleInputChange={handleInputChange}
+          handleSave={handleSave}
+          isSaving={isSaving}
+        />
+
+        {/* ADD MODAL */}
+        <DashboardAddModal
+          newReceipt={newReceipt}
+          setNewReceipt={setNewReceipt}
           handleSave={handleSave}
           isSaving={isSaving}
         />
