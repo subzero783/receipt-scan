@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { FaTimes } from 'react-icons/fa';
 
 const DashboardEditModal = ({
@@ -78,7 +77,8 @@ const DashboardEditModal = ({
               {selectedReceipt.imageUrl ? (
                 <>
                   <img
-                    src={`/api/receipts/view-image?publicId=${encodeURIComponent(selectedReceipt.publicId)}&url=${encodeURIComponent(selectedReceipt.imageUrl)}&mimeType=image/jpeg`}
+                    // src={`/api/receipts/view-image?publicId=${encodeURIComponent(selectedReceipt.publicId)}&url=${encodeURIComponent(selectedReceipt.imageUrl)}&mimeType=image/jpeg`}
+                    src={selectedReceipt.imageUrl}
                     alt="Receipt"
                     className="receipt-image"
                   />
@@ -194,7 +194,7 @@ const DashboardEditModal = ({
           background: rgba(0,0,0,0.5);
           display: flex;
           align-items: center;
-          justifyContent: center;
+          justify-content: center;
           color: white;
           opacity: 0;
           transition: opacity 0.2s;
