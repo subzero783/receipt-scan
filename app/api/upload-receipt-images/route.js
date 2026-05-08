@@ -17,7 +17,10 @@ export const POST = async (request) => {
 
         const formData = await request.formData();
         const file = formData.get('file');
-        if (!file) return new NextResponse("No file provided", { status: 400 });
+        // Check if file is missing OR if it was passed as a string
+        if (!file || typeof file === 'string') {
+            return new NextResponse("No valid image file provided", { status: 400 });
+        }
 
         const arrayBuffer = await file.arrayBuffer();
         const originalBuffer = Buffer.from(arrayBuffer);
@@ -39,13 +42,6 @@ export const POST = async (request) => {
                 }
             );
             uploadStream.end(encryptedBuffer);
-        });
-
-        // Generate a signed URL for the uploaded image with 1 hour expiration
-        const signedUrl = cloudinary.url(uploadResult.public_id, {
-            type: "authenticated",
-            sign_url: true, // Signs the URL with your API secret
-            expires_at: Math.floor(Date.now() / 1000) + (60 * 60) // 1 hour from now
         });
 
         return NextResponse.json({

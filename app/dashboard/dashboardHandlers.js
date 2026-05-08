@@ -142,60 +142,61 @@ export const createModalHandlers = (setSelectedReceipt, setReceipts, setIsSaving
   const handleSave = async (e, selectedReceipt, imageFile = null) => {
     e.preventDefault();
     setIsSaving(true);
+    const isAddMode = !selectedReceipt._id; // ADD mode or EDIT mode?
 
     try {
       let finalImageUrl = selectedReceipt.imageUrl;
+      let finalPublicId = selectedReceipt.publicId;
 
-      // Handle Image Upload if file provided
-      if (imageFile) {
+      // 1. Upload physical image to Cloudinary if it exists AND is a real File
+      if (imageFile && imageFile instanceof File) {
         const formData = new FormData();
         formData.append('file', imageFile);
 
         const uploadRes = await fetch('/api/upload-receipt-images', {
           method: 'POST',
-          body: formData
+          body: formData,
         });
 
-        if (!uploadRes.ok) throw new Error('Failed to upload image');
+        if (!uploadRes.ok) {
+          throw new Error('Failed to upload image to storage');
+        }
 
         const uploadData = await uploadRes.json();
-        finalImageUrl = uploadData.imageUrl;
+        finalImageUrl = uploadData.secure_url || uploadData.imageUrl;
+        finalPublicId = uploadData.public_id || uploadData.publicId;
       }
 
-      if (selectedReceipt._id) {
-        // UPDATE EXISTING
-        const updated = await updateReceipt({
-          id: selectedReceipt._id,
-          merchantName: selectedReceipt.merchantName,
-          totalAmount: selectedReceipt.totalAmount,
-          transactionDate: selectedReceipt.transactionDate,
-          category: selectedReceipt.category
-        });
+      // 2. Now that we have the Cloudinary links, build the final receipt object
+      const finalReceiptData = {
+        ...selectedReceipt,
+        imageUrl: finalImageUrl,
+        publicId: finalPublicId
+      };
 
+      // Clean up: Remove the raw file object before converting to JSON
+      delete finalReceiptData.imageFile;
+
+      // 3. Save textual data to MongoDB
+      if (isAddMode) {
+        const newReceipt = await createReceipt(finalReceiptData);
+        if (newReceipt && newReceipt._id) {
+          setReceipts((prev) => [newReceipt, ...prev]);
+          setSelectedReceipt(null);
+        }
+      } else {
+        const updated = await updateReceipt({ ...finalReceiptData, id: selectedReceipt._id });
         if (updated && updated._id) {
           setReceipts((prev) =>
             prev.map((r) => (r._id === updated._id ? updated : r))
           );
           setSelectedReceipt(null);
         }
-      } else {
-        // CREATE NEW (Manual Entry)
-        const newReceipt = await createReceipt({
-          merchantName: selectedReceipt.merchantName,
-          totalAmount: selectedReceipt.totalAmount,
-          transactionDate: selectedReceipt.transactionDate,
-          category: selectedReceipt.category,
-          imageUrl: finalImageUrl || null
-        });
-
-        if (newReceipt && newReceipt._id) {
-          setReceipts((prev) => [newReceipt, ...prev]);
-          setSelectedReceipt(null);
-        }
       }
+
     } catch (error) {
-      console.error('Save Error:', error);
-      alert('Failed to save changes');
+      console.error("Error saving receipt:", error);
+      alert("Error saving receipt. Please try again.");
     } finally {
       setIsSaving(false);
     }

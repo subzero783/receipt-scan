@@ -23,11 +23,8 @@ const DashboardEditModal = ({
       // Create a preview URL
       const previewUrl = URL.createObjectURL(file);
 
-      // Update the parent state with the preview URL so the UI updates
-      // We also need to pass the actual file to the parent handler or keep it here.
-      // Since handleSave is passed in, we can attach the file to the synthetic event or modify handleSave to accept it.
-      // But handleSave expects an event.
-      // Easier way: Update selectedReceipt to include the file object temporarily.
+      console.log('File selected:', previewUrl);
+
       setSelectedReceipt(prev => ({
         ...prev,
         imageUrl: previewUrl,
@@ -77,8 +74,7 @@ const DashboardEditModal = ({
               {selectedReceipt.imageUrl ? (
                 <>
                   <img
-                    // src={`/api/receipts/view-image?publicId=${encodeURIComponent(selectedReceipt.publicId)}&url=${encodeURIComponent(selectedReceipt.imageUrl)}&mimeType=image/jpeg`}
-                    src={selectedReceipt.imageUrl}
+                    src={`/api/receipts/view-image?publicId=${encodeURIComponent(selectedReceipt.publicId)}&url=${encodeURIComponent(selectedReceipt.imageUrl)}&mimeType=image/jpeg`}
                     alt="Receipt"
                     className="receipt-image"
                   />
@@ -121,7 +117,7 @@ const DashboardEditModal = ({
           {/* RIGHT: Edit Form */}
           <div className="modal-form-col">
             <h3>{isAddMode ? 'Add Details' : 'Edit Details'}</h3>
-            <form onSubmit={(e) => handleSave(e, selectedReceipt.imageFile)}>
+            <form onSubmit={(e) => handleSave(e, selectedReceipt, selectedReceipt.imageFile)}>
               <div className="form-group">
                 <label>Merchant Name</label>
                 <input
