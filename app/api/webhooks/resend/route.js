@@ -26,6 +26,13 @@ export const POST = async (request) => {
         // 1. Parse Resend Payload
         console.log("Webhook received");
         const data = await request.json();
+
+        // Prevent infinite loops by ignoring outbound email events (like email.sent, email.delivered)
+        if (data.type && data.type !== 'email.received') {
+            console.log(`Ignoring outbound event type: ${data.type}`);
+            return new NextResponse('Ignored non-inbound event', { status: 200 });
+        }
+
         const payload = data.data || data; // Handle both wrapped and unwrapped payloads, just in case
 
         // Resend sends the email object inside the payload
@@ -198,6 +205,6 @@ export const POST = async (request) => {
     } catch (error) {
         console.error('Webhook Error:', error);
         // Important: Return 200 even on error to prevent Resend from retrying infinitely if it's a logic error
-        return new NextResponse('Internal Error', { status: 500 });
+        return new NextResponse('Internal Error', { status: 200 });
     }
 };
