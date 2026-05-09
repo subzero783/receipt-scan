@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import connectDB from '@/config/database';
 import Receipt from '@/models/Receipt';
+import User from '@/models/User';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { generateCsv, generateZip } from '@/utils/exportHelpers';
 
@@ -28,6 +29,26 @@ export const POST = async (request) => {
 
     if (!ids || !Array.isArray(ids) || ids.length === 0) {
       return new NextResponse('Invalid selection', { status: 400 });
+    }
+
+    // --- CHECK EMAIL LIMIT ---
+    const user = await User.findById(sessionUser.userId);
+    if (!user) return new NextResponse('User not found', { status: 404 });
+
+    const currentMonth = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
+    const lastResetDate = user.monthlyUsage?.emails?.lastReset || new Date();
+    
+    // Reset if it's a new month
+    if (lastResetDate.getMonth() !== currentMonth || lastResetDate.getFullYear() !== currentYear) {
+        user.monthlyUsage = user.monthlyUsage || {};
+        user.monthlyUsage.emails = { count: 0, lastReset: new Date() };
+    }
+
+    if (user.planType === 'free' || !user.isPro) {
+        if (user.monthlyUsage.emails.count >= 1) {
+            return new NextResponse(JSON.stringify({ message: 'Free plan limit reached. You can only send 1 email per month. Please upgrade to Pro.' }), { status: 403 });
+        }
     }
 
     // Fetch receipts ensuring they belong to the user
@@ -112,6 +133,12 @@ export const POST = async (request) => {
       html: emailHtml,
       attachments: attachments.length > 0 ? attachments : undefined
     });
+
+    // Update usage count
+    if (user.planType === 'free' || !user.isPro) {
+        user.monthlyUsage.emails.count += 1;
+        await user.save();
+    }
 
     return NextResponse.json({ message: 'Email sent successfully', data });
 

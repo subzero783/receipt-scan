@@ -65,6 +65,24 @@ const UserSchema = new Schema(
       type: String,
       enum: ['user', 'admin'],
       default: 'user'
+    },
+    monthlyUsage: {
+      emails: { 
+        count: { type: Number, default: 0 }, 
+        lastReset: { type: Date, default: Date.now } 
+      },
+      invoices: { 
+        count: { type: Number, default: 0 }, 
+        lastReset: { type: Date, default: Date.now } 
+      },
+      zipDownloads: { 
+        count: { type: Number, default: 0 }, 
+        lastReset: { type: Date, default: Date.now } 
+      },
+      csvDownloads: { 
+        count: { type: Number, default: 0 }, 
+        lastReset: { type: Date, default: Date.now } 
+      }
     }
   },
   {

@@ -66,6 +66,30 @@ export const POST = async (request) => {
             return new NextResponse('User not found', { status: 200 });
         }
 
+        // --- CHECK LIMIT ---
+        if (targetUser.planType === 'free' || !targetUser.isPro) {
+            const receiptCount = await Receipt.countDocuments({ user: targetUser._id });
+            if (receiptCount >= 10) {
+                console.log(`User ${targetUser.email} has reached the free tier limit. Sending notification email.`);
+                
+                // Send rejection email
+                await resendClient.emails.send({
+                    from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
+                    to: targetUser.email,
+                    subject: 'Receipt Upload Failed - Free Tier Limit Reached',
+                    html: `
+                        <h2>Upload Failed</h2>
+                        <p>Hi ${targetUser.username || ''},</p>
+                        <p>We received your email with receipt attachments, but your account has reached the maximum limit of 10 receipts for the Free plan.</p>
+                        <p>Please upgrade to the Pro plan to upload unlimited receipts.</p>
+                        <p><a href="${process.env.NEXTAUTH_URL}/dashboard" style="background-color: #0070f3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px;">Upgrade to Pro</a></p>
+                    `
+                });
+
+                return new NextResponse('Limit reached', { status: 200 });
+            }
+        }
+
         // 3. Process Attachments - FETCH CONTENT
         // Fetch list of attachments from Resend to ensure we have the correct IDs
         console.log(`Listing attachments for email ID: ${email_id}`);

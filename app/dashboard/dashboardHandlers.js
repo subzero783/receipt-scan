@@ -80,7 +80,10 @@ export const createSelectionHandlers = (receipts, selectedReceiptIds, setSelecte
         body: JSON.stringify({ ids: selectedReceiptIds, type: exportType })
       });
 
-      if (!response.ok) throw new Error('Export failed');
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.message || 'Export failed');
+      }
 
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -93,7 +96,7 @@ export const createSelectionHandlers = (receipts, selectedReceiptIds, setSelecte
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Export Error:', error);
-      alert('Failed to export receipts');
+      alert(error.message || 'Failed to export receipts');
     } finally {
       if (setIsExporting) setIsExporting(false);
     }
@@ -109,13 +112,16 @@ export const createSelectionHandlers = (receipts, selectedReceiptIds, setSelecte
         body: JSON.stringify({ ids: selectedReceiptIds, message, toEmail, includeZip, includeCsv })
       });
 
-      if (!response.ok) throw new Error('Email failed');
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.message || 'Email failed');
+      }
 
       alert('Email sent successfully!');
       setSelectedReceiptIds([]); // Optional: clear selection after action
     } catch (error) {
       console.error('Email Error:', error);
-      alert('Failed to send email');
+      alert(error.message || 'Failed to send email');
     } finally {
       if (setIsExporting) setIsExporting(false);
     }

@@ -90,6 +90,17 @@ export const POST = async (request) => {
 
         const data = await request.json();
 
+        // Limit Check
+        const user = await User.findById(sessionUser.userId);
+        if (!user) return new NextResponse('User not found', { status: 404 });
+        
+        if (user.planType === 'free' || !user.isPro) {
+            const receiptCount = await Receipt.countDocuments({ user: sessionUser.userId });
+            if (receiptCount >= 10) {
+                return new NextResponse(JSON.stringify({ message: 'Free plan limit reached. You can only upload 10 receipts. Please upgrade to Pro.' }), { status: 403 });
+            }
+        }
+
         // Validate required fields
         if (!data.merchantName || data.totalAmount === undefined || data.totalAmount === '') {
             return new NextResponse('Merchant name and total amount are required', { status: 400 });

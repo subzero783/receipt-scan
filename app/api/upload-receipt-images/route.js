@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { v2 as cloudinary } from 'cloudinary';
 import { encryptBuffer } from '@/utils/encryption';
 import { getSessionUser } from '@/utils/getSessionUser';
+import User from '@/models/User';
+import Receipt from '@/models/Receipt';
+import connectDB from '@/config/database';
 
 // Config Cloudinary
 cloudinary.config({
@@ -14,6 +17,17 @@ export const POST = async (request) => {
     try {
         const sessionUser = await getSessionUser();
         if (!sessionUser) return new NextResponse('Unauthorized', { status: 401 });
+
+        await connectDB();
+        const user = await User.findById(sessionUser.userId);
+        if (!user) return new NextResponse('User not found', { status: 404 });
+        
+        if (user.planType === 'free' || !user.isPro) {
+            const receiptCount = await Receipt.countDocuments({ user: sessionUser.userId });
+            if (receiptCount >= 10) {
+                return new NextResponse(JSON.stringify({ message: 'Free plan limit reached. You can only upload 10 receipts. Please upgrade to Pro.' }), { status: 403 });
+            }
+        }
 
         const formData = await request.formData();
         const file = formData.get('file');

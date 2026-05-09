@@ -39,7 +39,20 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
     const vatAmount = subtotal * (invoiceDetails.vatRate / 100);
     const total = subtotal + vatAmount;
 
-    const handlePrint = () => {
+    const handlePrint = async () => {
+        try {
+            const res = await fetch('/api/user/track-invoice', { method: 'POST' });
+            if (!res.ok) {
+                const errData = await res.json().catch(() => ({}));
+                alert(errData.message || 'Failed to generate invoice due to usage limits.');
+                return;
+            }
+        } catch (error) {
+            console.error('Invoice tracking error:', error);
+            alert('An error occurred. Please try again.');
+            return;
+        }
+
         const printContent = printRef.current.innerHTML;
         const printWindow = window.open('', '', 'height=900,width=900');
         printWindow.document.write('<html><head><title>Invoice</title>');
