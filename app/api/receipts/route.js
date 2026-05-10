@@ -95,8 +95,11 @@ export const POST = async (request) => {
         if (!user) return new NextResponse('User not found', { status: 404 });
         
         if (user.planType === 'free' || !user.isPro) {
-            const receiptCount = await Receipt.countDocuments({ user: sessionUser.userId });
-            if (receiptCount >= 10) {
+            if (user.lifetimeReceipts === undefined || user.lifetimeReceipts === 0) {
+                user.lifetimeReceipts = await Receipt.countDocuments({ user: sessionUser.userId });
+                await user.save();
+            }
+            if (user.lifetimeReceipts >= 10) {
                 return new NextResponse(JSON.stringify({ message: 'Free plan limit reached. You can only upload 10 receipts. Please upgrade to Pro.' }), { status: 403 });
             }
         }
@@ -115,6 +118,10 @@ export const POST = async (request) => {
             imageUrl: data.imageUrl || null, // Optional
             isProcessed: true
         });
+
+        // Increment lifetime receipts
+        user.lifetimeReceipts = (user.lifetimeReceipts || 0) + 1;
+        await user.save();
 
         return NextResponse.json(newReceipt, { status: 201 });
 

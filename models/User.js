@@ -66,6 +66,10 @@ const UserSchema = new Schema(
       enum: ['user', 'admin'],
       default: 'user'
     },
+    lifetimeReceipts: {
+      type: Number,
+      default: 0
+    },
     monthlyUsage: {
       emails: { 
         count: { type: Number, default: 0 }, 

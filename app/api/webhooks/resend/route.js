@@ -75,8 +75,11 @@ export const POST = async (request) => {
 
         // --- CHECK LIMIT ---
         if (targetUser.planType === 'free' || !targetUser.isPro) {
-            const receiptCount = await Receipt.countDocuments({ user: targetUser._id });
-            if (receiptCount >= 10) {
+            if (targetUser.lifetimeReceipts === undefined || targetUser.lifetimeReceipts === 0) {
+                targetUser.lifetimeReceipts = await Receipt.countDocuments({ user: targetUser._id });
+                await targetUser.save();
+            }
+            if (targetUser.lifetimeReceipts >= 10) {
                 console.log(`User ${targetUser.email} has reached the free tier limit. Sending notification email.`);
                 
                 // Send rejection email
@@ -197,6 +200,12 @@ export const POST = async (request) => {
 
             await newReceipt.save();
             processedReceipts.push(newReceipt._id);
+        }
+
+        // Increment lifetime receipts for processed receipts
+        if (processedReceipts.length > 0) {
+            targetUser.lifetimeReceipts = (targetUser.lifetimeReceipts || 0) + processedReceipts.length;
+            await targetUser.save();
         }
 
         console.log(`Processed ${processedReceipts.length} receipts for user ${targetUser.email}`);
