@@ -1,8 +1,7 @@
-const { default: ReceiptUpload } = require("@/components/ReceiptUpload")
-
 import HeroSectionTwo from '@/components/HeroSectionTwo';
 import siteData from '@/data/siteData.js';
 import UploadReceiptSteps from '@/components/UploadReceiptSteps';
+import ReceiptUpload from '@/components/ReceiptUpload';
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import InboundHandleText from "@/components/InboundHandleText";
