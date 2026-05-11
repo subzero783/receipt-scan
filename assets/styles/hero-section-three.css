@@ -26,5 +26,9 @@
         margin-bottom: 0;
       }
     }
+
+    @media screen and (max-width: 768px) {
+      padding: 152px var(--container-padding) 40px;
+    }
   }
 }

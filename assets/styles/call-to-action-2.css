@@ -51,7 +51,7 @@
     font-size: 16px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 991px) {
     .cta-2-card h2 {
         font-size: 36px;
     }
