@@ -121,76 +121,72 @@ export default function CreateBlogPost() {
     };
 
     return (
-        <div className="">
-            <h1 className="">Create New Blog Post</h1>
+        <div className="create-post-container">
+            <h1>Create New Blog Post</h1>
 
-            {error && <p className="">{error}</p>}
+            {error && <p className="error-message">{error}</p>}
 
-            <form onSubmit={handleSubmit} className="">
-                <div>
-                    <label className="">Title</label>
+            <form onSubmit={handleSubmit} className="create-post-form">
+                <div className="form-group">
+                    <label>Title</label>
                     <input
                         type="text"
                         name="title"
                         value={formData.title}
                         onChange={handleChange}
                         required
-                        className=""
                         placeholder="e.g., New Features Added to Receipt Scan"
                     />
                 </div>
 
-                <div>
-                    <label className="">Excerpt / Summary</label>
+                <div className="form-group">
+                    <label>Excerpt / Summary</label>
                     <input
                         type="text"
                         name="excerpt"
                         value={formData.excerpt}
                         onChange={handleChange}
                         required
-                        className=""
                         placeholder="A short sentence describing the post..."
                     />
                 </div>
 
-                <div>
-                    <label className="">Featured Image</label>
+                <div className="form-group">
+                    <label>Featured Image</label>
                     <input
                         type="file"
                         name="featured_image"
                         accept="image/*"
                         onChange={handleImageChange}
-                        className=""
                     />
-                    {imageFile && <p>Selected: {imageFile.name}</p>}
+                    {imageFile && <p className="form-text">Selected: {imageFile.name}</p>}
                 </div>
 
-                <div>
-                    <label className="">Featured</label>
+                <div className="form-group checkbox-group">
                     <input
                         type="checkbox"
+                        id="is_featured"
                         name="is_featured"
                         checked={formData.is_featured}
                         onChange={handleChange}
-                        className=""
                     />
+                    <label htmlFor="is_featured">Featured</label>
                 </div>
 
-                <div>
-                    <label className="">Content</label>
+                <div className="form-group">
+                    <label>Content</label>
                     <textarea
                         name="content"
                         value={formData.content}
                         onChange={handleChange}
                         required
                         rows="12"
-                        className=""
                         placeholder="Write your blog post content here. (Supports HTML if your frontend renders it)"
                     ></textarea>
                 </div>
 
-                <div>
-                    <label className="">Categories</label>
+                <div className="form-group">
+                    <label>Categories</label>
                     <input
                         type="text"
                         name="categories"
@@ -199,66 +195,59 @@ export default function CreateBlogPost() {
                             ...formData,
                             categories: e.target.value.split(",").map(cat => cat.trim())
                         })}
-                        className=""
                         placeholder="e.g., Updates, Engineering, News"
                     />
-                    <p className="">Separate categories with commas (e.g., Updates, Engineering)</p>
+                    <p className="form-text">Separate categories with commas (e.g., Updates, Engineering)</p>
                 </div>
 
-                {/* Edit the following as the author property should be an object of name and email */}
-                {/* Update the Author Name and Author Email to an Author Object with name and email */}
-                <div>
-                    <label className="">Author Name</label>
+                <div className="form-group">
+                    <label>Author Name</label>
                     <input
                         type="text"
                         name="author.name"
                         value={formData.author.name}
                         onChange={handleChange}
-                        className=""
                         placeholder="Author Name"
                     />
                 </div>
-                <div>
-                    <label className="">Author Email</label>
+                <div className="form-group">
+                    <label>Author Email</label>
                     <input
                         type="email"
                         name="author.email"
                         value={formData.author.email}
                         onChange={handleChange}
-                        className=""
                         placeholder="Email Address"
                     />
                 </div>
 
-                <div>
-                    <label className="">Author Role</label>
+                <div className="form-group">
+                    <label>Author Role</label>
                     <input
                         type="text"
                         name="author.role"
                         value={formData.author.role}
                         onChange={handleChange}
-                        className=""
                         placeholder="Author Role"
                     />
                 </div>
 
-                <div>
-                    <label className="">Author Bio</label>
+                <div className="form-group">
+                    <label>Author Bio</label>
                     <input
                         type="text"
                         name="author.bio"
                         value={formData.author.bio}
                         onChange={handleChange}
-                        className=""
                         placeholder="Author Bio"
                     />
                 </div>
 
-                <div className="">
+                <div className="form-group">
                     <button
                         type="submit"
                         disabled={loading}
-                        className=""
+                        className="btn btn-primary submit-btn"
                     >
                         {loading ? "Publishing..." : "Publish Post"}
                     </button>
