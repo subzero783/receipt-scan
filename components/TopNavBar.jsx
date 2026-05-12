@@ -44,8 +44,10 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  console.log(pathName, "pathName");
+
   return (
-    <nav className={`top-navigation ${isScrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "menu-open" : ""} ${session ? "session" : "no-session"} ${pathName === "/dashboard" || pathName === "/contact" ? "contact" : ""}`}>
+    <nav className={`top-navigation ${isScrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "menu-open" : ""} ${session ? "session" : "no-session"} ${pathName === "/dashboard" || pathName === "/contact" || pathName === "/admin/create-post" ? "admin-create-post" : ""}`}>
       <div className="container">
         <div className="row">
           <div className="mobile-menu-column col">

@@ -121,138 +121,144 @@ export default function CreateBlogPost() {
     };
 
     return (
-        <div className="create-post-container">
-            <h1>Create New Blog Post</h1>
+        <div className="create-post-page">
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <h1>Create New Blog Post</h1>
 
-            {error && <p className="error-message">{error}</p>}
+                        {error && <p className="error-message">{error}</p>}
 
-            <form onSubmit={handleSubmit} className="create-post-form">
-                <div className="form-group">
-                    <label>Title</label>
-                    <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleChange}
-                        required
-                        placeholder="e.g., New Features Added to Receipt Scan"
-                    />
-                </div>
+                        <form onSubmit={handleSubmit} className="create-post-form">
+                            <div className="form-group">
+                                <label>Title</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value={formData.title}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="e.g., New Features Added to Receipt Scan"
+                                />
+                            </div>
 
-                <div className="form-group">
-                    <label>Excerpt / Summary</label>
-                    <input
-                        type="text"
-                        name="excerpt"
-                        value={formData.excerpt}
-                        onChange={handleChange}
-                        required
-                        placeholder="A short sentence describing the post..."
-                    />
-                </div>
+                            <div className="form-group">
+                                <label>Excerpt / Summary</label>
+                                <input
+                                    type="text"
+                                    name="excerpt"
+                                    value={formData.excerpt}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="A short sentence describing the post..."
+                                />
+                            </div>
 
-                <div className="form-group">
-                    <label>Featured Image</label>
-                    <input
-                        type="file"
-                        name="featured_image"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                    />
-                    {imageFile && <p className="form-text">Selected: {imageFile.name}</p>}
-                </div>
+                            <div className="form-group">
+                                <label>Featured Image</label>
+                                <input
+                                    type="file"
+                                    name="featured_image"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                />
+                                {imageFile && <p className="form-text">Selected: {imageFile.name}</p>}
+                            </div>
 
-                <div className="form-group checkbox-group">
-                    <input
-                        type="checkbox"
-                        id="is_featured"
-                        name="is_featured"
-                        checked={formData.is_featured}
-                        onChange={handleChange}
-                    />
-                    <label htmlFor="is_featured">Featured</label>
-                </div>
+                            <div className="form-group checkbox-group">
+                                <input
+                                    type="checkbox"
+                                    id="is_featured"
+                                    name="is_featured"
+                                    checked={formData.is_featured}
+                                    onChange={handleChange}
+                                />
+                                <label htmlFor="is_featured">Featured</label>
+                            </div>
 
-                <div className="form-group">
-                    <label>Content</label>
-                    <textarea
-                        name="content"
-                        value={formData.content}
-                        onChange={handleChange}
-                        required
-                        rows="12"
-                        placeholder="Write your blog post content here. (Supports HTML if your frontend renders it)"
-                    ></textarea>
-                </div>
+                            <div className="form-group">
+                                <label>Content</label>
+                                <textarea
+                                    name="content"
+                                    value={formData.content}
+                                    onChange={handleChange}
+                                    required
+                                    rows="12"
+                                    placeholder="Write your blog post content here. (Supports HTML if your frontend renders it)"
+                                ></textarea>
+                            </div>
 
-                <div className="form-group">
-                    <label>Categories</label>
-                    <input
-                        type="text"
-                        name="categories"
-                        value={formData.categories.join(", ")}
-                        onChange={(e) => setFormData({
-                            ...formData,
-                            categories: e.target.value.split(",").map(cat => cat.trim())
-                        })}
-                        placeholder="e.g., Updates, Engineering, News"
-                    />
-                    <p className="form-text">Separate categories with commas (e.g., Updates, Engineering)</p>
-                </div>
+                            <div className="form-group">
+                                <label>Categories</label>
+                                <input
+                                    type="text"
+                                    name="categories"
+                                    value={formData.categories.join(", ")}
+                                    onChange={(e) => setFormData({
+                                        ...formData,
+                                        categories: e.target.value.split(",").map(cat => cat.trim())
+                                    })}
+                                    placeholder="e.g., Updates, Engineering, News"
+                                />
+                                <p className="form-text">Separate categories with commas (e.g., Updates, Engineering)</p>
+                            </div>
 
-                <div className="form-group">
-                    <label>Author Name</label>
-                    <input
-                        type="text"
-                        name="author.name"
-                        value={formData.author.name}
-                        onChange={handleChange}
-                        placeholder="Author Name"
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Author Email</label>
-                    <input
-                        type="email"
-                        name="author.email"
-                        value={formData.author.email}
-                        onChange={handleChange}
-                        placeholder="Email Address"
-                    />
-                </div>
+                            <div className="form-group">
+                                <label>Author Name</label>
+                                <input
+                                    type="text"
+                                    name="author.name"
+                                    value={formData.author.name}
+                                    onChange={handleChange}
+                                    placeholder="Author Name"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Author Email</label>
+                                <input
+                                    type="email"
+                                    name="author.email"
+                                    value={formData.author.email}
+                                    onChange={handleChange}
+                                    placeholder="Email Address"
+                                />
+                            </div>
 
-                <div className="form-group">
-                    <label>Author Role</label>
-                    <input
-                        type="text"
-                        name="author.role"
-                        value={formData.author.role}
-                        onChange={handleChange}
-                        placeholder="Author Role"
-                    />
-                </div>
+                            <div className="form-group">
+                                <label>Author Role</label>
+                                <input
+                                    type="text"
+                                    name="author.role"
+                                    value={formData.author.role}
+                                    onChange={handleChange}
+                                    placeholder="Author Role"
+                                />
+                            </div>
 
-                <div className="form-group">
-                    <label>Author Bio</label>
-                    <input
-                        type="text"
-                        name="author.bio"
-                        value={formData.author.bio}
-                        onChange={handleChange}
-                        placeholder="Author Bio"
-                    />
-                </div>
+                            <div className="form-group">
+                                <label>Author Bio</label>
+                                <input
+                                    type="text"
+                                    name="author.bio"
+                                    value={formData.author.bio}
+                                    onChange={handleChange}
+                                    placeholder="Author Bio"
+                                />
+                            </div>
 
-                <div className="form-group">
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="btn btn-primary submit-btn"
-                    >
-                        {loading ? "Publishing..." : "Publish Post"}
-                    </button>
+                            <div className="form-group">
+                                <button
+                                    type="submit"
+                                    disabled={loading}
+                                    className="btn btn-primary submit-btn"
+                                >
+                                    {loading ? "Publishing..." : "Publish Post"}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
     );
 }
