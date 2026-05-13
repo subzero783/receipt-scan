@@ -4,7 +4,8 @@ import { useState, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import { FaPrint } from 'react-icons/fa';
 
-const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
+const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts = [] }) => {
+
     const { data: session } = useSession();
     const printRef = useRef();
 
@@ -18,7 +19,12 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
         senderAddress: '',
         notes: 'Thank you for your business!',
         vatRate: 0,
-        logo: null
+        logo: null,
+        // --- NEW: Freelance Labor Fields ---
+        laborDescription: 'Freelance Services',
+        hoursWorked: 0,
+        hourlyRate: 0
+
     });
 
     const handleLogoChange = (e) => {
@@ -35,7 +41,9 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
     if (!isOpen) return null;
 
     // Calculate Totals
-    const subtotal = selectedReceipts.reduce((sum, r) => sum + r.totalAmount, 0);
+    const laborTotal = (invoiceDetails.hoursWorked || 0) * (invoiceDetails.hourlyRate || 0);
+    const receiptsSubtotal = selectedReceipts.reduce((sum, r) => sum + r.totalAmount, 0);
+    const subtotal = laborTotal + receiptsSubtotal;
     const vatAmount = subtotal * (invoiceDetails.vatRate / 100);
     const total = subtotal + vatAmount;
 
@@ -68,6 +76,7 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
         table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
         th { text-align: left; padding: 12px; background: #f8f9fa; border-bottom: 2px solid #ddd; font-size: 12px; text-transform: uppercase; }
         td { padding: 12px; border-bottom: 1px solid #eee; }
+        .labor-row { background-color: #f8fbff; } /* Light blue highlight for labor */
         .totals { margin-left: auto; width: 300px; }
         .total-row { display: flex; justify-content: space-between; padding: 8px 0; }
         .total-final { font-weight: bold; font-size: 18px; border-top: 2px solid #333; padding-top: 10px; }
@@ -107,6 +116,45 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
                             />
                         </div>
 
+                        {/* --- NEW: Freelance Section --- */}
+                        <div style={{ background: '#f1f5f9', padding: '15px', borderRadius: '8px', marginBottom: '15px', border: '1px solid #e2e8f0' }}>
+                            <h4 style={{ margin: '0 0 10px 0', fontSize: '14px', color: '#334155' }}>Freelance Services (Optional)</h4>
+
+                            <div className="form-group">
+                                <label>Description of Work</label>
+                                <input
+                                    type="text"
+                                    value={invoiceDetails.laborDescription}
+                                    placeholder="e.g., Web Development"
+                                    onChange={(e) => setInvoiceDetails({ ...invoiceDetails, laborDescription: e.target.value })}
+                                />
+                            </div>
+
+                            <div style={{ display: 'flex', gap: '10px' }}>
+                                <div className="form-group" style={{ flex: 1, margin: 0 }}>
+                                    <label>Hours</label>
+                                    <input
+                                        type="number"
+                                        min="0"
+                                        step="0.5"
+                                        value={invoiceDetails.hoursWorked}
+                                        onChange={(e) => setInvoiceDetails({ ...invoiceDetails, hoursWorked: parseFloat(e.target.value) || 0 })}
+                                    />
+                                </div>
+                                <div className="form-group" style={{ flex: 1, margin: 0 }}>
+                                    <label>Rate ($)</label>
+                                    <input
+                                        type="number"
+                                        min="0"
+                                        step="1"
+                                        value={invoiceDetails.hourlyRate}
+                                        onChange={(e) => setInvoiceDetails({ ...invoiceDetails, hourlyRate: parseFloat(e.target.value) || 0 })}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        {/* ------------------------------ */}
+
                         <div className="form-group">
                             <label>Invoice #</label>
                             <input
@@ -116,22 +164,23 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
                             />
                         </div>
 
-                        <div className="form-group">
-                            <label>Date</label>
-                            <input
-                                type="date"
-                                value={invoiceDetails.date}
-                                onChange={(e) => setInvoiceDetails({ ...invoiceDetails, date: e.target.value })}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Due Date</label>
-                            <input
-                                type="date"
-                                value={invoiceDetails.dueDate}
-                                onChange={(e) => setInvoiceDetails({ ...invoiceDetails, dueDate: e.target.value })}
-                            />
+                        <div className='dates-container'>
+                            <div className="form-group" style={{ flex: 1 }}>
+                                <label>Date</label>
+                                <input
+                                    type="date"
+                                    value={invoiceDetails.date}
+                                    onChange={(e) => setInvoiceDetails({ ...invoiceDetails, date: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group" style={{ flex: 1 }}>
+                                <label>Due Date</label>
+                                <input
+                                    type="date"
+                                    value={invoiceDetails.dueDate}
+                                    onChange={(e) => setInvoiceDetails({ ...invoiceDetails, dueDate: e.target.value })}
+                                />
+                            </div>
                         </div>
 
                         <div className="form-group">
@@ -172,7 +221,7 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
                         </div>
 
                         <button className="btn btn-primary full-width save-pdf-btn" onClick={handlePrint}>
-                            <FaPrint /> Print / Save PDF
+                            <FaPrint style={{ marginRight: '8px' }} /> Print / Save PDF
                         </button>
                     </div>
 
@@ -215,13 +264,26 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts }) => {
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Description / Merchant</th>
-                                        <th>Date</th>
-                                        <th>Category</th>
+                                        <th>Description</th>
+                                        <th>Date / Qty</th>
+                                        <th>Category / Rate</th>
                                         <th style={{ textAlign: 'right' }}>Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    {/* --- NEW: Render Labor Row if Hours exist --- */}
+                                    {invoiceDetails.hoursWorked > 0 && (
+                                        <tr className="labor-row">
+                                            <td><strong>{invoiceDetails.laborDescription}</strong></td>
+                                            <td>{invoiceDetails.hoursWorked} hrs</td>
+                                            <td>${invoiceDetails.hourlyRate.toFixed(2)}/hr</td>
+                                            <td style={{ textAlign: 'right' }}><strong>${laborTotal.toFixed(2)}</strong></td>
+                                        </tr>
+                                    )}
+
+                                    {/* Existing Receipts Rendering */}
+
                                     {selectedReceipts.map((receipt, index) => (
                                         <tr key={index}>
                                             <td>{receipt.merchantName}</td>

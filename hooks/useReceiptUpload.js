@@ -35,7 +35,6 @@ export const useReceiptUpload = () => {
   const handleUpload = async (file) => {
     if (files.length === 0) return;
 
-
     setIsUploading(true);
     setUploadProgress(0);
     setUploadError(null);

@@ -40,7 +40,7 @@ export const POST = async (request) => {
         user.lifetimeReceipts = await Receipt.countDocuments({ user: userId });
         await user.save();
       }
-      
+
       if (user.lifetimeReceipts >= 10) {
         return new NextResponse(JSON.stringify({ message: 'Free plan limit reached. You can only upload 10 receipts. Please upgrade to Pro.' }), { status: 403 });
       }
@@ -105,7 +105,7 @@ export const POST = async (request) => {
     });
 
     // 4. SAVE TO MONGODB
-    // Note: Do not save a 1-hour signed URL to DB, or the image breaks tomorrow!
+    // Note: Do not save a 1-hour signed URL to DB, or the image breaks tomorrow
     // Save the permanent secure_url. The frontend will decrypt it on the fly.
     const newReceipt = new Receipt({
       user: userId,
