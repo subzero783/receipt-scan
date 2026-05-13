@@ -22,6 +22,27 @@
   @media screen and (max-width: 576px) {
     padding: 64px 15px;
   }
+
+  >.container {
+    >.row {
+      >.col {
+        >.upload-container {
+
+          >.progress-container {
+            max-width: 600px;
+            margin: 20px auto 0 auto;
+
+            >.progress-text {
+              margin: 0 0 8px 0;
+              font-size: 16px;
+              color: #555;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 /* Container */

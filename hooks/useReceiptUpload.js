@@ -1,8 +1,10 @@
 import { useState, useCallback } from 'react';
+// import axios from 'axios'; // <-- 1. Import Axios
 
 export const useReceiptUpload = () => {
   const [files, setFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [scannedData, setScannedData] = useState([]);
   const [editedData, setEditedData] = useState({});
   const [isSaving, setIsSaving] = useState(false);
@@ -29,12 +31,27 @@ export const useReceiptUpload = () => {
   };
 
   // --- Handlers ---
-
-  const handleUpload = async () => {
+  // Old handle upload - remove later 01
+  const handleUpload = async (file) => {
     if (files.length === 0) return;
 
+
     setIsUploading(true);
+    setUploadProgress(0);
     setUploadError(null);
+
+    // Start the fake progress simulation
+    const progressInterval = setInterval(() => {
+      setUploadProgress((prev) => {
+        // Inch up by 10% until we hit 90%
+        if (prev >= 90) {
+          clearInterval(progressInterval);
+          return 90;
+        }
+        return prev + 10;
+      });
+    }, 300); // Updates every 300ms
+
     const newScannedResults = [];
 
     try {
@@ -68,19 +85,28 @@ export const useReceiptUpload = () => {
         }
       }
 
+      // Snap progress to 100% on success
+      clearInterval(progressInterval);
+      setUploadProgress(100);
+
       setScannedData((prev) => [...prev, ...newScannedResults]);
 
-      if (newScannedResults.length > 0) {
-        const lastItem = newScannedResults[newScannedResults.length - 1];
-        alert(`Scan Complete! Found ${newScannedResults.length} items.`);
-      }
+      // if (newScannedResults.length > 0) {
+      //   alert(`Scan Complete! Found ${newScannedResults.length} items.`);
+      // }
 
       setFiles([]);
     } catch (error) {
       console.error(error);
-      alert('Something went wrong uploading.');
+      clearInterval(progressInterval); // Clear progress interval on error
+      setUploadError('Error: ' + error.message);
+      // alert('Something went wrong uploading.');
     } finally {
-      setIsUploading(false);
+      // Small delay before resetting the UI so the user sees 100%
+      setTimeout(() => {
+        setIsUploading(false);
+        setUploadProgress(0);
+      }, 700);
     }
   };
 
@@ -218,6 +244,7 @@ export const useReceiptUpload = () => {
   return {
     files,
     isUploading,
+    uploadProgress,
     scannedData,
     editedData,
     isSaving,
