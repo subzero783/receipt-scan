@@ -34,7 +34,7 @@ const PrivacyPage = () => {
 
               <p>When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.</p>
 
-              <p>Documents uploaded to Receipt Scan persist on our servers for 24 hours. After 24 hours they are deleted. We do not forward user uploaded documents to any third parties.</p>
+              <p>We do not forward user uploaded documents to any third parties.</p>
 
               <h2>How we use your information</h2>
               <p>We use the information we collect in various ways, including to:</p>
