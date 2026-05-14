@@ -1,45 +1,129 @@
-.signup-section {
+.signup-page {
     background-color: var(--color-secondary);
     padding: 112px 0;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    >.register-form-section {
-        display: flex;
-        align-items: center;
-        flex-flow: column nowrap;
-        text-align: center;
-        background-color: var(--color-primary);
+    >.container {
+        padding-bottom: 112px;
         width: 100%;
-        border-radius: 16px;
-        padding: 85px 15px;
-        max-width: 91%;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-white);
 
-        >.container {
-            .title {
-                margin-bottom: 24px;
-                font-weight: 600;
-                color: var(--color-white);
-            }
-
-            .subtitle {
-                margin-bottom: 32px;
-                color: var(--color-white);
-            }
-
-            >.row {
-                max-width: 600px;
-                margin: 0 auto;
-            }
+        .title {
+            margin-bottom: 24px;
+            font-weight: 600;
+            color: var(--color-white);
         }
-    }
 
-    @media screen and (max-width: 576px) {
-        padding: 64px 0;
+        .subtitle {
+            margin-bottom: 32px;
+            color: var(--color-white);
+        }
 
-        >.register-form-section {
-            padding: 32px 15px;
+        >.row {
+            padding: 84px 15px;
+            background-color: var(--color-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            border-radius: 16px;
+
+            >.col {
+                .input-group {
+                    position: relative;
+                }
+
+                .signup-input {
+                    width: 100%;
+                    background: transparent;
+                    border: none;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                    padding: 10px 0;
+                    color: var(--color-white);
+                    font-size: 14px;
+                    outline: none;
+                    transition: border-color 0.3s ease;
+
+                    &::placeholder {
+                        color: rgba(255, 255, 255, 0.6);
+                    }
+
+                    &:focus {
+                        border-bottom-color: var(--color-white);
+                    }
+                }
+
+
+                .signup-submit-btn {
+                    background: transparent;
+                    color: var(--color-white);
+                    border: none;
+                    font-weight: 500;
+                    font-size: 14px;
+                    cursor: pointer;
+                    padding: 10px 20px;
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 16px;
+                    text-decoration: unset;
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        background-color: var(--color-white);
+                        color: var(--color-primary);
+                    }
+                }
+
+                .signup-with-google {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 20px auto 0;
+                    border: unset;
+                    border-radius: 16px;
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: var(--color-black);
+                    background-color: var(--color-neutral-200);
+
+                    >svg {
+                        margin-right: 10px;
+                    }
+
+                    &:focus,
+                    &:active,
+                    &:hover {
+                        background-color: var(--color-white);
+                    }
+                }
+
+                .or-text {
+                    margin: 10px 0 20px;
+                    font-size: 14px;
+                    color: var(--color-white);
+
+                    @media screen and (max-width: 768px) {
+                        margin: 10px 0;
+                    }
+                }
+
+                .error-container {
+                    margin-top: 10px;
+                    color: var(--color-red);
+                    font-weight: 700;
+                    font-size: 14px;
+                }
+            }
         }
     }
 }
@@ -72,91 +156,4 @@
             width: 100%;
         }
     }
-}
-
-/* Custom Input Styles to match design (underline with label placeholder look) */
-.input-group {
-    position: relative;
-}
-
-.signup-input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 10px 0;
-    color: var(--color-white);
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-.signup-input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.signup-input:focus {
-    border-bottom-color: var(--color-white);
-}
-
-.signup-submit-btn {
-    background: transparent;
-    color: var(--color-white);
-    border: none;
-    font-weight: 500;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 10px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 16px;
-    text-decoration: unset;
-
-    &:hover,
-    &:active,
-    &:focus {
-        background-color: var(--color-white);
-        color: var(--color-primary);
-    }
-}
-
-.signup-with-google {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: center;
-    margin: 20px auto 0;
-    border: unset;
-    border-radius: 16px;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--color-black);
-    background-color: var(--color-neutral-200);
-
-    >svg {
-        margin-right: 10px;
-    }
-
-    &:focus,
-    &:active,
-    &:hover {
-        background-color: var(--color-white);
-    }
-}
-
-.or-text {
-    margin: 10px 0 20px;
-    font-size: 14px;
-    color: var(--color-white);
-
-    @media screen and (max-width: 768px) {
-        margin: 10px 0;
-    }
-}
-
-.error-container {
-    margin-top: 10px;
-    color: var(--color-red);
-    font-weight: 700;
-    font-size: 14px;
 }

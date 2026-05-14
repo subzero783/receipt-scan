@@ -66,47 +66,45 @@ const LoginPage = () => {
 
   return (
     sessionStatus !== "authenticated" && (
-      <section className="login-section">
-        <div className="login-hero">
-          <div className="login-container container">
-            <div className="row">
-              <div className="col">
-                <h1 className="title">{hero_section.title}</h1>
-                <p className="subtitle">{hero_section.subtitle}</p>
-                <form onSubmit={handleSubmit} className="login-form">
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      placeholder="Email address"
-                      className="login-input"
-                      required
-                    />
-                  </div>
-                  <div className="input-group">
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      className="login-input"
-                      required
-                    />
-                  </div>
-                  <button type="submit" className="login-submit-btn">Sign in</button>
-                </form>
-                {error && <p className="login-error-container">{error}</p>}
-                <button
-                  className="sign-in-with-google"
-                  onClick={() => {
-                    signIn("google");
-                  }}
-                >
-                  <FaGoogle />
-                  <span>Sign In with Google</span>
-                </button>
-                {/* Add a link to the forgot password page */}
-                <Link href="/forgot-password" className="forgot-password-link">Forgot Password?</Link>
-                <div className="legal-text">
-                  {hero_section.legal_disclaimer}
+      <section className="login-page">
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <h1 className="title">{hero_section.title}</h1>
+              <p className="subtitle">{hero_section.subtitle}</p>
+              <form onSubmit={handleSubmit} className="login-form">
+                <div className="input-group">
+                  <input
+                    type="text"
+                    placeholder="Email address"
+                    className="login-input"
+                    required
+                  />
                 </div>
+                <div className="input-group">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    className="login-input"
+                    required
+                  />
+                </div>
+                <button type="submit" className="login-submit-btn">Sign in</button>
+              </form>
+              {error && <p className="login-error-container">{error}</p>}
+              <button
+                className="sign-in-with-google"
+                onClick={() => {
+                  signIn("google");
+                }}
+              >
+                <FaGoogle />
+                <span>Sign In with Google</span>
+              </button>
+              {/* Add a link to the forgot password page */}
+              <Link href="/forgot-password" className="forgot-password-link">Forgot Password?</Link>
+              <div className="legal-text">
+                {hero_section.legal_disclaimer}
               </div>
             </div>
           </div>

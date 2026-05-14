@@ -92,7 +92,7 @@ export const POST = async (request) => {
                         <p>Hi ${targetUser.username || ''},</p>
                         <p>We received your email with receipt attachments, but your account has reached the maximum limit of 10 receipts for the Free plan.</p>
                         <p>Please upgrade to the Pro plan to upload unlimited receipts.</p>
-                        <p><a href="${process.env.NEXTAUTH_URL}/dashboard" style="background-color: #0070f3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px;">Upgrade to Pro</a></p>
+                        <p><a href="${process.env.NEXTAUTH_URL}/pricing" style="background-color: #0070f3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px;">Upgrade to Pro</a></p>
                     `
                 });
 

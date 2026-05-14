@@ -1,157 +1,152 @@
-.login-section {
+.login-page {
     display: flex;
     flex-direction: column;
-    width: 100%;
-}
-
-/* Hero / Login Form Section */
-.login-hero {
     background-color: var(--color-secondary);
-    color: var(--color-white);
-    padding: 8em 0;
-    text-align: center;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    padding: 112px 0 0 0;
 
-.login-hero h1 {
-    /* Adjusted from 7.5em for login context */
-    margin-bottom: 0.5em;
-    font-weight: 600;
-}
-
-.login-hero p {
-    margin-bottom: 3em;
-    opacity: 0.9;
-}
-
-.login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--color-primary);
-    padding: 84px 15px;
-    width: 100%;
-    max-width: 91%;
-    border-radius: 16px;
-
-    @media screen and (max-width: 768px) {
-        margin-top: 20px;
-    }
-}
-
-.login-form {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 100%;
-    gap: 1em;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.1);
-    /* Subtle background for form area if needed, or transparent as per design */
-    background: transparent;
-    justify-content: center;
-
-    >.input-group {
+    >.container {
+        padding-bottom: 112px;
         width: 100%;
-    }
-
-    @media screen and (max-width: 768px) {
+        display: flex;
         flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-white);
+
+        >.row {
+            padding: 84px 15px;
+            background-color: var(--color-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            border-radius: 16px;
+
+            >.col {
+
+                .title {
+                    margin-bottom: 24px;
+                    font-weight: 600;
+                }
+
+                .subtitle {
+                    margin-bottom: 32px;
+                    opacity: 0.9;
+                }
+
+                .login-form {
+                    display: flex;
+                    flex-flow: column nowrap;
+                    width: 100%;
+                    gap: 1em;
+                    align-items: center;
+                    background: transparent;
+                    justify-content: center;
+
+                    .input-group {
+                        position: relative;
+                        flex: 1;
+                        width: 100%;
+
+                        .login-input {
+                            width: 100%;
+                            background: transparent;
+                            border: none;
+                            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                            padding: 10px 0;
+                            color: var(--color-white);
+                            font-size: 14px;
+                            outline: none;
+                            transition: border-color 0.3s ease;
+
+                            &::placeholder {
+                                color: rgba(255, 255, 255, 0.6);
+                            }
+
+                            &:focus {
+                                border-bottom-color: var(--color-white);
+                            }
+                        }
+
+                    }
+
+
+
+                    @media screen and (max-width: 768px) {
+                        flex-flow: column nowrap;
+                    }
+                }
+
+                .login-submit-btn {
+                    background: transparent;
+                    color: var(--color-white);
+                    border: none;
+                    font-weight: 500;
+                    font-size: 14px;
+                    cursor: pointer;
+                    padding: 10px 20px;
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 16px;
+                    text-decoration: unset;
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        background-color: var(--color-white);
+                        color: var(--color-primary);
+                    }
+                }
+
+                .login-error-container {
+                    color: var(--color-white);
+                    margin-top: 10px;
+                    font-weight: 600;
+                    font-size: 14px;
+                    text-decoration: underline;
+                }
+
+                .sign-in-with-google {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 20px auto 0;
+                    border: unset;
+                    border-radius: 16px;
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: var(--color-black);
+                    background-color: var(--color-neutral-200);
+
+                    >svg {
+                        margin-right: 10px;
+                    }
+
+                    &:focus,
+                    &:active,
+                    &:hover {
+                        background-color: var(--color-neutral-100);
+                    }
+                }
+
+                .forgot-password-link {
+                    margin-top: 20px;
+                    font-weight: 600;
+                    font-size: 14px;
+                    text-decoration: underline;
+                    color: var(--color-white);
+                    display: block;
+                }
+
+                .legal-text {
+                    margin-top: 1.5em;
+                    font-size: 14px;
+                    color: rgba(255, 255, 255, 0.6);
+                }
+            }
+        }
     }
-}
-
-/* Custom Input Styles to match design (underline with label placeholder look) */
-.input-group {
-    position: relative;
-    flex: 1;
-}
-
-.login-input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 10px 0;
-    color: var(--color-white);
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-.login-input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.login-input:focus {
-    border-bottom-color: var(--color-white);
-}
-
-.login-submit-btn {
-    background: transparent;
-    color: var(--color-white);
-    border: none;
-    font-weight: 500;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 10px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 16px;
-    text-decoration: unset;
-
-    &:hover,
-    &:active,
-    &:focus {
-        background-color: var(--color-white);
-        color: var(--color-primary);
-    }
-}
-
-.login-error-container {
-    color: var(--color-white);
-    margin-top: 10px;
-    font-weight: 600;
-    font-size: 14px;
-    text-decoration: underline;
-}
-
-.sign-in-with-google {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: center;
-    margin: 20px auto 0;
-    border: unset;
-    border-radius: 16px;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--color-black);
-    background-color: var(--color-neutral-200);
-
-    >svg {
-        margin-right: 10px;
-    }
-
-    &:focus,
-    &:active,
-    &:hover {
-        background-color: var(--color-neutral-100);
-    }
-}
-
-.forgot-password-link {
-    margin-top: 20px;
-    font-weight: 600;
-    font-size: 14px;
-    text-decoration: underline;
-    color: var(--color-white);
-    display: block;
-}
-
-.legal-text {
-    margin-top: 1.5em;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
 }

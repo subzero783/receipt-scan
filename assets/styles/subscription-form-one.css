@@ -27,7 +27,7 @@
         .submit {
             cursor: pointer;
             font-size: 14px;
-            color: var(--color-black);
+            color: var(--color-primary);
 
             &:hover,
             &:active,

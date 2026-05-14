@@ -1,6 +1,6 @@
 .features {
   padding: 80px 0;
-  background-color: var(--color-white);
+  background-color: var(--color-secondary);
 
   @media screen and (max-width: 768px) {
     padding: 48px 0;
@@ -15,6 +15,8 @@
     width: 100%;
 
     .top-text {
+      color: var(--color-white);
+
       .title {
         text-align: center;
       }

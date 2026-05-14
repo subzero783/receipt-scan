@@ -1,0 +1,7 @@
+.contact-page {
+    .hero-section-three {
+        >.container {
+            padding-bottom: 40px;
+        }
+    }
+}

@@ -13,6 +13,20 @@
                 width: 50%;
 
                 &.contact-form-wrapper {
+                    .alert {
+                        font-size: 16px;
+                        font-weight: 600;
+                        margin-bottom: 16px;
+
+                        &.alert-error {
+                            color: var(--color-red-2);
+                        }
+
+                        &.alert-success {
+                            color: var(--color-success);
+                        }
+                    }
+
                     >form {
                         .form-group {
                             display: flex;
@@ -23,6 +37,7 @@
                             >label {
                                 color: var(--color-white);
                                 font-size: 16px;
+                                font-weight: 600;
                             }
 
                             >input,
@@ -31,7 +46,7 @@
                                 color: var(--color-white);
                                 background: none;
                                 border: none;
-                                border-bottom: 1px solid #ffffff4d;
+                                border-bottom: 1px solid #fff;
                                 outline: none;
                                 padding: 10px 0;
                                 font-size: 14px;

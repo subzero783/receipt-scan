@@ -52,8 +52,11 @@ const ContactForm = () => {
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit}>
+                                <div className="alert alert-error">
+                                    {status.error}
+                                </div>
                                 {status.error && (
-                                    <div className="alert alert-danger" style={{ color: 'red', marginBottom: '15px' }}>
+                                    <div className="alert alert-error">
                                         {status.error}
                                     </div>
                                 )}

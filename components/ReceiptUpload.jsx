@@ -75,7 +75,7 @@ const ReceiptUpload = ({ data }) => {
                       style={{
                         width: `${uploadProgress}%`,
                         height: '100%',
-                        backgroundColor: '#4caf50', // Choose your brand color
+                        backgroundColor: '#1e90ff', // Choose your brand color
                         transition: 'width 0.3s ease-in-out',
                       }}
                     />

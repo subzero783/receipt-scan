@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import { FaGoogle } from "react-icons/fa";
 import siteData from '@/data/siteData.js';
-import HeroSectionTwo from "@/components/HeroSectionTwo";
 import Spinner from "@/components/Spinner";
 import FAQs from "@/components/FAQs";
 
@@ -85,60 +84,54 @@ const SignupPage = () => {
   return (
     sessionStatus !== "authenticated" && (
       <>
-        <section className="signup-section">
-          <div className="register-form-section">
-            <div className="container">
-              <div className="row">
-                <div className="col">
-                  <h2 className="title">{registration_section.title}</h2>
-                  <p className="subtitle">{registration_section.subtitle}</p>
-                  <form onSubmit={handleSubmit} className="signup-form" autoComplete="on">
-                    <div className="name-container">
-                      <div className="input-group">
-                        <input
-                          name="username"
-                          type="text"
-                          placeholder="Username"
-                          className="signup-input"
-                          required
-                        />
-                      </div>
+        <section className="signup-page">
+          <div className="container">
+            <div className="row">
+              <div className="col">
+                <h2 className="title">{registration_section.title}</h2>
+                <p className="subtitle">{registration_section.subtitle}</p>
+                <form onSubmit={handleSubmit} className="signup-form" autoComplete="on">
+                  <div className="name-container">
+                    <div className="input-group">
+                      <input
+                        name="username"
+                        type="text"
+                        placeholder="Username"
+                        className="signup-input"
+                        required
+                      />
                     </div>
-                    <div className="email-password-button-container">
-                      <div className="input-group">
-                        <input
-                          name="email"
-                          type="email"
-                          placeholder="Email"
-                          className="signup-input"
-                          required
-                        />
-                      </div>
-                      <div className="input-group">
-                        <input
-                          name="password"
-                          type="password"
-                          placeholder="Password"
-                          className="signup-input"
-                          required
-                        />
-                      </div>
-                      <button type="submit" className="signup-submit-btn">Sign Up with Email</button>
+                  </div>
+                  <div className="email-password-button-container">
+                    <div className="input-group">
+                      <input
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        className="signup-input"
+                        required
+                      />
                     </div>
-                    <div className="error-container">
-                      <p>{error && error}</p>
+                    <div className="input-group">
+                      <input
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        className="signup-input"
+                        required
+                      />
                     </div>
-                  </form>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col">
-                  <p className="or-text">- OR -</p>
-                  <button onClick={() => signIn("google")} className="signup-with-google">
-                    <FaGoogle />
-                    <span>Sign Up with Google</span>
-                  </button>
-                </div>
+                    <button type="submit" className="signup-submit-btn">Sign Up with Email</button>
+                  </div>
+                  <div className="error-container">
+                    <p>{error && error}</p>
+                  </div>
+                </form>
+                <p className="or-text">- OR -</p>
+                <button onClick={() => signIn("google")} className="signup-with-google">
+                  <FaGoogle />
+                  <span>Sign Up with Google</span>
+                </button>
               </div>
             </div>
           </div>
