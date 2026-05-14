@@ -156,4 +156,12 @@
             width: 100%;
         }
     }
+
+    .error-container {
+        >p {
+            color: var(--color-dark-1);
+            font-weight: 600;
+            font-size: 14px;
+        }
+    }
 }

@@ -100,11 +100,10 @@
                 }
 
                 .login-error-container {
-                    color: var(--color-white);
+                    color: var(--color-dark-1);
                     margin-top: 10px;
                     font-weight: 600;
                     font-size: 14px;
-                    text-decoration: underline;
                 }
 
                 .sign-in-with-google {
@@ -139,6 +138,12 @@
                     text-decoration: underline;
                     color: var(--color-white);
                     display: block;
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        text-decoration: none;
+                    }
                 }
 
                 .legal-text {
