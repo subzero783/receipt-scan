@@ -81,7 +81,7 @@ export const POST = async (request) => {
             }
             if (targetUser.lifetimeReceipts >= 10) {
                 console.log(`User ${targetUser.email} has reached the free tier limit. Sending notification email.`);
-                
+
                 // Send rejection email
                 await resendClient.emails.send({
                     from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
