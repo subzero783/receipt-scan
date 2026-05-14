@@ -19,11 +19,11 @@
                         margin-bottom: 16px;
 
                         &.alert-error {
-                            color: var(--color-red-2);
+                            color: var(--color-dark-1);
                         }
 
                         &.alert-success {
-                            color: var(--color-success);
+                            color: var(--color-white);
                         }
                     }
 
@@ -83,11 +83,11 @@
                     a {
                         font-size: 16px;
                         color: var(--color-white);
-                        text-decoration: underline;
 
                         &:hover,
                         &:focus,
                         &:active {
+                            text-decoration: underline;
                             color: var(--color-black);
                         }
                     }
