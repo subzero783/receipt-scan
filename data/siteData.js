@@ -290,11 +290,8 @@ const siteData = [
         "buttons": [
           {
             "text": "Start Free",
-            "link": "/"
-          },
-          {
-            "text": "Compare Plans",
-            "link": "/"
+            "link": "/signup",
+            "guest_only": true
           }
         ]
       },

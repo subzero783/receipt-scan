@@ -24,15 +24,17 @@ const HeroSectionTwo = ({ data, extra }) => {
               {
                 buttons && buttons.length > 0 && (
                   <div className="buttons">
-                    {buttons.map((item, index) => (
-                      <Link
-                        key={index}
-                        href={item.link}
-                        className="btn btn-primary"
-                      >
-                        {item.text}
-                      </Link>
-                    ))}
+                    {buttons.map((item, index) => {
+                      return (
+                        <Link
+                          key={index}
+                          href={item.link}
+                          className="btn btn-primary"
+                        >
+                          {item.text}
+                        </Link>
+                      )
+                    })}
                   </div>
                 )
               }

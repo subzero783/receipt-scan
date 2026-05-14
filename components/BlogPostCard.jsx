@@ -15,9 +15,7 @@ const BlogPostCard = ({ post }) => {
       >
         <div
           className="post-image"
-          // style={{ backgroundImage: `url(/images${featured_image})` }}
-          style={{ backgroundImage: `url(/images/post-featured-image-placeholder.png)` }}
-          alt="Placeholder image"
+          style={{ backgroundImage: `url(${featured_image})` }}
         ></div>
       </Link>
       <div className="text-container">

@@ -22,17 +22,17 @@ const PricingPlans = ({ data }) => {
         method: 'POST',
       });
       const data = await res.json();
-      
+
       // Redirect to Stripe Payment Page
       window.location.href = data.url;
-      
+
     } catch (err) {
       console.error('Payment Error:', err);
     }
   };
 
   return (
-    <section className="pricing-plans">
+    <section className="pricing-plans" id="plans">
       <div className="container">
         <div className="row">
           <div className="col">
@@ -71,8 +71,8 @@ const PricingPlans = ({ data }) => {
                   {item.paid ? (
                     // Renders for Pro Plan (Trigger Stripe)
                     <div className="button">
-                      <button 
-                        onClick={handleSubscription} 
+                      <button
+                        onClick={handleSubscription}
                         className="btn btn-primary paid-plan"
                       >
                         {item.button.text}
@@ -81,8 +81,8 @@ const PricingPlans = ({ data }) => {
                   ) : (
                     // Renders for Free Plan (Link to Signup)
                     <div className="button">
-                      <Link 
-                        href={item.button.link} 
+                      <Link
+                        href={item.button.link}
                         className="btn btn-primary"
                       >
                         {item.button.text}
