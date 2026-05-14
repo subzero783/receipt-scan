@@ -50,7 +50,7 @@
         width: 50%;
 
         @media screen and (max-width: 768px) {
-            width: 30%;
+            width: 40%;
         }
 
         h3 {
@@ -84,7 +84,7 @@
         }
 
         @media screen and (max-width: 768px) {
-            width: 70%;
+            width: 60%;
 
             >h3 {
                 font-size: 20px;
@@ -126,6 +126,7 @@
 .form-group input,
 .form-group select {
     width: 100%;
+    display: block;
     padding: 10px;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
