@@ -109,30 +109,30 @@
             }
         }
     }
-}
 
-.form-group {
-    margin-bottom: 20px;
-}
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    font-size: 16px;
-    color: #475569;
-}
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        font-size: 16px;
+        color: #475569;
+    }
 
-.form-group input,
-.form-group select {
-    width: 100%;
-    display: block;
-    padding: 10px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 1rem;
-}
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        display: block;
+        padding: 10px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
 
-.modal-actions {
-    margin-top: 30px;
+    .modal-actions {
+        margin-top: 30px;
+    }
 }

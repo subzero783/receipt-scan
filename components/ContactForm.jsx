@@ -72,7 +72,7 @@ const ContactForm = () => {
                                     <label htmlFor="message">Message</label>
                                     <textarea id="message" name="message" className="form-control" rows="5" required value={formData.message} onChange={handleChange} placeholder="Type your message..."></textarea>
                                 </div>
-                                <button type="submit" className="btn btn-primary" disabled={status.submitting}>
+                                <button type="submit" className="btn btn-sixth" disabled={status.submitting}>
                                     {status.submitting ? 'Submitting...' : 'Submit'}
                                 </button>
                             </form>

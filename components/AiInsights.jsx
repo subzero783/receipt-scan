@@ -42,7 +42,6 @@ const AiInsights = ({ receipts, data }) => {
                                     onClick={generateInsights}
                                     disabled={loading || receipts.length === 0}
                                     className="btn btn-primary"
-                                    style={{ fontSize: '0.9rem', padding: '8px 16px' }}
                                 >
                                     {loading ? 'Analyzing...' : 'Generate Insights'}
                                 </button>

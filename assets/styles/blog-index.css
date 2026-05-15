@@ -49,8 +49,17 @@
       justify-content: flex-end;
 
       button {
-        border: unset;
-        color: var(--color-primary);
+        border: 1px solid transparent;
+        color: var(--color-white);
+        background-color: var(--color-primary);
+
+        &:hover,
+        &:active,
+        &:focus {
+          border: 1px solid var(--color-white);
+          color: var(--color-white);
+          background-color: transparent;
+        }
       }
 
       .pagination__span {

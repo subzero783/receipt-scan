@@ -1,6 +1,7 @@
 .pricing-plans {
   padding: 112px 0;
   background-color: var(--color-third);
+
   .plans {
     display: flex;
     max-width: 1024px;
@@ -9,7 +10,8 @@
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
-    > .plan {
+
+    >.plan {
       width: 50%;
       padding: 32px;
       margin-right: 32px;
@@ -18,79 +20,96 @@
       border-color: 2px solid var(--color-secondary);
       display: flex;
       flex-flow: column nowrap;
+
       &:last-of-type {
         margin-right: 0;
       }
-      > .small-title-and-icon {
+
+      >.small-title-and-icon {
         display: flex;
         flex-flow: row nowrap;
         align-items: flex-start;
         justify-content: space-between;
-        > .small-title {
+
+        >.small-title {
           font-size: 22px;
         }
-        > svg {
+
+        >svg {
           font-size: 36px;
         }
       }
-      > .price-and-discount-text {
+
+      >.price-and-discount-text {
         margin-bottom: 32px;
         padding-bottom: 32px;
         border-bottom: 1px solid var(--color-neutral-400);
-        > .monthly-price {
+
+        >.monthly-price {
           font-size: 50px;
           font-weight: 700;
-          > span {
+
+          >span {
             font-size: 24px;
             font-weight: 700;
           }
         }
-        > .discount-text {
+
+        >.discount-text {
           font-size: 16px;
         }
       }
-      > .includes-list {
-        > p {
+
+      >.includes-list {
+        >p {
           font-size: 16px;
           margin-bottom: 16px;
         }
-        > ul {
+
+        >ul {
           list-style: none;
           padding: 0;
-          > li {
+
+          >li {
             font-size: 16px;
             line-height: 20px;
             padding-bottom: 16px;
-            > svg {
+
+            >svg {
               margin-right: 16px;
             }
           }
         }
       }
 
-      > .button {
+      >.button {
         display: block;
         margin-top: auto;
-        > a, 
-        > button {
-          width: 100%;
+
+        >a,
+        >button {
           font-size: 14px;
           text-align: center;
           display: inline-block;
         }
-        > button {
+
+        >button {
           border: unset;
         }
       }
     }
   }
+
   @media screen and (max-width: 576px) {
     padding: 64px 0;
+
     .plans {
       flex-flow: column nowrap;
-      > .plan {
+
+      >.plan {
         margin: 0;
         width: 100%;
+
         &:first-of-type {
           margin-bottom: 32px;
         }

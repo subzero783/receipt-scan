@@ -7,96 +7,94 @@
         margin: 100px auto 0 auto;
 
     }
-}
 
-.create-post-page h1 {
-    font-size: 32px;
-    margin-bottom: 24px;
-    color: var(--color-white);
-}
+    h1 {
+        font-size: 32px;
+        margin-bottom: 24px;
+        color: var(--color-white);
+    }
 
-.create-post-page .error-message {
-    color: #b91c1c;
-    margin-bottom: 24px;
-    padding: 12px;
-    background-color: #fee2e2;
-    border-radius: 8px;
-    border: 1px solid #fca5a5;
-}
+    .error-message {
+        color: #b91c1c;
+        margin-bottom: 24px;
+        padding: 12px;
+        background-color: #fee2e2;
+        border-radius: 8px;
+        border: 1px solid #fca5a5;
+    }
 
-.create-post-form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    background-color: var(--color-third);
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.create-post-form .form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.create-post-form .form-group label {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--color-dark-1);
-}
-
-.create-post-form .form-group input[type="text"],
-.create-post-form .form-group input[type="email"],
-.create-post-form .form-group textarea,
-.create-post-form .form-group input[type="file"] {
-    background-color: var(--color-white);
-    border: 1px solid var(--color-neutral-400);
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 16px;
-    width: 100%;
-    color: var(--color-dark-1);
-}
-
-.create-post-form .form-group input[type="text"]:focus,
-.create-post-form .form-group input[type="email"]:focus,
-.create-post-form .form-group textarea:focus {
-    outline: none;
-    border-color: var(--color-primary);
-}
-
-.create-post-form .form-group.checkbox-group {
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-}
-
-.create-post-form .form-group.checkbox-group input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
-
-.create-post-form .form-group.checkbox-group label {
-    margin-bottom: 0;
-    cursor: pointer;
-}
-
-.create-post-form .form-text {
-    font-size: 13px;
-    color: var(--color-neutral-600);
-    margin-top: 6px;
-}
-
-.create-post-form .submit-btn {
-    align-self: flex-start;
-    font-size: 14px;
-    margin-top: 8px;
-}
-
-@media screen and (max-width: 768px) {
     .create-post-form {
-        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        background-color: var(--color-third);
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                font-size: 14px;
+                font-weight: 600;
+                margin-bottom: 8px;
+                color: var(--color-dark-1);
+            }
+
+            input[type="text"],
+            input[type="email"],
+            textarea,
+            input[type="file"] {
+                background-color: var(--color-white);
+                border: 1px solid var(--color-neutral-400);
+                border-radius: 8px;
+                padding: 12px;
+                font-size: 16px;
+                width: 100%;
+                color: var(--color-dark-1);
+            }
+
+            input[type="text"]:focus,
+            input[type="email"]:focus,
+            textarea:focus {
+                outline: none;
+                border-color: var(--color-primary);
+            }
+
+            &.checkbox-group {
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
+
+                input[type="checkbox"] {
+                    width: 20px;
+                    height: 20px;
+                    cursor: pointer;
+                }
+
+                label {
+                    margin-bottom: 0;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .form-text {
+            font-size: 13px;
+            color: var(--color-neutral-600);
+            margin-top: 6px;
+        }
+
+        .submit-btn {
+            align-self: flex-start;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        @media screen and (max-width: 768px) {
+            padding: 24px;
+        }
     }
 }

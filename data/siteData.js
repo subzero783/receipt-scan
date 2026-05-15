@@ -1,5 +1,10 @@
 const siteData = [
   {
+    "site_name": "Receipt Scan",
+    "site_url": "https://www.receiptscan.org",
+    "site_logo": "/assets/images/Receipt_Scan_logo_01.png",
+  },
+  {
     "social_media": [
       {
         "name": "facebook",

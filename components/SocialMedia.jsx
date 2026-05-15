@@ -3,6 +3,10 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok } from "react-icons/fa";
 import siteData from "@/data/siteData.js";
 
 const SocialMedia = () => {
+  const socialData = siteData.find(item => item.social_media)?.social_media;
+
+  if (!socialData) return <div>Loading...</div>;
+
   const getIcon = (name) => {
     switch (name) {
       case "facebook":
@@ -20,7 +24,7 @@ const SocialMedia = () => {
 
   return (
     <div className="social-media-links">
-      {siteData[0].social_media.map((item, index) => (
+      {socialData.map((item, index) => (
         <Link
           href={item.link}
           key={index}

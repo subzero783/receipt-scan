@@ -6,6 +6,7 @@ import { GlobalProvider } from "@/context/GlobalContext.js";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import TopNavBar from "@/components/TopNavBar";
 import Footer from "@/components/Footer";
+import Head from "next/head";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -27,6 +28,18 @@ export default function RootLayout({ children }) {
     <GlobalProvider>
       <AuthProvider>
         <html lang="en">
+          <Head>
+            <link rel="icon" href="/public/favicon.ico" sizes="any" />
+            <link
+              rel="apple-touch-icon"
+              href="/public/apple-touch-icon.png"
+              type="image/png"
+            />
+            <link rel="icon" type="image/png" sizes="192x192" href="/public/android-chrome-192x192.png" />
+            <link rel="icon" type="image/png" sizes="512x512" href="/public/android-chrome-512x512.png" />
+            <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png" />
+          </Head>
           {/* <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body> */}
           <body>
             <TopNavBar />

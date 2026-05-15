@@ -1,8 +1,6 @@
 .ai-insights-section {
     background: var(--color-white);
     padding: 64px 0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e2e8f0;
 
     .top-text {
         .subtitle {

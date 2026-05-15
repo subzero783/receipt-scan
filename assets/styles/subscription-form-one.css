@@ -27,12 +27,16 @@
         .submit {
             cursor: pointer;
             font-size: 14px;
-            color: var(--color-primary);
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: 1px solid transparent;
 
             &:hover,
             &:active,
             &:focus {
+                border: 1px solid var(--color-white);
                 color: var(--color-white);
+                background-color: transparent;
             }
         }
     }

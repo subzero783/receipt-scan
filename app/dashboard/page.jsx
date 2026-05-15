@@ -188,50 +188,53 @@ const DashboardPage = () => {
         ) : (
           <>
             {/* RECEIPT TABLE */}
-            <div className="table-wrapper">
-              <table className="receipt-table">
-                <thead>
-                  <tr>
-                    <th style={{ width: '40px' }}>
-                      <input
-                        type="checkbox"
-                        checked={receipts.length > 0 && selectedReceiptIds.length === receipts.length}
-                        onChange={handleSelectAll}
-                      />
-                    </th>
-                    <th style={{ width: '50px' }}>#</th>
-                    <th>Date</th>
-                    <th>Merchant</th>
-                    <th>Category</th>
-                    <th>Total</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {receipts.map((receipt, index) => (
-                    <tr key={receipt._id} onClick={() => openModal(receipt)} className="clickable-row">
-                      <td onClick={(e) => e.stopPropagation()}>
+            <div className="table-wrapper-container">
+              <div className="table-wrapper">
+                <table className="receipt-table">
+                  <thead>
+                    <tr>
+                      <th style={{ width: '40px' }}>
                         <input
                           type="checkbox"
-                          checked={selectedReceiptIds.includes(receipt._id)}
-                          onChange={(e) => handleSelectRow(e, receipt._id)}
+                          checked={receipts.length > 0 && selectedReceiptIds.length === receipts.length}
+                          onChange={handleSelectAll}
                         />
-                      </td>
-                      <td style={{ color: '#94a3b8', fontWeight: '500' }}>
-                        {(page - 1) * itemsPerPage + index + 1}
-                      </td>
-                      <td>{new Date(receipt.transactionDate).toLocaleDateString(undefined, { timeZone: 'UTC' })}</td>
-                      <td className="font-bold">{receipt.merchantName}</td>
-                      <td><span className="category-badge">{receipt.category}</span></td>
-                      <td>${receipt.totalAmount.toFixed(2)}</td>
-                      <td>
-                        <button className="icon-btn"><FaEdit /></button>
-                      </td>
+                      </th>
+                      <th style={{ width: '50px' }}>#</th>
+                      <th>Date</th>
+                      <th>Merchant</th>
+                      <th>Category</th>
+                      <th>Total</th>
+                      <th>Action</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {receipts.map((receipt, index) => (
+                      <tr key={receipt._id} onClick={() => openModal(receipt)} className="clickable-row">
+                        <td onClick={(e) => e.stopPropagation()}>
+                          <input
+                            type="checkbox"
+                            checked={selectedReceiptIds.includes(receipt._id)}
+                            onChange={(e) => handleSelectRow(e, receipt._id)}
+                          />
+                        </td>
+                        <td style={{ color: '#94a3b8', fontWeight: '500' }}>
+                          {(page - 1) * itemsPerPage + index + 1}
+                        </td>
+                        <td>{new Date(receipt.transactionDate).toLocaleDateString(undefined, { timeZone: 'UTC' })}</td>
+                        <td className="font-bold">{receipt.merchantName}</td>
+                        <td><span className="category-badge">{receipt.category}</span></td>
+                        <td>${receipt.totalAmount.toFixed(2)}</td>
+                        <td>
+                          <button className="icon-btn"><FaEdit /></button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
+
 
             {/* PAGINATION */}
             <div className="pagination">
