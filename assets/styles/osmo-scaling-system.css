@@ -616,6 +616,20 @@ strong {
   }
 }
 
+.btn-eight {
+  background-color: transparent;
+  border: 1px solid var(--color-white);
+  color: var(--color-white);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border: 1px solid transparent;
+  }
+}
+
 .btn-alert {
   color: var(--color-white);
   background-color: var(--color-red);
