@@ -306,16 +306,16 @@ const siteData = [
         "subtitle": "Choose the perfect plan for your business expense tracking",
         "plans": [
           {
-            "small_title": "Free plan",
+            "small_title": "Free Trial",
             "monthly_price": "0",
-            "discount_text": "Forever free",
+            "discount_text": "For 14 Days",
             "includes": [
               "10 Free receipt photo uploads",
               "Advanced AI categorization",
               "One CSV export per month",
               "Monthly expense summary"
             ],
-            "paid": false,
+            "paid": true,
             "button": {
               "text": "Start Free",
               "link": "/signup"

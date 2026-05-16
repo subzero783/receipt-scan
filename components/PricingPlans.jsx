@@ -13,7 +13,7 @@ const PricingPlans = ({ data }) => {
 
   const handleSubscription = async () => {
     if (!session) {
-      router.push('/login');
+      router.push('/signup?startTrial=true');
       return;
     }
 

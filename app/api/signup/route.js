@@ -1,65 +1,60 @@
-import User from "@/models/User";
+// app/api/signup/route.js
+import { NextResponse } from "next/server";
 import connectDB from "@/config/database";
-import bcrypt from "bcryptjs";
+import User from "@/models/User";
+import bcrypt from "bcryptjs"; // assuming you use bcryptjs based on standard NextAuth setups
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const POST = async (request) => {
-  const { username, email, password, inboundHandle } = await request.json();
-
-  await connectDB();
-
-  const userExists = await User.findOne({ email });
-
-  if (userExists) {
-    return new Response(JSON.stringify({ message: "User already exists" }), { status: 400 });
-  }
-
-  // Handle Generation Logic
-  let baseHandle = inboundHandle || email.split('@')[0];
-  // Sanitize: lowercase and remove non-alphanumeric characters
-  baseHandle = baseHandle.toLowerCase().replace(/[^a-z0-9]/g, '');
-
-  // Fallback if sanitization leaves empty string
-  if (!baseHandle) {
-    baseHandle = `user${Math.floor(Math.random() * 10000)}`;
-  }
-
-  let finalHandle = baseHandle;
-  let isUnique = false;
-  let attempts = 0;
-
-  // Try to find a unique handle
-  while (!isUnique && attempts < 10) {
-    const existing = await User.findOne({ inboundHandle: finalHandle });
-    if (!existing) {
-      isUnique = true;
-    } else {
-      attempts++;
-      finalHandle = `${baseHandle}${Math.floor(Math.random() * 10000)}`;
-    }
-  }
-
-  if (!isUnique) {
-    return new Response(JSON.stringify({ message: "Unable to generate a unique handle. Please try again." }), { status: 500 });
-  }
-
-  const hashedPassword = await bcrypt.hash(password, 5);
-
-  const newUser = await User.create({
-    username,
-    email,
-    password: hashedPassword,
-    inboundHandle: finalHandle,
-    language: 'English',
-    website: '',
-    about: '',
-    image: ''
-  });
-
   try {
+    await connectDB();
+    const { username, email, password } = await request.json();
+
+    // 1. Check if user already exists
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      return new NextResponse("Email already exists", { status: 400 });
+    }
+
+    // 2. Hash password and create user in MongoDB (They are NOT logged in yet)
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+      // isPro: false (or however your schema defaults)
+    });
     await newUser.save();
-    return new Response(JSON.stringify({ message: "User created successfully" }), { status: 201 });
+
+    // 3. IMMEDIATELY generate the Stripe Checkout Session
+    const stripeSession = await stripe.checkout.sessions.create({
+      mode: 'subscription',
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price: process.env.STRIPE_PRICE_ID_PRO,
+          quantity: 1,
+        },
+      ],
+      subscription_data: {
+        trial_period_days: 14, // Force the free trial
+      },
+      customer_email: newUser.email, // Pre-fill their email in Stripe
+      metadata: {
+        userId: newUser._id.toString(), // Crucial for your webhook!
+      },
+      // 4. Redirect them to LOGIN upon success so they can officially create their session
+      success_url: `${process.env.NEXT_PUBLIC_DOMAIN}/login?trial_started=true`,
+      cancel_url: `${process.env.NEXT_PUBLIC_DOMAIN}/signup?canceled=true`,
+    });
+
+    // 5. Send the Stripe URL directly back to the frontend
+    return NextResponse.json({ url: stripeSession.url }, { status: 201 });
+
   } catch (error) {
-    console.log(error);
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    console.error("Signup error:", error);
+    return new NextResponse("Server error", { status: 500 });
   }
 };

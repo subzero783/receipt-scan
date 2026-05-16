@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/utils/authOptions'; // Ensure path is correct
+import { authOptions } from '@/utils/authOptions';
 import connectDB from '@/config/database';
 import User from '@/models/User';
 import Stripe from 'stripe';
@@ -28,9 +28,12 @@ export const POST = async (request) => {
                     quantity: 1,
                 },
             ],
-            customer_email: user.email, // Pre-fill user email
+            subscription_data: {
+                trial_period_days: 14,
+            },
+            customer_email: user.email,
             metadata: {
-                userId: user._id.toString(), // Important: Pass DB ID to Webhook
+                userId: user._id.toString(),
             },
             success_url: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard?success=true`,
             cancel_url: `${process.env.NEXT_PUBLIC_DOMAIN}/pricing?canceled=true`,

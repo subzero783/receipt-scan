@@ -159,9 +159,15 @@
 
     .error-container {
         >p {
-            color: var(--color-dark-1);
             font-weight: 600;
             font-size: 14px;
+            color: var(--color-dark-1);
+
+            >a {
+                margin-left: 10px;
+                color: var(--color-white);
+                text-decoration: underline;
+            }
         }
     }
 }
