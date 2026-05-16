@@ -3,6 +3,7 @@ import { headers } from 'next/headers';
 import Stripe from 'stripe';
 import connectDB from '@/config/database';
 import User from '@/models/User';
+import PendingUser from '@/models/PendingUser';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -23,21 +24,35 @@ export const POST = async (req) => {
     // Handle specific events
     if (event.type === 'checkout.session.completed') {
         const session = event.data.object;
-
-        // Retrieve the userId we passed in metadata during checkout
-        const userId = session.metadata.userId;
+        const metadata = session.metadata;
 
         await connectDB();
 
-        // Update User to PRO
-        await User.findByIdAndUpdate(userId, {
-            stripeCustomerId: session.customer,
-            subscriptionId: session.subscription,
-            isPro: true,
-            planType: 'pro',
-        });
+        // NEW: Check if this was a brand new user completing their first checkout
+        if (metadata && metadata.pendingUserId) {
+            const pendingUser = await PendingUser.findById(metadata.pendingUserId);
 
-        console.log(`User ${userId} upgraded to Pro`);
+            if (pendingUser) {
+                // 1. Check just in case the webhook fired twice or they already exist
+                let realUser = await User.findOne({ email: pendingUser.email });
+
+                if (!realUser) {
+                    // 2. CREATE THE OFFICIAL USER! They are now allowed to log in.
+                    realUser = new User({
+                        username: pendingUser.username,
+                        email: pendingUser.email,
+                        password: pendingUser.password, // This is already securely hashed!
+                        isPro: true, // Since they just started their trial/paid
+                        stripeCustomerId: session.customer,
+                        stripeSubscriptionId: session.subscription
+                    });
+                    await realUser.save();
+                }
+
+                // 3. Remove them from the Pending collection
+                await PendingUser.findByIdAndDelete(metadata.pendingUserId);
+            }
+        }
     }
 
     // Handle cancellations (optional but recommended)

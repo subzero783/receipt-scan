@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/config/database";
 import User from "@/models/User";
+import PendingUser from "@/models/PendingUser";
 import bcrypt from "bcryptjs"; // assuming you use bcryptjs based on standard NextAuth setups
 import Stripe from "stripe";
 
@@ -18,17 +19,24 @@ export const POST = async (request) => {
       return new NextResponse("Email already exists", { status: 400 });
     }
 
-    // 2. Hash password and create user in MongoDB (They are NOT logged in yet)
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({
-      username,
-      email,
-      password: hashedPassword,
-      // isPro: false (or however your schema defaults)
-    });
-    await newUser.save();
 
-    // 3. IMMEDIATELY generate the Stripe Checkout Session
+    // 2. Save them to PendingUser (If they tried before and canceled, just update their pending record)
+    let pendingUser = await PendingUser.findOne({ email });
+    if (pendingUser) {
+      pendingUser.username = username;
+      pendingUser.password = hashedPassword;
+      await pendingUser.save();
+    } else {
+      pendingUser = new PendingUser({
+        username,
+        email,
+        password: hashedPassword,
+      });
+      await pendingUser.save();
+    }
+
+    // 3. Generate the Stripe Checkout Session
     const stripeSession = await stripe.checkout.sessions.create({
       mode: 'subscription',
       payment_method_types: ['card'],
@@ -39,18 +47,17 @@ export const POST = async (request) => {
         },
       ],
       subscription_data: {
-        trial_period_days: 14, // Force the free trial
+        trial_period_days: 14,
       },
-      customer_email: newUser.email, // Pre-fill their email in Stripe
+      customer_email: pendingUser.email,
       metadata: {
-        userId: newUser._id.toString(), // Crucial for your webhook!
+        // PASS THE PENDING ID SO THE WEBHOOK CAN FIND THEM LATER
+        pendingUserId: pendingUser._id.toString(),
       },
-      // 4. Redirect them to LOGIN upon success so they can officially create their session
       success_url: `${process.env.NEXT_PUBLIC_DOMAIN}/login?trial_started=true`,
       cancel_url: `${process.env.NEXT_PUBLIC_DOMAIN}/signup?canceled=true`,
     });
 
-    // 5. Send the Stripe URL directly back to the frontend
     return NextResponse.json({ url: stripeSession.url }, { status: 201 });
 
   } catch (error) {
