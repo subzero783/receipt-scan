@@ -4,6 +4,11 @@ import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
 import siteData from '@/data/siteData.js';
 
+export const metadata = {
+  title: 'Home', // Because of the template in layout.js, this becomes "Home | Receipt Scan"
+  description: 'Easily track, manage, and organize your freelance business expenses with Receipt Scan.',
+};
+
 export default async function Home() {
 
   const homeData = siteData.find(item => item.home_page)?.home_page;

@@ -19,8 +19,29 @@ import Head from "next/head";
 // });
 
 export const metadata = {
-  title: "Receipt Scan - Expense Tracker for Freelancers",
+  title: {
+    // %s will be replaced by the specific page's title
+    template: '%s | Receipt Scan',
+    // This is the fallback if a page doesn't define its own title
+    default: 'Receipt Scan - Expense Tracker for Freelancers',
+  },
   description: "Automated expense tracking for freelancers and small businesses",
+  // You can also add global open graph images here for social media sharing
+  openGraph: {
+    title: 'Receipt Scan',
+    description: 'Automated expense tracking for freelancers and small businesses',
+    url: 'https://www.receiptscan.org',
+    siteName: 'Receipt Scan',
+    images: [
+      {
+        url: 'https://www.receiptscan.org/assets/images/Receipt_Scan_logo_01.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({ children }) {

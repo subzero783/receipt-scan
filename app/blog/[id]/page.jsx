@@ -7,6 +7,31 @@ import { IoIosArrowBack } from "react-icons/io";
 import ShareButtons from "@/components/ShareButtons";
 import AuthorBio from "@/components/AuthorBio";
 
+export async function generateMetadata({ params }) {
+
+  const { id } = await params;
+  await connectDB();
+
+  // Fetch the specific blog post data based on the URL parameter
+  const post = await BlogPost.findById(id);
+
+  // If the post doesn't exist, return a generic fallback
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+    };
+  }
+
+  // Return the metadata populated dynamically by the database
+  return {
+    title: post.title, // Becomes "Your Blog Post Title | Receipt Scan"
+    description: post.excerpt,
+    openGraph: {
+      images: [post.featured_image],
+    },
+  };
+}
+
 const SingleBlogPage = async ({ params }) => {
   const { id } = await params;
 
@@ -72,7 +97,6 @@ const SingleBlogPage = async ({ params }) => {
       {/* Content Section */}
       <section className="content-section">
         <div className="content-container">
-          {/* <h2 className="introduction-header">Introduction</h2> */}
           <div className="container">
 
             <div
