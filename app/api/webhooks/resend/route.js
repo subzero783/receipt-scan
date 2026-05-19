@@ -5,6 +5,7 @@ import Receipt from '@/models/Receipt';
 import { v2 as cloudinary } from 'cloudinary';
 import { GoogleGenAI } from '@google/genai';
 import { Resend } from 'resend';
+import { encryptBuffer } from '@/utils/encryption';
 
 // 1. Config Cloudinary
 cloudinary.config({
@@ -154,16 +155,23 @@ export const POST = async (request) => {
                 continue;
             }
 
-            // --- A. Upload to Cloudinary ---
+            // --- A. Encrypt the file ---
+            const encryptedBuffer = encryptBuffer(buffer);
+
+            // --- B. Upload to Cloudinary securely ---
             const uploadResult = await new Promise((resolve, reject) => {
                 const uploadStream = cloudinary.uploader.upload_stream(
-                    { folder: 'receipt-scan-app/email-uploads', type: 'authenticated' },
+                    { 
+                        folder: 'receipt-scan-app/email-uploads', 
+                        resource_type: 'raw', // CRITICAL: Upload as raw
+                        type: 'authenticated' 
+                    },
                     (error, result) => {
                         if (error) reject(error);
                         else resolve(result);
                     }
                 );
-                uploadStream.end(buffer);
+                uploadStream.end(encryptedBuffer);
             });
 
             const imageUrl = uploadResult.secure_url;

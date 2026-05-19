@@ -5,6 +5,8 @@ import PendingUser from "@/models/PendingUser"; // <-- IMPORT PENDING USER
 import connectDB from "@/config/database";
 import bcrypt from "bcryptjs";
 import crypto from "crypto"; // Native Node.js module to generate random dummy passwords
+import { cookies } from "next/headers";
+import Stripe from "stripe";
 
 export const authOptions = {
   pages: {
@@ -43,10 +45,65 @@ export const authOptions = {
       if (account.provider === "google") {
         const userExists = await User.findOne({ email: profile.email });
 
+        const cookieStore = await cookies();
+        const authSource = cookieStore.get("auth_source")?.value;
+
         // IF THEY ARE A BRAND NEW GOOGLE USER:
         if (!userExists) {
-          // Check if they are already in Pending (e.g., they abandoned checkout previously)
           let pendingUser = await PendingUser.findOne({ email: profile.email });
+
+          if (authSource === "login") {
+            // Did they already pay, but the webhook was delayed or missed?
+            if (pendingUser) {
+              const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+              const customers = await stripe.customers.list({
+                email: profile.email,
+                expand: ['data.subscriptions']
+              });
+
+              if (customers.data.length > 0) {
+                const customer = customers.data[0];
+                const activeSub = customer.subscriptions?.data.find(sub => sub.status === 'active' || sub.status === 'trialing');
+
+                if (activeSub) {
+                  let handleToUse = pendingUser.inboundHandle;
+                  if (!handleToUse) {
+                    let baseHandle = pendingUser.email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+                    if (!baseHandle) baseHandle = `user${Math.floor(Math.random() * 10000)}`;
+                    let finalHandle = baseHandle;
+                    let isUnique = false;
+                    let attempts = 0;
+                    while (!isUnique && attempts < 10) {
+                      const existing = await User.findOne({ inboundHandle: finalHandle });
+                      if (!existing) isUnique = true;
+                      else {
+                        attempts++;
+                        finalHandle = `${baseHandle}${Math.floor(Math.random() * 10000)}`;
+                      }
+                    }
+                    if (!isUnique) finalHandle = `${baseHandle}${Date.now()}`;
+                    handleToUse = finalHandle;
+                  }
+
+                  // Upgrade them right now as a fallback
+                  const realUser = new User({
+                    username: pendingUser.username,
+                    email: pendingUser.email,
+                    password: pendingUser.password,
+                    image: pendingUser.image,
+                    inboundHandle: handleToUse,
+                    isPro: true,
+                    stripeCustomerId: customer.id,
+                    subscriptionId: activeSub.id
+                  });
+                  await realUser.save();
+                  await PendingUser.findByIdAndDelete(pendingUser._id);
+                  return true; // Successfully logged in!
+                }
+              }
+            }
+            return "/login?error=AccountNotFound";
+          }
 
           if (!pendingUser) {
             const username = profile.name.slice(0, 20);

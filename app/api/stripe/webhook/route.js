@@ -37,14 +37,35 @@ export const POST = async (req) => {
                 let realUser = await User.findOne({ email: pendingUser.email });
 
                 if (!realUser) {
+                    let handleToUse = pendingUser.inboundHandle;
+                    if (!handleToUse) {
+                      let baseHandle = pendingUser.email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+                      if (!baseHandle) baseHandle = `user${Math.floor(Math.random() * 10000)}`;
+                      let finalHandle = baseHandle;
+                      let isUnique = false;
+                      let attempts = 0;
+                      while (!isUnique && attempts < 10) {
+                        const existing = await User.findOne({ inboundHandle: finalHandle });
+                        if (!existing) isUnique = true;
+                        else {
+                          attempts++;
+                          finalHandle = `${baseHandle}${Math.floor(Math.random() * 10000)}`;
+                        }
+                      }
+                      if (!isUnique) finalHandle = `${baseHandle}${Date.now()}`;
+                      handleToUse = finalHandle;
+                    }
+
                     // 2. CREATE THE OFFICIAL USER! They are now allowed to log in.
                     realUser = new User({
                         username: pendingUser.username,
                         email: pendingUser.email,
                         password: pendingUser.password, // This is already securely hashed!
+                        image: pendingUser.image,
+                        inboundHandle: handleToUse,
                         isPro: true, // Since they just started their trial/paid
                         stripeCustomerId: session.customer,
-                        stripeSubscriptionId: session.subscription
+                        subscriptionId: session.subscription
                     });
                     await realUser.save();
                 }

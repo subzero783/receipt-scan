@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
@@ -10,15 +10,20 @@ import CallToActionTwo from "@/components/CallToActionTwo";
 
 const LoginPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [error, setError] = useState("");
   const { data: session, status: sessionStatus } = useSession();
 
   const signin_data = siteData.find(item => item.signin_page)?.signin_page;
 
-  if (!signin_data) return <div>Loading...</div>;
-
-  const hero_section = signin_data.hero_section;
-  const cta = signin_data.cta;
+  useEffect(() => {
+    const urlError = searchParams.get('error');
+    if (urlError === 'AccountNotFound') {
+      setError("Account not found. Please sign up first.");
+    } else if (urlError) {
+      setError("Authentication failed.");
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (sessionStatus === "authenticated") {
@@ -60,6 +65,11 @@ const LoginPage = () => {
     }
   };
 
+  if (!signin_data) return <div>Loading...</div>;
+
+  const hero_section = signin_data.hero_section;
+  const cta = signin_data.cta;
+
   if (sessionStatus === "loading") {
     return <Spinner />;
   }
@@ -95,6 +105,7 @@ const LoginPage = () => {
               <button
                 className="sign-in-with-google"
                 onClick={() => {
+                  document.cookie = "auth_source=login; path=/; max-age=300";
                   signIn("google");
                 }}
               >

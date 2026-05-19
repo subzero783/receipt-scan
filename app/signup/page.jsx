@@ -163,7 +163,10 @@ const SignupPage = () => {
                 </form>
                 <p className="or-text">- OR -</p>
                 <button
-                  onClick={() => signIn("google", { callbackUrl: "/welcome" })}
+                  onClick={() => {
+                    document.cookie = "auth_source=signup; path=/; max-age=300";
+                    signIn("google", { callbackUrl: "/welcome" });
+                  }}
                   className="signup-with-google"
                 >
                   <FaGoogle />

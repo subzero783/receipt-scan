@@ -26,11 +26,13 @@ const AccountSettings = () => {
     const [statusMessage, setStatusMessage] = useState({ type: '', text: '' });
 
     useEffect(() => {
+        let mounted = true;
+
         const fetchUserData = async () => {
             if (status === 'authenticated') {
                 try {
                     const res = await fetch('/api/user/settings');
-                    if (res.ok) {
+                    if (res.ok && mounted) {
                         const data = await res.json();
 
                         setFormData({
@@ -47,13 +49,26 @@ const AccountSettings = () => {
                 } catch (error) {
                     console.error("Error fetching user data:", error);
                 } finally {
-                    setLoading(false);
+                    if (mounted) setLoading(false);
                 }
             } else if (status === 'unauthenticated') {
-                setLoading(false);
+                if (mounted) setLoading(false);
             }
         };
-        fetchUserData();
+
+        if (status !== 'loading') {
+            fetchUserData();
+        }
+
+        // Safety fallback: if status stays 'loading' or fetch hangs, stop spinning after 5s
+        const fallbackTimer = setTimeout(() => {
+            if (mounted) setLoading(false);
+        }, 5000);
+
+        return () => {
+            mounted = false;
+            clearTimeout(fallbackTimer);
+        };
     }, [status]);
 
     const handleImageChange = (e) => {
