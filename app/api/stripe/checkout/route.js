@@ -19,8 +19,10 @@ export const POST = async (request) => {
 
         let targetEmail = session.user.email;
         let finalMetadata = {};
+        let stripeCustomerId = null;
+        let isEligibleForTrial = true; // Default to true for new users
 
-        // Detect if they are an official user or a pending Google user
+        // Detect if they are a pending Google user OR an official user
         if (session.user.isPending) {
             finalMetadata = { pendingUserId: session.user.id, isGoogleAuth: 'true' };
         } else {
@@ -29,12 +31,13 @@ export const POST = async (request) => {
                 return new NextResponse(JSON.stringify({ message: 'User not found' }), { status: 404 });
             }
             finalMetadata = { userId: user._id.toString() };
+            stripeCustomerId = user.stripeCustomerId; // Grab their existing Stripe ID
+            isEligibleForTrial = false; // Existing official users DO NOT get another free trial!
         }
 
         const { searchParams } = new URL(request.url);
         const isNewGoogleUser = searchParams.get('isNewGoogleUser') === 'true';
 
-        // Set dynamic URLs based on where the user came from
         const successUrl = isNewGoogleUser
             ? `${process.env.NEXT_PUBLIC_DOMAIN}/login?trial_started=true`
             : `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard?success=true`;
@@ -43,8 +46,8 @@ export const POST = async (request) => {
             ? `${process.env.NEXT_PUBLIC_DOMAIN}/signup?canceled=true`
             : `${process.env.NEXT_PUBLIC_DOMAIN}/pricing?canceled=true`;
 
-        // Create Stripe Session
-        const stripeSession = await stripe.checkout.sessions.create({
+        // 1. Build the base configuration
+        const stripeConfig = {
             mode: 'subscription',
             payment_method_types: ['card'],
             line_items: [
@@ -53,14 +56,25 @@ export const POST = async (request) => {
                     quantity: 1,
                 },
             ],
-            subscription_data: {
-                trial_period_days: 14,
-            },
-            customer_email: targetEmail,
             metadata: finalMetadata,
             success_url: successUrl,
             cancel_url: cancelUrl,
-        });
+        };
+
+        // 2. Attach Trial ONLY if eligible
+        if (isEligibleForTrial) {
+            stripeConfig.subscription_data = { trial_period_days: 14 };
+        }
+
+        // 3. Attach Customer ID (Prevents duplicate customers in Stripe)
+        if (stripeCustomerId) {
+            stripeConfig.customer = stripeCustomerId;
+        } else {
+            stripeConfig.customer_email = targetEmail;
+        }
+
+        // 4. Create Stripe Session
+        const stripeSession = await stripe.checkout.sessions.create(stripeConfig);
 
         return NextResponse.json({ url: stripeSession.url });
 

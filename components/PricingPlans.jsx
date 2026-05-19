@@ -7,27 +7,31 @@ import { IoMdCheckmark } from "react-icons/io";
 
 const PricingPlans = ({ data }) => {
   const { small_title, title, subtitle, plans } = data;
-
   const { data: session } = useSession();
   const router = useRouter();
+  const isPro = session?.user?.isPro;
 
-  const handleSubscription = async () => {
+  const handleCheckout = async () => {
     if (!session) {
       router.push('/signup');
       return;
     }
-
     try {
-      const res = await fetch('/api/stripe/checkout', {
-        method: 'POST',
-      });
+      const res = await fetch('/api/stripe/checkout', { method: 'POST' });
       const data = await res.json();
-
-      // Redirect to Stripe Payment Page
       window.location.href = data.url;
-
     } catch (err) {
       console.error('Payment Error:', err);
+    }
+  };
+
+  const handlePortal = async () => {
+    try {
+      const res = await fetch('/api/stripe/portal', { method: 'POST' });
+      const data = await res.json();
+      window.location.href = data.url;
+    } catch (err) {
+      console.error('Portal Error:', err);
     }
   };
 
@@ -43,52 +47,54 @@ const PricingPlans = ({ data }) => {
             </div>
             <div className="plans">
               {plans.map((item, index) => (
-                <div
-                  className="plan"
-                  key={index}
-                >
+                <div className="plan" key={index}>
                   <div className="small-title-and-icon">
                     <h3 className="small-title">{item.small_title}</h3>
                     <FaCube />
                   </div>
                   <div className="price-and-discount-text">
                     <p className="monthly-price">
-                      ${item.monthly_price}
-                      <span>/mo</span>
+                      ${item.monthly_price}<span>/mo</span>
                     </p>
                     <p className="discount-text">{item.discount_text}</p>
                   </div>
                   <div className="includes-list">
                     <p>Includes:</p>
                     <ul>
-                      {item.includes.map((item, index) => (
-                        <li key={index}>
-                          <IoMdCheckmark /> {item}
-                        </li>
+                      {item.includes.map((incl, idx) => (
+                        <li key={idx}><IoMdCheckmark /> {incl}</li>
                       ))}
                     </ul>
                   </div>
-                  {item.paid ? (
-                    // Renders for Pro Plan (Trigger Stripe)
-                    <div className="button">
-                      <button
-                        onClick={handleSubscription}
-                        className="btn btn-primary paid-plan"
-                      >
-                        {item.button.text}
-                      </button>
-                    </div>
-                  ) : (
-                    // Renders for Free Plan (Link to Signup)
-                    <div className="button">
-                      <Link
-                        href={item.button.link}
-                        className="btn btn-primary"
-                      >
-                        {item.button.text}
-                      </Link>
-                    </div>
-                  )}
+
+                  <div className="button">
+                    {index === 0 ? (
+                      // Free Trial Plan: Only show button to logged-out users
+                      !session && (
+                        <Link href={item.button.link} className="btn btn-primary">
+                          {item.button.text}
+                        </Link>
+                      )
+                    ) : (
+                      // Pro Plan: Handle state for logged in (Pro/Free) vs logged out
+                      session ? (
+                        isPro ? (
+                          <button onClick={handlePortal} className="btn btn-primary paid-plan">
+                            Manage Current Plan
+                          </button>
+                        ) : (
+                          <button onClick={handleCheckout} className="btn btn-primary paid-plan">
+                            Upgrade to Pro
+                          </button>
+                        )
+                      ) : (
+                        <button onClick={handleCheckout} className="btn btn-primary paid-plan">
+                          {item.button.text}
+                        </button>
+                      )
+                    )}
+                  </div>
+
                 </div>
               ))}
             </div>
