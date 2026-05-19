@@ -8,6 +8,7 @@ import Stripe from 'stripe';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const POST = async (request) => {
+
     try {
         const session = await getServerSession(authOptions);
 
@@ -35,16 +36,36 @@ export const POST = async (request) => {
             isEligibleForTrial = false; // Existing official users DO NOT get another free trial!
         }
 
+        // Store from what page the user came from
+        let comeFrom = "";
+        const referer = request.headers.get('referer');
+
+        if (referer) {
+            comeFrom = referer;
+        }
+
         const { searchParams } = new URL(request.url);
         const isNewGoogleUser = searchParams.get('isNewGoogleUser') === 'true';
 
-        const successUrl = isNewGoogleUser
+        var successUrl = isNewGoogleUser
             ? `${process.env.NEXT_PUBLIC_DOMAIN}/login?trial_started=true`
             : `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard?success=true`;
 
-        const cancelUrl = isNewGoogleUser
+        var cancelUrl = isNewGoogleUser
             ? `${process.env.NEXT_PUBLIC_DOMAIN}/signup?canceled=true`
             : `${process.env.NEXT_PUBLIC_DOMAIN}/pricing?canceled=true`;
+
+        // If the user comes from the settings page, redirect them back to the settings page after subscription
+        if (comeFrom.includes('/settings')) {
+            successUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/settings?success=true`;
+            cancelUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/settings?canceled=true`;
+        }
+
+        // If the user comes from the pricing page, redirect them to the dashboard page after subscription
+        if (comeFrom.includes('/pricing')) {
+            successUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard?success=true`;
+            cancelUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/pricing?canceled=true`;
+        }
 
         // 1. Build the base configuration
         const stripeConfig = {

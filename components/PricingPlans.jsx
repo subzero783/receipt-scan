@@ -10,6 +10,7 @@ const PricingPlans = ({ data }) => {
   const { data: session } = useSession();
   const router = useRouter();
   const isPro = session?.user?.isPro;
+  const planType = session?.user?.planType;
 
   const handleCheckout = async () => {
     if (!session) {
@@ -78,14 +79,16 @@ const PricingPlans = ({ data }) => {
                     ) : (
                       // Pro Plan: Handle state for logged in (Pro/Free) vs logged out
                       session ? (
-                        isPro ? (
+                        isPro && planType === "pro" ? (
                           <button onClick={handlePortal} className="btn btn-primary paid-plan">
                             Manage Current Plan
                           </button>
                         ) : (
-                          <button onClick={handleCheckout} className="btn btn-primary paid-plan">
-                            Upgrade to Pro
-                          </button>
+                          isPro && planType === "free" ? (
+                            <button onClick={handleCheckout} className="btn btn-primary paid-plan">
+                              Upgrade to Pro
+                            </button>
+                          ) : ''
                         )
                       ) : (
                         <button onClick={handleCheckout} className="btn btn-primary paid-plan">

@@ -154,6 +154,7 @@ export const authOptions = {
         session.user.id = user._id.toString();
         session.user.image = user.image || null;
         session.user.isPro = user.isPro || false;
+        session.user.planType = user.planType || 'free';
       } else {
         // 2. If not official, check Pending Users (This allows the /welcome page to work!)
         const pendingUser = await PendingUser.findOne({ email: session.user.email });

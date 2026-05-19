@@ -136,7 +136,7 @@ const AccountSettings = () => {
         }
     };
 
-    const handleManageSubscription = async () => {
+    const handlePortal = async () => {
         try {
             const res = await fetch('/api/stripe/portal', { method: 'POST' });
             if (res.ok) {
@@ -152,6 +152,17 @@ const AccountSettings = () => {
             toast.error("An error occurred while loading the subscription portal.");
         }
     };
+
+    const handleCheckout = async () => {
+        try {
+            const res = await fetch('/api/stripe/checkout', { method: 'POST' });
+            const data = await res.json();
+            window.location.href = data.url;
+        } catch (error) {
+            console.error(error);
+            toast.error("An error occurred while processing your payment.");
+        }
+    }
 
     if (loading) return <Spinner />;
 
@@ -252,15 +263,15 @@ const AccountSettings = () => {
                                 </div>
 
                                 <div className="settings-form-group manage-subscription-group">
-                                    {session?.user?.isPro ? (
-                                        <button type="button" className="manage-subscription-btn btn btn-primary" onClick={handleManageSubscription}>
-                                            Manage Subscription
-                                        </button>
-                                    ) : (
-                                        <a href="/pricing" className="manage-subscription-btn btn btn-primary">
-                                            Upgrade to Pro
-                                        </a>
-                                    )}
+                                    {/* {session?.user?.isPro ? ( */}
+                                    <button type="button" className="manage-subscription-btn btn btn-primary" onClick={handlePortal}>
+                                        Manage Current Plan
+                                    </button>
+                                    {/* ) : ( */}
+                                    <button type="button" className="manage-subscription-btn btn btn-primary" onClick={handleCheckout}>
+                                        Upgrade to Pro
+                                    </button>
+                                    {/* )} */}
                                 </div>
 
                                 <div className="form-actions">
