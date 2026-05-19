@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
 import ShareButtons from "@/components/ShareButtons";
 import AuthorBio from "@/components/AuthorBio";
+import DOMPurify from 'isomorphic-dompurify';
 
 export async function generateMetadata({ params }) {
 
@@ -101,7 +102,7 @@ const SingleBlogPage = async ({ params }) => {
 
             <div
               className="post-content"
-              dangerouslySetInnerHTML={{ __html: post.content }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
             />
           </div>
 

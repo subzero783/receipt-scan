@@ -8,8 +8,26 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+// Simple in-memory rate limit store
+const rateLimitMap = new Map();
+
 export const POST = async (request) => {
   try {
+    // Basic IP Rate Limiting
+    const ip = request.headers.get("x-forwarded-for") || "unknown-ip";
+    const limit = 5; // Max requests per window
+    const windowMs = 60 * 1000; // 1 minute
+
+    if (!rateLimitMap.has(ip)) {
+      rateLimitMap.set(ip, { count: 1, timer: setTimeout(() => rateLimitMap.delete(ip), windowMs) });
+    } else {
+      const data = rateLimitMap.get(ip);
+      if (data.count >= limit) {
+        return new NextResponse("Too Many Requests", { status: 429 });
+      }
+      data.count++;
+    }
+
     await connectDB();
     const { username, email, password } = await request.json();
 

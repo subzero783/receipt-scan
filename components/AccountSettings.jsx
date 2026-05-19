@@ -57,14 +57,26 @@ const AccountSettings = () => {
     }, [status]);
 
     const handleImageChange = (e) => {
+
+        const MAX_FILE_SIZE = 5 * 1024 * 1024;
+        const validMimeTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/heic'];
         const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setFormData({ ...formData, image: reader.result }); // Set base64 image
-            };
-            reader.readAsDataURL(file);
+
+        if (!validMimeTypes.includes(file.type)) {
+            toast.error("Invalid file type. Only images are allowed.");
+            return;
         }
+
+        if (file.size > MAX_FILE_SIZE) {
+            toast.error("File exceeds 5MB limit.");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setFormData({ ...formData, image: reader.result }); // Set base64 image
+        };
+        reader.readAsDataURL(file);
     };
 
     const handleRemoveImage = () => {

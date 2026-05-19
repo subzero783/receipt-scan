@@ -53,6 +53,17 @@ export const POST = async (request) => {
       return new NextResponse(JSON.stringify({ message: 'No file uploaded' }), { status: 400 });
     }
 
+    const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
+    if (file.size > MAX_FILE_SIZE) {
+      return new NextResponse(JSON.stringify({ message: 'File exceeds 5MB limit' }), { status: 413 });
+    }
+
+    const validMimeTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/heic'];
+    if (!validMimeTypes.includes(file.type)) {
+      return new NextResponse(JSON.stringify({ message: 'Invalid file type. Only images are allowed.' }), { status: 415 });
+    }
+
     const bytes = await file.arrayBuffer();
     const originalBuffer = Buffer.from(bytes);
 

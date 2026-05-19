@@ -8,8 +8,7 @@ const ReceiptDropzone = ({ files, isUploading, onDrop, onRemoveFile, onUpload, u
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      'image/*': ['.jpeg', '.jpg', '.png'],
-      'application/pdf': ['.pdf'],
+      'image/*': ['.jpeg', '.jpg', '.png', '.heic'],
     },
     maxFiles: 5,
   });

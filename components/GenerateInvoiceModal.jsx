@@ -28,7 +28,20 @@ const GenerateInvoiceModal = ({ isOpen, onClose, selectedReceipts = [] }) => {
     });
 
     const handleLogoChange = (e) => {
+
+        const MAX_FILE_SIZE = 5 * 1024 * 1024;
         const file = e.target.files[0];
+        const validMimeTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/heic'];
+
+        if (!validMimeTypes.includes(file.type)) {
+            setError("Invalid file type. Only images are allowed.");
+            return;
+        }
+
+        if (file.size > MAX_FILE_SIZE) {
+            setError("File exceeds 5MB limit.");
+            return;
+        }
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {

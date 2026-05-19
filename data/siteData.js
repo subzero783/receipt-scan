@@ -444,7 +444,7 @@ const siteData = [
             "id": "1",
             "icon": "cloud-upload",
             "title": "Upload & Digitize",
-            "text": "Securely drag and drop your receipt images or PDFs. We support bulk uploads and all standard formats."
+            "text": "Securely drag and drop your receipt images. We support bulk uploads and all standard formats."
           },
           {
             "id": "2",
@@ -671,7 +671,7 @@ const siteData = [
       "extraction_description_section": {
         "small_title": "01 Capture Receipts",
         "title": "Snap a photo, upload a batch, or forward an email",
-        "subtitle": "Receipt Scan accepts receipts however you want to send them. Phone photos, PDF batches, or emails forwarded to your unique inbound address all work instantly.",
+        "subtitle": "Receipt Scan accepts receipts however you want to send them. Phone photos or emails forwarded to your unique inbound address all work instantly.",
         "image": "/images/features_page/Data_inputs_feeding_cloud_database.jpeg",
         "image_alt": "Data inputs feeding cloud database",
         "buttons": [
@@ -722,7 +722,7 @@ const siteData = [
       "capture_data_instantly": {
         "small_title": "Capture",
         "title": "Capture data instantly, no matter where it is",
-        "subtitle": "Stop hoarding paper and digging through inboxes. Our advanced OCR technology accurately extracts vendor names, dates, amounts, and taxes from any receipt. Whether you snap a photo on your phone, upload a bulk batch of PDFs, or forward an email directly to your custom inbound address, Receipt Scan processes it in seconds.",
+        "subtitle": "Stop hoarding paper and digging through inboxes. Our advanced OCR technology accurately extracts vendor names, dates, amounts, and taxes from any receipt. Whether you snap a photo on your phone, upload a bulk batch of photos, or forward an email directly to your custom inbound address, Receipt Scan processes it in seconds.",
         "image": "/images/features_page/Smartphone_capturing_receipt.jpeg",
         "image_alt": "Illustration of a smartphone scanning a receipt, alongside PDF and email icons, smoothly transferring data into a central cloud database.",
         "buttons": [
