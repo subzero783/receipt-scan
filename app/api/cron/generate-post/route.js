@@ -26,8 +26,14 @@ export const GET = async (request) => {
         const targetKeyword = nextKeywordObj.keyword;
 
         // 3. Prompt the AI Agent
-        const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
-        const prompt = `
+        const result = await genAI.models.generateContent({
+            model: "gemini-3-flash-preview",
+            contents: [
+                {
+                    role: "user",
+                    parts: [
+                        {
+                            text: `
             You are an expert SEO content writer for a SaaS platform called Receipt Scan, which helps freelancers track expenses.
             Write a comprehensive, engaging, and SEO-optimized blog post targeting the keyword: "${targetKeyword}".
             
@@ -36,10 +42,14 @@ export const GET = async (request) => {
             - "excerpt": A 2-sentence meta description.
             - "slug": A URL-friendly slug based on the title.
             - "content": The full blog post written in clean HTML (use <h2>, <h3>, <p>, <ul>, <li>). Do not include <html> or <body> tags, just the inner content.
-        `;
+        `
+                        }
+                    ],
+                },
+            ],
+        })
 
-        const result = await model.generateContent(prompt);
-        const responseText = result.response.text();
+        const responseText = result.text;
 
         // Clean the response (Gemini sometimes wraps JSON in markdown blocks)
         const jsonString = responseText.replace(/```json\n?|```/g, '').trim();
