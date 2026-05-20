@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from "@google/genai";
 import connectDB from '@/config/database';
 import BlogPost from '@/models/BlogPost';
 import KeywordQueue from '@/models/KeywordQueue';
 
 // Initialize Gemini
-const genAI = new GoogleGenerativeAI(process.env.NEXT_GEMINI_API_KEY);
+const genAI = new GoogleGenAI({ apiKey: process.env.NEXT_GEMINI_API_KEY });
 
 export const GET = async (request) => {
     // 1. Security: Prevent random people from triggering your bot
@@ -26,7 +26,7 @@ export const GET = async (request) => {
         const targetKeyword = nextKeywordObj.keyword;
 
         // 3. Prompt the AI Agent
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+        const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
         const prompt = `
             You are an expert SEO content writer for a SaaS platform called Receipt Scan, which helps freelancers track expenses.
             Write a comprehensive, engaging, and SEO-optimized blog post targeting the keyword: "${targetKeyword}".
