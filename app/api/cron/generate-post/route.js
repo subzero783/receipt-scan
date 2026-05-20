@@ -5,7 +5,7 @@ import BlogPost from '@/models/BlogPost';
 import KeywordQueue from '@/models/KeywordQueue';
 
 // Initialize Gemini
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.NEXT_GEMINI_API_KEY);
 
 export const GET = async (request) => {
     // 1. Security: Prevent random people from triggering your bot
