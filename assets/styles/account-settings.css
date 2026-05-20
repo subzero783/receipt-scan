@@ -46,7 +46,11 @@
         }
 
         &.manage-subscription-group {
-            >a {
+            display: flex;
+            gap: 16px;
+            flex-flow: column nowrap;
+
+            >button {
                 font-size: 14px;
 
                 @media screen and (max-width: 768px) {
