@@ -3,6 +3,7 @@ import { GoogleGenAI } from "@google/genai";
 import connectDB from '@/config/database';
 import BlogPost from '@/models/BlogPost';
 import KeywordQueue from '@/models/KeywordQueue';
+import User from '@/models/User';
 
 // Initialize Gemini
 const genAI = new GoogleGenAI({ apiKey: process.env.NEXT_GEMINI_API_KEY });
@@ -55,14 +56,22 @@ export const GET = async (request) => {
         const jsonString = responseText.replace(/```json\n?|```/g, '').trim();
         const generatedData = JSON.parse(jsonString);
 
-        // 4. Save directly to your existing Blog Database
+        // Find the owner/admin user to assign the post to
+        const ownerUser = await User.findOne({ email: 'contact@receiptscan.org' }) || await User.findOne({ role: 'admin' }) || await User.findOne({});
+        
+        if (!ownerUser) {
+            return NextResponse.json({ success: false, error: 'No user found in database to assign as owner of the post.' }, { status: 400 });
+        }
+
+        // Save directly to your existing Blog Database
         const newPost = new BlogPost({
+            owner: ownerUser._id,
             title: generatedData.title,
             categories: [],
             excerpt: generatedData.excerpt,
             author: {
                 name: "Gustavo",
-                email: process.env.CONTACT_EMAIL,
+                email: process.env.CONTACT_EMAIL || "contact@receiptscan.org",
                 role: "Developer",
                 bio: "Gustavo Amezcua is a full-stack web developer and SaaS founder with a comprehensive background in frontend architecture, UX/UI design, and backend development. Holding a Bachelor's Degree in International Business from CETYS University, he has built a diverse technical career developing responsive applications, optimizing high-traffic e-commerce platforms, and integrating complex APIs. Fully bilingual in English and Spanish, Gustavo consistently merges technical execution with a sharp focus on user experience and accessibility."
             },
