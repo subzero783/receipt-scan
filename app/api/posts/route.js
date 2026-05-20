@@ -11,11 +11,23 @@ export const GET = async (request) => {
 
     const page = request.nextUrl.searchParams.get("page") || 1;
     const pageSize = request.nextUrl.searchParams.get("pageSize") || 6;
+    const admin = request.nextUrl.searchParams.get("admin") === "true";
 
     const skip = (page - 1) * pageSize;
 
-    const total = await BlogPost.countDocuments({});
-    const posts = await BlogPost.find({}).skip(skip).limit(pageSize);
+    let query = { status: { $ne: "Draft" } };
+
+    if (admin) {
+      const sessionUser = await getSessionUser();
+      const isAdmin = sessionUser?.user?.email === "contact@receiptscan.org" || sessionUser?.user?.role === "admin";
+      if (!isAdmin) {
+        return new Response("Forbidden: You do not have permission to view drafts", { status: 403 });
+      }
+      query = {}; // Admins can see everything
+    }
+
+    const total = await BlogPost.countDocuments(query);
+    const posts = await BlogPost.find(query).skip(skip).limit(pageSize);
 
     const result = {
       total,
@@ -26,6 +38,7 @@ export const GET = async (request) => {
       status: 200,
     });
   } catch (error) {
+    console.error("Failed to get posts:", error);
     return new Response("Something Went Wrong", { status: 500 });
   }
 };
@@ -57,6 +70,7 @@ export const POST = async (request) => {
       title: body.title,
       content: body.content,
       excerpt: body.excerpt,
+      status: body.status || "Draft",
       author: body.author || { name: sessionUser.user.name, email: sessionUser.user.email, role: sessionUser.user.role || "Content Writer", bio: sessionUser.user.bio || "Passionate about helping freelancers and small businesses manage their expenses efficiently." },
       categories: body.categories || ['General'],
       featured_image: body.featured_image || '',

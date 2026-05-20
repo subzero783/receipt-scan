@@ -7,6 +7,8 @@ import { IoIosArrowBack } from "react-icons/io";
 import ShareButtons from "@/components/ShareButtons";
 import AuthorBio from "@/components/AuthorBio";
 import DOMPurify from 'isomorphic-dompurify';
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/utils/authOptions";
 
 export async function generateMetadata({ params }) {
 
@@ -21,6 +23,17 @@ export async function generateMetadata({ params }) {
     return {
       title: 'Post Not Found',
     };
+  }
+
+  // Check draft status
+  if (post.status === "Draft") {
+    const session = await getServerSession(authOptions);
+    const isAdmin = session?.user?.email === "contact@receiptscan.org" || session?.user?.role === "admin";
+    if (!isAdmin) {
+      return {
+        title: 'Post Not Found',
+      };
+    }
   }
 
   // Return the metadata populated dynamically by the database
@@ -41,6 +54,14 @@ const SingleBlogPage = async ({ params }) => {
 
   if (!post) {
     return notFound();
+  }
+
+  if (post.status === "Draft") {
+    const session = await getServerSession(authOptions);
+    const isAdmin = session?.user?.email === "contact@receiptscan.org" || session?.user?.role === "admin";
+    if (!isAdmin) {
+      return notFound();
+    }
   }
 
   // Convert mongoose document to plain object if needed, though .lean() does most of it

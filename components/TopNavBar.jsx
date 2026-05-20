@@ -45,7 +45,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`top-navigation ${isScrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "menu-open" : ""} ${session ? "session" : "no-session"} ${pathName === "/dashboard" || pathName === "/contact" || pathName === "/admin/create-post" ? "admin-create-post" : ""}`}>
+    <nav className={`top-navigation ${isScrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "menu-open" : ""} ${session ? "session" : "no-session"} ${pathName === "/dashboard" || pathName === "/contact" || pathName === "/admin/create-post" || pathName === "/admin/posts" ? "admin-create-post" : ""}`}>
       <div className="container">
         <div className="row">
           <div className="mobile-menu-column col">

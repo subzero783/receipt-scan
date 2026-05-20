@@ -1,12 +1,17 @@
 // app/admin/create-post/page.jsx
 "use client";
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
-export default function CreateBlogPost() {
-    const { data: session, status } = useSession();
+function CreateBlogPostForm() {
+    const { data: session, status: sessionStatus } = useSession();
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const editId = searchParams.get("edit") || searchParams.get("id");
+
+    console.log(editId, searchParams, '--------');
 
     const [formData, setFormData] = useState({
         title: "",
@@ -14,6 +19,7 @@ export default function CreateBlogPost() {
         categories: [],
         content: "",
         is_featured: false,
+        status: "Draft",
         author: {
             name: session?.user?.name || "",
             email: session?.user?.email || "",
@@ -23,12 +29,70 @@ export default function CreateBlogPost() {
     });
 
     const [imageFile, setImageFile] = useState(null);
+    const [existingImage, setExistingImage] = useState("");
     const [loading, setLoading] = useState(false);
+    const [loadingPost, setLoadingPost] = useState(false);
     const [error, setError] = useState("");
 
+    // Populate user info if creating a new post and session is loaded
+    useEffect(() => {
+        if (!editId && session?.user) {
+            setFormData(prev => ({
+                ...prev,
+                author: {
+                    name: session.user.name || prev.author.name,
+                    email: session.user.email || prev.author.email,
+                    role: session.user.role || prev.author.role,
+                    bio: session.user.bio || prev.author.bio
+                }
+            }));
+        }
+    }, [session, editId]);
+
+    // Fetch existing post details if in edit mode
+    useEffect(() => {
+        if (!editId) return;
+
+        const fetchPost = async () => {
+            setLoadingPost(true);
+            setError("");
+            try {
+                const res = await fetch(`/api/posts/${editId}`);
+                if (!res.ok) throw new Error("Failed to fetch blog post");
+                const post = await res.json();
+
+                setFormData({
+                    title: post.title || "",
+                    excerpt: post.excerpt || "",
+                    categories: post.categories || [],
+                    content: post.content || "",
+                    is_featured: post.is_featured || false,
+                    status: post.status || "Draft",
+                    author: {
+                        name: post.author?.name || "",
+                        email: post.author?.email || "",
+                        role: post.author?.role || "",
+                        bio: post.author?.bio || ""
+                    }
+                });
+
+                if (post.featured_image) {
+                    setExistingImage(post.featured_image);
+                }
+            } catch (err) {
+                console.error(err);
+                setError("Failed to load blog post details.");
+            } finally {
+                setLoadingPost(false);
+            }
+        };
+
+        fetchPost();
+    }, [editId]);
+
     // UI State: Loading session
-    if (status === "loading") {
-        return <p className="text-center mt-20 text-gray-500">Checking authorization...</p>;
+    if (sessionStatus === "loading" || loadingPost) {
+        return <p className="text-center mt-20 text-gray-500">Loading details...</p>;
     }
 
     // Security Check: Only display form if user is logged in AND is the admin
@@ -36,9 +100,9 @@ export default function CreateBlogPost() {
 
     if (!isAdmin) {
         return (
-            <div className="">
-                <h1 className="">Access Denied</h1>
-                <p className="">Only administrators can view this page.</p>
+            <div className="container mt-20 text-center text-white">
+                <h1>Access Denied</h1>
+                <p>Only administrators can view this page.</p>
             </div>
         );
     }
@@ -66,9 +130,10 @@ export default function CreateBlogPost() {
     };
 
     const handleImageChange = (e) => {
-
         const MAX_FILE_SIZE = 5 * 1024 * 1024;
         const file = e.target.files[0];
+        if (!file) return;
+
         const validMimeTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/heic'];
 
         if (!validMimeTypes.includes(file.type)) {
@@ -89,13 +154,12 @@ export default function CreateBlogPost() {
         setError("");
 
         try {
+            let imageUrl = existingImage;
 
-            let imageUrl = "";
-
-            // 1. If an image is selected, upload it first
+            // 1. If a new image is selected, upload it first
             if (imageFile) {
                 const imageFormData = new FormData();
-                imageFormData.append("file", imageFile); // 'file' or 'image' depending on your upload-image API
+                imageFormData.append("file", imageFile);
 
                 const uploadRes = await fetch("/api/upload-blog-image", {
                     method: "POST",
@@ -105,7 +169,6 @@ export default function CreateBlogPost() {
                 if (!uploadRes.ok) throw new Error("Image upload failed");
 
                 const uploadData = await uploadRes.json();
-                // Adjust this depending on what your upload API returns (e.g., uploadData.url, uploadData.secure_url)
                 imageUrl = uploadData.secure_url || "";
             }
 
@@ -115,17 +178,24 @@ export default function CreateBlogPost() {
                 featured_image: imageUrl,
             };
 
-            const res = await fetch("/api/posts", {
-                method: "POST",
+            const url = editId ? `/api/posts/${editId}` : "/api/posts";
+            const method = editId ? "PUT" : "POST";
+
+            const res = await fetch(url, {
+                method: method,
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(postData),
             });
 
             if (res.ok) {
-                router.push("/blog"); // Redirect to the blog index on success
+                if (editId) {
+                    router.push("/admin/posts");
+                } else {
+                    router.push("/blog");
+                }
             } else {
                 const errorText = await res.text();
-                setError(errorText || "Failed to publish post.");
+                setError(errorText || `Failed to ${editId ? "update" : "publish"} post.`);
             }
         } catch (err) {
             setError("An unexpected error occurred.");
@@ -139,7 +209,12 @@ export default function CreateBlogPost() {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <h1>Create New Blog Post</h1>
+                        <div className="header-with-actions" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
+                            <h1 style={{ marginBottom: 0 }}>{editId ? "Edit Blog Post" : "Create New Blog Post"}</h1>
+                            <Link href="/admin/posts" className="btn btn-primary" style={{ fontSize: "14px", padding: "10px 20px" }}>
+                                Manage Posts
+                            </Link>
+                        </div>
 
                         {error && <p className="error-message">{error}</p>}
 
@@ -177,6 +252,16 @@ export default function CreateBlogPost() {
                                     onChange={handleImageChange}
                                 />
                                 {imageFile && <p className="form-text">Selected: {imageFile.name}</p>}
+                                {!imageFile && existingImage && (
+                                    <div className="existing-image-preview" style={{ marginTop: "12px" }}>
+                                        <p className="form-text" style={{ marginBottom: "6px" }}>Current Featured Image:</p>
+                                        <img
+                                            src={existingImage}
+                                            alt="Current featured image"
+                                            style={{ maxWidth: "150px", borderRadius: "8px", border: "1px solid var(--color-neutral-400)", display: "block" }}
+                                        />
+                                    </div>
+                                )}
                             </div>
 
                             <div className="form-group checkbox-group">
@@ -188,6 +273,19 @@ export default function CreateBlogPost() {
                                     onChange={handleChange}
                                 />
                                 <label htmlFor="is_featured">Featured</label>
+                            </div>
+
+                            <div className="form-group">
+                                <label>Status</label>
+                                <select
+                                    name="status"
+                                    value={formData.status}
+                                    onChange={handleChange}
+                                    required
+                                >
+                                    <option value="Draft">Draft</option>
+                                    <option value="Published">Published</option>
+                                </select>
                             </div>
 
                             <div className="form-group">
@@ -210,7 +308,7 @@ export default function CreateBlogPost() {
                                     value={formData.categories.join(", ")}
                                     onChange={(e) => setFormData({
                                         ...formData,
-                                        categories: e.target.value.split(",").map(cat => cat.trim())
+                                        categories: e.target.value.split(",").map(cat => cat.trim()).filter(Boolean)
                                     })}
                                     placeholder="e.g., Updates, Engineering, News"
                                 />
@@ -266,7 +364,7 @@ export default function CreateBlogPost() {
                                     disabled={loading}
                                     className="btn btn-primary submit-btn"
                                 >
-                                    {loading ? "Publishing..." : "Publish Post"}
+                                    {loading ? (editId ? "Updating..." : "Publishing...") : (editId ? "Update Post" : "Publish Post")}
                                 </button>
                             </div>
                         </form>
@@ -274,5 +372,13 @@ export default function CreateBlogPost() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function CreateBlogPost() {
+    return (
+        <Suspense fallback={<p className="text-center mt-20 text-gray-500">Loading form...</p>}>
+            <CreateBlogPostForm />
+        </Suspense>
     );
 }
