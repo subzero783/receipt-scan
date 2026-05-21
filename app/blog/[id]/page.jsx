@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
 import ShareButtons from "@/components/ShareButtons";
 import AuthorBio from "@/components/AuthorBio";
-import DOMPurify from 'isomorphic-dompurify';
+import { sanitizeHtml } from "@/utils/sanitize";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/utils/authOptions";
 
@@ -123,7 +123,7 @@ const SingleBlogPage = async ({ params }) => {
 
             <div
               className="post-content"
-              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
             />
           </div>
 
