@@ -65,6 +65,7 @@ function CreateBlogPostForm() {
                     categories: post.categories || [],
                     content: post.content || "",
                     is_featured: post.is_featured || false,
+                    image_prompt: post.image_prompt || "",
                     status: post.status || "Draft",
                     author: {
                         name: post.author?.name || "",
@@ -260,6 +261,17 @@ function CreateBlogPostForm() {
                                         />
                                     </div>
                                 )}
+                            </div>
+
+                            <div className="form-group">
+                                <label>Image Prompt</label>
+                                <input
+                                    type="text"
+                                    name="image_prompt"
+                                    value={formData.image_prompt}
+                                    onChange={handleChange}
+                                    placeholder="A short sentence describing the image..."
+                                />
                             </div>
 
                             <div className="form-group checkbox-group">
