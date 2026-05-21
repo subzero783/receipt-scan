@@ -43,7 +43,34 @@ export const GET = async (request) => {
 
         const targetKeyword = nextKeywordObj.keyword;
 
-        // 3. Prompt the AI Agent
+        // 3. Prompt the AI Agent with structured JSON output
+        const responseSchema = {
+            type: "object",
+            properties: {
+                title: { 
+                    type: "string", 
+                    description: "A catchy, SEO-friendly title." 
+                },
+                excerpt: { 
+                    type: "string", 
+                    description: "A 2-sentence meta description." 
+                },
+                image_prompt: { 
+                    type: "string", 
+                    description: "A prompt that can be used on Google Flow, not here, to make an image for the blog post. Please use 'Realistic style' for the image." 
+                },
+                slug: { 
+                    type: "string", 
+                    description: "A URL-friendly slug based on the title." 
+                },
+                content: { 
+                    type: "string", 
+                    description: "The full blog post written in clean HTML (use <h2>, <h3>, <p>, <ul>, <li>). Do not include <html> or <body> tags, just the inner content. It should be at least 1,000 words long." 
+                }
+            },
+            required: ["title", "excerpt", "image_prompt", "slug", "content"]
+        };
+
         const result = await genAI.models.generateContent({
             model: "gemini-3-flash-preview",
             contents: [
@@ -54,19 +81,16 @@ export const GET = async (request) => {
                             text: `
             You are an expert SEO content writer for a SaaS platform called Receipt Scan, which helps freelancers track expenses.
             Write a comprehensive, engaging, and SEO-optimized blog post targeting the keyword: "${targetKeyword}".
-            
-            Return the result strictly as a JSON object with the following keys:
-            - "title": A catchy, SEO-friendly title.
-            - "excerpt": A 2-sentence meta description.
-            - "image_prompt": A prompt that can be used on Google Flow, not here, to make an image for the blog post. Please use 'Realistic style' for the image.
-            - "slug": A URL-friendly slug based on the title.
-            - "content": The full blog post written in clean HTML (use <h2>, <h3>, <p>, <ul>, <li>). Do not include <html> or <body> tags, just the inner content. It should be at least 1,000 words long. 
         `
                         }
                     ],
                 },
             ],
-        })
+            config: {
+                responseMimeType: "application/json",
+                responseSchema: responseSchema,
+            }
+        });
 
         const responseText = result.text;
 
