@@ -18,6 +18,22 @@ export const GET = async (request) => {
     try {
         await connectDB();
 
+        // Check daily limit: Only allow 5 blog posts generated per day
+        const startOfToday = new Date();
+        startOfToday.setHours(0, 0, 0, 0);
+
+        const generatedTodayCount = await BlogPost.countDocuments({
+            'author.role': 'Developer',
+            createdAt: { $gte: startOfToday }
+        });
+
+        if (generatedTodayCount >= 5) {
+            return NextResponse.json({ 
+                success: false, 
+                message: 'Daily generation limit reached. Only 5 blog posts can be generated per day.' 
+            }, { status: 429 });
+        }
+
         // 2. Find the next unprocessed keyword
         const nextKeywordObj = await KeywordQueue.findOne({ isProcessed: false });
         if (!nextKeywordObj) {
