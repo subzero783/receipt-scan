@@ -1,6 +1,7 @@
 import connectDB from "@/config/database";
 import BlogPost from "@/models/BlogPost";
 import { getSessionUser } from "@/utils/getSessionUser";
+import { slugify } from "@/utils/slugify";
 
 // GET /api/posts/:id
 export const GET = async (request, { params }) => {
@@ -58,6 +59,29 @@ export const PUT = async (request, { params }) => {
     existingPost.status = body.status || "Draft";
     existingPost.categories = body.categories || ['General'];
     existingPost.is_featured = body.is_featured === true || body.is_featured === 'true' || body.is_featured === 'on';
+
+    // Update slug if slug is provided or if the title changes
+    const newSlugBase = body.slug || (body.title !== existingPost.title ? slugify(body.title) : existingPost.slug || slugify(body.title));
+    
+    // Ensure slug uniqueness
+    if (newSlugBase !== existingPost.slug) {
+      let slug = newSlugBase;
+      let counter = 1;
+      while (await BlogPost.findOne({ slug, _id: { $ne: existingPost._id } })) {
+        slug = `${newSlugBase}-${counter}`;
+        counter++;
+      }
+      existingPost.slug = slug;
+    } else if (!existingPost.slug) {
+      // Generate slug for older posts that did not have one
+      let slug = slugify(existingPost.title);
+      let counter = 1;
+      while (await BlogPost.findOne({ slug, _id: { $ne: existingPost._id } })) {
+        slug = `${slug}-${counter}`;
+        counter++;
+      }
+      existingPost.slug = slug;
+    }
 
     if (body.featured_image !== undefined) {
       existingPost.featured_image = body.featured_image;

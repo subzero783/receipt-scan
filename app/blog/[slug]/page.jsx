@@ -12,11 +12,16 @@ import { authOptions } from "@/utils/authOptions";
 
 export async function generateMetadata({ params }) {
 
-  const { id } = await params;
+  const { slug } = await params;
   await connectDB();
 
-  // Fetch the specific blog post data based on the URL parameter
-  const post = await BlogPost.findById(id);
+  // Fetch the specific blog post based on URL slug or Mongo ID fallback
+  let post;
+  if (slug.match(/^[0-9a-fA-F]{24}$/)) {
+    post = await BlogPost.findById(slug);
+  } else {
+    post = await BlogPost.findOne({ slug });
+  }
 
   // If the post doesn't exist, return a generic fallback
   if (!post) {
@@ -38,7 +43,7 @@ export async function generateMetadata({ params }) {
 
   // Return the metadata populated dynamically by the database
   return {
-    title: post.title, // Becomes "Your Blog Post Title | Receipt Scan"
+    title: post.title,
     description: post.excerpt,
     openGraph: {
       images: [post.featured_image],
@@ -47,10 +52,17 @@ export async function generateMetadata({ params }) {
 }
 
 const SingleBlogPage = async ({ params }) => {
-  const { id } = await params;
+  const { slug } = await params;
 
   await connectDB();
-  const post = await BlogPost.findById(id).lean();
+  
+  // Fetch the specific blog post based on URL slug or Mongo ID fallback
+  let post;
+  if (slug.match(/^[0-9a-fA-F]{24}$/)) {
+    post = await BlogPost.findById(slug).lean();
+  } else {
+    post = await BlogPost.findOne({ slug }).lean();
+  }
 
   if (!post) {
     return notFound();
@@ -64,8 +76,7 @@ const SingleBlogPage = async ({ params }) => {
     }
   }
 
-  // Convert mongoose document to plain object if needed, though .lean() does most of it
-  // Ensure dates are strings for serialization if passed to client components, but here we render on server
+  // Convert mongoose document to plain object
   const formattedDate = new Date(post.createdAt || Date.now()).toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
@@ -94,7 +105,7 @@ const SingleBlogPage = async ({ params }) => {
 
             <h1 className="title">{post.title}</h1>
 
-            {/* Featured Image - using placeholder logic if standard image is missing */}
+            {/* Featured Image */}
             <div className="featured-image-container">
               <Image
                 src={post.featured_image || "/images/post-featured-image-placeholder.png"}
@@ -110,7 +121,7 @@ const SingleBlogPage = async ({ params }) => {
                 <p>Written by {post.author?.name || "Receipt AI Team"}</p>
                 <span>Published on {formattedDate}</span>
               </div>
-              <ShareButtons title={post.title} url={`${process.env.NEXTAUTH_URL || ''}/blog/${post._id}`} />
+              <ShareButtons title={post.title} url={`${process.env.NEXTAUTH_URL || ''}/blog/${post.slug || post._id}`} />
             </div>
           </div>
         </div>
@@ -131,7 +142,7 @@ const SingleBlogPage = async ({ params }) => {
             <div className="post-footer">
               <div className="bottom-share-container">
                 <div className="share-wrapper">
-                  <ShareButtons title={post.title} url={`${process.env.NEXTAUTH_URL || ''}/blog/${post._id}`} />
+                  <ShareButtons title={post.title} url={`${process.env.NEXTAUTH_URL || ''}/blog/${post.slug || post._id}`} />
                 </div>
 
                 {post.categories && post.categories.length > 0 && (

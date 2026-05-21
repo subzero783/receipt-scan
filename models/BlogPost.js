@@ -51,6 +51,12 @@ const BlogPostSchema = new Schema(
       default: "Draft",
       enum: ["Draft", "Published"],
     },
+    slug: {
+      type: String,
+      unique: true,
+      sparse: true,
+      trim: true,
+    },
   },
   {
     timestamps: true,

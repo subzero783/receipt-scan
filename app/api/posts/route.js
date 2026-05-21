@@ -1,6 +1,7 @@
 import connectDB from "@/config/database";
 import BlogPost from "@/models/BlogPost";
 import { getSessionUser } from "@/utils/getSessionUser";
+import { slugify } from "@/utils/slugify";
 
 export const dynamic = "force-dynamic";
 
@@ -64,10 +65,20 @@ export const POST = async (request) => {
     // 3. Extract data from the request
     const body = await request.json();
 
+    // Generate unique slug
+    let baseSlug = body.slug || slugify(body.title);
+    let slug = baseSlug;
+    let counter = 1;
+    while (await BlogPost.findOne({ slug })) {
+      slug = `${baseSlug}-${counter}`;
+      counter++;
+    }
+
     // 4. Create the blog post in the database
     const newPost = new BlogPost({
       owner: sessionUser.userId,
       title: body.title,
+      slug,
       content: body.content,
       excerpt: body.excerpt,
       status: body.status || "Draft",

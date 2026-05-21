@@ -4,6 +4,7 @@ import connectDB from '@/config/database';
 import BlogPost from '@/models/BlogPost';
 import KeywordQueue from '@/models/KeywordQueue';
 import User from '@/models/User';
+import { slugify } from '@/utils/slugify';
 
 // Initialize Gemini
 const genAI = new GoogleGenAI({ apiKey: process.env.NEXT_GEMINI_API_KEY });
@@ -79,10 +80,20 @@ export const GET = async (request) => {
             return NextResponse.json({ success: false, error: 'No user found in database to assign as owner of the post.' }, { status: 400 });
         }
 
+        // Generate unique slug
+        let baseSlug = generatedData.slug || slugify(generatedData.title);
+        let slug = baseSlug;
+        let counter = 1;
+        while (await BlogPost.findOne({ slug })) {
+            slug = `${baseSlug}-${counter}`;
+            counter++;
+        }
+
         // Save directly to your existing Blog Database
         const newPost = new BlogPost({
             owner: ownerUser._id,
             title: generatedData.title,
+            slug,
             categories: [],
             excerpt: generatedData.excerpt,
             author: {

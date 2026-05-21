@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 const BlogPostCard = ({ post }) => {
-  const { _id, title, status, owner, is_featured, featured_image, excerpt, content, categories, author } = post;
+  const { _id, slug, title, status, owner, is_featured, featured_image, excerpt, content, categories, author } = post;
   const excerpt_length = 64;
   const read_more_text = excerpt.substring(0, 65) + "...";
 
@@ -11,7 +11,7 @@ const BlogPostCard = ({ post }) => {
     <div className="blog-post-card">
       <Link
         className="image-link"
-        href={`/blog/${_id}`}
+        href={`/blog/${slug || _id}`}
       >
         <div
           className="post-image"
@@ -25,7 +25,7 @@ const BlogPostCard = ({ post }) => {
         </div>
         <h2 className="title">{title}</h2>
         <p className="excerpt">{read_more_text}</p>
-        <Link href={`/blog/${_id}`}>
+        <Link href={`/blog/${slug || _id}`}>
           Read more <MdKeyboardArrowRight />
         </Link>
       </div>
