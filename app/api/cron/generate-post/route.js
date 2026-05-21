@@ -29,9 +29,9 @@ export const GET = async (request) => {
         });
 
         if (generatedTodayCount >= 5) {
-            return NextResponse.json({ 
-                success: false, 
-                message: 'Daily generation limit reached. Only 5 blog posts can be generated per day.' 
+            return NextResponse.json({
+                success: false,
+                message: 'Daily generation limit reached. Only 5 blog posts can be generated per day.'
             }, { status: 429 });
         }
 
@@ -58,6 +58,7 @@ export const GET = async (request) => {
             Return the result strictly as a JSON object with the following keys:
             - "title": A catchy, SEO-friendly title.
             - "excerpt": A 2-sentence meta description.
+            - "image_prompt": A prompt that can be used on Google Flow to generate an image for the blog post. Please use 'Realistic style' for the image.
             - "slug": A URL-friendly slug based on the title.
             - "content": The full blog post written in clean HTML (use <h2>, <h3>, <p>, <ul>, <li>). Do not include <html> or <body> tags, just the inner content.
         `
@@ -75,7 +76,7 @@ export const GET = async (request) => {
 
         // Find the owner/admin user to assign the post to
         const ownerUser = await User.findOne({ email: 'contact@receiptscan.org' }) || await User.findOne({ role: 'admin' }) || await User.findOne({});
-        
+
         if (!ownerUser) {
             return NextResponse.json({ success: false, error: 'No user found in database to assign as owner of the post.' }, { status: 400 });
         }
@@ -105,6 +106,7 @@ export const GET = async (request) => {
             featured_image: "",
             is_featured: false,
             status: "Draft",
+            image_prompt: generatedData.image_prompt,
             content: generatedData.content,
             createdAt: new Date(),
             updatedAt: new Date()

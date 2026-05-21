@@ -71,6 +71,7 @@
 
         .no-image-placeholder {
             font-size: 14px;
+            min-height: 200px;
         }
     }
 

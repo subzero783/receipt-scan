@@ -42,6 +42,10 @@ const BlogPostSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    image_prompt: {
+      type: String,
+      required: false
+    },
     content: {
       type: String,
     },
