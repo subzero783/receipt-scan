@@ -58,7 +58,7 @@ export const GET = async (request) => {
             Return the result strictly as a JSON object with the following keys:
             - "title": A catchy, SEO-friendly title.
             - "excerpt": A 2-sentence meta description.
-            - "image_prompt": A prompt that can be used on Google Flow to generate an image for the blog post. Please use 'Realistic style' for the image.
+            - "image_prompt": A prompt that can be used on Google Flow, not here, to make an image for the blog post. Please use 'Realistic style' for the image.
             - "slug": A URL-friendly slug based on the title.
             - "content": The full blog post written in clean HTML (use <h2>, <h3>, <p>, <ul>, <li>). Do not include <html> or <body> tags, just the inner content.
         `
