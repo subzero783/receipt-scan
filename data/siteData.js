@@ -34,7 +34,7 @@ const siteData = [
       "hero_section": {
         "title": "Say goodbye to your messy receipt shoebox",
         "subtitle": "Automatically capture and categorize business expenses with AI-powered technology. Transform receipt management from a headache to a one-click solution.",
-        "background_image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384794/hero-image_pik0ve.png",
+        "background_image": "/images/hero/Workspace_with_financial_charts_on_tablet_2.jpeg",
         "buttons": [
           {
             "text": "Start Free",
