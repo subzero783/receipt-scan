@@ -11,8 +11,6 @@ function CreateBlogPostForm() {
     const searchParams = useSearchParams();
     const editId = searchParams.get("edit") || searchParams.get("id");
 
-    console.log(editId, searchParams, '--------');
-
     const [formData, setFormData] = useState({
         title: "",
         excerpt: "",
