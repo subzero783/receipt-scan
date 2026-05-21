@@ -45,6 +45,7 @@ next-env.d.ts
 *.jpeg
 *.png
 *.svg
+!/public/favicon/*.png
 !/assets/images/*.png
 !/assets/images/*.jpg
 !/assets/images/*.svg

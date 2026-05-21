@@ -50,16 +50,16 @@ export default function RootLayout({ children }) {
       <AuthProvider>
         <html lang="en">
           <Head>
-            <link rel="icon" href="/public/favicon.ico" sizes="any" />
+            <link rel="icon" href="/public/favicon/favicon.ico" sizes="any" />
             <link
               rel="apple-touch-icon"
-              href="/public/apple-touch-icon.png"
+              href="/public/favicon/apple-touch-icon.png"
               type="image/png"
             />
-            <link rel="icon" type="image/png" sizes="192x192" href="/public/android-chrome-192x192.png" />
-            <link rel="icon" type="image/png" sizes="512x512" href="/public/android-chrome-512x512.png" />
-            <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png" />
-            <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png" />
+            <link rel="icon" type="image/png" sizes="192x192" href="/public/favicon/android-chrome-192x192.png" />
+            <link rel="icon" type="image/png" sizes="512x512" href="/public/favicon/android-chrome-512x512.png" />
+            <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon/favicon-32x32.png" />
           </Head>
           {/* <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body> */}
           <body>
