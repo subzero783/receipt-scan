@@ -4,16 +4,15 @@
   align-items: center;
 
   >.image-link {
-    min-width: 288px;
+    width: 50%;
 
-    >.post-image {
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      min-height: 288px;
-      max-width: 288px;
+    >.post-image-container {
       width: 100%;
-      border-radius: 16px;
+
+      >img {
+        width: 100%;
+        border-radius: 16px;
+      }
     }
   }
 

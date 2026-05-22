@@ -14,9 +14,10 @@ const BlogPostCard = ({ post }) => {
         href={`/blog/${slug || _id}`}
       >
         <div
-          className="post-image"
-          style={{ backgroundImage: `url(${featured_image})` }}
-        ></div>
+          className="post-image-container"
+        >
+          <img src={featured_image} alt={title} />
+        </div>
       </Link>
       <div className="text-container">
         <div className="categories-and-time">
