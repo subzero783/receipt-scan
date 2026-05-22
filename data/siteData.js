@@ -319,7 +319,10 @@ const siteData = [
             "includes": [
               "10 Free receipt photo uploads",
               "Advanced AI categorization",
-              "One CSV export per month",
+              "Download 2 CSV exports per month",
+              "Download 2 Zip folders per month containing receipts",
+              "Download 2 Invoice per month",
+              "Send 1 email per month containing CSV/ZIP files",
               "Monthly expense summary"
             ],
             "paid": true,
@@ -334,9 +337,11 @@ const siteData = [
             "discount_text": "",
             "includes": [
               "Unlimited receipt photo uploads",
-              "All free plan features",
-              "Unlimited CSV exports",
-              "Tax report generation",
+              "Advanced AI categorization",
+              "Download unlimited CSV exports",
+              "Download unlimited Zip folders containing receipts",
+              "Download unlimited Invoice per month",
+              "Send unlimited emails per month containing CSV/ZIP files",
               "Priority customer support"
             ],
             "paid": true,
