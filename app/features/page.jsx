@@ -27,7 +27,7 @@ const FeaturesPage = () => {
   const hero_section = featuresData.hero_section;
   const extraction_description_section = featuresData.extraction_description_section;
   const categorize_expenses = featuresData.categorize_expenses;
-  const receipts_managed_taxes_conquered = featuresData.receipts_managed_taxes_conquered;
+  // const receipts_managed_taxes_conquered = featuresData.receipts_managed_taxes_conquered;
   const capture_data_instantly = featuresData.capture_data_instantly;
   const let_ai_do_the_sorting = featuresData.let_ai_do_the_sorting;
   const turn_expenses_into_billable_invoices = featuresData.turn_expenses_into_billable_invoices;
@@ -41,7 +41,7 @@ const FeaturesPage = () => {
     <div className="features_page">
       <HeroSection data={hero_section} />
 
-      <ReceiptsManagedTaxesConquered data={receipts_managed_taxes_conquered} />
+      {/* <ReceiptsManagedTaxesConquered data={receipts_managed_taxes_conquered} /> */}
 
       <ToolsSection data={tools} />
 

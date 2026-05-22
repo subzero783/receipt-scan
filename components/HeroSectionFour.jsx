@@ -6,7 +6,7 @@ const HeroSectionFour = ({ data }) => {
     return (
         <section className="hero-section-four">
             <div className="container">
-                <div className="row" style={{ backgroundImage: "url('" + data.background_image + "')" }}>
+                <div className="row" style={{ backgroundImage: "url('" + background_image + "')" }}>
                     <div className="col" >
                         <div className="top-text">
                             <p className="small-title">{small_title}</p>

@@ -2,9 +2,9 @@ import Link from "next/link";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import siteData from "@/data/siteData.js";
 
-const HowItWorks = ({data}) => {
+const HowItWorks = ({ data }) => {
 
-  const {small_title, title, subtitle, boxes} = data;
+  const { small_title, title, subtitle, boxes } = data;
 
   return (
     <section className="how-it-works">
@@ -22,12 +22,12 @@ const HowItWorks = ({data}) => {
                   className="box"
                   key={index}
                 >
-                  <div className="box-image" style={{backgroundImage: `url(/images${item.image})`}}></div>
+                  <div className="box-image" style={{ backgroundImage: `url(${item.image})` }}></div>
                   <div className="box-text-container">
                     <p className="small-title">{item.small_title}</p>
                     <p className="title">{item.title}</p>
                     <p className="text">{item.text}</p>
-                    <Link href={item.link.url}>{item.link.text} <MdKeyboardArrowRight/></Link>
+                    <Link href={item.link.url}>{item.link.text} <MdKeyboardArrowRight /></Link>
                   </div>
                 </div>
               ))}

@@ -38,7 +38,7 @@ const siteData = [
       "hero_section": {
         "title": "Say goodbye to your messy receipt shoebox",
         "subtitle": "Automatically capture and categorize business and personal expenses with AI-powered technology. Transform receipt management from a headache to a one-click solution.",
-        "background_image": "/images/hero/Workspace_with_financial_charts_on_tablet_2.jpeg",
+        "background_image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384794/Workspace_with_financial_charts_on_tablet_2_zylnks.jpg",
         "buttons": [
           {
             "text": "Start Free",
@@ -60,7 +60,7 @@ const siteData = [
             "small_title": "Snap",
             "title": "Capture receipts",
             "text": "Quickly photograph, upload or email your receipts.",
-            "image": "/how-it-works/capture-receipts.png",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384795/capture-receipts_ngwq65.png",
             "link": {
               "url": "/signup",
               "text": "Get started"
@@ -71,7 +71,7 @@ const siteData = [
             "small_title": "AI tag",
             "title": "Smart categorization",
             "text": "Our AI instantly extracts and categorizes expense details.",
-            "image": "/how-it-works/smart-categorization.png",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384795/smart-categorization_tmozyc.png",
             "link": {
               "url": "/signup",
               "text": "Get started"
@@ -82,7 +82,7 @@ const siteData = [
             "small_title": "Export & Email",
             "title": "Seamless tax preparation",
             "text": "Generate spreadsheet files, export receipt images, and get organized for 1099s or personal itemized deductions in seconds.",
-            "image": "/how-it-works/seamless-tax-preparation.png",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384794/seamless-tax-preparation_lfftcq.png",
             "link": {
               "url": "/signup",
               "text": "Get started"
@@ -99,7 +99,7 @@ const siteData = [
             "id": "1",
             "title": "Mobile receipt capture",
             "text": "Snap photos of receipts anytime, anywhere",
-            "image": "/features/Hand_holding_smartphone_photographing_receipt.jpeg",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384787/Hand_holding_smartphone_photographing_receipt_p5a2ru.jpg",
             "link": {
               "url": "/",
               "text": "Learn More"
@@ -109,7 +109,7 @@ const siteData = [
             "id": "2",
             "title": "AI categorization",
             "text": "Intelligent expense classification and tagging",
-            "image": "/features/Expense_processing_system_infographic.jpeg",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384787/Expense_processing_system_infographic_dl5h6q.jpg",
             "link": {
               "url": "/",
               "text": "Learn More"
@@ -119,7 +119,7 @@ const siteData = [
             "id": "3",
             "title": "CSV/Excel export",
             "text": "Export your expense data for tax season",
-            "image": "/features/Tablet_screen_displays_spreadsheet.jpeg",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384788/Tablet_screen_displays_spreadsheet_mf03vf.jpg",
             "link": {
               "url": "/",
               "text": "Learn More"
@@ -129,7 +129,7 @@ const siteData = [
             "id": "4",
             "title": "Email receipts into account",
             "text": "Email receipts to your account and get them imported automatically",
-            "image": "/features/Email_inbox_data_visualization.jpeg",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384788/Email_inbox_data_visualization_mpqnty.jpg",
             "link": {
               "url": "/",
               "text": "Learn More"
@@ -139,7 +139,7 @@ const siteData = [
             "id": "5",
             "title": "Generate invoices",
             "text": "Create professional invoices from your receipts in PDF format",
-            "image": "/features/Receipts_to_digital_invoice.jpeg",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384788/Receipts_to_digital_invoice_gm6bqg.jpg",
             "link": {
               "url": "/",
               "text": "Learn More"
@@ -148,7 +148,7 @@ const siteData = [
             "id": "6",
             "title": "Export and email receipt images and spreadsheets",
             "text": "Images and spreadsheets of receipts can be exported and emailed",
-            "image": "/features/Digital_folder_with_receipt_icons.jpeg",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384787/Digital_folder_with_receipt_icons_ffnhlw.jpg",
             "link": {
               "url": "/",
               "text": "Learn More"
@@ -165,21 +165,21 @@ const siteData = [
             "text": "This app has saved me hours of tedious receipt management. Totally game-changing!",
             "author": "Sarah Martinez",
             "occupation": "Freelance Graphic Designer",
-            "image": "/testimonials_users/sarah-martinez.png"
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384797/sarah-martinez_dr515m.png"
           },
           {
             "star_rating": 5,
             "text": "I can't believe how easy it is to track my business expenses now. Highly recommended!",
-            "author": "Michael Chen",
+            "author": "Michelle Chen",
             "occupation": "Independent consultant",
-            "image": "/testimonials_users/michael-chen.png"
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384796/michael-chen_anzcqz.png"
           },
           {
             "star_rating": 5,
             "text": "Finally, a tool that understands the chaos of freelance financial tracking.",
             "author": "Emma Rodriguez",
             "occupation": "Web developer",
-            "image": "/testimonials_users/emma-rodriguez.png"
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384797/emma-rodriguez_hrokog.png"
           }
         ]
       }
@@ -360,7 +360,7 @@ const siteData = [
         "subtitle": "Our support team is ready to help you choose the right plan",
         "button": {
           "text": "Contact",
-          "link": "/"
+          "link": "/contact"
         }
       }
     }
@@ -505,7 +505,7 @@ const siteData = [
         "description": "Learn how Receipt Scan was built by a developer to solve the headache of manual data entry. We value simplicity, data privacy, and user-obsessed design."
       },
       "hero_section": {
-        "background_image": "/images/features/Artisan_working_on_physical_project.jpeg",
+        "background_image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384787/Artisan_working_on_physical_project_lajn4r.jpg",
         "small_title": "Our Mission",
         "title": "Empowering freelancers, creators, and individuals to focus on what matters, not paperwork.",
         "subtitle": "We believe that managing expenses shouldn't cost you your sanity. Receipt Scan was built to help creators, builders, and hustlers reclaim their time from the chaos of receipts.",
@@ -528,7 +528,7 @@ const siteData = [
           "With an extensive background architecting modern frontend applications and complex API integrations, Gustavo decided to build his own solution. The goal was to create a modern platform that didn't just store files, but utilized AI-driven categorization logic to instantly process and organize receipts the moment they were received.",
           "Today, Receipt Scan leverages advanced technologies to fully automate financial workflows. It empowers freelancers and professionals with a mobile-first, high-utility tool designed to eliminate manual data entry so they can get back to building their business."
         ],
-        "image": "/images/features/Hand_holding_receipt_in_front_of_monitor.jpeg",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384788/Hand_holding_receipt_in_front_of_monitor_ewhtz0.jpg",
         "image_alt": "Hand holding receipt in front of monitor",
         "buttons": [
           {
@@ -545,7 +545,7 @@ const siteData = [
         "small_title": "Our Philosophy",
         "title": "Values we build by",
         "subtitle": "We are guided by a few simple principles that keep us focused on what matters: your time and your peace of mind.",
-        "image": "/images/features/Notebook_coffee_cup_and_plant.jpeg",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384787/Notebook_coffee_cup_and_plant_ilupwb.jpg",
         "image_alt": "Notebook coffee cup and plant",
         "values": [
           {
@@ -644,7 +644,7 @@ const siteData = [
       "hero_section": {
         "title": "Everything you need to automate your expense tracking",
         "subtitle": "From AI-powered data extraction to smart financial insights, discover how our platform turns your messy shoebox of receipts into actionable financial data.",
-        "background_image": "/images/hero/hero-image.png",
+        "background_image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384794/hero-image_pik0ve.png",
         "buttons": [
           {
             "text": "Start for Free",
@@ -684,21 +684,21 @@ const siteData = [
             "small_title": "Extraction",
             "title": "Instant data extraction",
             "text": "Advanced OCR reads receipts in seconds, no matter the format.",
-            "image": "/images/features_page/Paper_receipt_passing_scanner.jpeg",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384791/Paper_receipt_passing_scanner_pggfq8.jpg",
             "image_alt": "Paper receipt passing scanner"
           },
           {
             "small_title": "Export",
             "title": "CSV and ZIP exports",
             "text": "Download your extracted data as a CSV for Excel, or export all your receipt images in a single ZIP file for tax season.",
-            "image": "/images/features_page/Digital_folder_morphing_into_zip_folder.jpeg",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384793/Digital_folder_morphing_into_zip_folder_f4vjht.jpg",
             "image_alt": "Digital folder morphing into zip folder"
           },
           {
             "small_title": "Email",
             "title": "Email Receipts to Anyone",
             "text": "Send your receipts to anyone, anywhere, and with the attached receipt images and CSV file, they can easily import your receipts into their accounting software.",
-            "image": "/images/features_page/Paper_airplane_flying_out_over_envelope.jpeg",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384789/Paper_airplane_flying_out_over_envelope_st6ny0.jpg",
             "image_alt": "Paper airplane flying out over envelope"
           }
         ]
@@ -707,7 +707,7 @@ const siteData = [
         "small_title": "01 Capture Receipts",
         "title": "Snap a photo, upload a batch, or forward an email",
         "subtitle": "Receipt Scan accepts receipts however you want to send them. Phone photos or emails forwarded to your unique inbound address all work instantly.",
-        "image": "/images/features_page/Data_inputs_feeding_cloud_database.jpeg",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384792/Data_inputs_feeding_cloud_database_q5c8mf.jpg",
         "image_alt": "Data inputs feeding cloud database",
         "buttons": [
           {
@@ -724,7 +724,7 @@ const siteData = [
         "small_title": "02 Categorize Expenses",
         "title": "AI learns your spending patterns and sorts automatically",
         "subtitle": "Our system reads more than just numbers. It understands your business and categorizes each expense into the right bucket. Whether classifying a client dinner or your family's weekly groceries, our AI learns your custom categories.",
-        "image": "/images/features_page/Receipts_processed_by_AI.jpeg",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384792/Receipts_processed_by_AI_aupfrn.jpg",
         "image_alt": "Receipts processed by AI",
         "buttons": [
           {
@@ -741,7 +741,7 @@ const siteData = [
         "small_title": "03 Export and Invoice",
         "title": "Send clean data to your accountant or create invoices",
         "subtitle": "Pull your categorized expenses into CSV, Excel, or PDF invoices. Everything is formatted and ready to use in your accounting software or send directly to clients.",
-        "image": "/images/features_page/Digital_dashboard_with_CSV_ZIP_PDF_INVOICE.jpeg",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384793/Digital_dashboard_with_CSV_ZIP_PDF_INVOICE_fwhvpa.jpg",
         "image_alt": "Digital dashboard with CSV ZIP PDF Invoice",
         "buttons": [
           {
@@ -758,7 +758,7 @@ const siteData = [
         "small_title": "Capture",
         "title": "Capture data instantly, no matter where it is",
         "subtitle": "Stop hoarding paper and digging through inboxes. Our advanced OCR technology accurately extracts vendor names, dates, amounts, and taxes from any receipt. Whether you snap a photo on your phone, upload a bulk batch of photos, or forward an email directly to your custom inbound address, Receipt Scan processes it in seconds.",
-        "image": "/images/features_page/Smartphone_capturing_receipt.jpeg",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384790/Smartphone_capturing_receipt_vbolb2.jpg",
         "image_alt": "Illustration of a smartphone scanning a receipt, alongside PDF and email icons, smoothly transferring data into a central cloud database.",
         "buttons": [
           {
@@ -775,7 +775,7 @@ const siteData = [
         "small_title": "Organize",
         "title": "Let AI do the sorting for you",
         "subtitle": "Say goodbye to manual data entry. Our proprietary AI doesn't just read your receipts; it understands them. It automatically learns your spending habits and categorizes expenses so your records are always tax-ready. Need custom rules? You can easily train the AI to fit your specific accounting workflow.",
-        "image": "/images/features_page/Paper_receipts_processed_by_AI.jpeg",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384791/Paper_receipts_processed_by_AI_qjnp3t.jpg",
         "image_alt": "Illustration showing a messy pile of paper receipts passing through an AI processor and emerging as neatly organized, color-coded digital folders.",
         "buttons": [
           {
@@ -792,7 +792,7 @@ const siteData = [
         "small_title": "Invoice",
         "title": "Turn expenses into billable invoices in seconds",
         "subtitle": "Stop duplicating work. Select any combination of categorized receipts and instantly generate a professional, formatted PDF invoice. Perfect for freelancers passing material costs to clients. Customize the invoice with your logo, add custom tax rates, and download it instantly—ready to send.",
-        "image": "/images/features_page/one_click_invoice.jpeg",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384791/one_click_invoice_pcx92k.jpg",
         "image_alt": "Dashboard UI illustration demonstrating a list of categorized expenses automatically generating a completed professional PDF invoice.",
         "buttons": [
           {
@@ -809,7 +809,7 @@ const siteData = [
         "small_title": "Export",
         "title": "Your data, ready for your accountant",
         "subtitle": "Getting your data out of Receipt Scan is as easy as getting it in. Export your categorized expenses as a clean CSV or Excel spreadsheet, perfectly formatted for your accounting software. Need the original files for an audit? Download a ZIP file containing the pristine, original images of every receipt.",
-        "image": "/images/features_page/accountant_data_export.jpeg",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384790/accountant_data_export_wneaig.jpg",
         "image_alt": "3D illustration of a glowing CSV spreadsheet and a ZIP archive resting on a modern desk, representing clean and easily exportable financial data.",
         "buttons": [
           {
@@ -826,7 +826,7 @@ const siteData = [
         "small_title": "Export",
         "title": "Forward emails, forget the rest",
         "subtitle": "Every account comes with a unique, secure inbound email address. When you receive an Uber receipt or a software subscription invoice, simply forward it to your Receipt Scan address. Our system automatically parses the email, extracts the receipt attachment, and categorizes the expense before you even log in.",
-        "image": "/images/features_page/email_forwarding_automation.jpeg",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384789/email_forwarding_automation_ywgggp.jpg",
         "image_alt": "Illustration showing a digital email receipt being automatically routed from an inbox interface directly into a secure database lockbox.",
         "buttons": [
           {

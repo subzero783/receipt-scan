@@ -35,7 +35,7 @@ const Testimonials = ({ data }) => {
               <div className="image-and-author-name">
                 <Image
                   className="author-image"
-                  src={`/images${item.image}`}
+                  src={`${item.image}`}
                   alt={item.author}
                   width={100}
                   height={100}

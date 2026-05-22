@@ -21,7 +21,7 @@ const Features = ({ data }) => {
                   className="box"
                   key={index}
                 >
-                  <div className="image" style={{ backgroundImage: `url(/images${item.image})` }}></div>
+                  <div className="image" style={{ backgroundImage: `url(${item.image})` }}></div>
                   <div className="box-text-container">
                     <FaCube />
                     <p className="title">{item.title}</p>
