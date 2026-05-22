@@ -321,7 +321,7 @@ const siteData = [
               "Advanced AI categorization",
               "Download 2 CSV exports per month",
               "Download 2 Zip folders per month containing receipts",
-              "Download 2 Invoice per month",
+              "Download 2 Invoices per month",
               "Send 1 email per month containing CSV/ZIP files",
               "Personal Email Inbound Handle for Email receipts",
               "Monthly expense summary"
@@ -341,7 +341,7 @@ const siteData = [
               "Advanced AI categorization",
               "Download unlimited CSV exports",
               "Download unlimited Zip folders containing receipts",
-              "Download unlimited Invoice per month",
+              "Download unlimited Invoices per month",
               "Send unlimited emails per month containing CSV/ZIP files",
               "Personal Email Inbound Handle for Email receipts",
               "Monthly expense summary",
