@@ -31,9 +31,13 @@ const siteData = [
   },
   {
     "home_page": {
+      "meta_data": {
+        "title": "Best AI Receipt Scanner App & Expense Tracker",
+        "description": "Ditch the shoebox. Receipt Scan automatically captures, categorizes, and tracks your business and personal expenses using advanced AI. Start your free trial!"
+      },
       "hero_section": {
         "title": "Say goodbye to your messy receipt shoebox",
-        "subtitle": "Automatically capture and categorize business expenses with AI-powered technology. Transform receipt management from a headache to a one-click solution.",
+        "subtitle": "Automatically capture and categorize business and personal expenses with AI-powered technology. Transform receipt management from a headache to a one-click solution.",
         "background_image": "/images/hero/Workspace_with_financial_charts_on_tablet_2.jpeg",
         "buttons": [
           {
@@ -44,19 +48,18 @@ const siteData = [
             "text": "Learn More",
             "link": "/about"
           }
-        ],
-        "background_image": "/images/hero/hero-image.png"
+        ]
       },
       "how_it_works": {
         "small_title": "Simple",
         "title": "How it works",
-        "subtitle": "Manage expenses with just three easy steps",
+        "subtitle": "Manage expenses with just three easy steps.",
         "boxes": [
           {
             "id": "1",
             "small_title": "Snap",
             "title": "Capture receipts",
-            "text": "Quickly photograph or upload your business receipts",
+            "text": "Quickly photograph, upload or email your receipts.",
             "image": "/how-it-works/capture-receipts.png",
             "link": {
               "url": "/signup",
@@ -67,7 +70,7 @@ const siteData = [
             "id": "2",
             "small_title": "AI tag",
             "title": "Smart categorization",
-            "text": "Our AI instantly extracts and categorizes expense details",
+            "text": "Our AI instantly extracts and categorizes expense details.",
             "image": "/how-it-works/smart-categorization.png",
             "link": {
               "url": "/signup",
@@ -78,7 +81,7 @@ const siteData = [
             "id": "3",
             "small_title": "Export & Email",
             "title": "Seamless tax preparation",
-            "text": "Generate CSV or Excel files, export receipts as images, create invoices instantly, and get organized for tax season",
+            "text": "Generate spreadsheet files, export receipt images, and get organized for 1099s or personal itemized deductions in seconds.",
             "image": "/how-it-works/seamless-tax-preparation.png",
             "link": {
               "url": "/signup",
@@ -90,7 +93,7 @@ const siteData = [
       "features": {
         "small_title": "Features",
         "title": "Powerful expense tracking",
-        "subtitle": "Designed to simplify financial management for freelancers",
+        "subtitle": "Designed to simplify financial management for freelancers and small business owners",
         "boxes": [
           {
             "id": "1",
@@ -288,6 +291,10 @@ const siteData = [
   },
   {
     "pricing_page": {
+      "meta_data": {
+        "title": "Pricing Plans | AI Expense Tracking for Everyone",
+        "description": "View straightforward pricing plans for Receipt Scan. Start with a 14-day free trial and choose the right AI expense tracking tier for your business or home."
+      },
       "hero_section": {
         "small_title": "Simple",
         "title": "Pricing that works for you",
@@ -303,7 +310,7 @@ const siteData = [
       "pricing_plans": {
         "small_title": "Plans",
         "title": "Pricing plans",
-        "subtitle": "Choose the perfect plan for your business expense tracking",
+        "subtitle": "Choose the perfect plan for your business or household expense tracking.",
         "plans": [
           {
             "small_title": "Free Trial",
@@ -323,8 +330,8 @@ const siteData = [
           },
           {
             "small_title": "Pro plan",
-            "monthly_price": "29",
-            "discount_text": "or $199 yearly",
+            "monthly_price": "20",
+            "discount_text": "",
             "includes": [
               "Unlimited receipt photo uploads",
               "All free plan features",
@@ -352,6 +359,10 @@ const siteData = [
   },
   {
     "signin_page": {
+      "meta_data": {
+        "title": "Sign In to Your Account",
+        "description": "Log in to your Receipt Scan account to access your automated expense reports, manage digital receipts, and effortlessly prepare for tax season."
+      },
       "hero_section": {
         "title": "Sign in to your account",
         "subtitle": "Access your expense tracking and manage your business finances with ease",
@@ -375,6 +386,10 @@ const siteData = [
   },
   {
     "signup_page": {
+      "meta_data": {
+        "title": "Create an Account",
+        "description": "Sign up for Receipt Scan to instantly digitize your receipts. Join thousands of freelancers and individuals saving time with AI-powered bookkeeping."
+      },
       "registration": {
         "title": "Create your free account",
         "subtitle": "Get started in minutes and transform how you manage business expenses",
@@ -464,6 +479,10 @@ const siteData = [
   },
   {
     "blog_index": {
+      "meta_data": {
+        "title": "Receipt Scan Blog | Expense Management & Tax Tips",
+        "description": "Explore the Receipt Scan blog for expert insights on freelance tax deductions, expense management trends, and how to organize your finances with AI."
+      },
       "hero_section": {
         "small_title": "Blog",
         "title": "Insights and Tips",
@@ -473,10 +492,14 @@ const siteData = [
   },
   {
     "about_page": {
+      "meta_data": {
+        "title": "About Us | The Story Behind Receipt Scan",
+        "description": "Learn how Receipt Scan was built by a developer to solve the headache of manual data entry. We value simplicity, data privacy, and user-obsessed design."
+      },
       "hero_section": {
         "background_image": "/images/features/Artisan_working_on_physical_project.jpeg",
         "small_title": "Our Mission",
-        "title": "Empowering freelancers to focus on work, not paperwork",
+        "title": "Empowering freelancers, creators, and individuals to focus on what matters, not paperwork.",
         "subtitle": "We believe that managing expenses shouldn't cost you your sanity. Receipt Scan was built to help creators, builders, and hustlers reclaim their time from the chaos of receipts.",
         "buttons": [
           {
@@ -493,7 +516,7 @@ const siteData = [
         "small_title": "Our Origin",
         "title": "It started with a need for better automation",
         "paragraphs": [
-          "After years spent engineering high-traffic e-commerce platforms and complex digital systems for various agencies, our founder, Gustavo, recognized a frustrating gap. While he was building seamless, automated digital experiences for clients, managing the business's own project expenses and receipts remained a manual, time-consuming chore.",
+          "After years spent engineering high-traffic e-commerce platforms and complex digital systems for various agencies, our founder, Gustavo, recognized a frustrating gap. While he was building seamless, automated digital experiences for clients, managing his own freelance project expenses and tax receipts remained a manual, time-consuming chore.",
           "With an extensive background architecting modern frontend applications and complex API integrations, Gustavo decided to build his own solution. The goal was to create a modern platform that didn't just store files, but utilized AI-driven categorization logic to instantly process and organize receipts the moment they were received.",
           "Today, Receipt Scan leverages advanced technologies to fully automate financial workflows. It empowers freelancers and professionals with a mobile-first, high-utility tool designed to eliminate manual data entry so they can get back to building their business."
         ],
@@ -606,10 +629,14 @@ const siteData = [
   },
   {
     "features_page": {
+      "meta_data": {
+        "title": "Features | AI Receipt OCR & Automated Tax Prep",
+        "description": "Explore Receipt Scan's powerful features: AI categorization, mobile capture, seamless tax prep, and CSV/Excel exports for freelancers and individuals."
+      },
       "hero_section": {
         "title": "Everything you need to automate your expense tracking",
         "subtitle": "From AI-powered data extraction to smart financial insights, discover how our platform turns your messy shoebox of receipts into actionable financial data.",
-        "background_image": "/images/hero/Workspace_with_financial_charts_on_tablet_2.jpeg",
+        "background_image": "/images/hero/hero-image.png",
         "buttons": [
           {
             "text": "Start for Free",
@@ -688,7 +715,7 @@ const siteData = [
       "categorize_expenses": {
         "small_title": "02 Categorize Expenses",
         "title": "AI learns your spending patterns and sorts automatically",
-        "subtitle": "Our system reads more than just numbers. It understands your business and categorizes each expense into the right bucket. Train it with custom rules whenever your workflow changes.",
+        "subtitle": "Our system reads more than just numbers. It understands your business and categorizes each expense into the right bucket. Whether classifying a client dinner or your family's weekly groceries, our AI learns your custom categories.",
         "image": "/images/features_page/Receipts_processed_by_AI.jpeg",
         "image_alt": "Receipts processed by AI",
         "buttons": [
@@ -834,6 +861,10 @@ const siteData = [
   },
   {
     "contact_page": {
+      "meta_data": {
+        "title": "Contact Receipt Scan | AI Expense Tracker Support",
+        "description": "Have questions about Receipt Scan? Contact our support team for help with your AI receipt scanner, billing inquiries, or general feedback. We are here to help!"
+      },
       "hero_section": {
         "title": "Contact Us",
         "subtitle": "We'd love to hear from you. Whether you have a question, need support, or want to share feedback, we're here to help."

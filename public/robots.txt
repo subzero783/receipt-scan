@@ -1,2 +1,18 @@
 User-agent: *
-Disallow: /
+Allow: /
+
+# Block backend and API routes
+Disallow: /api/
+Disallow: /*?*
+
+# Block authenticated user areas
+Disallow: /dashboard/
+Disallow: /app/
+
+# Block authentication pages to save crawl budget
+Disallow: /sign-in
+Disallow: /sign-up
+Disallow: /forgot-password
+
+# Point crawlers to your sitemap
+Sitemap: https://www.receiptscan.org/sitemap.xml

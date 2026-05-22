@@ -4,8 +4,18 @@ import PricingPlans from "@/components/PricingPlans";
 import FAQs from "@/components/FAQs";
 import CallToAction from "@/components/CallToAction";
 
+const pricing_page = siteData.find(item => item.pricing_page)?.pricing_page;
+
+export async function generateMetadata() {
+  return {
+    title: pricing_page?.meta_data?.title
+      ? `${pricing_page.meta_data.title}`
+      : "Receipt Scan - Expense Tracker for Freelancers",
+    description: pricing_page?.meta_data?.description || "Automated expense tracking for freelancers and small businesses",
+  };
+}
+
 const PricingPage = () => {
-  const pricing_page = siteData.find(item => item.pricing_page)?.pricing_page;
 
   if (!pricing_page) return <div>Loading...</div>;
 

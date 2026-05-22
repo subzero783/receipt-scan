@@ -55,7 +55,7 @@ const SingleBlogPage = async ({ params }) => {
   const { slug } = await params;
 
   await connectDB();
-  
+
   // Fetch the specific blog post based on URL slug or Mongo ID fallback
   let post;
   if (slug.match(/^[0-9a-fA-F]{24}$/)) {

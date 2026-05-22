@@ -4,8 +4,19 @@ import StorySection from '@/components/StorySection';
 import OurValuesSection from '@/components/OurValuesSection';
 import CallToActionTwo from '@/components/CallToActionTwo';
 
+const aboutData = siteData.find(item => item.about_page)?.about_page;
+
+export async function generateMetadata() {
+    return {
+        title: aboutData?.meta_data?.title
+            ? `${aboutData.meta_data.title} | Receipt Scan`
+            : "Receipt Scan - Expense Tracker for Freelancers",
+        description: aboutData?.meta_data?.description || "Automated expense tracking for freelancers and small businesses",
+    };
+}
+
+
 const AboutPage = () => {
-    const aboutData = siteData.find(item => item.about_page)?.about_page;
 
     if (!aboutData) return <div>Loading...</div>;
 

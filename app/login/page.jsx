@@ -8,13 +8,22 @@ import Spinner from "@/components/Spinner";
 import siteData from '@/data/siteData.js';
 import CallToActionTwo from "@/components/CallToActionTwo";
 
+const signin_data = siteData.find(item => item.signin_page)?.signin_page;
+
+export async function generateMetadata() {
+  return {
+    title: signin_data?.meta_data?.title
+      ? `${signin_data.meta_data.title}`
+      : "Receipt Scan - Expense Tracker for Freelancers",
+    description: signin_data?.meta_data?.description || "Automated expense tracking for freelancers and small businesses",
+  };
+}
+
 const LoginPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [error, setError] = useState("");
   const { data: session, status: sessionStatus } = useSession();
-
-  const signin_data = siteData.find(item => item.signin_page)?.signin_page;
 
   useEffect(() => {
     const urlError = searchParams.get('error');

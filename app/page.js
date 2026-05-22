@@ -4,14 +4,18 @@ import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
 import siteData from '@/data/siteData.js';
 
-export const metadata = {
-  title: 'Home', // Because of the template in layout.js, this becomes "Home | Receipt Scan"
-  description: 'Easily track, manage, and organize your freelance business expenses with Receipt Scan.',
-};
+const homeData = siteData.find(item => item.home_page)?.home_page;
+
+export async function generateMetadata() {
+  return {
+    title: homeData?.meta_data?.title
+      ? `${homeData.meta_data.title} | Receipt Scan`
+      : "Receipt Scan - Expense Tracker for Freelancers",
+    description: homeData?.meta_data?.description || "Automated expense tracking for freelancers and small businesses",
+  };
+}
 
 export default async function Home() {
-
-  const homeData = siteData.find(item => item.home_page)?.home_page;
 
   if (!homeData) return <div>Loading...</div>;
 

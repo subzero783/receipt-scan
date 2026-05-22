@@ -8,10 +8,19 @@ import { FiUpload } from "react-icons/fi";
 import { LuBrain } from "react-icons/lu";
 import ReceiptsManagedTaxesConquered from "@/components/ReceiptsManagedTaxesConquered";
 
+const featuresData = siteData.find(item => item.features_page)?.features_page;
+
+export async function generateMetadata() {
+  return {
+    title: featuresData?.meta_data?.title
+      ? `${featuresData.meta_data.title}`
+      : "Receipt Scan - Expense Tracker for Freelancers",
+    description: featuresData?.meta_data?.description || "Automated expense tracking for freelancers and small businesses",
+  };
+}
+
 
 const FeaturesPage = () => {
-
-  const featuresData = siteData.find(item => item.features_page)?.features_page;
 
   if (!featuresData) return <div>Loading...</div>;
 
