@@ -323,6 +323,7 @@ const siteData = [
               "Download 2 Zip folders per month containing receipts",
               "Download 2 Invoice per month",
               "Send 1 email per month containing CSV/ZIP files",
+              "Personal Email Inbound Handle for Email receipts",
               "Monthly expense summary"
             ],
             "paid": true,
@@ -342,6 +343,8 @@ const siteData = [
               "Download unlimited Zip folders containing receipts",
               "Download unlimited Invoice per month",
               "Send unlimited emails per month containing CSV/ZIP files",
+              "Personal Email Inbound Handle for Email receipts",
+              "Monthly expense summary",
               "Priority customer support"
             ],
             "paid": true,
