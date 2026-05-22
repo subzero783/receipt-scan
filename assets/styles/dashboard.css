@@ -51,7 +51,8 @@
     /* Table Styles */
     .table-wrapper {
         background: var(--color-white);
-        overflow: visible;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
         max-width: 100%;
 
         &::-webkit-scrollbar {
@@ -86,6 +87,7 @@
             /* color: #64748b; */
             color: var(--color-white);
             font-size: 0.9rem;
+            white-space: nowrap;
         }
 
         td {
@@ -93,6 +95,7 @@
             font-size: 14px;
             border-bottom: 1px solid #e2e8f0;
             color: #334155;
+            white-space: nowrap;
         }
 
         .clickable-row {
