@@ -65,6 +65,17 @@ async function handleCheckoutCompleted(session) {
             handleToUse = await generateUniqueInboundHandle(pendingUser.email);
         }
 
+        // Fetch subscription to see if it is in trialing status
+        let isTrial = false;
+        if (session.subscription) {
+            try {
+                const subscription = await stripe.subscriptions.retrieve(session.subscription);
+                isTrial = subscription.status === 'trialing';
+            } catch (err) {
+                console.error("Error retrieving subscription from Stripe:", err);
+            }
+        }
+
         // Create the official user
         realUser = new User({
             username: pendingUser.username,
@@ -73,7 +84,7 @@ async function handleCheckoutCompleted(session) {
             image: pendingUser.image,
             inboundHandle: handleToUse,
             isPro: true,
-            planType: 'pro',
+            planType: isTrial ? 'free' : 'pro',
             stripeCustomerId: session.customer,
             subscriptionId: session.subscription
         });
@@ -86,6 +97,39 @@ async function handleCheckoutCompleted(session) {
 }
 
 /**
+ * Handles 'customer.subscription.updated'
+ * Upgrades user to planType: 'pro' if they transitioned to active (paid) status,
+ * or handles other status updates.
+ */
+async function handleSubscriptionUpdated(subscription) {
+    const stripeCustomerId = subscription.customer;
+    const userToUpdate = await User.findOne({ stripeCustomerId: stripeCustomerId });
+
+    if (userToUpdate) {
+        const isTrialing = subscription.status === 'trialing';
+        const isActive = subscription.status === 'active';
+
+        if (isActive) {
+            userToUpdate.isPro = true;
+            userToUpdate.planType = 'pro';
+        } else if (isTrialing) {
+            userToUpdate.isPro = true;
+            userToUpdate.planType = 'free';
+        } else {
+            const hasAccess = ['active', 'trialing'].includes(subscription.status);
+            userToUpdate.isPro = hasAccess;
+            if (!hasAccess) {
+                userToUpdate.planType = 'free';
+                userToUpdate.subscriptionId = null;
+            }
+        }
+
+        await userToUpdate.save();
+        console.log(`User ${userToUpdate.email} subscription updated. isPro: ${userToUpdate.isPro}, planType: ${userToUpdate.planType}`);
+    }
+}
+
+/**
  * Handles 'customer.subscription.deleted' & 'canceled'
  * Revokes Pro access when a subscription ends.
  */
@@ -95,6 +139,7 @@ async function handleSubscriptionDowngrade(subscription) {
 
     if (userToDowngrade) {
         userToDowngrade.isPro = false;
+        userToDowngrade.planType = 'free';
         userToDowngrade.subscriptionId = null;
 
         await userToDowngrade.save();
@@ -132,6 +177,10 @@ export const POST = async (req) => {
         switch (event.type) {
             case 'checkout.session.completed':
                 await handleCheckoutCompleted(event.data.object);
+                break;
+
+            case 'customer.subscription.updated':
+                await handleSubscriptionUpdated(event.data.object);
                 break;
 
             case 'customer.subscription.deleted':

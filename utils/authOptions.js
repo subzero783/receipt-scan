@@ -68,7 +68,7 @@ export const authOptions = {
                       image: pendingUser.image,
                       inboundHandle: handleToUse,
                       isPro: true,
-                      planType: 'pro',
+                      planType: activeSub.status === 'active' ? 'pro' : 'free',
                       stripeCustomerId: customer.id,
                       subscriptionId: activeSub.id
                     });
@@ -148,7 +148,7 @@ export const authOptions = {
                     image: pendingUser.image,
                     inboundHandle: handleToUse,
                     isPro: true,
-                    planType: 'pro',
+                    planType: activeSub.status === 'active' ? 'pro' : 'free',
                     stripeCustomerId: customer.id,
                     subscriptionId: activeSub.id
                   });

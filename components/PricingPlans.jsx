@@ -5,8 +5,7 @@ import Link from "next/link";
 import { FaCube } from "react-icons/fa6";
 import { IoMdCheckmark } from "react-icons/io";
 
-const PricingPlans = ({ data }) => {
-  const { small_title, title, subtitle, plans } = data;
+const PricingPlans = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const isPro = session?.user?.isPro;
@@ -42,64 +41,100 @@ const PricingPlans = ({ data }) => {
         <div className="row">
           <div className="col">
             <div className="top-text">
-              <p className="small-title">{small_title}</p>
-              <h2 className="title">{title}</h2>
-              <p className="subtitle">{subtitle}</p>
+              <p className="small-title">Plans</p>
+              <h2 className="title">Pricing plans</h2>
+              <p className="subtitle">Choose the perfect plan for your business or household expense tracking.</p>
             </div>
             <div className="plans">
-              {plans.map((item, index) => (
-                <div className="plan" key={index}>
-                  <div className="small-title-and-icon">
-                    <h3 className="small-title">{item.small_title}</h3>
-                    <FaCube />
-                  </div>
-                  <div className="price-and-discount-text">
-                    <p className="monthly-price">
-                      ${item.monthly_price}<span>/mo</span>
-                    </p>
-                    <p className="discount-text">{item.discount_text}</p>
-                  </div>
-                  <div className="includes-list">
-                    <p>Includes:</p>
-                    <ul>
-                      {item.includes.map((incl, idx) => (
-                        <li key={idx}><IoMdCheckmark /> {incl}</li>
-                      ))}
-                    </ul>
-                  </div>
+              <div className="plan">
+                <div className="small-title-and-icon">
+                  <h3 className="small-title">Free Trial</h3>
+                  <FaCube />
+                </div>
+                <div className="price-and-discount-text">
+                  <p className="monthly-price">
+                    $0<span>/mo</span>
+                  </p>
+                  <p className="discount-text">For 14 Days</p>
+                </div>
+                <div className="includes-list">
+                  <p>Includes:</p>
+                  <ul>
+                    <li><IoMdCheckmark /> 10 Free receipt photo uploads</li>
+                    <li><IoMdCheckmark /> Advanced AI categorization</li>
+                    <li><IoMdCheckmark /> Download 2 CSV exports per month</li>
+                    <li><IoMdCheckmark /> Download 2 Zip folders per month containing receipts</li>
+                    <li><IoMdCheckmark /> Download 2 Invoices per month</li>
+                    <li><IoMdCheckmark /> Send 1 email per month containing CSV/ZIP files</li>
+                    <li><IoMdCheckmark /> Personal Email Inbound Handle for Email receipts</li>
+                    <li><IoMdCheckmark /> Monthly expense summary</li>
+                  </ul>
+                </div>
 
-                  <div className="button">
-                    {index === 0 ? (
-                      // Free Trial Plan: Only show button to logged-out users
-                      !session && (
-                        <Link href={item.button.link} className="btn btn-primary">
-                          {item.button.text}
-                        </Link>
-                      )
-                    ) : (
-                      // Pro Plan: Handle state for logged in (Pro/Free) vs logged out
-                      session ? (
-                        isPro && planType === "pro" ? (
-                          <button onClick={handlePortal} className="btn btn-primary paid-plan">
-                            Manage Current Plan
-                          </button>
-                        ) : (
-                          isPro && planType === "free" ? (
-                            <button onClick={handleCheckout} className="btn btn-primary paid-plan">
-                              Upgrade to Pro
-                            </button>
-                          ) : ''
-                        )
+                <div className="button">
+                  {/* // Free Trial Plan */}
+                  {!session ? (
+                    <Link href="/signup" className="btn btn-primary">
+                      Start Free Trial
+                    </Link>
+                  ) : (
+                    isPro && planType === "free" ? (
+                      <button onClick={handlePortal} className="btn btn-primary paid-plan">
+                        Manage Current Plan
+                      </button>
+                    ) : null
+                  )}
+                </div>
+
+              </div>
+              <div className="plan">
+                <div className="small-title-and-icon">
+                  <h3 className="small-title">Pro plan</h3>
+                  <FaCube />
+                </div>
+                <div className="price-and-discount-text">
+                  <p className="monthly-price">
+                    $20<span>/mo</span>
+                  </p>
+                  {/* <p className="discount-text">For 14 Days</p> */}
+                </div>
+                <div className="includes-list">
+                  <p>Includes:</p>
+                  <ul>
+                    <li><IoMdCheckmark /> Unlimited receipt photo uploads</li>
+                    <li><IoMdCheckmark /> Advanced AI categorization</li>
+                    <li><IoMdCheckmark /> Download unlimited CSV exports</li>
+                    <li><IoMdCheckmark /> Download unlimited Zip folders containing receipts</li>
+                    <li><IoMdCheckmark /> Download unlimited Invoices per month</li>
+                    <li><IoMdCheckmark /> Send unlimited emails per month containing CSV/ZIP files</li>
+                    <li><IoMdCheckmark /> Personal Email Inbound Handle for Email receipts</li>
+                    <li><IoMdCheckmark /> Monthly expense summary</li>
+                    <li><IoMdCheckmark /> Priority customer support</li>
+                  </ul>
+                </div>
+
+                <div className="button">
+                  {/* // Pro Plan */}
+                  {
+                    session ? (
+                      isPro && planType === "pro" ? (
+                        <button onClick={handlePortal} className="btn btn-primary paid-plan">
+                          Manage Current Plan
+                        </button>
                       ) : (
                         <button onClick={handleCheckout} className="btn btn-primary paid-plan">
-                          {item.button.text}
+                          Upgrade to Pro
                         </button>
                       )
-                    )}
-                  </div>
-
+                    ) : (
+                      <Link href="/signup" className="btn btn-primary">
+                        Get Started
+                      </Link>
+                    )
+                  }
                 </div>
-              ))}
+
+              </div>
             </div>
           </div>
         </div>
