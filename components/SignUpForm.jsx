@@ -6,6 +6,7 @@ import { FaGoogle } from "react-icons/fa";
 import Spinner from "@/components/Spinner";
 import FAQs from "@/components/FAQs";
 import Link from "next/link";
+import { navigateTo } from "@/utils/navigation";
 
 const SignUpForm = ({ signup_data, faqs }) => {
   const router = useRouter();
@@ -51,9 +52,9 @@ const SignUpForm = ({ signup_data, faqs }) => {
     setIsProcessing(true);
     setError("");
 
-    const username = e.target.username.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    const username = e.target.elements.username.value;
+    const email = e.target.elements.email.value;
+    const password = e.target.elements.password.value;
 
     if (!username || username.length <= 0) {
       setError("Username is required");
@@ -93,7 +94,7 @@ const SignUpForm = ({ signup_data, faqs }) => {
 
         if (data.url) {
           // Send them to Stripe. ZERO NextAuth session exists in their browser right now.
-          window.location.href = data.url;
+          navigateTo(data.url);
         } else {
           setError("Failed to initialize checkout. Please try again.");
           setIsProcessing(false);
@@ -119,7 +120,7 @@ const SignUpForm = ({ signup_data, faqs }) => {
               <div className="col">
                 <h2 className="title">{registration_section.title}</h2>
                 <p className="subtitle">{registration_section.subtitle}</p>
-                <form onSubmit={handleSubmit} className="signup-form" autoComplete="on">
+                <form onSubmit={handleSubmit} className="signup-form" autoComplete="on" noValidate>
                   <div className="name-container">
                     <div className="input-group">
                       <input name="username" type="text" placeholder="Username" className="signup-input" required />

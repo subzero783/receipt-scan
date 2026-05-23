@@ -3,42 +3,90 @@
  */
 
 import { POST } from "@/app/api/signup/route";
-
-// Import the dependencies we need to mock
 import connectDB from "@/config/database";
 import User from "@/models/User";
+import PendingUser from "@/models/PendingUser";
 import bcrypt from "bcryptjs";
 
-// Mock the dependencies
-// We don't want to connect to the real DB or hash real passwords
-jest.mock("@/config/database");
-jest.mock("@/models/User");
-jest.mock("bcryptjs");
+// Mock database connection
+jest.mock("@/config/database", () => jest.fn().mockResolvedValue(true));
+
+// Mock User Model
+jest.mock("@/models/User", () => {
+  const mockUserInstance = {
+    _id: "12345",
+    username: "testuser",
+    email: "test@example.com",
+    password: "hashedpassword123",
+    save: jest.fn().mockResolvedValue(true),
+  };
+  const MockUser = jest.fn().mockImplementation(() => mockUserInstance);
+  MockUser.findOne = jest.fn();
+  MockUser.create = jest.fn();
+  MockUser.findById = jest.fn();
+  return {
+    __esModule: true,
+    default: MockUser,
+    mockInstance: mockUserInstance,
+  };
+});
+
+// Mock PendingUser Model
+jest.mock("@/models/PendingUser", () => {
+  const mockPendingUserInstance = {
+    _id: "pending_123",
+    username: "testuser",
+    email: "test@example.com",
+    password: "hashedpassword123",
+    save: jest.fn().mockResolvedValue(true),
+  };
+  const MockPendingUser = jest.fn().mockImplementation(() => mockPendingUserInstance);
+  MockPendingUser.findOne = jest.fn();
+  MockPendingUser.findById = jest.fn();
+  MockPendingUser.findByIdAndDelete = jest.fn();
+  MockPendingUser.create = jest.fn();
+  return {
+    __esModule: true,
+    default: MockPendingUser,
+    mockInstance: mockPendingUserInstance,
+  };
+});
+
+// Mock bcrypt
+jest.mock("bcryptjs", () => ({
+  hash: jest.fn(),
+}));
+
+// Mock Stripe
+jest.mock("stripe", () => {
+  return jest.fn().mockImplementation(() => {
+    return {
+      checkout: {
+        sessions: {
+          create: jest.fn().mockResolvedValue({
+            url: "https://checkout.stripe.com/pay/cs_test_123",
+          }),
+        },
+      },
+    };
+  });
+});
 
 describe("POST /api/signup", () => {
-  // Clear all mock call counts before each test
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  // Test 1: The "Happy Path" - a new user is created successfully
-  it("should create a new user and return 201", async () => {
-    // --- Arrange (Set up the test) ---
+  // Test 1: Happy Path - brand new user is added to PendingUser and Stripe URL returned
+  it("should create a pending user and return Stripe checkout URL with 201", async () => {
+    User.findOne.mockResolvedValue(null);
+    PendingUser.findOne.mockResolvedValue(null);
+    bcrypt.hash.mockResolvedValue("hashedpassword123");
 
-    // 1. Mock the return values of our dependencies
-    connectDB.mockResolvedValue(true);
-    User.findOne.mockResolvedValue(null); // Simulate "user does not exist"
-    bcrypt.hash.mockResolvedValue("hashedpassword123"); // Mock the hashed password
-    User.create.mockResolvedValue({
-      _id: "12345",
-      username: "testuser",
-      email: "test@example.com",
-      password: "hashedpassword123",
-      save: jest.fn().mockResolvedValue(true), // Mock the save method
-    });
-
-    // 2. Create a mock request object
     const mockRequest = {
+      headers: {
+        get: jest.fn().mockReturnValue(null),
+      },
       json: jest.fn().mockResolvedValue({
         username: "testuser",
         email: "test@example.com",
@@ -46,38 +94,33 @@ describe("POST /api/signup", () => {
       }),
     };
 
-    // --- Act (Run the function) ---
     const response = await POST(mockRequest);
     const body = await response.json();
 
-    // --- Assert (Check the results) ---
     expect(response.status).toBe(201);
-    expect(body).toEqual({ message: "User created successfully" });
+    expect(body).toEqual({ url: "https://checkout.stripe.com/pay/cs_test_123" });
 
-    // // Check that our mocks were called correctly
     expect(connectDB).toHaveBeenCalledTimes(1);
     expect(User.findOne).toHaveBeenCalledWith({ email: "test@example.com" });
-    expect(bcrypt.hash).toHaveBeenCalledWith("password123", 5);
-    expect(User.create).toHaveBeenCalledWith({
-      username: "testuser",
-      email: "test@example.com",
-      password: "hashedpassword123",
-    });
+    expect(PendingUser.findOne).toHaveBeenCalledWith({ email: "test@example.com" });
+    expect(bcrypt.hash).toHaveBeenCalledWith("password123", 10);
+    
+    // Retrieve mockInstance from the mocked module to verify save call
+    const { mockInstance } = require("@/models/PendingUser");
+    expect(mockInstance.save).toHaveBeenCalledTimes(1);
   });
 
-  // Test 2: The "Sad Path" - the user already exists
+  // Test 2: Sad Path - user already exists in User collection
   it("should return 400 if user already exists", async () => {
-    // --- Arrange ---
-    connectDB.mockResolvedValue(true);
     User.findOne.mockResolvedValue({
       _id: "67890",
       email: "existing@example.com",
-    }); // Simulate "user does exist"
-
-    const mockSave = jest.fn();
-    User.create.mockResolvedValue({ save: mockSave });
+    });
 
     const mockRequest = {
+      headers: {
+        get: jest.fn().mockReturnValue(null),
+      },
       json: jest.fn().mockResolvedValue({
         username: "existinguser",
         email: "existing@example.com",
@@ -85,37 +128,31 @@ describe("POST /api/signup", () => {
       }),
     };
 
-    // --- Act ---
     const response = await POST(mockRequest);
-    // --- THIS IS THE FIX ---
-    const body = await response.json();
-    // --- END FIX ---
+    const bodyText = await response.text();
 
-    // --- Assert ---
     expect(response.status).toBe(400);
-    // Assert against the object property
-    expect(body).toEqual({ message: "User already exists" });
+    expect(bodyText).toBe("Email already exists");
 
     expect(User.findOne).toHaveBeenCalledWith({ email: "existing@example.com" });
+    expect(PendingUser.findOne).not.toHaveBeenCalled();
     expect(bcrypt.hash).not.toHaveBeenCalled();
-    expect(User.create).not.toHaveBeenCalled();
-    expect(mockSave).not.toHaveBeenCalled();
   });
 
-  // Test 3: The "Error Path" - the database fails to save
+  // Test 3: Error Path - database save fails
   it("should return 500 if database save fails", async () => {
-    // --- Arrange ---
-    connectDB.mockResolvedValue(true);
     User.findOne.mockResolvedValue(null);
+    PendingUser.findOne.mockResolvedValue(null);
     bcrypt.hash.mockResolvedValue("hashedpassword123");
 
     const dbError = new Error("Database save error");
-    const mockSave = jest.fn().mockRejectedValue(dbError);
-    User.create.mockResolvedValue({
-      save: mockSave,
-    });
+    const { mockInstance } = require("@/models/PendingUser");
+    mockInstance.save.mockRejectedValueOnce(dbError);
 
     const mockRequest = {
+      headers: {
+        get: jest.fn().mockReturnValue(null),
+      },
       json: jest.fn().mockResolvedValue({
         username: "testuser",
         email: "test@example.com",
@@ -123,19 +160,12 @@ describe("POST /api/signup", () => {
       }),
     };
 
-    // --- Act ---
     const response = await POST(mockRequest);
-    // --- THIS REMAINS .text() ---
-    // Because your catch block returns a plain string
-    const body = await response.json();
-    // --- END FIX ---
+    const bodyText = await response.text();
 
-    // --- Assert ---
     expect(response.status).toBe(500);
-    // expect(body).toBe("Database save error"); // This is correct
-    expect(body).toEqual({ error: "Database save error" });
+    expect(bodyText).toBe("Server error");
 
-    expect(User.create).toHaveBeenCalledTimes(1);
-    expect(mockSave).toHaveBeenCalledTimes(1);
+    expect(mockInstance.save).toHaveBeenCalledTimes(1);
   });
 });

@@ -73,6 +73,7 @@ async function handleCheckoutCompleted(session) {
             image: pendingUser.image,
             inboundHandle: handleToUse,
             isPro: true,
+            planType: 'pro',
             stripeCustomerId: session.customer,
             subscriptionId: session.subscription
         });

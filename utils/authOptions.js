@@ -24,6 +24,61 @@ export const authOptions = {
           if (user) {
             const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
             if (isPasswordCorrect) return user;
+          } else {
+            // Did they already pay, but the webhook was delayed or missed?
+            const pendingUser = await PendingUser.findOne({ email: credentials.email });
+            if (pendingUser) {
+              const isPasswordCorrect = await bcrypt.compare(credentials.password, pendingUser.password);
+              if (isPasswordCorrect) {
+                const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+                const customers = await stripe.customers.list({
+                  email: credentials.email,
+                  expand: ['data.subscriptions']
+                });
+
+                if (customers.data.length > 0) {
+                  const customer = customers.data[0];
+                  const activeSub = customer.subscriptions?.data.find(sub => sub.status === 'active' || sub.status === 'trialing');
+
+                  if (activeSub) {
+                    let handleToUse = pendingUser.inboundHandle;
+                    if (!handleToUse) {
+                      let baseHandle = pendingUser.email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+                      if (!baseHandle) baseHandle = `user${Math.floor(Math.random() * 10000)}`;
+                      let finalHandle = baseHandle;
+                      let isUnique = false;
+                      let attempts = 0;
+                      while (!isUnique && attempts < 10) {
+                        const existing = await User.findOne({ inboundHandle: finalHandle });
+                        if (!existing) isUnique = true;
+                        else {
+                          attempts++;
+                          finalHandle = `${baseHandle}${Math.floor(Math.random() * 10000)}`;
+                        }
+                      }
+                      if (!isUnique) finalHandle = `${baseHandle}${Date.now()}`;
+                      handleToUse = finalHandle;
+                    }
+
+                    // Upgrade them right now as a fallback
+                    const realUser = new User({
+                      username: pendingUser.username,
+                      email: pendingUser.email,
+                      password: pendingUser.password,
+                      image: pendingUser.image,
+                      inboundHandle: handleToUse,
+                      isPro: true,
+                      planType: 'pro',
+                      stripeCustomerId: customer.id,
+                      subscriptionId: activeSub.id
+                    });
+                    await realUser.save();
+                    await PendingUser.findByIdAndDelete(pendingUser._id);
+                    return realUser;
+                  }
+                }
+              }
+            }
           }
           return null;
         } catch (error) {
@@ -93,6 +148,7 @@ export const authOptions = {
                     image: pendingUser.image,
                     inboundHandle: handleToUse,
                     isPro: true,
+                    planType: 'pro',
                     stripeCustomerId: customer.id,
                     subscriptionId: activeSub.id
                   });
