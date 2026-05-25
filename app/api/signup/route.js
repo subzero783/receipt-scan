@@ -29,7 +29,7 @@ export const POST = async (request) => {
     }
 
     await connectDB();
-    const { username, email, password } = await request.json();
+    const { username, email, password, interval = 'monthly' } = await request.json();
 
     // 1. Check if user already exists
     const userExists = await User.findOne({ email });
@@ -54,13 +54,17 @@ export const POST = async (request) => {
       await pendingUser.save();
     }
 
+    const priceId = interval === 'yearly'
+      ? (process.env.STRIPE_PRICE_ID_PRO_YEARLY || 'price_1TXP3s2HRfdNJOkAS2bOH0kT')
+      : (process.env.STRIPE_PRICE_ID_PRO || 'price_1TXP3s2HRfdNJOkAS2bOH0kT');
+
     // 3. Generate the Stripe Checkout Session
     const stripeSession = await stripe.checkout.sessions.create({
       mode: 'subscription',
       payment_method_types: ['card'],
       line_items: [
         {
-          price: process.env.STRIPE_PRICE_ID_PRO,
+          price: priceId,
           quantity: 1,
         },
       ],

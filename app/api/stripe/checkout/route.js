@@ -46,6 +46,7 @@ export const POST = async (request) => {
 
         const { searchParams } = new URL(request.url);
         const isNewGoogleUser = searchParams.get('isNewGoogleUser') === 'true';
+        const interval = searchParams.get('interval') || 'monthly';
 
         var successUrl = isNewGoogleUser
             ? `${process.env.NEXT_PUBLIC_DOMAIN}/login?trial_started=true`
@@ -67,13 +68,17 @@ export const POST = async (request) => {
             cancelUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/pricing?canceled=true`;
         }
 
+        const priceId = interval === 'yearly'
+            ? (process.env.STRIPE_PRICE_ID_PRO_YEARLY)
+            : (process.env.STRIPE_PRICE_ID_PRO);
+
         // 1. Build the base configuration
         const stripeConfig = {
             mode: 'subscription',
             payment_method_types: ['card'],
             line_items: [
                 {
-                    price: process.env.STRIPE_PRICE_ID_PRO,
+                    price: priceId,
                     quantity: 1,
                 },
             ],

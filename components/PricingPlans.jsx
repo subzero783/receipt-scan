@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
@@ -10,14 +11,15 @@ const PricingPlans = () => {
   const router = useRouter();
   const isPro = session?.user?.isPro;
   const planType = session?.user?.planType;
+  const [billingCycle, setBillingCycle] = useState('monthly');
 
-  const handleCheckout = async () => {
+  const handleCheckout = async (interval = 'monthly') => {
     if (!session) {
-      router.push('/signup');
+      router.push(`/signup?plan=pro&interval=${interval}`);
       return;
     }
     try {
-      const res = await fetch('/api/stripe/checkout', { method: 'POST' });
+      const res = await fetch(`/api/stripe/checkout?interval=${interval}`, { method: 'POST' });
       const data = await res.json();
       window.location.href = data.url;
     } catch (err) {
@@ -45,6 +47,21 @@ const PricingPlans = () => {
               <h2 className="title">Pricing plans</h2>
               <p className="subtitle">Choose the perfect plan for your business or household expense tracking.</p>
             </div>
+
+            <div className="billing-toggle-container">
+              <span className={billingCycle === 'monthly' ? 'active' : ''}>Monthly</span>
+              <button 
+                onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
+                className={`billing-toggle-button ${billingCycle}`}
+                aria-label="Toggle billing cycle"
+              >
+                <span className="toggle-switch"></span>
+              </button>
+              <span className={billingCycle === 'yearly' ? 'active' : ''}>
+                Yearly <span className="save-badge">Save 20%</span>
+              </span>
+            </div>
+
             <div className="plans">
               <div className="plan">
                 <div className="small-title-and-icon">
@@ -74,7 +91,7 @@ const PricingPlans = () => {
                 <div className="button">
                   {/* // Free Trial Plan */}
                   {!session ? (
-                    <Link href="/signup" className="btn btn-primary">
+                    <Link href={`/signup?plan=free&interval=${billingCycle}`} className="btn btn-primary">
                       Start Free Trial
                     </Link>
                   ) : (
@@ -93,10 +110,21 @@ const PricingPlans = () => {
                   <FaCube />
                 </div>
                 <div className="price-and-discount-text">
-                  <p className="monthly-price">
-                    $20<span>/mo</span>
-                  </p>
-                  {/* <p className="discount-text">For 14 Days</p> */}
+                  {billingCycle === 'monthly' ? (
+                    <>
+                      <p className="monthly-price">
+                        $20<span>/mo</span>
+                      </p>
+                      <p className="discount-text">Billed monthly</p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="monthly-price">
+                        $16<span>/mo</span>
+                      </p>
+                      <p className="discount-text">Billed annually ($192/year)</p>
+                    </>
+                  )}
                 </div>
                 <div className="includes-list">
                   <p>Includes:</p>
@@ -122,14 +150,14 @@ const PricingPlans = () => {
                           Manage Current Plan
                         </button>
                       ) : (
-                        <button onClick={handleCheckout} className="btn btn-primary paid-plan">
+                        <button onClick={() => handleCheckout(billingCycle)} className="btn btn-primary paid-plan">
                           Upgrade to Pro
                         </button>
                       )
                     ) : (
-                      <Link href="/signup" className="btn btn-primary">
+                      <button onClick={() => handleCheckout(billingCycle)} className="btn btn-primary">
                         Get Started
-                      </Link>
+                      </button>
                     )
                   }
                 </div>

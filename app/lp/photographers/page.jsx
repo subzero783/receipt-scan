@@ -1,6 +1,8 @@
 const Photographers = () => {
     return (
-        <div className="lp-photographers"></div>
+        <div className="lp-photographers">
+
+        </div>
     );
 };
 

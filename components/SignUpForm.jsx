@@ -12,6 +12,7 @@ const SignUpForm = ({ signup_data, faqs }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const canceled = searchParams.get('canceled'); // Detect cancelation
+  const interval = searchParams.get('interval') || 'monthly';
 
   const [error, setError] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -79,7 +80,7 @@ const SignUpForm = ({ signup_data, faqs }) => {
       const res = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ username, email, password, interval }),
       });
 
       if (res.status === 400) {
@@ -158,7 +159,7 @@ const SignUpForm = ({ signup_data, faqs }) => {
                 <button
                   onClick={() => {
                     document.cookie = "auth_source=signup; path=/; max-age=300";
-                    signIn("google", { callbackUrl: "/welcome" });
+                    signIn("google", { callbackUrl: `/welcome?interval=${interval}` });
                   }}
                   className="signup-with-google"
                 >

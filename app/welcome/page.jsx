@@ -23,9 +23,11 @@ const WelcomePage = () => {
 
             const initiateStripeCheckout = async () => {
                 try {
+                    const searchParams = new URLSearchParams(window.location.search);
+                    const interval = searchParams.get('interval') || 'monthly';
                     // 1. Fetch the Stripe URL while they still have a valid NextAuth session.
                     // We pass a query param so the backend knows this is a new Google onboarding flow.
-                    const res = await fetch("/api/stripe/checkout?isNewGoogleUser=true", {
+                    const res = await fetch(`/api/stripe/checkout?isNewGoogleUser=true&interval=${interval}`, {
                         method: "POST"
                     });
                     const data = await res.json();

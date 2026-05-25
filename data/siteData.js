@@ -310,50 +310,7 @@ const siteData = [
       "pricing_plans": {
         "small_title": "Plans",
         "title": "Pricing plans",
-        "subtitle": "Choose the perfect plan for your business or household expense tracking.",
-        "plans": [
-          {
-            "small_title": "Free Trial",
-            "monthly_price": "0",
-            "discount_text": "For 14 Days",
-            "includes": [
-              "10 Free receipt photo uploads",
-              "Advanced AI categorization",
-              "Download 2 CSV exports per month",
-              "Download 2 Zip folders per month containing receipts",
-              "Download 2 Invoices per month",
-              "Send 1 email per month containing CSV/ZIP files",
-              "Personal Email Inbound Handle for Email receipts",
-              "Monthly expense summary"
-            ],
-            "paid": true,
-            "button": {
-              "text": "Start Free",
-              "link": "/signup"
-            }
-          },
-          {
-            "small_title": "Pro plan",
-            "monthly_price": "20",
-            "discount_text": "",
-            "includes": [
-              "Unlimited receipt photo uploads",
-              "Advanced AI categorization",
-              "Download unlimited CSV exports",
-              "Download unlimited Zip folders containing receipts",
-              "Download unlimited Invoices per month",
-              "Send unlimited emails per month containing CSV/ZIP files",
-              "Personal Email Inbound Handle for Email receipts",
-              "Monthly expense summary",
-              "Priority customer support"
-            ],
-            "paid": true,
-            "button": {
-              "text": "Upgrade to Pro",
-              "link": "#"
-            }
-          }
-        ]
+        "subtitle": "Choose the perfect plan for your business or household expense tracking."
       },
       "cta": {
         "title": "Need more information?",

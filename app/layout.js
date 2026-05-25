@@ -40,7 +40,7 @@ export const metadata = {
   },
   // Add Google Site Verification code here if provided by Search Console
   verification: {
-    google: '', 
+    google: 'W37odNG3vuzM8uy4O2na-c9G_OgGWDCe8aYpWQmzw9o',
   },
   // You can also add global open graph images here for social media sharing
   openGraph: {
