@@ -4,6 +4,7 @@ import AuthProvider from "@/components/AuthProvider.jsx";
 import { ToastContainer } from "react-toastify";
 import { GlobalProvider } from "@/context/GlobalContext.js";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleTagManager } from '@next/third-parties/google'
 import TopNavBar from "@/components/TopNavBar";
 import Footer from "@/components/Footer";
 import Head from "next/head";
@@ -49,6 +50,7 @@ export default function RootLayout({ children }) {
     <GlobalProvider>
       <AuthProvider>
         <html lang="en">
+          <GoogleTagManager gtmId="GTM-MRCK7JQN" />
           <Head>
             <link rel="icon" href="/public/favicon/favicon.ico" sizes="any" />
             <link
