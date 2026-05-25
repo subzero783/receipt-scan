@@ -1,7 +1,19 @@
-export default function sitemap() {
+import connectDB from "@/config/database";
+import BlogPost from "@/models/BlogPost";
+
+export default async function sitemap() {
     const baseUrl = 'https://www.receiptscan.org';
 
-    return [
+    // Fetch dynamic blog posts
+    let blogPosts = [];
+    try {
+        await connectDB();
+        blogPosts = await BlogPost.find({ status: 'Published' }).select('slug updatedAt').lean();
+    } catch (error) {
+        console.error('Error fetching blog posts for sitemap:', error);
+    }
+
+    const staticRoutes = [
         {
             url: baseUrl,
             lastModified: new Date(),
@@ -32,5 +44,20 @@ export default function sitemap() {
             changeFrequency: 'weekly',
             priority: 0.7, // Good to crawl often for new posts
         },
+        {
+            url: `${baseUrl}/lp/photographers`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.7,
+        },
     ];
+
+    const dynamicRoutes = blogPosts.map((post) => ({
+        url: `${baseUrl}/blog/${post.slug || post._id}`,
+        lastModified: post.updatedAt || new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.6,
+    }));
+
+    return [...staticRoutes, ...dynamicRoutes];
 }

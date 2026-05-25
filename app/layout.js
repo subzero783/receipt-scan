@@ -7,7 +7,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleTagManager } from '@next/third-parties/google'
 import TopNavBar from "@/components/TopNavBar";
 import Footer from "@/components/Footer";
-import Head from "next/head";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -27,6 +26,22 @@ export const metadata = {
     default: 'Receipt Scan - Expense Tracker for Freelancers',
   },
   description: "Automated expense tracking for freelancers and small businesses",
+  icons: {
+    icon: [
+      { url: '/favicon/favicon.ico', sizes: 'any' },
+      { url: '/favicon/favicon-16x16.png', type: 'image/png', sizes: '16x16' },
+      { url: '/favicon/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicon/android-chrome-192x192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/favicon/android-chrome-512x512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [
+      { url: '/favicon/apple-touch-icon.png', type: 'image/png' },
+    ],
+  },
+  // Add Google Site Verification code here if provided by Search Console
+  verification: {
+    google: '', 
+  },
   // You can also add global open graph images here for social media sharing
   openGraph: {
     title: 'Receipt Scan',
@@ -51,18 +66,6 @@ export default function RootLayout({ children }) {
       <AuthProvider>
         <html lang="en">
           <GoogleTagManager gtmId="GTM-MRCK7JQN" />
-          <Head>
-            <link rel="icon" href="/public/favicon/favicon.ico" sizes="any" />
-            <link
-              rel="apple-touch-icon"
-              href="/public/favicon/apple-touch-icon.png"
-              type="image/png"
-            />
-            <link rel="icon" type="image/png" sizes="192x192" href="/public/favicon/android-chrome-192x192.png" />
-            <link rel="icon" type="image/png" sizes="512x512" href="/public/favicon/android-chrome-512x512.png" />
-            <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png" />
-            <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon/favicon-32x32.png" />
-          </Head>
           {/* <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body> */}
           <body>
             <TopNavBar />

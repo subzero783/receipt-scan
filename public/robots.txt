@@ -7,7 +7,6 @@ Disallow: /*?*
 
 # Block authenticated user areas
 Disallow: /dashboard/
-Disallow: /app/
 
 # Block authentication pages to save crawl budget
 Disallow: /sign-in
