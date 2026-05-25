@@ -55,8 +55,8 @@ export const POST = async (request) => {
     }
 
     const priceId = interval === 'yearly'
-      ? (process.env.STRIPE_PRICE_ID_PRO_YEARLY || 'price_1TXP3s2HRfdNJOkAS2bOH0kT')
-      : (process.env.STRIPE_PRICE_ID_PRO || 'price_1TXP3s2HRfdNJOkAS2bOH0kT');
+      ? (process.env.STRIPE_PRICE_ID_PRO_YEARLY)
+      : (process.env.STRIPE_PRICE_ID_PRO);
 
     // 3. Generate the Stripe Checkout Session
     const stripeSession = await stripe.checkout.sessions.create({
@@ -84,6 +84,9 @@ export const POST = async (request) => {
 
   } catch (error) {
     console.error("Signup error:", error);
-    return new NextResponse("Server error", { status: 500 });
+    const errorMessage = error.message && error.message.includes('No such price')
+      ? `Stripe Price ID is invalid or does not exist: "${priceId}". Please create a yearly price in your Stripe dashboard and configure it as STRIPE_PRICE_ID_PRO_YEARLY in your .env files.`
+      : (error.message || 'Server error');
+    return new NextResponse(errorMessage, { status: 500 });
   }
 };

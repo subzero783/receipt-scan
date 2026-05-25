@@ -21,7 +21,12 @@ const PricingPlans = () => {
     try {
       const res = await fetch(`/api/stripe/checkout?interval=${interval}`, { method: 'POST' });
       const data = await res.json();
-      window.location.href = data.url;
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error('Payment Error: No checkout URL received', data);
+        alert(data.message || 'Payment initialization failed. Please try again.');
+      }
     } catch (err) {
       console.error('Payment Error:', err);
     }

@@ -106,6 +106,9 @@ export const POST = async (request) => {
 
     } catch (error) {
         console.error('Stripe Checkout Error:', error);
-        return new NextResponse(JSON.stringify({ message: 'Internal Server Error' }), { status: 500 });
+        const errorMessage = error.message && error.message.includes('No such price')
+            ? `Stripe Price ID is invalid or does not exist: "${priceId}". Please create a yearly price in your Stripe dashboard and configure it as STRIPE_PRICE_ID_PRO_YEARLY in your .env files.`
+            : (error.message || 'Internal Server Error');
+        return new NextResponse(JSON.stringify({ message: errorMessage }), { status: 500 });
     }
 };
