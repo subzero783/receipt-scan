@@ -911,22 +911,22 @@ const siteData = [
         "subtitle": "Stop doing unpaid manual labor. Let the AI handle the business side so you can lose yourself in the work.",
         "tools": [
           {
-            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384791/Paper_receipt_passing_scanner_pggfq8.jpg",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779897547/Smartphone_screen_displaying_rec__202605270857_nolaj8.jpg",
             "image_alt": "",
             "title": "Snap, scan, and reclaim Sundays",
             "text": "Our AI reads the date, vendor, and amount from any thermal receipt in seconds, so you belong in Premiere editing, not wrangling CSVs."
           },
           {
-            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384791/Paper_receipt_passing_scanner_pggfq8.jpg",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779897772/Photographer_showing_receipt_at___202605270902_pnenao.jpg",
             "image_alt": "",
-            "title": "Snap, scan, and reclaim Sundays",
-            "text": "Our AI reads the date, vendor, and amount from any thermal receipt in seconds, so you belong in Premiere editing, not wrangling CSVs."
+            "title": "Bulletproof your gear at the border",
+            "text": "Receipt Scan stores digital, un-faded copies of your cinema lenses forever in the cloud, ready to neutralize Customs agents or insurance adjusters."
           },
           {
-            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384791/Paper_receipt_passing_scanner_pggfq8.jpg",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779897546/Photographer_clinking_mugs_with___202605270858_osjrvd.jpg",
             "image_alt": "",
-            "title": "Snap, scan, and reclaim Sundays",
-            "text": "Our AI reads the date, vendor, and amount from any thermal receipt in seconds, so you belong in Premiere editing, not wrangling CSVs."
+            "title": "Eliminate tax season leg work",
+            "text": "Our platform auto-sorts expenses into CPA-ready categories, mathematically proving your profit motive so the IRS never classifies your passion as a hobby."
           }
         ],
         "buttons": [

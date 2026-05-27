@@ -59,5 +59,23 @@
 
             }
         }
+
+        .tools-section {
+            >.container {
+                >.row {
+                    >.col {
+                        >.top-text {
+                            margin: 0 auto;
+                            max-width: 768px;
+                            text-align: center;
+
+                            >.title {
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
