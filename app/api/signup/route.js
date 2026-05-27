@@ -86,7 +86,7 @@ export const POST = async (request) => {
     console.error("Signup error:", error);
     const errorMessage = error.message && error.message.includes('No such price')
       ? `Stripe Price ID is invalid or does not exist: "${priceId}". Please create a yearly price in your Stripe dashboard and configure it as STRIPE_PRICE_ID_PRO_YEARLY in your .env files.`
-      : (error.message || 'Server error');
+      : 'Server error';
     return new NextResponse(errorMessage, { status: 500 });
   }
 };

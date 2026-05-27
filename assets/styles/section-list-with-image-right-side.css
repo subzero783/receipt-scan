@@ -1,0 +1,89 @@
+.section-list-with-image-right-side {
+    padding: 0 15px 112px;
+
+    background-color: var(--color-third);
+
+    @media screen and (max-width: 991px) {
+        padding: 0 15px 64px;
+    }
+
+    >.container {
+        >.row {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            gap: 80px;
+
+            @media screen and (max-width: 768px) {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            >.col {
+                width: 100%;
+
+                >.list {
+                    >.list-item {
+                        margin-bottom: 24px;
+                        border-bottom: 1px solid rgba(11, 1, 3, 0.15);
+
+
+                        >.content {
+                            padding-bottom: 24px;
+
+                            >h3 {
+                                font-size: 36px;
+                                font-weight: 600;
+                                margin-bottom: 16px;
+
+                                @media screen and (max-width: 991px) {
+                                    font-size: 26px;
+                                }
+                            }
+
+                            >p {
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+
+                .buttons {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    align-items: center;
+                    gap: 16px;
+                    margin-top: 24px;
+
+                    >.btn {
+                        color: var(--color-white);
+                        background-color: var(--color-primary);
+                        border: 1px solid var(--color-primary);
+
+                        &:hover,
+                        &:active,
+                        &:focus {
+                            background-color: var(--color-white);
+                            color: var(--color-primary);
+                            border: 1px solid var(--color-primary);
+                        }
+                    }
+                }
+
+                >.right-side-image {
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    height: 100%;
+                    min-height: 100%;
+                    aspect-ratio: 1;
+                    border-radius: 16px;
+
+                    @media screen and (max-width: 768px) {
+                        aspect-ratio: 2;
+                    }
+                }
+            }
+        }
+    }
+}

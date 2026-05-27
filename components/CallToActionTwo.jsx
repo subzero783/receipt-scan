@@ -1,22 +1,29 @@
 import Link from 'next/link';
 
 
-const CallToActionTwo = ({data}) => {
+const CallToActionTwo = ({ data }) => {
+    const { small_title, title, subtitle, buttons = [] } = data || {};
 
-    const {title, subtitle, buttons} = data;
-
-    return(
-        <div className="cta-2-section">
+    return (
+        <section className="cta-2-section">
             <div className="cta-2-card">
-                <h2>{title}</h2>
-                <p>{subtitle}</p>
-                <div className="action-buttons">
-                    {buttons.map((button, index)=>(
-                    <Link key={index} href={button.link} className="btn btn-primary">{button.text}</Link>
-                    ))}              
-                </div>
+                {small_title && <p className="small-title">{small_title}</p>}
+                {title && <h2>{title}</h2>}
+                {subtitle && <p>{subtitle}</p>}
+                {buttons && buttons.length > 0 && (
+                    <div className="action-buttons">
+                        {buttons.map((button, index) => {
+                            if (!button || !button.link || !button.text) return null;
+                            return (
+                                <Link key={index} href={button.link} className="btn btn-primary">
+                                    {button.text}
+                                </Link>
+                            );
+                        })}
+                    </div>
+                )}
             </div>
-        </div>
+        </section>
     );
 }
 

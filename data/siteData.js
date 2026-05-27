@@ -835,6 +835,112 @@ const siteData = [
         "subtitle": "We'd love to hear from you. Whether you have a question, need support, or want to share feedback, we're here to help."
       }
     }
+  },
+  {
+    "landing_page_photographers": {
+      "meta_data": {
+        "title": "Best AI Expense Tracker for Visual Freelancers",
+        "description": "Stop letting the IRS steal your shoot profits. Automate write-offs, protect your gear, and ditch fading glovebox receipts. Scan your first receipt free today."
+      },
+      "hero_section": {
+        "title": "Stop letting the IRS steal your shoot profits",
+        "subtitle": "Ditch fading receipts and overpriced QuickBooks. Snap a photo of any receipt. Our AI categorizes your write-offs, protects your gear, maximizes tax returns, and buys back creative hours.",
+        "background_image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779835352/Videographer_scanning_receipt_wi__202605261541_nyqb00.jpg",
+        "buttons": [
+          {
+            "text": "Start Free",
+            "link": "/signup"
+          },
+          {
+            "text": "Features",
+            "link": "/features"
+          }
+        ]
+      },
+      "reality_section": {
+        "small_title": "Reality",
+        "title": "Are you still managing finances like an amateur?",
+        "subtitle": "Closing a $6,500 shoot feels great—until the government takes 30% for SE tax, you pay your second shooter, and you take home pennies. You're relying on methods that actively sabotage your business.",
+        "buttons": [
+          {
+            "text": "Start",
+            "link": "/signup"
+          },
+          {
+            "text": "Features",
+            "link": "/features"
+          }
+        ]
+      },
+      "list_items": {
+        "small_title": "",
+        "title": "",
+        "subtitle": "",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779835352/Videographer_scanning_receipt_wi__202605261541_nyqb00.jpg",
+        "list": [
+          {
+            "title": "No more lost receipts",
+            "description": "Stuffing toll receipts into a zipper bag, watching thermal ink fade to blank paper long before tax season arrives.",
+            "icon": ""
+          },
+          {
+            "title": "The spreadsheet delusion",
+            "description": "Wasting Sundays doing unpaid data entry—downloading CSVs, fixing broken fields, and praying you don't break your master sheet.",
+            "icon": ""
+          },
+          {
+            "title": "The software betrayal",
+            "description": "Paying legacy monopolies $27.99 per month, fighting 404 gateway errors, and getting hit with $20 ACH fees just to get paid for your art.",
+            "icon": ""
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Start Free",
+            "link": "/signup"
+          },
+          {
+            "text": "Features",
+            "link": "/features"
+          }
+        ]
+      },
+      "solutions_section": {
+        "small_title": "Solutions",
+        "title": "Three ways Receipt Scan reclaims your time",
+        "subtitle": "Stop doing unpaid manual labor. Let the AI handle the business side so you can lose yourself in the work.",
+        "tools": [
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384791/Paper_receipt_passing_scanner_pggfq8.jpg",
+            "image_alt": "",
+            "title": "Snap, scan, and reclaim Sundays",
+            "text": "Our AI reads the date, vendor, and amount from any thermal receipt in seconds, so you belong in Premiere editing, not wrangling CSVs."
+          },
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384791/Paper_receipt_passing_scanner_pggfq8.jpg",
+            "image_alt": "",
+            "title": "Snap, scan, and reclaim Sundays",
+            "text": "Our AI reads the date, vendor, and amount from any thermal receipt in seconds, so you belong in Premiere editing, not wrangling CSVs."
+          },
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384791/Paper_receipt_passing_scanner_pggfq8.jpg",
+            "image_alt": "",
+            "title": "Snap, scan, and reclaim Sundays",
+            "text": "Our AI reads the date, vendor, and amount from any thermal receipt in seconds, so you belong in Premiere editing, not wrangling CSVs."
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Start Free",
+            "link": "/signup"
+          },
+          {
+            "text": "Features",
+            "link": "/features"
+          }
+        ]
+      }
+    }
   }
 ];
 export default siteData;

@@ -21,7 +21,7 @@ const ToolsSection = ({ data }) => {
                         <div className="col" key={index}>
                             <div className="tool-image" style={{ backgroundImage: `url(${tool.image})` }}></div>
                             <div className="text-wrapper">
-                                <span className="small-title">{tool.small_title}</span>
+                                {tool.small_title && <span className="small-title">{tool.small_title}</span>}
                                 <h3 className="title">{tool.title}</h3>
                                 <p className="description">{tool.text}</p>
                             </div>

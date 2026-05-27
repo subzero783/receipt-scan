@@ -1,58 +1,63 @@
 .cta-2-section {
-    background-color: var(--color-third);
-    padding: 6em 0;
     display: flex;
-    justify-content: center;
+    padding: 6em 0;
     align-items: center;
+    justify-content: center;
+    background-color: var(--color-third);
 
     .action-buttons {
+        gap: 16px;
         display: flex;
         justify-content: center;
-        gap: 16px;
 
         >.btn {
-            border: 1px solid var(--color-primary);
             font-size: 14px;
+            border: 1px solid var(--color-primary);
 
             &:hover,
             &:active,
             &:focus {
-                border-color: var(--color-neutral-600);
                 background-color: transparent;
                 color: var(--color-neutral-600);
+                border-color: var(--color-neutral-600);
             }
         }
     }
-}
 
-.cta-2-card {
-    text-align: center;
-    background-color: var(--color-fourth);
-    padding: 85px 15px;
-    width: 100%;
-    max-width: 91%;
-    border-radius: 16px;
+    .cta-2-card {
+        width: 100%;
+        max-width: 91%;
+        padding: 85px 15px;
+        text-align: center;
+        border-radius: 16px;
+        background-color: var(--color-fourth);
 
-    @media screen and (max-width: 768px) {
-        padding: 32px;
-    }
-}
+        .small-title {
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
 
-.cta-2-card h2 {
-    font-size: 52px;
-    color: var(--color-dark);
-    margin-bottom: 24px;
-    font-weight: 600;
-}
+        h2 {
+            font-size: 52px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--color-dark);
+        }
 
-.cta-2-card p {
-    color: var(--color-neutral-600);
-    margin-bottom: 32px;
-    font-size: 16px;
-}
+        p {
+            font-size: 16px;
+            margin-bottom: 32px;
+            color: var(--color-neutral-600);
+        }
 
-@media screen and (max-width: 991px) {
-    .cta-2-card h2 {
-        font-size: 36px;
+        @media screen and (max-width: 991px) {
+            h2 {
+                font-size: 36px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            padding: 32px;
+        }
     }
 }

@@ -17,8 +17,6 @@ export async function generateMetadata() {
 
 export default async function Home() {
 
-  if (!homeData) return <div>Loading...</div>;
-
   const hero_section = homeData.hero_section;
   const how_it_works = homeData.how_it_works;
   const features = homeData.features;
