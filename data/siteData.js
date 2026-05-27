@@ -939,6 +939,36 @@ const siteData = [
             "link": "/features"
           }
         ]
+      },
+      "freedom_section": {
+        "small_title": "Freedom",
+        "title": "Total reclamation of creative flow",
+        "subtitle": "We know the 'spend more to save more' tax advice is not true. You need to capture every dollar you already spend. Imagine operating with absolute fearlessness—no dread of an IRS audit, no panic at border crossings. You are a legitimate, highly competent solopreneur. Let the AI handle the business side, so you can lose yourself in the show.",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779902059/Photographer_on_mountain_edge_su__202605271013_mnylth.jpg",
+        "buttons": [
+          {
+            "text": "Start Free",
+            "link": "/signup"
+          },
+          {
+            "text": "Features",
+            "link": "/features"
+          }
+        ]
+      },
+      "cta": {
+        "title": "Stop doing unpaid manual labor",
+        "subtitle": "Ditch the bloated software monopolies and the glovebox graveyard. Automate your write-offs today.",
+        "buttons": [
+          {
+            "text": "Start Free",
+            "link": "/signup"
+          },
+          {
+            "text": "Features",
+            "link": "/features"
+          }
+        ]
       }
     }
   }

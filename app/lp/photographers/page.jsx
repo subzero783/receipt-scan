@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import CallToActionTwo from '@/components/CallToActionTwo';
 import SectionListImageRightSide from '@/components/SectionListImageRightSide';
 import ToolsSection from '@/components/ToolsSection';
+import TwoColumns from '@/components/TwoColumns';
 
 const landingPagePhotographers = siteData.find(item => item.landing_page_photographers)?.landing_page_photographers;
 
@@ -21,6 +22,8 @@ const Photographers = () => {
     const reality_section = landingPagePhotographers?.reality_section;
     const list_items = landingPagePhotographers?.list_items;
     const solutions_section = landingPagePhotographers?.solutions_section;
+    const freedom_section = landingPagePhotographers?.freedom_section;
+    const cta = landingPagePhotographers?.cta;
 
     return (
         <div className="landing-pages lp-photographers">
@@ -28,6 +31,8 @@ const Photographers = () => {
             <CallToActionTwo data={reality_section} />
             <SectionListImageRightSide data={list_items} />
             <ToolsSection data={solutions_section} />
+            <TwoColumns data={freedom_section} text_direction="left" background_color={"var(--color-third)"} bottom_border={false} small_title_margin={false} />
+            <CallToActionTwo data={cta} />
         </div>
     );
 };
