@@ -4,6 +4,7 @@ import CallToActionTwo from '@/components/CallToActionTwo';
 import SectionListImageRightSide from '@/components/SectionListImageRightSide';
 import ToolsSection from '@/components/ToolsSection';
 import TwoColumns from '@/components/TwoColumns';
+import TestimonialsSectionTwo from '@/components/TestimonialsSectionTwo';
 
 const landingPagePhotographers = siteData.find(item => item.landing_page_photographers)?.landing_page_photographers;
 
@@ -23,6 +24,7 @@ const Photographers = () => {
     const list_items = landingPagePhotographers?.list_items;
     const solutions_section = landingPagePhotographers?.solutions_section;
     const freedom_section = landingPagePhotographers?.freedom_section;
+    const testimonials = landingPagePhotographers?.testimonials;
     const cta = landingPagePhotographers?.cta;
 
     return (
@@ -32,6 +34,7 @@ const Photographers = () => {
             <SectionListImageRightSide data={list_items} />
             <ToolsSection data={solutions_section} />
             <TwoColumns data={freedom_section} text_direction="left" background_color={"var(--color-third)"} bottom_border={false} small_title_margin={false} />
+            <TestimonialsSectionTwo data={testimonials} />
             <CallToActionTwo data={cta} />
         </div>
     );

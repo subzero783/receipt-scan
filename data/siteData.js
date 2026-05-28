@@ -956,6 +956,32 @@ const siteData = [
           }
         ]
       },
+      "testimonials": {
+        "title": "Real Results",
+        "subtitle": "Users who ditched the glovebox",
+        "testimonials": [
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779929792/sarah-jenkins_dkmrkt.png",
+            "image_alt": "Sarah Jenkins testimonial of Receipt Scan"
+          },
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779929791/elena-rodriguez_dw4hff.png",
+            "image_alt": "Elena Rodriguez testimonial of Receipt Scan"
+          },
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779929791/james-lin_amutsn.png",
+            "image_alt": "James Lin testimonial of Receipt Scan"
+          },
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779929790/marcus-vance_i7bb3j.png",
+            "image_alt": "Marcus Vance testimonial of Receipt Scan"
+          },
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779929790/mike-oconnor_mhkmen.png",
+            "image_alt": "Mike O'Connor testimonial of Receipt Scan"
+          }
+        ]
+      },
       "cta": {
         "title": "Stop doing unpaid manual labor",
         "subtitle": "Ditch the bloated software monopolies and the glovebox graveyard. Automate your write-offs today.",
