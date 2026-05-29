@@ -53,14 +53,13 @@
                 text-align: center;
 
                 .small-title {
-                    margin-bottom: 8px;
+                    margin-bottom: 16px;
                     display: block;
                 }
 
                 .title {
                     margin-bottom: 16px;
-                    font-size: 36px;
-                    font-weight: 600;
+                    font-size: 28px;
                 }
 
                 .description {

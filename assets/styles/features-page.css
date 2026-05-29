@@ -21,4 +21,33 @@
             }
         }
     }
+
+    .two-columns-section {
+
+        &.upload,
+        &.categorize_expenses {
+
+            .left-column {
+                width: 50%;
+            }
+
+            .right-column {
+                width: 50%;
+            }
+
+            .image-container {
+                >img {
+                    max-width: 757px;
+                }
+            }
+
+            @media screen and (max-width: 991px) {
+
+                .left-column,
+                .right-column {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }

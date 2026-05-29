@@ -1,9 +1,5 @@
 .contact-page {
     .hero-section-three {
-        background-color: var(--color-sixth);
-
-        >.container {
-            padding-bottom: 40px;
-        }
+        background-color: var(--color-secondary);
     }
 }

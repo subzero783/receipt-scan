@@ -45,7 +45,7 @@ const FeaturesPage = () => {
 
       <ToolsSection data={tools} />
 
-      <TwoColumns data={extraction_description_section} text_direction="left" icon={<FiUpload />} background_color={"var(--color-third)"} bottom_border={true} small_title_margin={true} />
+      <TwoColumns data={extraction_description_section} text_direction="left" section_class="upload" icon={<FiUpload />} background_color={"var(--color-third)"} bottom_border={true} small_title_margin={true} />
 
       <TwoColumns data={categorize_expenses} text_direction="left" section_class="categorize_expenses" icon={<LuBrain />} background_color={"var(--color-third)"} bottom_border={true} small_title_margin={true} />
 

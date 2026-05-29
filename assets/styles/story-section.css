@@ -31,8 +31,8 @@
                 .top-text {
                     align-items: flex-start;
 
-                    .title {
-                        font-weight: 600;
+                    >.title {
+                        font-size: 32px;
                     }
 
                     .paragraphs {

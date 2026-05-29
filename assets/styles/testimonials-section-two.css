@@ -11,6 +11,10 @@
             >.col {
                 >.top-text {
                     text-align: center;
+
+                    .title {
+                        font-weight: 600;
+                    }
                 }
 
                 >.testimonials {

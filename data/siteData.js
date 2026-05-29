@@ -60,7 +60,7 @@ const siteData = [
             "small_title": "Snap",
             "title": "Capture receipts",
             "text": "Quickly photograph, upload or email your receipts.",
-            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384795/capture-receipts_ngwq65.png",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779403761/receipt-scan-app/blog-posts-images/kdmu1tn3nrt0t5lfcbh4.jpg",
             "link": {
               "url": "/signup",
               "text": "Get started"
@@ -71,7 +71,7 @@ const siteData = [
             "small_title": "AI tag",
             "title": "Smart categorization",
             "text": "Our AI instantly extracts and categorizes expense details.",
-            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384795/smart-categorization_tmozyc.png",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384494/receipt-scan-app/blog-posts-images/gib8vxteklqigfaqysse.jpg",
             "link": {
               "url": "/signup",
               "text": "Get started"
@@ -82,7 +82,7 @@ const siteData = [
             "small_title": "Export & Email",
             "title": "Seamless tax preparation",
             "text": "Generate spreadsheet files, export receipt images, and get organized for 1099s or personal itemized deductions in seconds.",
-            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384794/seamless-tax-preparation_lfftcq.png",
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779897546/Photographer_clinking_mugs_with___202605270858_osjrvd.jpg",
             "link": {
               "url": "/signup",
               "text": "Get started"
@@ -406,7 +406,7 @@ const siteData = [
       "drag_and_drop_area": {
         "top_text": {
           "small_title": "Easy",
-          "title": "Drag and drop your receipt",
+          "title": "Drag and drop your receipts",
           "subtitle": "Simplify your expense tracking with our intuitive upload interface"
         },
         "recent_scans": {
@@ -664,8 +664,8 @@ const siteData = [
         "small_title": "01 Capture Receipts",
         "title": "Snap a photo, upload a batch, or forward an email",
         "subtitle": "Receipt Scan accepts receipts however you want to send them. Phone photos or emails forwarded to your unique inbound address all work instantly.",
-        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384792/Data_inputs_feeding_cloud_database_q5c8mf.jpg",
-        "image_alt": "Data inputs feeding cloud database",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1780080711/Upload_receipts_vvxuz8.png",
+        "image_alt": "Upload receipts in bulk",
         "buttons": [
           {
             "text": "Start for Free",
@@ -681,7 +681,7 @@ const siteData = [
         "small_title": "02 Categorize Expenses",
         "title": "AI learns your spending patterns and sorts automatically",
         "subtitle": "Our system reads more than just numbers. It understands your business and categorizes each expense into the right bucket. Whether classifying a client dinner or your family's weekly groceries, our AI learns your custom categories.",
-        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384792/Receipts_processed_by_AI_aupfrn.jpg",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1780079640/Expense_Breakdown_v1o2ff.png",
         "image_alt": "Receipts processed by AI",
         "buttons": [
           {
@@ -698,7 +698,7 @@ const siteData = [
         "small_title": "03 Export and Invoice",
         "title": "Send clean data to your accountant or create invoices",
         "subtitle": "Pull your categorized expenses into CSV, Excel, or PDF invoices. Everything is formatted and ready to use in your accounting software or send directly to clients.",
-        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384793/Digital_dashboard_with_CSV_ZIP_PDF_INVOICE_fwhvpa.jpg",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1780080396/Generate_Invoice_dqbynw.png",
         "image_alt": "Digital dashboard with CSV ZIP PDF Invoice",
         "buttons": [
           {

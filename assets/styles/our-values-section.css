@@ -21,7 +21,7 @@
                     color: var(--color-white);
 
                     .title {
-                        font-weight: 600;
+                        font-size: 32px;
                     }
 
                     .subtitle {
@@ -60,7 +60,6 @@
 
                             >.title {
                                 font-size: 24px;
-                                font-weight: 600;
                                 margin-bottom: 10px;
                             }
 

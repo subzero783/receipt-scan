@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const TwoColumns = ({ data, text_direction, section_class, icon, background_color = "", bottom_border = false, small_title_margin = false }) => {
 
-    const { small_title, title, subtitle, buttons, image } = data;
+    const { small_title, title, subtitle, buttons, image, image_alt } = data;
 
     return (
         <section className={`two-columns-section ${text_direction} ${section_class}`} style={{
@@ -33,7 +33,9 @@ const TwoColumns = ({ data, text_direction, section_class, icon, background_colo
                         </div>
                     </div>
                     <div className="col right-column">
-                        <div className="background-image" style={{ backgroundImage: `url(${image})` }}></div>
+                        <div className="image-container">
+                            <img src={image} alt={image_alt} />
+                        </div>
                     </div>
                 </div>
             </div>

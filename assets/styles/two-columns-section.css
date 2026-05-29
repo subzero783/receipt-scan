@@ -26,6 +26,12 @@
         >.icon-and-text {
             position: relative;
         }
+
+        .text-wrapper {
+            >.title {
+                font-size: 32px;
+            }
+        }
     }
 
     .row {
@@ -36,8 +42,6 @@
         align-items: center;
 
         &.small_title_margin {
-            align-items: flex-start;
-
             .small-title {
                 margin-bottom: 20%;
             }
@@ -51,12 +55,15 @@
             width: 50%;
         }
 
-        .background-image {
-            border-radius: 16px;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            min-height: 640px;
+        .image-container {
+
+            >img {
+                width: 100%;
+                display: block;
+                margin: 0 auto;
+                border-radius: 16px;
+                box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
+            }
         }
 
     }
@@ -79,10 +86,6 @@
             .left-column,
             .right-column {
                 width: 100%;
-            }
-
-            .background-image {
-                min-height: 348px;
             }
 
         }

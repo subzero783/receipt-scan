@@ -21,8 +21,7 @@
     padding: 18.5px 0 18.5px 32px;
 
     >.title {
-      font-size: 28px;
-      font-weight: 600;
+      font-size: 22px;
       color: var(--color-white);
       margin-bottom: 8px;
     }

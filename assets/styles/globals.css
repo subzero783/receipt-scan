@@ -60,7 +60,7 @@
 }
 
 .title {
-  font-size: 52px;
+  font-size: 42px;
   font-weight: 500;
 
   @media screen and (max-width: 768px) {
@@ -110,13 +110,12 @@
   padding: 24px;
 
   .small-title {
-    font-weight: 600;
     font-size: 16px;
+    font-weight: 600;
   }
 
   .title {
-    font-size: 28px;
-    font-weight: 600;
+    font-size: 24px;
     margin: 8px 0;
   }
 
