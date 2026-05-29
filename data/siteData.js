@@ -640,7 +640,7 @@ const siteData = [
           {
             "small_title": "Extraction",
             "title": "Instant data extraction",
-            "text": "Advanced OCR reads receipts in seconds, no matter the format.",
+            "text": "AI technology reads receipts in seconds, no matter the format.",
             "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384791/Paper_receipt_passing_scanner_pggfq8.jpg",
             "image_alt": "Paper receipt passing scanner"
           },
