@@ -595,7 +595,7 @@ const siteData = [
   {
     "features_page": {
       "meta_data": {
-        "title": "Features | AI Receipt OCR & Automated Tax Prep",
+        "title": "Features | AI Receipt Scanner & Automated Tax Prep",
         "description": "Explore Receipt Scan's powerful features: AI categorization, mobile capture, seamless tax prep, and CSV/Excel exports for freelancers and individuals."
       },
       "hero_section": {
@@ -714,7 +714,7 @@ const siteData = [
       "capture_data_instantly": {
         "small_title": "Capture",
         "title": "Capture data instantly, no matter where it is",
-        "subtitle": "Stop hoarding paper and digging through inboxes. Our advanced OCR technology accurately extracts vendor names, dates, amounts, and taxes from any receipt. Whether you snap a photo on your phone, upload a bulk batch of photos, or forward an email directly to your custom inbound address, Receipt Scan processes it in seconds.",
+        "subtitle": "Stop hoarding paper and digging through inboxes. Our advanced AI technology accurately extracts vendor names, dates, amounts, and taxes from any receipt. Whether you snap a photo on your phone, upload a bulk batch of photos, or forward an email directly to your custom inbound address, Receipt Scan processes it in seconds.",
         "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384790/Smartphone_capturing_receipt_vbolb2.jpg",
         "image_alt": "Illustration of a smartphone scanning a receipt, alongside PDF and email icons, smoothly transferring data into a central cloud database.",
         "buttons": [
