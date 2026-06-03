@@ -117,7 +117,7 @@ const Navbar = () => {
                             signOut({ callbackUrl: "/login" });
                           }}
                         >
-                          Sign out
+                          Sign Out
                         </button>
                       </div>
                     </div>
@@ -134,13 +134,13 @@ const Navbar = () => {
               href="/login"
               className={`${pathName === "/login" ? "active" : ""} btn btn-primary`}
             >
-              Sign in
+              Sign In
             </Link>
             <Link
               href="/signup"
               className={`${pathName === "/signup" ? "active" : ""} btn btn-primary`}
             >
-              Sign up
+              Sign Up
             </Link>
           </div>)}
         </div>

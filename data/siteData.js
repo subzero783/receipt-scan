@@ -430,7 +430,7 @@ const siteData = [
             "id": "2",
             "icon": "robot",
             "title": "Smart Extraction",
-            "text": "Our AI engine instantly extracts key data—including Merchant, Date, and Totals—eliminating manual data entry."
+            "text": "Our AI engine instantly extracts key data including Merchant, Date, and Totals, eliminating manual data entry."
           },
           {
             "id": "3",

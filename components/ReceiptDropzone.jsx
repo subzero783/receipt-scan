@@ -31,7 +31,7 @@ const ReceiptDropzone = ({ files, isUploading, onDrop, onRemoveFile, onUpload, u
             Drag & drop receipts here, or <span className="browse-btn">browse</span>
           </p>
         )}
-        <span className="file-types">Supports JPG, PNG, PDF (Max 5MB)</span>
+        <span className="file-types">Supports JPEG, JPG, PNG, HEIC (Max 5MB)</span>
       </div>
 
       {/* --- Error Message --- */}

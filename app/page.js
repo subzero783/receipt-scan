@@ -25,6 +25,14 @@ export default async function Home() {
   return (
     <div className="home-page">
       <HeroSection data={hero_section} />
+      <section className="iphone-mockup-with-features-list">
+        <div className="container">
+          <div className="row">
+            <div className="col"></div>
+            <div className="col"></div>
+          </div>
+        </div>
+      </section>
       <HowItWorks data={how_it_works} />
       <Features data={features} />
       <Testimonials data={testimonials} />

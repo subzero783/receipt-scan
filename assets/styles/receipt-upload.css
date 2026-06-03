@@ -2,17 +2,17 @@
   background-color: var(--color-third);
   padding: 112px 15px;
 
-  >.text-container {
+  .text-container {
     >.row {
       >.col {
         >.top-text {
           .title {
-            font-size: 38px;
-            font-weight: 600;
+            text-align: center;
           }
 
           .subtitle {
             margin-bottom: 24px;
+            text-align: center;
           }
         }
       }
