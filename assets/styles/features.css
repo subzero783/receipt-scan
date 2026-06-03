@@ -17,7 +17,8 @@
     .top-text {
       color: var(--color-white);
 
-      .title {
+      .title,
+      .subtitle {
         text-align: center;
       }
     }

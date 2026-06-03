@@ -55,7 +55,7 @@ const PricingPlans = () => {
 
             <div className="billing-toggle-container">
               <span className={billingCycle === 'monthly' ? 'active' : ''}>Monthly</span>
-              <button 
+              <button
                 onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
                 className={`billing-toggle-button ${billingCycle}`}
                 aria-label="Toggle billing cycle"
@@ -82,14 +82,14 @@ const PricingPlans = () => {
                 <div className="includes-list">
                   <p>Includes:</p>
                   <ul>
-                    <li><IoMdCheckmark /> 10 Free receipt photo uploads</li>
-                    <li><IoMdCheckmark /> Advanced AI categorization</li>
-                    <li><IoMdCheckmark /> Download 2 CSV exports per month</li>
-                    <li><IoMdCheckmark /> Download 2 Zip folders per month containing receipts</li>
-                    <li><IoMdCheckmark /> Download 2 Invoices per month</li>
-                    <li><IoMdCheckmark /> Send 1 email per month containing CSV/ZIP files</li>
-                    <li><IoMdCheckmark /> Personal Email Inbound Handle for Email receipts</li>
-                    <li><IoMdCheckmark /> Monthly expense summary</li>
+                    <li><IoMdCheckmark /> <span>10 Free receipt photo uploads</span></li>
+                    <li><IoMdCheckmark /> <span>Advanced AI categorization</span></li>
+                    <li><IoMdCheckmark /> <span>Download 2 CSV exports per month</span></li>
+                    <li><IoMdCheckmark /> <span>Download 2 Zip folders per month containing receipts</span></li>
+                    <li><IoMdCheckmark /> <span>Download 2 Invoices per month</span></li>
+                    <li><IoMdCheckmark /> <span>Send 1 email per month containing CSV/ZIP files</span></li>
+                    <li><IoMdCheckmark /> <span>Personal Email Inbound Handle for Email receipts</span></li>
+                    <li><IoMdCheckmark /> <span>Monthly expense summary</span></li>
                   </ul>
                 </div>
 
@@ -134,15 +134,15 @@ const PricingPlans = () => {
                 <div className="includes-list">
                   <p>Includes:</p>
                   <ul>
-                    <li><IoMdCheckmark /> Unlimited receipt photo uploads</li>
-                    <li><IoMdCheckmark /> Advanced AI categorization</li>
-                    <li><IoMdCheckmark /> Download unlimited CSV exports</li>
-                    <li><IoMdCheckmark /> Download unlimited Zip folders containing receipts</li>
-                    <li><IoMdCheckmark /> Download unlimited Invoices per month</li>
-                    <li><IoMdCheckmark /> Send unlimited emails per month containing CSV/ZIP files</li>
-                    <li><IoMdCheckmark /> Personal Email Inbound Handle for Email receipts</li>
-                    <li><IoMdCheckmark /> Monthly expense summary</li>
-                    <li><IoMdCheckmark /> Priority customer support</li>
+                    <li><IoMdCheckmark /> <span>Unlimited receipt photo uploads</span></li>
+                    <li><IoMdCheckmark /> <span>Advanced AI categorization</span> </li>
+                    <li><IoMdCheckmark /> <span>Download unlimited CSV exports</span></li>
+                    <li><IoMdCheckmark /> <span>Download unlimited Zip folders containing receipts</span></li>
+                    <li><IoMdCheckmark /> <span>Download unlimited Invoices per month</span></li>
+                    <li><IoMdCheckmark /> <span>Send unlimited emails per month containing CSV/ZIP files</span></li>
+                    <li><IoMdCheckmark /> <span>Personal Email Inbound Handle for Email receipts</span></li>
+                    <li><IoMdCheckmark /> <span>Monthly expense summary</span></li>
+                    <li><IoMdCheckmark /> <span>Priority customer support</span></li>
                   </ul>
                 </div>
 
