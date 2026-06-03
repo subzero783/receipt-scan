@@ -28,6 +28,7 @@ export default async function Home() {
       <HowItWorks data={how_it_works} />
       <Features data={features} />
       <Testimonials data={testimonials} />
+
     </div>
   );
 }
