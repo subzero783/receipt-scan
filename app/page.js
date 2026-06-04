@@ -2,6 +2,7 @@ import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
 import Testimonials from "@/components/Testimonials";
+import Link from "next/link";
 import siteData from '@/data/siteData.js';
 
 const homeData = siteData.find(item => item.home_page)?.home_page;
@@ -27,9 +28,51 @@ export default async function Home() {
       <HeroSection data={hero_section} />
       <section className="iphone-mockup-with-features-list">
         <div className="container">
+          <div className="top-text-container">
+            <div className="top-text">
+              <span className="small-title">Effortless Expense Tracking</span>
+              <h2 className="title">Digitize Your Receipts in Seconds</h2>
+              <p className="subtitle">top losing your write-offs to faded paper and messy shoeboxes. Receipt Scan's AI-powered upload interface makes capturing, reading, and categorizing your business expenses completely frictionless, no matter where your freelance work takes you.</p>
+            </div>
+          </div>
           <div className="row">
-            <div className="col"></div>
-            <div className="col"></div>
+            <div className="col">
+              <div className="feature-container">
+                <span className="icon-container"></span>
+                <h3>Instant AI Parsing</h3>
+                <p>Snap a quick photo and let our advanced AI instantly extract the merchant, date, total price, and taxes with zero manual data entry.</p>
+              </div>
+              <div className="feature-container">
+                <span className="icon-container"></span>
+                <h3>Drag, Drop, or Email</h3>
+                <p>Upload physical receipts from your camera roll, or forward your digital software invoices straight to your unique Receipt Scan email address.</p>
+              </div>
+            </div>
+            <div className="col">
+              <div className="iphone-mockup">
+                <img src="" alt="" />
+              </div>
+            </div>
+            <div className="col">
+              <div className="feature-container">
+                <span className="icon-container"></span>
+                <h3>Smart Categorization</h3>
+                <p>Our predictive AI automatically sorts your uploads into standard tax categories, keeping your business and personal spending perfectly separated.</p>
+              </div>
+              <div className="feature-container">
+                <span className="icon-container"></span>
+                <h3>Cloud-Synced Security</h3>
+                <p>Every receipt you upload is instantly backed up with bank-level security and synced across all your devices so you are always audit-ready.</p>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <div className="buttons">
+                <Link href="/signup">Start Free Trial</Link>
+                <Link href="/features">View All Features</Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
