@@ -35,7 +35,7 @@ export default async function Home() {
             <div className="top-text">
               <span className="small-title">Effortless Expense Tracking</span>
               <h2 className="title">Digitize Your Receipts in Seconds</h2>
-              <p className="subtitle">top losing your write-offs to faded paper and messy shoeboxes. Receipt Scan's AI-powered upload interface makes capturing, reading, and categorizing your business expenses completely frictionless, no matter where your freelance work takes you.</p>
+              <p className="subtitle">Stop losing your write-offs to faded paper and messy shoeboxes. Receipt Scan's AI-powered upload interface makes capturing, reading, and categorizing your business expenses completely frictionless, no matter where your freelance work takes you.</p>
             </div>
           </div>
           <div className="row features-row">
