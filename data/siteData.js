@@ -8,19 +8,19 @@ const siteData = [
     "social_media": [
       {
         "name": "facebook",
-        "link": "/"
+        "link": "https://www.facebook.com/gusfinance02"
       },
       {
         "name": "instagram",
-        "link": "/"
+        "link": "https://www.instagram.com/gus_finance01/"
       },
       {
-        "name": "linkedin",
-        "link": "/"
+        "name": "youtube",
+        "link": "https://www.youtube.com/@gusfinance01"
       },
       {
         "name": "tiktok",
-        "link": "/"
+        "link": "https://www.tiktok.com/@gus_finance/"
       }
     ]
   },

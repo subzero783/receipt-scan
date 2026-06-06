@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok, FaYoutube } from "react-icons/fa";
 import siteData from "@/data/siteData.js";
 
 const SocialMedia = () => {
@@ -15,6 +15,8 @@ const SocialMedia = () => {
         return <FaInstagram />;
       case "linkedin":
         return <FaLinkedin />;
+      case "youtube":
+        return <FaYoutube />;
       case "tiktok":
         return <FaTiktok />;
       default:
