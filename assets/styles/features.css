@@ -35,7 +35,7 @@
         margin-right: 2%;
         margin-bottom: 2%;
         border-radius: 16px;
-        background-color: var(--color-sixth);
+        background-color: var(--color-white);
         box-shadow: 0px 1px 30px -10px var(--color-white);
 
         .image {
@@ -51,7 +51,7 @@
           position: relative;
           justify-content: center;
           flex-flow: column nowrap;
-          color: var(--color-white);
+          color: var(--color-fifth);
           border-bottom-left-radius: 16px;
           border-bottom-right-radius: 16px;
 
@@ -60,7 +60,7 @@
           }
 
           >.text {
-            margin: 0 0 30px;
+            margin: 0 0 10px;
           }
 
           >a {
@@ -70,7 +70,7 @@
 
           >svg {
             font-size: 30px;
-            color: var(--color-white);
+            color: var(--color-fifth);
           }
         }
 

@@ -88,7 +88,7 @@ const PricingPlans = () => {
                     <li><IoMdCheckmark /> <span>Download 2 Zip folders per month containing receipts</span></li>
                     <li><IoMdCheckmark /> <span>Download 2 Invoices per month</span></li>
                     <li><IoMdCheckmark /> <span>Send 1 email per month containing CSV/ZIP files</span></li>
-                    <li><IoMdCheckmark /> <span>Personal Email Inbound Handle for Email receipts</span></li>
+                    <li><IoMdCheckmark /> <span>Upload receipts using a personal email inbound handle</span></li>
                     <li><IoMdCheckmark /> <span>Monthly expense summary</span></li>
                   </ul>
                 </div>
@@ -140,7 +140,7 @@ const PricingPlans = () => {
                     <li><IoMdCheckmark /> <span>Download unlimited Zip folders containing receipts</span></li>
                     <li><IoMdCheckmark /> <span>Download unlimited Invoices per month</span></li>
                     <li><IoMdCheckmark /> <span>Send unlimited emails per month containing CSV/ZIP files</span></li>
-                    <li><IoMdCheckmark /> <span>Personal Email Inbound Handle for Email receipts</span></li>
+                    <li><IoMdCheckmark /> <span>Upload receipts using a personal email inbound handle</span></li>
                     <li><IoMdCheckmark /> <span>Monthly expense summary</span></li>
                     <li><IoMdCheckmark /> <span>Priority customer support</span></li>
                   </ul>
