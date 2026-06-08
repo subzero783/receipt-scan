@@ -31,6 +31,7 @@ function CreateBlogPostForm() {
     const [loading, setLoading] = useState(false);
     const [loadingPost, setLoadingPost] = useState(false);
     const [error, setError] = useState("");
+    const [categoryInput, setCategoryInput] = useState("");
 
     // Populate user info if creating a new post and session is loaded
     useEffect(() => {
@@ -78,6 +79,7 @@ function CreateBlogPostForm() {
                 if (post.featured_image) {
                     setExistingImage(post.featured_image);
                 }
+                setCategoryInput((post.categories || []).join(", "));
             } catch (err) {
                 console.error(err);
                 setError("Failed to load blog post details.");
@@ -315,11 +317,15 @@ function CreateBlogPostForm() {
                                 <input
                                     type="text"
                                     name="categories"
-                                    value={formData.categories.join(", ")}
-                                    onChange={(e) => setFormData({
-                                        ...formData,
-                                        categories: e.target.value.split(",").map(cat => cat.trim()).filter(Boolean)
-                                    })}
+                                    value={categoryInput}
+                                    onChange={(e) => {
+                                        const val = e.target.value;
+                                        setCategoryInput(val);
+                                        setFormData(prev => ({
+                                            ...prev,
+                                            categories: val.split(",").map(cat => cat.trim()).filter(Boolean)
+                                        }));
+                                    }}
                                     placeholder="e.g., Updates, Engineering, News"
                                 />
                                 <p className="form-text">Separate categories with commas (e.g., Updates, Engineering)</p>

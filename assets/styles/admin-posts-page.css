@@ -35,9 +35,10 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 16px;
-            
+
             .actions {
                 width: 100%;
+
                 .btn {
                     width: 100%;
                     text-align: center;
@@ -81,14 +82,15 @@
         text-align: left;
         color: var(--color-neutral-800);
 
-        th, td {
+        th,
+        td {
             padding: 16px 24px;
             vertical-align: middle;
         }
 
         th {
             background-color: rgba(255, 255, 255, 0.02);
-            color: var(--color-white);
+            color: var(--color-dark);
             font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
@@ -150,7 +152,7 @@
             display: block;
             font-size: 16px;
             font-weight: 600;
-            color: var(--color-white);
+            color: var(--color-dark);
             margin-bottom: 4px;
         }
 
