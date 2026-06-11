@@ -36,7 +36,7 @@ const siteData = [
         "description": "Ditch the shoebox. Receipt Scan automatically captures, categorizes, and tracks your business and personal expenses using advanced AI. Start your free trial!"
       },
       "hero_section": {
-        "title": "Say goodbye to your messy receipt shoebox",
+        "title": "Say Goodbye to Your Messy Receipt Shoebox",
         "subtitle": "Automatically capture and categorize business and personal expenses with AI-powered technology. Transform receipt management from a headache to a one-click solution.",
         "background_image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779384794/Workspace_with_financial_charts_on_tablet_2_zylnks.jpg",
         "buttons": [
