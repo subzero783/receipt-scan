@@ -843,7 +843,7 @@ const siteData = [
         "description": "Stop letting the IRS steal your shoot profits. Automate write-offs, protect your gear, and ditch fading glovebox receipts. Scan your first receipt free today."
       },
       "hero_section": {
-        "title": "Stop letting the IRS steal your shoot profits",
+        "title": "Stop Letting the IRS Steal Your Shoot Profits",
         "subtitle": "Ditch fading receipts and overpriced QuickBooks. Snap a photo of any receipt. Our AI categorizes your write-offs, protects your gear, maximizes tax returns, and buys back creative hours.",
         "background_image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779835352/Videographer_scanning_receipt_wi__202605261541_nyqb00.jpg",
         "buttons": [

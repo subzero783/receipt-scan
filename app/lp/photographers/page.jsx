@@ -5,6 +5,7 @@ import SectionListImageRightSide from '@/components/SectionListImageRightSide';
 import ToolsSection from '@/components/ToolsSection';
 import TwoColumns from '@/components/TwoColumns';
 import TestimonialsSectionTwo from '@/components/TestimonialsSectionTwo';
+import IphoneMockupFeaturesList from '@/components/IphoneMockupFeaturesList';
 
 const landingPagePhotographers = siteData.find(item => item.landing_page_photographers)?.landing_page_photographers;
 
@@ -30,6 +31,7 @@ const Photographers = () => {
     return (
         <div className="landing-pages lp-photographers">
             <HeroSection data={hero_section} />
+            <IphoneMockupFeaturesList />
             <CallToActionTwo data={reality_section} />
             <SectionListImageRightSide data={list_items} />
             <ToolsSection data={solutions_section} />
