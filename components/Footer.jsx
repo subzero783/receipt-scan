@@ -62,7 +62,7 @@ const Footer = () => {
       <div className="container bottom-container">
         <div className="row">
           <div className="col copyright-column">
-            <p>&#169; 2024 Receipt AI Manager. All rights reserved</p>
+            <p>&#169; 2026 ReceiptScan.org. All rights reserved</p>
             {footer_menu
               .find((menu) => menu.menu_name === "Legal")
               ?.menu_items.map((item, index) => (

@@ -92,4 +92,40 @@
             }
         }
     }
+
+    &.lp-freelance {
+        .hero-section {
+            >.container {
+                >.row {
+                    position: relative;
+                    overflow: hidden;
+                    background-position: 100% 60%;
+
+                    &:before {
+                        content: "";
+                        z-index: 0;
+                        background-color: rgba(0, 0, 0, 0.4);
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        inset: 0;
+                    }
+
+                    >.col {
+                        align-items: flex-start;
+                        padding: 118px 15px 118px 30px;
+                        margin: unset;
+
+                        >h1 {
+                            text-align: left;
+                        }
+
+                        >.subtitle {
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

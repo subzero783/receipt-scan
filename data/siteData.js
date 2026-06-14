@@ -997,6 +997,29 @@ const siteData = [
         ]
       }
     }
+  },
+  {
+    "landing_page_freelance": {
+      "meta_data": {
+        "title": "Best Free Receipt Scanner for Freelancers and Content Creators",
+        "description": "Stop losing thousands in hidden tax write-offs. ReceiptScan offers local OCR expense tracking with zero bank-syncing, zero cloud hacks, and zero monthly fees."
+      },
+      "hero_section": {
+        "title": "Stop Losing $3,000 a Year on Faded Receipts (Without Surrendering Your Bank Login",
+        "subtitle": "You shouldn't have to connect your private bank accounts to a cloud server just to track your hosting fees and home office write-offs. Receipt Scan is an AI scanner that categorizes your expenses in 10 seconds a day—with absolute data privacy.",
+        "buttons": [
+          {
+            "text": "Start For Free",
+            "link": "/signup"
+          },
+          {
+            "text": "Features",
+            "link": "/features"
+          }
+        ],
+        "background_image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1781414165/Web_designer_holding_smartphone___202606132201_cmjgiq.jpg"
+      }
+    }
   }
 ];
 export default siteData;
