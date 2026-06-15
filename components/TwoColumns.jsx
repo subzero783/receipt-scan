@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { GiCheckMark } from "react-icons/gi";
 
 const TwoColumns = ({ data, text_direction, section_class, icon, background_color = "", bottom_border = false, small_title_margin = false }) => {
 
-    const { small_title, title, subtitle, buttons, image, image_alt } = data;
+    const { small_title, title, subtitle, buttons, image, image_alt, list_items } = data;
 
     return (
         <section className={`two-columns-section ${text_direction} ${section_class}`} style={{
@@ -19,8 +20,21 @@ const TwoColumns = ({ data, text_direction, section_class, icon, background_colo
                                     {icon}
                                 </div> : null}
                                 <div className="text-wrapper">
-                                    <h2 className="title">{title}</h2>
-                                    <p className="description">{subtitle}</p>
+                                    {title ? <h2 className="title">{title}</h2> : null}
+                                    {subtitle ? <p className="description">{subtitle}</p> : null}
+                                    {list_items ?
+                                        list_items.map((item, index) => (
+                                            <ul key={index} className="list-container">
+                                                <li>
+                                                    <span className="icon-container"><GiCheckMark /></span>
+                                                    <div className="text-container">
+                                                        {item.title ? <h3 className="title">{item.title}</h3> : null}
+                                                        {item.text ? <p className="text">{item.text}</p> : null}
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        )) : null
+                                    }
                                     <div className="buttons-wrapper">
                                         {buttons.map((button, index) => (
                                             <Link key={index} href={button.link} className="btn btn-fourth">

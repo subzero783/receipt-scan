@@ -357,7 +357,7 @@ const siteData = [
       },
       "registration": {
         "title": "Create your free account",
-        "subtitle": "Get started in minutes and transform how you manage business expenses",
+        "subtitle": "Get started in minutes and transform how you manage expenses",
         "legal_disclaimer": "By clicking Sign Up you're confirming that you agree with our Terms and Conditions."
       }
     }
@@ -468,7 +468,7 @@ const siteData = [
         "subtitle": "We believe that managing expenses shouldn't cost you your sanity. Receipt Scan was built to help creators, builders, and hustlers reclaim their time from the chaos of receipts.",
         "buttons": [
           {
-            "text": "Start",
+            "text": "Start Free",
             "link": "/signup"
           },
           {
@@ -489,7 +489,7 @@ const siteData = [
         "image_alt": "Hand holding receipt in front of monitor",
         "buttons": [
           {
-            "text": "Start",
+            "text": "Start Free",
             "link": "/signup"
           },
           {
@@ -523,7 +523,7 @@ const siteData = [
         ],
         "buttons": [
           {
-            "text": "Start",
+            "text": "Start Free",
             "link": "/signup"
           },
           {
@@ -537,7 +537,7 @@ const siteData = [
         "subtitle": "Join thousands of freelancers and agencies saving hours every month.",
         "buttons": [
           {
-            "text": "Start",
+            "text": "Start Free",
             "link": "/signup"
           },
           {
@@ -801,7 +801,7 @@ const siteData = [
         "subtitle": "Stop wrestling with receipts. Start building your business instead.",
         "buttons": [
           {
-            "text": "Start",
+            "text": "Start Your Free 14-Day Trial",
             "link": "/signup"
           }
         ]
@@ -1002,22 +1002,165 @@ const siteData = [
     "landing_page_freelance": {
       "meta_data": {
         "title": "Best Free Receipt Scanner for Freelancers and Content Creators",
-        "description": "Stop losing thousands in hidden tax write-offs. ReceiptScan offers local OCR expense tracking with zero bank-syncing, zero cloud hacks, and zero monthly fees."
+        "description": "Stop losing thousands in hidden tax write-offs. ReceiptScan offers cloud-powered AI expense tracking with bank-grade encryption and zero bank-syncing."
       },
       "hero_section": {
-        "title": "Stop Losing $3,000 a Year on Faded Receipts (Without Surrendering Your Bank Login",
+        "title": "Stop Losing $3,000 a Year on Faded Receipts (Without Surrendering Your Bank Login)",
         "subtitle": "You shouldn't have to connect your private bank accounts to a cloud server just to track your hosting fees and home office write-offs. Receipt Scan is an AI scanner that categorizes your expenses in 10 seconds a day—with absolute data privacy.",
         "buttons": [
           {
-            "text": "Start For Free",
+            "text": "Start Your 14-Day Free Trial",
             "link": "/signup"
           },
           {
-            "text": "Features",
+            "text": "View All Features",
             "link": "/features"
           }
         ],
         "background_image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1781414165/Web_designer_holding_smartphone___202606132201_cmjgiq.jpg"
+      },
+      "agitation_section": {
+        "small_title": "The Reality",
+        "title": "The \"Shoebox\" System is Costing You Thousands",
+        "list_items": [
+          {
+            "title": "The Physical Mess",
+            "text": "Hoarding crumpled, faded thermal paper in desk drawers until tax season."
+          },
+          {
+            "title": "The SaaS Tax",
+            "text": "Overpaying for bloated software built for large corporations, not solo freelancers."
+          },
+          {
+            "title": "The API Risk",
+            "text": "Being forced to sync your live bank feeds to third-party apps just to log a simple business lunch."
+          },
+          {
+            "title": "The Lost Money",
+            "text": "Missing out on hundreds in legal write-offs (software licenses, website hosting, and equipment) simply because tracking is too painful."
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Start Your 14-Day Free Trial",
+            "link": "/signup"
+          },
+          {
+            "text": "View All Features",
+            "link": "/features"
+          }
+        ],
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1781489912/Web_designer_at_cluttered_desk_202606141918_q7frqg.jpg",
+        "image_alt": "Web designer at cluttered desk"
+      },
+      "features_section": {
+        "small_title": "The Capabilities",
+        "title": "Powerful Tracking. Bank-Grade Security.",
+        "subtitle": "Maximize your deductions instantly without intrusive bank connections.",
+        "tools": [
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1781489294/Smartphone_scanning_receipt_202606141905_e4fzdi.jpg",
+            "image_alt": "Smartphone scanning receipt",
+            "title": "Snap, scan, and reclaim Sundays",
+            "text": "Our AI reads the date, vendor, and amount from any thermal receipt in seconds, so you belong in Premiere editing, not wrangling CSVs."
+          },
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1781489347/Web_developer_celebrating_tax_refund_202606141908_ezfvxn.jpg",
+            "image_alt": "Web developer celebrating tax refund",
+            "title": "AI OCR & Encrypted Cloud Backup",
+            "text": "Instantly extract the vendor, date, and amount with a quick photo using our powerful AI. Never lose a deduction—your receipt images and data are safely encrypted and backed up to our secure database, accessible whenever you need them."
+          },
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1781489294/Smiling_designer_holding_phone_202606141907_kteoc6.jpg",
+            "image_alt": "Smiling designer holding phone",
+            "title": "Try Pro Free for 14 Days",
+            "text": "Upgrade to our affordable Pro subscription only after you've seen exactly how much time and money you save on hidden tax write-offs."
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Start Your 14-Day Free Trial",
+            "link": "/signup"
+          },
+          {
+            "text": "View All Features",
+            "link": "/features"
+          }
+        ]
+      },
+      "freedom_section": {
+        "small_title": "Freedom",
+        "title": "Tax Season, Completely Stress-Free",
+        "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1781490636/Web_developer_celebrating_tax_refund_202606141930_ondntn.jpg",
+        "image_alt": "Web developer celebrating tax refund",
+        "list_items": [
+          {
+            "title": "Instant Exporting",
+            "text": "Hand your accountant a perfectly organized CSV report of every legal write-off directly from your secure dashboard."
+          },
+          {
+            "title": "Capture Everything",
+            "text": "Easily track everything from your AWS server fees to your new office chair."
+          },
+          {
+            "title": "Total Security",
+            "text": "Maximize your deductions knowing your data is protected by modern database encryption."
+          },
+          {
+            "title": "Audit Confidence",
+            "text": "Reclaim your billable hours and operate your freelance business completely fearless of an IRS audit."
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Start Your 14-Day Free Trial",
+            "link": "/signup"
+          },
+          {
+            "text": "View All Features",
+            "link": "/features"
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Real Results",
+        "subtitle": "Users who ditched the shoebox",
+        "testimonials": [
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779929792/sarah-jenkins_dkmrkt.png",
+            "image_alt": "Sarah Jenkins testimonial of Receipt Scan"
+          },
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779929791/elena-rodriguez_dw4hff.png",
+            "image_alt": "Elena Rodriguez testimonial of Receipt Scan"
+          },
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779929791/james-lin_amutsn.png",
+            "image_alt": "James Lin testimonial of Receipt Scan"
+          },
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779929790/marcus-vance_i7bb3j.png",
+            "image_alt": "Marcus Vance testimonial of Receipt Scan"
+          },
+          {
+            "image": "https://res.cloudinary.com/dswzkrkcx/image/upload/v1779929790/mike-oconnor_mhkmen.png",
+            "image_alt": "Mike O'Connor testimonial of Receipt Scan"
+          }
+        ]
+      },
+      "cta": {
+        "title": "Stop doing unpaid manual labor",
+        "subtitle": "Ditch the bloated software monopolies and the glovebox graveyard. Automate your write-offs today.",
+        "buttons": [
+          {
+            "text": "Start Your 14-Day Free Trial",
+            "link": "/signup"
+          },
+          {
+            "text": "View All Features",
+            "link": "/features"
+          }
+        ]
       }
     }
   }

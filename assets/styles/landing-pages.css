@@ -122,8 +122,102 @@
 
                         >.subtitle {
                             font-size: 18px;
+                            text-align: left;
                         }
                     }
+                }
+            }
+        }
+
+        >.two-columns-section {
+            .list-container {
+                list-style: none;
+
+                >li {
+                    display: flex;
+                    align-items: center;
+                    flex-flow: row nowrap;
+
+                    >span {
+                        margin-right: 15px;
+                        flex: 0 0 auto;
+
+                        >svg {
+                            color: var(--color-success);
+                            font-size: 16px;
+                        }
+                    }
+
+                    >div {
+                        >.title {
+                            font-size: 24px;
+                            margin-bottom: 10px;
+                        }
+
+                        >.text {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+
+            .buttons-wrapper {
+                >a {
+                    color: var(--color-white);
+                    background-color: var(--color-primary);
+                    border: 1px solid var(--color-primary);
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        background-color: transparent;
+                        color: var(--color-black);
+                        border: 1px solid var(--color-black);
+                    }
+                }
+            }
+        }
+
+        >.iphone-mockup-with-features-list {
+            .buttons {}
+        }
+
+        >.tools-section {
+            .top-text {
+                align-items: flex-start;
+
+                >.title {
+                    text-align: left;
+                }
+            }
+
+            .buttons-row {
+                .btn {
+                    color: var(--color-primary);
+                    background-color: var(--color-white);
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        background-color: transparent;
+                        color: var(--color-white);
+                        border: 1px solid var(--color-white);
+                    }
+                }
+            }
+        }
+
+        >.testimonials-section-two {
+            .top-text {
+                text-align: left;
+                align-items: flex-start;
+
+                .title {
+                    font-size: 32px;
+                }
+
+                .subtitle {
+                    margin-bottom: 48px;
                 }
             }
         }

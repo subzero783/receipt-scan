@@ -32,8 +32,8 @@ const IphoneMockupFeaturesList = () => {
                             <img src="https://res.cloudinary.com/dswzkrkcx/image/upload/v1780632167/iPhone_ReceiptScan.org_Upload_page_g9cbei.png" alt="Iphone mockup of the Upload page" />
                         </div>
                         <div className="buttons">
-                            <Link href="/signup" className="btn btn-primary">Start Free Trial</Link>
-                            <Link href="/features" className="btn btn-primary">View All Features</Link>
+                            <Link href="/signup" className="btn btn-ninth">Start Free Trial</Link>
+                            <Link href="/features" className="btn btn-ninth">View All Features</Link>
                         </div>
                     </div>
                     <div className="col">

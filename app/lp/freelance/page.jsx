@@ -21,23 +21,21 @@ export async function generateMetadata() {
 const Freelance = () => {
 
     const hero_section = landingPageFreelance?.hero_section;
-    // const reality_section = landingPageFreelance?.reality_section;
-    // const list_items = landingPageFreelance?.list_items;
-    // const solutions_section = landingPageFreelance?.solutions_section;
-    // const freedom_section = landingPageFreelance?.freedom_section;
-    // const testimonials = landingPageFreelance?.testimonials;
-    // const cta = landingPageFreelance?.cta;
+    const agitation_section = landingPageFreelance?.agitation_section;
+    const features_section = landingPageFreelance?.features_section;
+    const freedom_section = landingPageFreelance?.freedom_section;
+    const testimonials = landingPageFreelance?.testimonials;
+    const cta = landingPageFreelance?.cta;
 
     return (
         <div className="landing-pages lp-freelance">
             <HeroSection data={hero_section} />
+            <TwoColumns data={agitation_section} text_direction="left" background_color={"var(--color-third)"} bottom_border={false} small_title_margin={false} />
             <IphoneMockupFeaturesList />
-            {/* <CallToActionTwo data={reality_section} />
-            <SectionListImageRightSide data={list_items} />
-            <ToolsSection data={solutions_section} />
+            <ToolsSection data={features_section} />
             <TwoColumns data={freedom_section} text_direction="left" background_color={"var(--color-third)"} bottom_border={false} small_title_margin={false} />
             <TestimonialsSectionTwo data={testimonials} />
-            <CallToActionTwo data={cta} /> */}
+            <CallToActionTwo data={cta} />
         </div>
     );
 };
