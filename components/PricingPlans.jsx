@@ -82,6 +82,7 @@ const PricingPlans = () => {
                 <div className="includes-list">
                   <p>Includes:</p>
                   <ul>
+                    <li><IoMdCheckmark /> <span>Fully Encrypted Receipt Images</span></li>
                     <li><IoMdCheckmark /> <span>10 Free receipt photo uploads</span></li>
                     <li><IoMdCheckmark /> <span>Advanced AI categorization</span></li>
                     <li><IoMdCheckmark /> <span>Download 5 CSV exports per month</span></li>
@@ -134,6 +135,7 @@ const PricingPlans = () => {
                 <div className="includes-list">
                   <p>Includes:</p>
                   <ul>
+                    <li><IoMdCheckmark /> <span>Fully Encrypted Receipt Images</span></li>
                     <li><IoMdCheckmark /> <span>Unlimited receipt photo uploads</span></li>
                     <li><IoMdCheckmark /> <span>Advanced AI categorization</span> </li>
                     <li><IoMdCheckmark /> <span>Download unlimited CSV exports</span></li>
