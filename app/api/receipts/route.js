@@ -4,6 +4,7 @@ import Receipt from '@/models/Receipt';
 import { getSessionUser } from '@/utils/getSessionUser';
 import User from '@/models/User';
 import { v2 as cloudinary } from 'cloudinary';
+import { isTrialExpired } from '@/utils/userStatus';
 
 // Config Cloudinary
 cloudinary.config({
@@ -93,6 +94,10 @@ export const POST = async (request) => {
         // Limit Check
         const user = await User.findById(sessionUser.userId);
         if (!user) return new NextResponse('User not found', { status: 404 });
+
+        if (isTrialExpired(user)) {
+            return new NextResponse(JSON.stringify({ message: 'Trial expired. Please upgrade to Pro to continue manually uploading receipts.' }), { status: 403 });
+        }
         
         if (user.planType === 'free' || !user.isPro) {
             if (user.lifetimeReceipts === undefined || user.lifetimeReceipts === 0) {

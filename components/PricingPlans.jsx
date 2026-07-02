@@ -77,17 +77,17 @@ const PricingPlans = () => {
                   <p className="monthly-price">
                     $0<span>/mo</span>
                   </p>
-                  <p className="discount-text">For 14 Days</p>
+                  <p className="discount-text">For 7 Days</p>
                 </div>
                 <div className="includes-list">
                   <p>Includes:</p>
                   <ul>
                     <li><IoMdCheckmark /> <span>10 Free receipt photo uploads</span></li>
                     <li><IoMdCheckmark /> <span>Advanced AI categorization</span></li>
-                    <li><IoMdCheckmark /> <span>Download 2 CSV exports per month</span></li>
-                    <li><IoMdCheckmark /> <span>Download 2 Zip folders per month containing receipts</span></li>
-                    <li><IoMdCheckmark /> <span>Download 2 Invoices per month</span></li>
-                    <li><IoMdCheckmark /> <span>Send 1 email per month containing CSV/ZIP files</span></li>
+                    <li><IoMdCheckmark /> <span>Download 5 CSV exports per month</span></li>
+                    <li><IoMdCheckmark /> <span>Download 5 Zip folders per month containing receipts</span></li>
+                    <li><IoMdCheckmark /> <span>Download 5 Invoices per month</span></li>
+                    <li><IoMdCheckmark /> <span>Send 5 emails per month containing CSV/ZIP files</span></li>
                     <li><IoMdCheckmark /> <span>Upload receipts using a personal email inbound handle</span></li>
                     <li><IoMdCheckmark /> <span>Monthly expense summary</span></li>
                   </ul>

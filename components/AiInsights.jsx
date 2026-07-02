@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { FaRobot, FaLightbulb, FaExclamationTriangle } from 'react-icons/fa';
 
-const AiInsights = ({ receipts, data }) => {
+const AiInsights = ({ receipts, data, isLocked = false }) => {
 
     const [insights, setInsights] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -38,13 +38,21 @@ const AiInsights = ({ receipts, data }) => {
                             <h2 className="title">{data.title}</h2>
                             <p className="subtitle">{data.subtitle}</p>
                             {!insights && (
-                                <button
-                                    onClick={generateInsights}
-                                    disabled={loading || receipts.length === 0}
-                                    className="btn btn-primary"
-                                >
-                                    {loading ? 'Analyzing...' : 'Generate Insights'}
-                                </button>
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                    <button
+                                        onClick={generateInsights}
+                                        disabled={loading || receipts.length === 0 || isLocked}
+                                        className="btn btn-primary"
+                                        style={{ opacity: isLocked ? 0.6 : 1 }}
+                                    >
+                                        {loading ? 'Analyzing...' : 'Generate Insights'}
+                                    </button>
+                                    {isLocked && (
+                                        <p style={{ color: '#ef4444', fontSize: '14px', marginTop: '8px', fontWeight: '500' }}>
+                                            Trial expired. Upgrade to Pro to generate AI insights.
+                                        </p>
+                                    )}
+                                </div>
                             )}
                         </div>
 

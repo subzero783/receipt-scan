@@ -263,15 +263,15 @@ const AccountSettings = () => {
                                 </div>
 
                                 <div className="settings-form-group manage-subscription-group">
-                                    {/* {session?.user?.isPro ? ( */}
-                                    <button type="button" className="manage-subscription-btn btn btn-primary" onClick={handlePortal}>
-                                        Manage Current Plan
-                                    </button>
-                                    {/* ) : ( */}
-                                    <button type="button" className="manage-subscription-btn btn btn-primary" onClick={handleCheckout}>
-                                        Upgrade to Pro
-                                    </button>
-                                    {/* )} */}
+                                    {session?.user?.isPro ? (
+                                        <button type="button" className="manage-subscription-btn btn btn-primary" onClick={handlePortal}>
+                                            Manage Current Plan
+                                        </button>
+                                    ) : (
+                                        <button type="button" className="manage-subscription-btn btn btn-primary" onClick={handleCheckout}>
+                                            Upgrade to Pro
+                                        </button>
+                                    )}
                                 </div>
 
                                 <div className="form-actions">

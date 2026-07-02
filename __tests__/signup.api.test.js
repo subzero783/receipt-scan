@@ -5,8 +5,8 @@
 import { POST } from "@/app/api/signup/route";
 import connectDB from "@/config/database";
 import User from "@/models/User";
-import PendingUser from "@/models/PendingUser";
 import bcrypt from "bcryptjs";
+import sendEmail from "@/utils/sendEmail";
 
 // Mock database connection
 jest.mock("@/config/database", () => jest.fn().mockResolvedValue(true));
@@ -31,56 +31,22 @@ jest.mock("@/models/User", () => {
   };
 });
 
-// Mock PendingUser Model
-jest.mock("@/models/PendingUser", () => {
-  const mockPendingUserInstance = {
-    _id: "pending_123",
-    username: "testuser",
-    email: "test@example.com",
-    password: "hashedpassword123",
-    save: jest.fn().mockResolvedValue(true),
-  };
-  const MockPendingUser = jest.fn().mockImplementation(() => mockPendingUserInstance);
-  MockPendingUser.findOne = jest.fn();
-  MockPendingUser.findById = jest.fn();
-  MockPendingUser.findByIdAndDelete = jest.fn();
-  MockPendingUser.create = jest.fn();
-  return {
-    __esModule: true,
-    default: MockPendingUser,
-    mockInstance: mockPendingUserInstance,
-  };
-});
-
 // Mock bcrypt
 jest.mock("bcryptjs", () => ({
   hash: jest.fn(),
 }));
 
-// Mock Stripe
-jest.mock("stripe", () => {
-  return jest.fn().mockImplementation(() => {
-    return {
-      checkout: {
-        sessions: {
-          create: jest.fn().mockResolvedValue({
-            url: "https://checkout.stripe.com/pay/cs_test_123",
-          }),
-        },
-      },
-    };
-  });
-});
+// Mock sendEmail
+jest.mock("@/utils/sendEmail", () => jest.fn().mockResolvedValue({ success: true }));
 
 describe("POST /api/signup", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  // Test 1: Happy Path - brand new user is added to PendingUser and Stripe URL returned
-  it("should create a pending user and return Stripe checkout URL with 201", async () => {
+  // Test 1: Happy Path - brand new user is registered directly as free user
+  it("should create a user, send welcome email, and return success with 201", async () => {
     User.findOne.mockResolvedValue(null);
-    PendingUser.findOne.mockResolvedValue(null);
     bcrypt.hash.mockResolvedValue("hashedpassword123");
 
     const mockRequest = {
@@ -98,15 +64,19 @@ describe("POST /api/signup", () => {
     const body = await response.json();
 
     expect(response.status).toBe(201);
-    expect(body).toEqual({ url: "https://checkout.stripe.com/pay/cs_test_123" });
+    expect(body).toEqual({ success: true, message: "User registered successfully" });
 
     expect(connectDB).toHaveBeenCalledTimes(1);
     expect(User.findOne).toHaveBeenCalledWith({ email: "test@example.com" });
-    expect(PendingUser.findOne).toHaveBeenCalledWith({ email: "test@example.com" });
     expect(bcrypt.hash).toHaveBeenCalledWith("password123", 10);
+    expect(sendEmail).toHaveBeenCalledTimes(1);
+    expect(sendEmail).toHaveBeenCalledWith(expect.objectContaining({
+      email: "test@example.com",
+      subject: expect.stringContaining("Welcome to Receipt Scan"),
+    }));
     
     // Retrieve mockInstance from the mocked module to verify save call
-    const { mockInstance } = require("@/models/PendingUser");
+    const { mockInstance } = require("@/models/User");
     expect(mockInstance.save).toHaveBeenCalledTimes(1);
   });
 
@@ -135,18 +105,17 @@ describe("POST /api/signup", () => {
     expect(bodyText).toBe("Email already exists");
 
     expect(User.findOne).toHaveBeenCalledWith({ email: "existing@example.com" });
-    expect(PendingUser.findOne).not.toHaveBeenCalled();
     expect(bcrypt.hash).not.toHaveBeenCalled();
+    expect(sendEmail).not.toHaveBeenCalled();
   });
 
   // Test 3: Error Path - database save fails
   it("should return 500 if database save fails", async () => {
     User.findOne.mockResolvedValue(null);
-    PendingUser.findOne.mockResolvedValue(null);
     bcrypt.hash.mockResolvedValue("hashedpassword123");
 
     const dbError = new Error("Database save error");
-    const { mockInstance } = require("@/models/PendingUser");
+    const { mockInstance } = require("@/models/User");
     mockInstance.save.mockRejectedValueOnce(dbError);
 
     const mockRequest = {

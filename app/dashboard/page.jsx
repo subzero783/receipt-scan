@@ -80,6 +80,10 @@ const DashboardPage = () => {
   };
 
   const handleGenerateInvoice = () => {
+    if (isLocked) {
+      alert("Trial expired. Please upgrade to Pro to continue generating invoices.");
+      return;
+    }
     setIsInvoiceModalOpen(true);
     // Wait for modal to render
     setTimeout(() => {
@@ -121,7 +125,7 @@ const DashboardPage = () => {
 
   // Initialize handlers
   const { handleFilterChange, applyFilters, clearFilters } = createFilterHandlers(filters, setFilters, setPage, fetchReceipts);
-  const { handleSelectAll, handleSelectRow, handleDeleteSelected, handleExportSelected, handleEmailSelected } = createSelectionHandlers(
+  const { handleSelectAll, handleSelectRow, handleDeleteSelected, handleExportSelected: originalExportSelected, handleEmailSelected: originalEmailSelected } = createSelectionHandlers(
     receipts,
     selectedReceiptIds,
     setSelectedReceiptIds,
@@ -133,17 +137,74 @@ const DashboardPage = () => {
   );
   const { openModal, handleInputChange, handleSave: handleSaveModal } = createModalHandlers(setSelectedReceipt, setReceipts, setIsSaving, setNewReceipt);
 
+  const handleExportSelected = (type) => {
+    if (isLocked) {
+      alert("Trial expired. Please upgrade to Pro to continue exporting data.");
+      return;
+    }
+    originalExportSelected(type);
+  };
+
+  const handleEmailSelected = (message, toEmail, includeZip, includeCsv) => {
+    if (isLocked) {
+      alert("Trial expired. Please upgrade to Pro to continue emailing receipts.");
+      return;
+    }
+    originalEmailSelected(message, toEmail, includeZip, includeCsv);
+  };
+
   const handleSave = (e, receipt, file) => handleSaveModal(e, receipt, file);
 
   if (status === 'loading') return <Spinner />;
 
+  // Calculate if trial is expired
+  const isLocked = session?.user && !session.user.isPro && session.user.createdAt && (Date.now() - new Date(session.user.createdAt).getTime()) > 7 * 24 * 60 * 60 * 1000;
+
   // Check if limit reached
-  const canAddReceipt = userStatus.isPro || userStatus.totalReceipts < 10;
+  const canAddReceipt = !isLocked && (userStatus.isPro || userStatus.totalReceipts < 10);
 
   return (
     <div className="dashboard-page">
       <div className="dashboard-container">
         <InboundHandleText />
+
+        {isLocked && (
+          <div style={{
+            background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+            color: 'white',
+            padding: '16px 24px',
+            borderRadius: '12px',
+            marginBottom: '24px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+          }} className="trial-expired-banner">
+            <div style={{ flex: 1, textAlign: 'left' }}>
+              <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 'bold' }}>Your free trial has ended!</h3>
+              <p style={{ margin: '4px 0 0 0', opacity: 0.9, fontSize: '14px' }}>
+                Please upgrade to a Pro subscription to continue uploading receipts, emailing reports, creating invoices, exporting data, and generating AI insights.
+              </p>
+            </div>
+            <button
+              onClick={() => router.push('/pricing')}
+              style={{
+                background: 'white',
+                color: '#dc2626',
+                border: 'none',
+                padding: '8px 16px',
+                borderRadius: '6px',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                marginLeft: '16px',
+                whiteSpace: 'nowrap'
+              }}
+            >
+              Upgrade to Pro
+            </button>
+          </div>
+        )}
+
         <div className="dashboard-header">
           <h1>{hero_section.title}</h1>
           <div className="action-buttons">
@@ -162,7 +223,20 @@ const DashboardPage = () => {
                 + Manual Add
               </button>
             )}
-            <button className="btn btn-primary" onClick={() => window.location.href = '/upload'}>+ Upload New</button>
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                if (isLocked) {
+                  alert("Trial expired. Please upgrade to Pro to continue uploading receipts.");
+                } else {
+                  window.location.href = '/upload';
+                }
+              }}
+              disabled={isLocked}
+              style={{ opacity: isLocked ? 0.6 : 1 }}
+            >
+              + Upload New
+            </button>
           </div>
         </div>
 
@@ -177,7 +251,13 @@ const DashboardPage = () => {
           handleDeleteSelected={handleDeleteSelected}
           isDeleting={isDeleting}
           handleExportSelected={handleExportSelected}
-          handleEmailSelected={() => setIsEmailModalOpen(true)}
+          handleEmailSelected={() => {
+            if (isLocked) {
+              alert("Trial expired. Please upgrade to Pro to continue emailing receipts.");
+            } else {
+              setIsEmailModalOpen(true);
+            }
+          }}
           isExporting={isExporting}
         />
 
@@ -310,7 +390,7 @@ const DashboardPage = () => {
         />
       </div>
       <ExpenseBreakdown data={expenseBreakdownSection} receipts={receipts} />
-      <AiInsights receipts={receipts} data={aiInsightsSection} />
+      <AiInsights receipts={receipts} data={aiInsightsSection} isLocked={isLocked} />
       {/* <RecentTransactions data={recentTransactionsSection} /> */}
     </div>
   );

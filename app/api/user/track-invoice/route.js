@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import connectDB from '@/config/database';
 import User from '@/models/User';
 import { getSessionUser } from '@/utils/getSessionUser';
+import { isTrialExpired } from '@/utils/userStatus';
 
 export const POST = async (request) => {
     try {
@@ -11,6 +12,10 @@ export const POST = async (request) => {
 
         const user = await User.findById(sessionUser.userId);
         if (!user) return new NextResponse('User not found', { status: 404 });
+
+        if (isTrialExpired(user)) {
+            return new NextResponse(JSON.stringify({ message: 'Trial expired. Please upgrade to Pro to continue generating invoices.' }), { status: 403 });
+        }
 
         const currentMonth = new Date().getMonth();
         const currentYear = new Date().getFullYear();
@@ -24,8 +29,8 @@ export const POST = async (request) => {
 
         // Limit Check
         if (user.planType === 'free' || !user.isPro) {
-            if (user.monthlyUsage.invoices.count >= 2) {
-                return new NextResponse(JSON.stringify({ message: 'Free plan limit reached. You can only generate 2 invoices per month. Please upgrade to Pro.' }), { status: 403 });
+            if (user.monthlyUsage.invoices.count >= 5) {
+                return new NextResponse(JSON.stringify({ message: 'Free plan limit reached. You can only generate 5 invoices per month. Please upgrade to Pro.' }), { status: 403 });
             }
         }
 

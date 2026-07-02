@@ -2,14 +2,34 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/config/database";
 import User from "@/models/User";
-import PendingUser from "@/models/PendingUser";
-import bcrypt from "bcryptjs"; // assuming you use bcryptjs based on standard NextAuth setups
-import Stripe from "stripe";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+import bcrypt from "bcryptjs";
+import sendEmail from "@/utils/sendEmail";
 
 // Simple in-memory rate limit store
 const rateLimitMap = new Map();
+
+async function generateUniqueInboundHandle(email) {
+  let baseHandle = email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (!baseHandle) baseHandle = `user${Math.floor(Math.random() * 10000)}`;
+
+  let finalHandle = baseHandle;
+  let isUnique = false;
+  let attempts = 0;
+
+  while (!isUnique && attempts < 10) {
+    const existing = await User.findOne({ inboundHandle: finalHandle });
+    if (!existing) {
+      isUnique = true;
+    } else {
+      attempts++;
+      finalHandle = `${baseHandle}${Math.floor(Math.random() * 10000)}`;
+    }
+  }
+
+  if (!isUnique) finalHandle = `${baseHandle}${Date.now()}`;
+
+  return finalHandle;
+}
 
 export const POST = async (request) => {
   try {
@@ -29,7 +49,7 @@ export const POST = async (request) => {
     }
 
     await connectDB();
-    const { username, email, password, interval = 'monthly' } = await request.json();
+    const { username, email, password } = await request.json();
 
     // 1. Check if user already exists
     const userExists = await User.findOne({ email });
@@ -38,55 +58,51 @@ export const POST = async (request) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+    const inboundHandle = await generateUniqueInboundHandle(email);
 
-    // 2. Save them to PendingUser (If they tried before and canceled, just update their pending record)
-    let pendingUser = await PendingUser.findOne({ email });
-    if (pendingUser) {
-      pendingUser.username = username;
-      pendingUser.password = hashedPassword;
-      await pendingUser.save();
-    } else {
-      pendingUser = new PendingUser({
-        username,
-        email,
-        password: hashedPassword,
+    // 2. Directly create the official User
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+      inboundHandle,
+      isPro: false,
+      planType: 'free'
+    });
+    await newUser.save();
+
+    // 3. Send welcome/upgrade email
+    try {
+      await sendEmail({
+        email: newUser.email,
+        subject: 'Welcome to Receipt Scan - Start Your 7-Day Free Trial!',
+        message: `Hi ${newUser.username},
+
+Welcome to Receipt Scan! Your account has been successfully created.
+
+You have 7 days of free access to all our features. After 7 days, you will need to add a credit card and upgrade to a Pro subscription to continue using the app, otherwise you will not be able to:
+- Upload more receipts (automatic and manual)
+- Email selected receipts
+- Generate invoices
+- Export ZIP archives
+- Export CSV spreadsheets
+- Generate AI Insights
+
+Please upgrade to a Pro subscription to ensure uninterrupted access.
+
+Upgrade here: ${process.env.NEXT_PUBLIC_DOMAIN || process.env.NEXTAUTH_URL || 'http://localhost:3000'}/pricing
+
+Thanks,
+The Receipt Scan Team`
       });
-      await pendingUser.save();
+    } catch (emailError) {
+      console.error("Welcome email failed to send:", emailError);
     }
 
-    const priceId = interval === 'yearly'
-      ? (process.env.STRIPE_PRICE_ID_PRO_YEARLY)
-      : (process.env.STRIPE_PRICE_ID_PRO);
-
-    // 3. Generate the Stripe Checkout Session
-    const stripeSession = await stripe.checkout.sessions.create({
-      mode: 'subscription',
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price: priceId,
-          quantity: 1,
-        },
-      ],
-      subscription_data: {
-        trial_period_days: 14,
-      },
-      customer_email: pendingUser.email,
-      metadata: {
-        // PASS THE PENDING ID SO THE WEBHOOK CAN FIND THEM LATER
-        pendingUserId: pendingUser._id.toString(),
-      },
-      success_url: `${process.env.NEXT_PUBLIC_DOMAIN}/login?trial_started=true`,
-      cancel_url: `${process.env.NEXT_PUBLIC_DOMAIN}/signup?canceled=true`,
-    });
-
-    return NextResponse.json({ url: stripeSession.url }, { status: 201 });
+    return NextResponse.json({ success: true, message: "User registered successfully" }, { status: 201 });
 
   } catch (error) {
     console.error("Signup error:", error);
-    const errorMessage = error.message && error.message.includes('No such price')
-      ? `Stripe Price ID is invalid or does not exist: "${priceId}". Please create a yearly price in your Stripe dashboard and configure it as STRIPE_PRICE_ID_PRO_YEARLY in your .env files.`
-      : 'Server error';
-    return new NextResponse(errorMessage, { status: 500 });
+    return new NextResponse('Server error', { status: 500 });
   }
 };

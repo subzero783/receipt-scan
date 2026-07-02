@@ -50,50 +50,72 @@ async function generateUniqueInboundHandle(email) {
 async function handleCheckoutCompleted(session) {
     const metadata = session.metadata;
 
-    if (!metadata || !metadata.pendingUserId) return;
+    if (!metadata) return;
 
-    const pendingUser = await PendingUser.findById(metadata.pendingUserId);
-    if (!pendingUser) return;
+    if (metadata.pendingUserId) {
+        const pendingUser = await PendingUser.findById(metadata.pendingUserId);
+        if (!pendingUser) return;
 
-    // Check if the webhook fired twice or they already exist
-    let realUser = await User.findOne({ email: pendingUser.email });
+        // Check if the webhook fired twice or they already exist
+        let realUser = await User.findOne({ email: pendingUser.email });
 
-    if (!realUser) {
-        let handleToUse = pendingUser.inboundHandle;
+        if (!realUser) {
+            let handleToUse = pendingUser.inboundHandle;
 
-        if (!handleToUse) {
-            handleToUse = await generateUniqueInboundHandle(pendingUser.email);
-        }
-
-        // Fetch subscription to see if it is in trialing status
-        let isTrial = false;
-        if (session.subscription) {
-            try {
-                const subscription = await stripe.subscriptions.retrieve(session.subscription);
-                isTrial = subscription.status === 'trialing';
-            } catch (err) {
-                console.error("Error retrieving subscription from Stripe:", err);
+            if (!handleToUse) {
+                handleToUse = await generateUniqueInboundHandle(pendingUser.email);
             }
+
+            // Fetch subscription to see if it is in trialing status
+            let isTrial = false;
+            if (session.subscription) {
+                try {
+                    const subscription = await stripe.subscriptions.retrieve(session.subscription);
+                    isTrial = subscription.status === 'trialing';
+                } catch (err) {
+                    console.error("Error retrieving subscription from Stripe:", err);
+                }
+            }
+
+            // Create the official user
+            realUser = new User({
+                username: pendingUser.username,
+                email: pendingUser.email,
+                password: pendingUser.password,
+                image: pendingUser.image,
+                inboundHandle: handleToUse,
+                isPro: true,
+                planType: isTrial ? 'free' : 'pro',
+                stripeCustomerId: session.customer,
+                subscriptionId: session.subscription
+            });
+
+            await realUser.save();
         }
 
-        // Create the official user
-        realUser = new User({
-            username: pendingUser.username,
-            email: pendingUser.email,
-            password: pendingUser.password,
-            image: pendingUser.image,
-            inboundHandle: handleToUse,
-            isPro: true,
-            planType: isTrial ? 'free' : 'pro',
-            stripeCustomerId: session.customer,
-            subscriptionId: session.subscription
-        });
-
-        await realUser.save();
+        // Clean up the Pending collection
+        await PendingUser.findByIdAndDelete(metadata.pendingUserId);
+    } else if (metadata.userId) {
+        const user = await User.findById(metadata.userId);
+        if (user) {
+            // Fetch subscription to see if it is in trialing status
+            let isTrial = false;
+            if (session.subscription) {
+                try {
+                    const subscription = await stripe.subscriptions.retrieve(session.subscription);
+                    isTrial = subscription.status === 'trialing';
+                } catch (err) {
+                    console.error("Error retrieving subscription from Stripe:", err);
+                }
+            }
+            user.isPro = true;
+            user.planType = isTrial ? 'free' : 'pro';
+            user.stripeCustomerId = session.customer;
+            user.subscriptionId = session.subscription;
+            await user.save();
+            console.log(`User ${user.email} successfully upgraded to Pro via webhook.`);
+        }
     }
-
-    // Clean up the Pending collection
-    await PendingUser.findByIdAndDelete(metadata.pendingUserId);
 }
 
 /**

@@ -87,6 +87,10 @@ const UserSchema = new Schema(
         count: { type: Number, default: 0 }, 
         lastReset: { type: Date, default: Date.now } 
       }
+    },
+    trialWarningSent: {
+      type: Boolean,
+      default: false
     }
   },
   {

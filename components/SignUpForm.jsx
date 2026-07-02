@@ -90,15 +90,17 @@ const SignUpForm = ({ signup_data, faqs }) => {
       }
 
       if (res.status === 201) {
-        // 2. The API now returns the Stripe URL directly!
-        const data = await res.json();
-
-        if (data.url) {
-          // Send them to Stripe. ZERO NextAuth session exists in their browser right now.
-          navigateTo(data.url);
-        } else {
-          setError("Failed to initialize checkout. Please try again.");
+        // Automatically sign in the user
+        const result = await signIn("credentials", {
+          redirect: false,
+          email,
+          password
+        });
+        if (result.error) {
+          setError("Registration successful, but sign in failed. Please log in manually.");
           setIsProcessing(false);
+        } else {
+          router.push("/dashboard");
         }
       }
     } catch (error) {
@@ -140,7 +142,7 @@ const SignUpForm = ({ signup_data, faqs }) => {
                       disabled={isProcessing}
                       style={{ opacity: isProcessing ? 0.7 : 1 }}
                     >
-                      {isProcessing ? "Starting Trial..." : "Start Free Trial"}
+                      {isProcessing ? "Signing Up..." : "Sign Up"}
                     </button>
                   </div>
                   <div className="error-container">
@@ -159,12 +161,12 @@ const SignUpForm = ({ signup_data, faqs }) => {
                 <button
                   onClick={() => {
                     document.cookie = "auth_source=signup; path=/; max-age=300";
-                    signIn("google", { callbackUrl: `/welcome?interval=${interval}` });
+                    signIn("google", { callbackUrl: "/dashboard" });
                   }}
                   className="signup-with-google"
                 >
                   <FaGoogle />
-                  <span>Start Trial with Google</span>
+                  <span>Sign Up with Google</span>
                 </button>
               </div>
             </div>

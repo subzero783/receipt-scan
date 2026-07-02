@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { GoogleGenAI } from "@google/genai";
 import { getSessionUser } from '@/utils/getSessionUser';
+import connectDB from '@/config/database';
+import User from '@/models/User';
+import { isTrialExpired } from '@/utils/userStatus';
 
 // Configure Gemini API
 const ai = new GoogleGenAI({
@@ -11,6 +14,14 @@ export const POST = async (request) => {
     try {
         const sessionUser = await getSessionUser();
         if (!sessionUser) return new NextResponse('Unauthorized', { status: 401 });
+
+        await connectDB();
+        const user = await User.findById(sessionUser.userId);
+        if (!user) return new NextResponse('User not found', { status: 404 });
+
+        if (isTrialExpired(user)) {
+            return new NextResponse(JSON.stringify({ message: 'Trial expired. Please upgrade to Pro to continue generating AI insights.' }), { status: 403 });
+        }
 
         const { receipts } = await request.json();
 

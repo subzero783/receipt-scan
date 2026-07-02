@@ -4,6 +4,7 @@ import Receipt from '@/models/Receipt';
 import { getSessionUser } from '@/utils/getSessionUser';
 import User from '@/models/User';
 import { generateCsv, generateZip } from '@/utils/exportHelpers';
+import { isTrialExpired } from '@/utils/userStatus';
 
 export const POST = async (request) => {
     try {
@@ -31,6 +32,10 @@ export const POST = async (request) => {
         const user = await User.findById(sessionUser.userId);
         if (!user) return new NextResponse('User not found', { status: 404 });
 
+        if (isTrialExpired(user)) {
+            return new NextResponse(JSON.stringify({ message: 'Trial expired. Please upgrade to Pro to continue exporting data.' }), { status: 403 });
+        }
+
         const currentMonth = new Date().getMonth();
         const currentYear = new Date().getFullYear();
         const usageKey = type === 'csv' ? 'csvDownloads' : 'zipDownloads';
@@ -44,8 +49,8 @@ export const POST = async (request) => {
         }
 
         if (user.planType === 'free' || !user.isPro) {
-            if (user.monthlyUsage[usageKey]?.count >= 2) {
-                return new NextResponse(JSON.stringify({ message: `Free plan limit reached. You can only download 2 ${limitTypeLabel}s per month. Please upgrade to Pro.` }), { status: 403 });
+            if (user.monthlyUsage[usageKey]?.count >= 5) {
+                return new NextResponse(JSON.stringify({ message: `Free plan limit reached. You can only download 5 ${limitTypeLabel}s per month. Please upgrade to Pro.` }), { status: 403 });
             }
             
             // Increment count

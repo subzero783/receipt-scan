@@ -5,6 +5,7 @@ import Receipt from '@/models/Receipt';
 import User from '@/models/User';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { generateCsv, generateZip } from '@/utils/exportHelpers';
+import { isTrialExpired } from '@/utils/userStatus';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -35,6 +36,10 @@ export const POST = async (request) => {
     const user = await User.findById(sessionUser.userId);
     if (!user) return new NextResponse('User not found', { status: 404 });
 
+    if (isTrialExpired(user)) {
+        return new NextResponse(JSON.stringify({ message: 'Trial expired. Please upgrade to Pro to continue emailing receipts.' }), { status: 403 });
+    }
+
     const currentMonth = new Date().getMonth();
     const currentYear = new Date().getFullYear();
     const lastResetDate = user.monthlyUsage?.emails?.lastReset || new Date();
@@ -46,8 +51,8 @@ export const POST = async (request) => {
     }
 
     if (user.planType === 'free' || !user.isPro) {
-        if (user.monthlyUsage.emails.count >= 1) {
-            return new NextResponse(JSON.stringify({ message: 'Free plan limit reached. You can only send 1 email per month. Please upgrade to Pro.' }), { status: 403 });
+        if (user.monthlyUsage.emails.count >= 5) {
+            return new NextResponse(JSON.stringify({ message: 'Free plan limit reached. You can only send 5 emails per month. Please upgrade to Pro.' }), { status: 403 });
         }
     }
 

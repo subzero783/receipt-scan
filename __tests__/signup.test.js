@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import SignupPage from "../app/signup/page";
 import { navigateTo } from "@/utils/navigation";
@@ -50,7 +50,7 @@ describe("SignupPage", () => {
     expect(screen.getByPlaceholderText("Username")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Email")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Password")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Start Free Trial/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /^Sign Up$/i })).toBeInTheDocument();
   });
 
   it("should display an error message for an invalid email", async () => {
@@ -66,7 +66,7 @@ describe("SignupPage", () => {
       target: { value: "validpassword" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /Start Free Trial/i }));
+    fireEvent.click(screen.getByRole("button", { name: /^Sign Up$/i }));
 
     expect(await screen.findByText("Email is invalid")).toBeInTheDocument();
     expect(global.fetch).not.toHaveBeenCalled();
@@ -85,7 +85,7 @@ describe("SignupPage", () => {
       target: { value: "short" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /Start Free Trial/i }));
+    fireEvent.click(screen.getByRole("button", { name: /^Sign Up$/i }));
 
     expect(await screen.findByText("Password must be at least 8 characters")).toBeInTheDocument();
     expect(global.fetch).not.toHaveBeenCalled();
@@ -105,7 +105,7 @@ describe("SignupPage", () => {
       target: { value: "validpassword123" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /Start Free Trial/i }));
+    fireEvent.click(screen.getByRole("button", { name: /^Sign Up$/i }));
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledTimes(1);
@@ -114,11 +114,13 @@ describe("SignupPage", () => {
     expect(await screen.findByText("This email is already registered. Please log in instead.")).toBeInTheDocument();
   });
 
-  it("should submit the form and redirect on successful registration (201)", async () => {
+  it("should submit the form and sign in user on successful registration (201)", async () => {
     global.fetch.mockResolvedValueOnce({
       status: 201,
-      json: jest.fn().mockResolvedValue({ url: "https://checkout.stripe.com/pay/cs_test_123" }),
+      json: jest.fn().mockResolvedValue({ success: true }),
     });
+    signIn.mockResolvedValueOnce({ error: null });
+
     renderComponent();
 
     fireEvent.change(screen.getByPlaceholderText("Username"), {
@@ -131,13 +133,20 @@ describe("SignupPage", () => {
       target: { value: "validpassword123" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /Start Free Trial/i }));
+    fireEvent.click(screen.getByRole("button", { name: /^Sign Up$/i }));
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith("/api/signup", expect.any(Object));
     });
 
+    await waitFor(() => {
+      expect(signIn).toHaveBeenCalledWith("credentials", expect.objectContaining({
+        email: "newuser@example.com",
+        password: "validpassword123"
+      }));
+    });
+
     expect(screen.queryByText(/invalid/i)).not.toBeInTheDocument();
-    expect(navigateTo).toHaveBeenCalledWith("https://checkout.stripe.com/pay/cs_test_123");
+    expect(mockRouter.push).toHaveBeenCalledWith("/dashboard");
   });
 });

@@ -206,7 +206,21 @@ export const createModalHandlers = (setSelectedReceipt, setReceipts, setIsSaving
 
     } catch (error) {
       console.error("Error saving receipt:", error);
-      alert("Error saving receipt. Please try again.");
+      let friendlyMessage = "Error saving receipt. Please try again.";
+      if (error.message) {
+        if (error.message.includes("Failed to create receipt: ")) {
+          const rawResponse = error.message.replace("Failed to create receipt: ", "");
+          try {
+            const parsed = JSON.parse(rawResponse);
+            friendlyMessage = parsed.message || friendlyMessage;
+          } catch {
+            friendlyMessage = rawResponse || friendlyMessage;
+          }
+        } else {
+          friendlyMessage = error.message;
+        }
+      }
+      alert(friendlyMessage);
     } finally {
       setIsSaving(false);
     }

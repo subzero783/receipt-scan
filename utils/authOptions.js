@@ -7,6 +7,7 @@ import bcrypt from "bcryptjs";
 import crypto from "crypto"; // Native Node.js module to generate random dummy passwords
 import { cookies } from "next/headers";
 import Stripe from "stripe";
+import sendEmail from "@/utils/sendEmail";
 
 export const authOptions = {
   pages: {
@@ -105,9 +106,8 @@ export const authOptions = {
 
         // IF THEY ARE A BRAND NEW GOOGLE USER:
         if (!userExists) {
-          let pendingUser = await PendingUser.findOne({ email: profile.email });
-
           if (authSource === "login") {
+            let pendingUser = await PendingUser.findOne({ email: profile.email });
             // Did they already pay, but the webhook was delayed or missed?
             if (pendingUser) {
               const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -161,40 +161,69 @@ export const authOptions = {
             return "/login?error=AccountNotFound";
           }
 
-          if (!pendingUser) {
-            const username = profile.name.slice(0, 20);
+          // Otherwise, directly register them as a free user!
+          const username = profile.name.slice(0, 20);
 
-            // Handle Generation Logic
-            let baseHandle = profile.email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
-            if (!baseHandle) baseHandle = `user${Math.floor(Math.random() * 10000)}`;
+          // Handle Generation Logic
+          let baseHandle = profile.email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+          if (!baseHandle) baseHandle = `user${Math.floor(Math.random() * 10000)}`;
 
-            let finalHandle = baseHandle;
-            let isUnique = false;
-            let attempts = 0;
+          let finalHandle = baseHandle;
+          let isUnique = false;
+          let attempts = 0;
 
-            // Ensure unique handle against OFFICIAL users
-            while (!isUnique && attempts < 10) {
-              const existing = await User.findOne({ inboundHandle: finalHandle });
-              if (!existing) isUnique = true;
-              else {
-                attempts++;
-                finalHandle = `${baseHandle}${Math.floor(Math.random() * 10000)}`;
-              }
+          // Ensure unique handle against OFFICIAL users
+          while (!isUnique && attempts < 10) {
+            const existing = await User.findOne({ inboundHandle: finalHandle });
+            if (!existing) isUnique = true;
+            else {
+              attempts++;
+              finalHandle = `${baseHandle}${Math.floor(Math.random() * 10000)}`;
             }
-            if (!isUnique) finalHandle = `${baseHandle}${Date.now()}`;
+          }
+          if (!isUnique) finalHandle = `${baseHandle}${Date.now()}`;
 
-            // Because PendingUser requires a password, generate a secure random one for Google users
-            const dummyPassword = await bcrypt.hash(crypto.randomBytes(16).toString("hex"), 10);
+          // Because PendingUser/User requires a password fallback
+          const dummyPassword = await bcrypt.hash(crypto.randomBytes(16).toString("hex"), 10);
 
-            // SAVE TO PENDING USER, NOT OFFICIAL USER
-            await PendingUser.create({
-              email: profile.email,
-              username,
-              image: profile.picture,
-              password: dummyPassword,
-              inboundHandle: finalHandle,
-              authProvider: 'google'
+          // Create the official User
+          const newUser = new User({
+            username,
+            email: profile.email,
+            password: dummyPassword,
+            image: profile.picture,
+            inboundHandle: finalHandle,
+            isPro: false,
+            planType: 'free'
+          });
+          await newUser.save();
+
+          // Send welcome/upgrade email
+          try {
+            await sendEmail({
+              email: newUser.email,
+              subject: 'Welcome to Receipt Scan - Start Your 7-Day Free Trial!',
+              message: `Hi ${newUser.username},
+
+Welcome to Receipt Scan! Your account has been successfully created.
+
+You have 7 days of free access to all our features. After 7 days, you will need to add a credit card and upgrade to a Pro subscription to continue using the app, otherwise you will not be able to:
+- Upload more receipts (automatic and manual)
+- Email selected receipts
+- Generate invoices
+- Export ZIP archives
+- Export CSV spreadsheets
+- Generate AI Insights
+
+Please upgrade to a Pro subscription to ensure uninterrupted access.
+
+Upgrade here: ${process.env.NEXT_PUBLIC_DOMAIN || process.env.NEXTAUTH_URL || 'http://localhost:3000'}/pricing
+
+Thanks,
+The Receipt Scan Team`
             });
+          } catch (emailError) {
+            console.error("Welcome email failed to send for Google user:", emailError);
           }
         }
       }
@@ -211,6 +240,7 @@ export const authOptions = {
         session.user.image = user.image || null;
         session.user.isPro = user.isPro || false;
         session.user.planType = user.planType || 'free';
+        session.user.createdAt = user.createdAt ? user.createdAt.toISOString() : null;
       } else {
         // 2. If not official, check Pending Users (This allows the /welcome page to work!)
         const pendingUser = await PendingUser.findOne({ email: session.user.email });

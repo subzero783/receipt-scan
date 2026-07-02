@@ -3,6 +3,10 @@
         {
             "path": "/api/cron/generate-post",
             "schedule": "50 18 * * *"
+        },
+        {
+            "path": "/api/cron/trial-warning",
+            "schedule": "0 9 * * *"
         }
     ]
 }

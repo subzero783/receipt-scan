@@ -6,6 +6,7 @@ import { v2 as cloudinary } from 'cloudinary';
 import { GoogleGenAI } from '@google/genai';
 import { Resend } from 'resend';
 import { encryptBuffer } from '@/utils/encryption';
+import { isTrialExpired } from '@/utils/userStatus';
 
 // 1. Config Cloudinary
 cloudinary.config({
@@ -75,6 +76,23 @@ export const POST = async (request) => {
         }
 
         // --- CHECK LIMIT ---
+        if (isTrialExpired(targetUser)) {
+            console.log(`User ${targetUser.email} has expired trial. Sending notification email.`);
+            await resendClient.emails.send({
+                from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
+                to: targetUser.email,
+                subject: 'Receipt Upload Failed - Trial Expired',
+                html: `
+                    <h2>Upload Failed</h2>
+                    <p>Hi ${targetUser.username || ''},</p>
+                    <p>We received your email with receipt attachments, but your free trial has expired.</p>
+                    <p>Please upgrade to the Pro plan to continue uploading receipts.</p>
+                    <p><a href="${process.env.NEXTAUTH_URL}/pricing" style="background-color: #0070f3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px;">Upgrade to Pro</a></p>
+                `
+            });
+            return new NextResponse('Trial expired', { status: 200 });
+        }
+
         if (targetUser.planType === 'free' || !targetUser.isPro) {
             if (targetUser.lifetimeReceipts === undefined || targetUser.lifetimeReceipts === 0) {
                 targetUser.lifetimeReceipts = await Receipt.countDocuments({ user: targetUser._id });
