@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { toast } from "react-toastify";
 import Spinner from "./Spinner";
 import InboundHandleText from "./InboundHandleText";
+import UsageMetrics from './UsageMetrics';
 
 const AccountSettings = () => {
 
@@ -259,6 +260,13 @@ const AccountSettings = () => {
                                             <option value="fr">French</option>
                                         </select>
                                         <FiChevronDown className="select-icon" />
+                                    </div>
+                                </div>
+
+                                <div className="settings-form-group">
+                                    <label className="settings-form-label">Usage & Limits</label>
+                                    <div>
+                                        <UsageMetrics />
                                     </div>
                                 </div>
 

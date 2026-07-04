@@ -1,0 +1,262 @@
+/* Usage Metrics Component Styles */
+
+.usage-metrics-section {
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: 32px;
+  font-family: var(--font-primary, inherit);
+}
+
+.usage-metrics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.usage-metrics-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-white, #ffffff);
+}
+
+.usage-metrics-badge {
+  background: linear-gradient(135deg, #1e90ff, #1873cc);
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.usage-metrics-badge.pro {
+  background: linear-gradient(135deg, #ffd700, #ffa500);
+  color: #000000;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.usage-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.usage-metric-card {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.usage-metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(800px circle at var(--x, 0) var(--y, 0), rgba(255, 255, 255, 0.05), transparent 40%);
+  pointer-events: none;
+}
+
+.usage-metric-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.usage-metric-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.usage-metric-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.usage-metric-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.usage-metric-value-container {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.usage-metric-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.usage-metric-limit {
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.usage-metric-icon-wrapper {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3b82f6;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.usage-metric-card:hover .usage-metric-icon-wrapper {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  transform: scale(1.05);
+}
+
+.usage-metric-progress-container {
+  width: 100%;
+}
+
+.usage-metric-progress-bar-bg {
+  height: 6px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.usage-metric-progress-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+/* Progress Colors */
+.usage-metric-progress-bar-fill.normal {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.usage-metric-progress-bar-fill.warning {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.usage-metric-progress-bar-fill.danger {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+.usage-metric-progress-bar-fill.unlimited {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.usage-metric-footer-text {
+  font-size: 11px;
+  color: #64748b;
+  display: flex;
+  justify-content: space-between;
+}
+
+.usage-metrics-cta {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(30, 144, 255, 0.15), rgba(24, 115, 204, 0.05));
+  border: 1px dashed rgba(30, 144, 255, 0.3);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  gap: 16px;
+}
+
+.usage-metrics-cta-text {
+  font-size: 13px;
+  color: #e2e8f0;
+}
+
+.usage-metrics-cta-link {
+  background: #3b82f6;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.usage-metrics-cta-link:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Light background override for Dashboard/Upload pages */
+.light-theme .usage-metric-card {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.light-theme .usage-metric-card:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.light-theme .usage-metrics-title {
+  color: #1e293b;
+}
+
+.light-theme .usage-metric-value {
+  color: #0f172a;
+}
+
+.light-theme .usage-metric-label {
+  color: #475569;
+}
+
+.light-theme .usage-metric-limit {
+  color: #64748b;
+}
+
+.light-theme .usage-metric-progress-bar-bg {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.light-theme .usage-metrics-cta {
+  background: rgba(59, 130, 246, 0.04);
+  border: 1px dashed rgba(59, 130, 246, 0.3);
+}
+
+.light-theme .usage-metrics-cta-text {
+  color: #334155;
+}
