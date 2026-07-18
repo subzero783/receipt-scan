@@ -30,6 +30,8 @@ export const POST = async (request) => {
 
     const userId = sessionUser.userId;
 
+    console.log(userId);
+
     // Check User Subscription and Receipt Count
     const user = await User.findById(userId);
     if (!user) {
